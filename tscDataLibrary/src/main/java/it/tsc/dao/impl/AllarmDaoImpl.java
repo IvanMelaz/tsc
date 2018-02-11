@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.dao.impl;
 
@@ -29,7 +29,7 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 	private static Logger logger = LoggerFactory.getLogger(AllarmDaoImpl.class);
 
 	/**
-	 * 
+	 *
 	 */
 	public AllarmDaoImpl() {
 		// TODO Auto-generated constructor stub
@@ -37,20 +37,17 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see it.tsc.dao.AllarmDao#insertAllarmeMatricola(java.lang.String,
-	 * java.sql.Timestamp, java.lang.String, java.lang.String, java.lang.String)
+	 *
+	 * @see it.tsc.dao.AllarmDao#insertAllarme(java.lang.String, java.sql.Timestamp,
+	 * java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void insertAllarmeMatricola(String matricola, String ab_codi, Instant data_arrivo, String evento,
-			String id_allarme, String user) {
+	public void insertAllarme(String ab_codi, Instant data_arrivo, String evento, String id_allarme, String user) {
 		Allarmi allarm = new Allarmi();
-		allarm.setMatricola(matricola);
 		allarm.setAb_codi(ab_codi);
 		allarm.setData_arrivo(Date.from(data_arrivo));
 		allarm.setEvento(evento);
 		allarm.setId_allarme(id_allarme);
-		;
 		allarm.setUser(user);
 
 		EntityManager entityManager = getEntityManager();
@@ -58,14 +55,14 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 		// entityManager.close();
 
 		// AllarmAccessor allarmAccessor = baseDao.createAccessor(AllarmAccessor.class);
-		// allarmAccessor.insertAllarmeMatricola(matricola, ab_codi, data_arrivo,
+		// allarmAccessor.insertAllarme(ab_codi, data_arrivo,
 		// evento, id_allarme,
 		// user);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see it.tsc.dao.AllarmDao#insertAllarmeTel(java.lang.String,
 	 * java.sql.Timestamp, java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -73,7 +70,6 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 	public void insertAllarmeTel(String tel, String ab_codi, Instant data_arrivo, String evento, String id_allarme,
 			String user) {
 		Allarmi allarm = new Allarmi();
-		allarm.setTel(tel);
 		allarm.setAb_codi(ab_codi);
 		allarm.setData_arrivo(Date.from(data_arrivo));
 		allarm.setEvento(evento);
@@ -88,7 +84,7 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see it.tsc.dao.AllarmDao#removeAllarme(java.lang.String)
 	 */
 	@Override
@@ -124,7 +120,7 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 		return result;
 
 		// String sql =
-		// "SELECT JSON matricola,ab_codi,data_arrivo,evento,user,id_allarme FROM
+		// "SELECT JSON ab_codi,data_arrivo,evento,user,id_allarme FROM
 		// ks_tsc.tb_allarms";
 		// ResultSet resultSet = baseDao.getSession().execute(sql);
 	}

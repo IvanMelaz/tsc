@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.service.impl;
 
@@ -22,7 +22,7 @@ public class AllarmServiceImpl implements AllarmService {
 	private AllarmDao allarmDao;
 
 	/**
-	 * 
+	 *
 	 */
 	public AllarmServiceImpl() {
 		// TODO Auto-generated constructor stub
@@ -30,19 +30,18 @@ public class AllarmServiceImpl implements AllarmService {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see it.tsc.service.AllamService#insertAllarmeMatricola(java.lang.String,
+	 *
+	 * @see it.tsc.service.AllamService#insertAllarme(java.lang.String,
 	 * java.sql.Timestamp, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void insertAllarmeMatricola(String matricola, String ab_codi, Instant data_arrivo, String evento,
-			String id_allarme, String user) {
-		allarmDao.insertAllarmeMatricola(matricola, ab_codi, data_arrivo, evento, id_allarme, user);
+	public void insertAllarme(String ab_codi, Instant data_arrivo, String evento, String id_allarme, String user) {
+		allarmDao.insertAllarme(ab_codi, data_arrivo, evento, id_allarme, user);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see it.tsc.service.AllamService#insertAllarmeTel(java.lang.String,
 	 * java.lang.String, java.util.Date,java.lang.String, java.lang.String,
 	 * java.lang.String)

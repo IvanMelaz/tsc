@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.test.dao;
 
@@ -24,21 +24,21 @@ public class AllarmsDaoTest extends BaseDaoTest {
   private AllarmService allarmService;
 
   /**
-   * 
+   *
    */
   public AllarmsDaoTest() {
     // TODO Auto-generated constructor stub
   }
 
   @Test
-  public void testInsertAllarmeMatricola() throws ParseException {
-    allarmService.insertAllarmeMatricola("064795", "000000", TimeUtil.getCurrentInstantDate(), "1", PortalUtil.generateUUID(),
-        "matteo");
+  public void testInsertAllarme() throws ParseException {
+    allarmService.insertAllarme("000000", TimeUtil.getCurrentInstantDate(), "1",
+        PortalUtil.generateUUID(), "matteo");
   }
 
   @Test
-  public void testInsertAllarmeMatricolaSound() throws ParseException {
-    allarmService.insertAllarmeMatricola("064795", "N00001", TimeUtil.getCurrentInstantDate(), "1",
+  public void testInsertAllarmeSound() throws ParseException {
+    allarmService.insertAllarme("N00001", TimeUtil.getCurrentInstantDate(), "1",
         PortalUtil.generateUUID(), "");
   }
 

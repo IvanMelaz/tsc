@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.test.dao.domain;
 
@@ -22,17 +22,18 @@ import it.tsc.test.dao.BaseDaoTest;
  * @author astraservice
  *
  */
-public class AllarmDaoDomainTest extends BaseDaoTest{
+public class AllarmDaoDomainTest extends BaseDaoTest {
   @Autowired
   private EntityManagerFactory entityManagerFactory;
-  
+
   @Test
   public void allarmsTest() {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        TypedQuery<Allarmi> findQuery = entityManager.createQuery("Select a from Allarm a", Allarmi.class);
-        List<Allarmi> allAllarms = findQuery.getResultList();
-        assertNotEquals(0L, allAllarms.size());
-        assertNotNull(entityManager);
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    TypedQuery<Allarmi> findQuery =
+        entityManager.createQuery("Select a from Allarmi a", Allarmi.class);
+    List<Allarmi> allAllarms = findQuery.getResultList();
+    assertNotEquals(0L, allAllarms.size());
+    assertNotNull(entityManager);
   }
 
 }

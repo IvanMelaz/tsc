@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS ks_tsc.allarme_tecnico(
+CREATE TABLE IF NOT EXISTS ks_tsc.tb_allarme_tecnico(
 	id_allarme text,
 	ab_codi text,
 	data_arrivo timestamp,

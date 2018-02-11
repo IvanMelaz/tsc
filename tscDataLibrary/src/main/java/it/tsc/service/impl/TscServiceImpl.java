@@ -29,7 +29,7 @@ public class TscServiceImpl implements TscService {
   /*
    * (non-Javadoc)
    * 
-   * @see it.tsc.service.TscService#getAnagrafica(it.tsc.model.Allarm)
+   * @see it.tsc.service.TscService#getAnagrafica(it.tsc.model.Allarmi)
    */
   public String getAnagrafica(Allarmi allarm) {
     return tscDao.getAnagrafica(allarm);

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.controller.rest;
 
@@ -33,7 +33,7 @@ public class RestAllarmServiceController {
 
   /**
    * remove allarm from queue
-   * 
+   *
    * @param allarmi
    * @param user
    * @return
@@ -51,8 +51,8 @@ public class RestAllarmServiceController {
   }
 
   /**
-   * update user in Allarm open
-   * 
+   * update user in Allarmi open
+   *
    * @param allarm
    * @param user
    * @return

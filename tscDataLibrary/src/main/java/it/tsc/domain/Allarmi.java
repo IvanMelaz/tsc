@@ -1,6 +1,6 @@
 package it.tsc.domain;
 /**
- * 
+ *
  */
 
 import java.util.Date;
@@ -18,15 +18,15 @@ import com.google.gson.annotations.Expose;
  * @author astraservice POJO class for allarm
  */
 @Entity
-@Table(name = "tb_allarms", schema = "ks_tsc@cassandra_pu")
+@Table(name = "tb_allarmi", schema = "ks_tsc@cassandra_pu")
 @NamedQueries(value = {
-		@NamedQuery(name = Allarmi.SELECT_ALL_ALLARMS, query = "SELECT a.id_allarme,a.ab_codi,a.data_arrivo,a.evento,a.matricola,a.user FROM Allarm a"),
-		@NamedQuery(name = Allarmi.UPDATE_ALLARM, query = "UPDATE Allarm a SET a.user=:user WHERE a.id_allarme=:id_allarme") })
+		@NamedQuery(name = Allarmi.SELECT_ALL_ALLARMS, query = "SELECT a.id_allarme,a.ab_codi,a.data_arrivo,a.evento,a.user FROM Allarmi a"),
+		@NamedQuery(name = Allarmi.UPDATE_ALLARM, query = "UPDATE Allarmi a SET a.user=:user WHERE a.id_allarme=:id_allarme") })
 public class Allarmi extends BaseDomain {
 	public static final String SELECT_ALL_ALLARMS = "json.select.allarms";
 	public static final String UPDATE_ALLARM = "update.allarm";
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1985698665937980250L;
 	@Id
@@ -51,16 +51,26 @@ public class Allarmi extends BaseDomain {
 
 	@Column
 	@Expose
-	private String matricola;
-	@Column
-	@Expose
-	private String tel;
-	@Column
-	@Expose
 	private String user;
 
+	@Column
+	@Expose
+	private String esito;
+
+	@Column
+	@Expose
+	private Date data_esito;
+
+	@Column
+	@Expose
+	private String conclusioni;
+
+	@Column
+	@Expose
+	private Date data_chiuso;
+
 	/**
-	 * 
+	 *
 	 */
 	public Allarmi() {
 		// TODO Auto-generated constructor stub
@@ -74,28 +84,12 @@ public class Allarmi extends BaseDomain {
 		this.ab_codi = ab_codi;
 	}
 
-	public String getMatricola() {
-		return matricola;
-	}
-
-	public void setMatricola(String matricola) {
-		this.matricola = matricola;
-	}
-
 	public Date getData_arrivo() {
 		return data_arrivo;
 	}
 
 	public void setData_arrivo(Date data_arrivo) {
 		this.data_arrivo = data_arrivo;
-	}
-
-	public String getTel() {
-		return tel;
-	}
-
-	public void setTel(String tel) {
-		this.tel = tel;
 	}
 
 	public String getUser() {
@@ -128,6 +122,38 @@ public class Allarmi extends BaseDomain {
 
 	public void setId_prova(String id_prova) {
 		this.id_prova = id_prova;
+	}
+
+	public String getEsito() {
+		return esito;
+	}
+
+	public void setEsito(String esito) {
+		this.esito = esito;
+	}
+
+	public Date getData_esito() {
+		return data_esito;
+	}
+
+	public void setData_esito(Date data_esito) {
+		this.data_esito = data_esito;
+	}
+
+	public String getConclusioni() {
+		return conclusioni;
+	}
+
+	public void setConclusioni(String conclusioni) {
+		this.conclusioni = conclusioni;
+	}
+
+	public Date getData_chiuso() {
+		return data_chiuso;
+	}
+
+	public void setData_chiuso(Date data_chiuso) {
+		this.data_chiuso = data_chiuso;
 	}
 
 }

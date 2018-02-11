@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.webservice;
 
@@ -66,8 +66,8 @@ public class TscWebService {
       throw new SOAPException("invalid username or password for service access");
     } else {
       logger.debug("sussess inserting allarm");
-      allarmService.insertAllarmeMatricola("EUROPE_ASSISTANCE", ab_codi,
-          TimeUtil.getCurrentInstantDate(), evento, PortalUtil.generateUUID(), "");
+      allarmService.insertAllarme(ab_codi, TimeUtil.getCurrentInstantDate(), evento,
+          PortalUtil.generateUUID(), "");
     }
     return allarm_uuid;
   }

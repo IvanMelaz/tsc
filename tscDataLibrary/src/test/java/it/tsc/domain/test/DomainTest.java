@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.domain.test;
 
@@ -26,7 +26,7 @@ public class DomainTest extends BaseDomainTest {
 
 	@Test
 	public void allarmsTest() {
-		TypedQuery<Allarmi> findQuery = getEntityManager().createQuery("Select a from Allarm a", Allarmi.class);
+		TypedQuery<Allarmi> findQuery = getEntityManager().createQuery("Select a from Allarmi a", Allarmi.class);
 		List<Allarmi> allAllarms = findQuery.getResultList();
 		// assertEquals(0L, allAllarms.size());
 		assertNotNull(getEntityManager());

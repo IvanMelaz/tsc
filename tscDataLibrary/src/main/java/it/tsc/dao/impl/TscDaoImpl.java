@@ -36,7 +36,7 @@ public class TscDaoImpl extends BaseDao implements TscDao {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see it.tsc.dao.TscDao#getAnagrafica(it.tsc.model.Allarm)
+	 * @see it.tsc.dao.TscDao#getAnagrafica(it.tsc.model.Allarmi)
 	 */
 	public String getAnagrafica(Allarmi allarm) {
 		if (allarm.getAb_codi() == null) {

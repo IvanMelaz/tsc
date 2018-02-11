@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration 
+<configuration
     debug="true" packagingData="true" scan="true" scanPeriod="60 seconds">
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -8,22 +8,22 @@
         </layout>
     </appender>
 
-	<logger name="org.springframework" level="debug" additivity="false">
+	<logger name="org.springframework" level="ERROR" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
 
-	<logger name="it.tsc" level="debug" additivity="false">
+	<logger name="it.tsc" level="DEBUG" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
-	
-    <logger name="it.tsc.controller.endpoint.AllarmGenerator" level="error" additivity="false">
+
+    <logger name="it.tsc.controller.endpoint.AllarmGenerator" level="ERROR" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
-	
+
 <!-- 	<logger name="org.apache.cxf" level="debug" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger> -->
-	
+
 <!-- 	<logger name="com.datastax.driver.core.QueryLogger.NORMAL" level="debug" >
 		<appender-ref ref="STDOUT" />
 	</logger> -->
