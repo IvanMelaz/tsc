@@ -1,13 +1,13 @@
 CREATE TABLE IF NOT EXISTS ks_tsc.tb_allarme_tecnico(
-	id_allarme text,
-	ab_codi text,
+	id_allarme varchar,
+	ab_codi varchar,
 	data_arrivo timestamp,
-	giorno_intervento text,
+	giorno_intervento varchar,
 	data_intervento timestamp,
-	note text,
-	anomalia_riscontrata text,
-  	user text,
-  	update_user text,
+	note varchar,
+	anomalia_riscontrata varchar,
+  	user varchar,
+  	update_user varchar,
   	update_date timestamp
   	PRIMARY KEY (id_allarme)
 );
