@@ -15,7 +15,7 @@ import javax.persistence.TypedQuery;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import it.tsc.domain.Allarm;
+import it.tsc.domain.Allarmi;
 import it.tsc.test.dao.BaseDaoTest;
 
 /**
@@ -29,8 +29,8 @@ public class AllarmDaoDomainTest extends BaseDaoTest{
   @Test
   public void allarmsTest() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        TypedQuery<Allarm> findQuery = entityManager.createQuery("Select a from Allarm a", Allarm.class);
-        List<Allarm> allAllarms = findQuery.getResultList();
+        TypedQuery<Allarmi> findQuery = entityManager.createQuery("Select a from Allarm a", Allarmi.class);
+        List<Allarmi> allAllarms = findQuery.getResultList();
         assertNotEquals(0L, allAllarms.size());
         assertNotNull(entityManager);
   }

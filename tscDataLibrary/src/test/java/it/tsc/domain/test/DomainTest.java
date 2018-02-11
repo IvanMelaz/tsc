@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
 
 import com.google.code.tempusfugit.concurrency.ConcurrentTestRunner;
 
-import it.tsc.domain.Allarm;
+import it.tsc.domain.Allarmi;
 import it.tsc.domain.Users;
 
 /**
@@ -26,8 +26,8 @@ public class DomainTest extends BaseDomainTest {
 
 	@Test
 	public void allarmsTest() {
-		TypedQuery<Allarm> findQuery = getEntityManager().createQuery("Select a from Allarm a", Allarm.class);
-		List<Allarm> allAllarms = findQuery.getResultList();
+		TypedQuery<Allarmi> findQuery = getEntityManager().createQuery("Select a from Allarm a", Allarmi.class);
+		List<Allarmi> allAllarms = findQuery.getResultList();
 		// assertEquals(0L, allAllarms.size());
 		assertNotNull(getEntityManager());
 	}

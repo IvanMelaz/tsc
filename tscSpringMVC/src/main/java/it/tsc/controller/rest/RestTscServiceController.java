@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.tsc.domain.Allarm;
+import it.tsc.domain.Allarmi;
 import it.tsc.service.TscService;
 
 /**
@@ -47,7 +47,7 @@ public class RestTscServiceController extends RestBaseController {
   @RequestMapping(value = { "/user/tscService/getAnagrafica", "/admin/tscService/getAnagrafica" },
       method = RequestMethod.POST, produces = "application/json")
   public @ResponseBody String getAnagrafica(@AuthenticationPrincipal Principal user,
-      @RequestBody Allarm allarm, BindingResult result) {
+      @RequestBody Allarmi allarm, BindingResult result) {
     // TODO return rest json service get user
     logger.debug("/user/tscService/getAnagrafica");
     return tscService.getAnagrafica(allarm);

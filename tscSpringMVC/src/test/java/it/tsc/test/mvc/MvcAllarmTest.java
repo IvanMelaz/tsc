@@ -31,7 +31,7 @@ import com.google.gson.Gson;
 
 import it.tsc.config.WebAppConfig;
 import it.tsc.data.config.ServiceConfig;
-import it.tsc.domain.Allarm;
+import it.tsc.domain.Allarmi;
 import it.tsc.domain.PortalUser;
 import it.tsc.domain.Role;
 import it.tsc.web.parallel.WebParallelTest;
@@ -74,8 +74,8 @@ public class MvcAllarmTest extends WebParallelTest {
     PortalUser user = new PortalUser();
     user.setUsername("testUser");
     user.setRole(Role.ROLE_USER.toString());
-    Allarm allarm = new Allarm();
-    allarm.setSerial_uuid("2018012120:04:48.789_448b757b");
+    Allarmi allarm = new Allarmi();
+    allarm.setId_allarme("2018012120:04:48.789_448b757b");
     allarm.setUser("testUser");
     // omit email
     ResultMatcher ok = MockMvcResultMatchers.status().isOk();

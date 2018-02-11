@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import it.tsc.dao.AllarmDao;
 import it.tsc.dao.BaseDao;
-import it.tsc.domain.Allarm;
+import it.tsc.domain.Allarmi;
 import it.tsc.util.JsonUtil;
 
 /**
@@ -43,13 +43,14 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 	 */
 	@Override
 	public void insertAllarmeMatricola(String matricola, String ab_codi, Instant data_arrivo, String evento,
-			String serial_uuid, String user) {
-		Allarm allarm = new Allarm();
+			String id_allarme, String user) {
+		Allarmi allarm = new Allarmi();
 		allarm.setMatricola(matricola);
 		allarm.setAb_codi(ab_codi);
 		allarm.setData_arrivo(Date.from(data_arrivo));
 		allarm.setEvento(evento);
-		allarm.setSerial_uuid(serial_uuid);
+		allarm.setId_allarme(id_allarme);
+		;
 		allarm.setUser(user);
 
 		EntityManager entityManager = getEntityManager();
@@ -58,7 +59,7 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 
 		// AllarmAccessor allarmAccessor = baseDao.createAccessor(AllarmAccessor.class);
 		// allarmAccessor.insertAllarmeMatricola(matricola, ab_codi, data_arrivo,
-		// evento, serial_uuid,
+		// evento, id_allarme,
 		// user);
 	}
 
@@ -69,14 +70,14 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 	 * java.sql.Timestamp, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void insertAllarmeTel(String tel, String ab_codi, Instant data_arrivo, String evento, String serial_uuid,
+	public void insertAllarmeTel(String tel, String ab_codi, Instant data_arrivo, String evento, String id_allarme,
 			String user) {
-		Allarm allarm = new Allarm();
+		Allarmi allarm = new Allarmi();
 		allarm.setTel(tel);
 		allarm.setAb_codi(ab_codi);
 		allarm.setData_arrivo(Date.from(data_arrivo));
 		allarm.setEvento(evento);
-		allarm.setSerial_uuid(serial_uuid);
+		allarm.setId_allarme(id_allarme);
 		allarm.setUser(user);
 
 		EntityManager entityManager = getEntityManager();
@@ -91,39 +92,39 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 	 * @see it.tsc.dao.AllarmDao#removeAllarme(java.lang.String)
 	 */
 	@Override
-	public void removeAllarme(String serial_uuid) {
-		Allarm allarm = new Allarm();
-		allarm.setSerial_uuid(serial_uuid);
+	public void removeAllarme(String id_allarme) {
+		Allarmi allarm = new Allarmi();
+		allarm.setId_allarme(id_allarme);
 
 		EntityManager entityManager = getEntityManager();
 		entityManager.remove(allarm);
 		// entityManager.close();
 
 		// AllarmAccessor allarmAccessor = baseDao.createAccessor(AllarmAccessor.class);
-		// allarmAccessor.removeAllarme(serial_uuid);
+		// allarmAccessor.removeAllarme(id_allarme);
 	}
 
 	@Override
-	public void updateAllarme(String serial_uuid, String user) {
+	public void updateAllarme(String id_allarme, String user) {
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Allarm> query = entityManager.createNamedQuery(Allarm.UPDATE_ALLARM, Allarm.class);
-		query.setParameter("serial_uuid", serial_uuid);
+		TypedQuery<Allarmi> query = entityManager.createNamedQuery(Allarmi.UPDATE_ALLARM, Allarmi.class);
+		query.setParameter("id_allarme", id_allarme);
 		query.setParameter("user", user);
 		query.executeUpdate();
-		logger.debug("updateAllarme: {}", serial_uuid);
+		logger.debug("updateAllarme: {}", id_allarme);
 	}
 
 	@Override
 	public String jsonGetAllarms() {
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Allarm> query = entityManager.createNamedQuery(Allarm.SELECT_ALL_ALLARMS, Allarm.class);
-		List<Allarm> list = query.getResultList();
+		TypedQuery<Allarmi> query = entityManager.createNamedQuery(Allarmi.SELECT_ALL_ALLARMS, Allarmi.class);
+		List<Allarmi> list = query.getResultList();
 
 		String result = JsonUtil.getGsonConverter().toJson(list);
 		return result;
 
 		// String sql =
-		// "SELECT JSON matricola,ab_codi,data_arrivo,evento,user,serial_uuid FROM
+		// "SELECT JSON matricola,ab_codi,data_arrivo,evento,user,id_allarme FROM
 		// ks_tsc.tb_allarms";
 		// ResultSet resultSet = baseDao.getSession().execute(sql);
 	}

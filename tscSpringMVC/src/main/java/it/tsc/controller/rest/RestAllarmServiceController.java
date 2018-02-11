@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.tsc.domain.Allarm;
+import it.tsc.domain.Allarmi;
 import it.tsc.service.AllarmService;
 
 /**
@@ -34,7 +34,7 @@ public class RestAllarmServiceController {
   /**
    * remove allarm from queue
    * 
-   * @param allarm
+   * @param allarmi
    * @param user
    * @return
    */
@@ -42,12 +42,12 @@ public class RestAllarmServiceController {
   @RequestMapping(
       value = { "/user/allarmService/removeAllarm", "/admin/allarmService/removeAllarm" },
       method = RequestMethod.POST, produces = "application/json")
-  public @ResponseBody Allarm removeAllarm(@RequestBody Allarm allarm,
+  public @ResponseBody Allarmi removeAllarm(@RequestBody Allarmi allarmi,
       @AuthenticationPrincipal Principal user) {
-    logger.debug("getSerial_uuid() {} user: {}", allarm.getSerial_uuid());
+    logger.debug("getSerial_uuid() {} user: {}", allarmi.getId_allarme());
     logger.debug("user: {}", user.getName());
-    allarmService.removeAllarme(allarm.getSerial_uuid());
-    return allarm;
+    allarmService.removeAllarme(allarmi.getId_allarme());
+    return allarmi;
   }
 
   /**
@@ -61,10 +61,10 @@ public class RestAllarmServiceController {
   @RequestMapping(
       value = { "/user/allarmService/updateAllarm", "/admin/allarmService/updateAllarm" },
       method = RequestMethod.POST, produces = "application/json")
-  public @ResponseBody Allarm updateAllarm(@RequestBody Allarm allarm,
+  public @ResponseBody Allarmi updateAllarm(@RequestBody Allarmi allarm,
       @AuthenticationPrincipal Principal user) {
-    logger.debug("getSerial_uuid() {} user: {}", allarm.getSerial_uuid(), user.getName());
-    allarmService.updateAllarme(allarm.getSerial_uuid(), user.getName());
+    logger.debug("getSerial_uuid() {} user: {}", allarm.getId_allarme(), user.getName());
+    allarmService.updateAllarme(allarm.getId_allarme(), user.getName());
     return allarm;
   }
 

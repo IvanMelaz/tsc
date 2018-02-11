@@ -1,3 +1,0 @@
-INSERT INTO ks_tsc.tb_allarms (serial_uuid,ab_codi,data_arrivo,evento,matricola,tel,user) VALUES ('2018013123:05:25.186_65f4c1d3','0000',1517439925000,'Allarme','EUROPE_ASSISTANCE',NULL,'admin') IF NOT EXISTS;
-INSERT INTO ks_tsc.tb_allarms (serial_uuid,ab_codi,data_arrivo,evento,matricola,tel,user) VALUES ('2018013123:04:10.296_3357a4d9','0000',1517439850000,'Allarme','EUROPE_ASSISTANCE',NULL,'admin') IF NOT EXISTS;
-INSERT INTO ks_tsc.tb_allarms (serial_uuid,ab_codi,data_arrivo,evento,matricola,tel,user) VALUES ('2018013123:03:32.406_e66e4ea','0000',1517439812000,'Allarme','EUROPE_ASSISTANCE',NULL,'admin') IF NOT EXISTS;

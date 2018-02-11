@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import it.tsc.domain.Allarm;
+import it.tsc.domain.Allarmi;
 import it.tsc.service.TscService;
 
 /**
@@ -37,7 +37,7 @@ public class TscDaoTest extends BaseDaoTest {
 
   @Test
   public void testGetAnagrafica() {
-    Allarm allarm = new Allarm();
+    Allarmi allarm = new Allarmi();
     allarm.setAb_codi("000000");
     assertNotNull(tscService.getAnagrafica(allarm));
   }

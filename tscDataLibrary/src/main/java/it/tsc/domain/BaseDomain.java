@@ -5,10 +5,13 @@ package it.tsc.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.MappedSuperclass;
+
 /**
  * @author astraservice
  *
  */
+@MappedSuperclass
 public class BaseDomain implements Serializable {
 	/**
 	 * 

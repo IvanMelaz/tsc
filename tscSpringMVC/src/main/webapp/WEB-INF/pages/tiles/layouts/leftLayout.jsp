@@ -8,7 +8,7 @@ var allarmUser = '${pageContext.request.userPrincipal.name}';
 /* row callback */
 function allarmGridRowClick(args,url) {
 	var allarm = args.item;
-	var allarmData = {serial_uuid:allarm.serial_uuid,ab_codi:allarm.ab_codi};
+	var allarmData = {id_allarme:allarm.id_allarme,ab_codi:allarm.ab_codi};
 	url = '${pageContext.request.contextPath}' + url;
 
 	if (allarm.user==='') {
@@ -25,7 +25,7 @@ function allarmGridRowClick(args,url) {
 		    success: function(resposeJsonObject){
 		        // Success Message Handler
 		        var message = 'Allarme </br>';
-		        message += resposeJsonObject.serial_uuid + '</br>';
+		        message += resposeJsonObject.id_allarme + '</br>';
 		        message += 'codice: ' + resposeJsonObject.ab_codi + '</br>';
 		        message += 'Chiuso con successo </br>';
 		        message += 'Gestito da <b>' + PORTAL_USER + '</b></br>';
@@ -43,7 +43,7 @@ function allarmGridRowClick(args,url) {
 /* row callback */
 function proveGridRowClick(args,url) {
 	var allarm = args.item;
-	var allarmData = {serial_uuid:allarm.serial_uuid,ab_codi:allarm.ab_codi};
+	var allarmData = {id_allarme:allarm.id_allarme,ab_codi:allarm.ab_codi};
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	url = '${pageContext.request.contextPath}' + url;
@@ -62,7 +62,7 @@ function proveGridRowClick(args,url) {
 		    success: function(resposeJsonObject){
 		        // Success Message Handler
 		        var message = 'Allarme </br>';
-		        message += resposeJsonObject.serial_uuid + '</br>';
+		        message += resposeJsonObject.id_allarme + '</br>';
 		        message += 'codice: ' + resposeJsonObject.ab_codi + '</br>';
 		        message += 'Chiuso con successo </br>';
 		        message += 'Gestito da <b>' + allarmUser + '</b></br>';
@@ -97,10 +97,10 @@ function proveGridRowClick(args,url) {
 			    }
 			},
 	       	{name: "nominativo",type:"text",visible:false,width:0},
-	       	{name: "serial_uuid",type:"text",visible:false,width:0},
+	       	{name: "id_allarme",type:"text",visible:false,width:0},
 			{name: "data_arrivo",type:"date",width: 15,
 			    itemTemplate: function(value,item) {
-			    	var tooltip = $('<div>' + value + '</div>').attr("title",item.serial_uuid);
+			    	var tooltip = $('<div>' + value + '</div>').attr("title",item.id_allarme);
 			        return tooltip;
 			    }
 	       				},
@@ -131,10 +131,10 @@ function proveGridRowClick(args,url) {
 			    }
 			},
 	       	{name: "nominativo",type:"text",visible:false,width:0},
-	       	{name: "serial_uuid",type:"text",visible:false,width:0},
+	       	{name: "id_allarme",type:"text",visible:false,width:0},
 			{name: "data_arrivo",type:"date",width: 15,
 			    itemTemplate: function(value,item) {
-			    	var tooltip = $('<div>' + value + '</div>').attr("title",item.serial_uuid);
+			    	var tooltip = $('<div>' + value + '</div>').attr("title",item.id_allarme);
 			        return tooltip;
 			    }
 	       				},

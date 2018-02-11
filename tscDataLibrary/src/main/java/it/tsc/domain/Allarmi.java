@@ -20,9 +20,9 @@ import com.google.gson.annotations.Expose;
 @Entity
 @Table(name = "tb_allarms", schema = "ks_tsc@cassandra_pu")
 @NamedQueries(value = {
-		@NamedQuery(name = Allarm.SELECT_ALL_ALLARMS, query = "SELECT a.serial_uuid,a.ab_codi,a.data_arrivo,a.evento,a.matricola,a.user FROM Allarm a"),
-		@NamedQuery(name = Allarm.UPDATE_ALLARM, query = "UPDATE Allarm a SET a.user=:user WHERE a.serial_uuid=:serial_uuid") })
-public class Allarm extends BaseDomain {
+		@NamedQuery(name = Allarmi.SELECT_ALL_ALLARMS, query = "SELECT a.id_allarme,a.ab_codi,a.data_arrivo,a.evento,a.matricola,a.user FROM Allarm a"),
+		@NamedQuery(name = Allarmi.UPDATE_ALLARM, query = "UPDATE Allarm a SET a.user=:user WHERE a.id_allarme=:id_allarme") })
+public class Allarmi extends BaseDomain {
 	public static final String SELECT_ALL_ALLARMS = "json.select.allarms";
 	public static final String UPDATE_ALLARM = "update.allarm";
 	/**
@@ -32,17 +32,23 @@ public class Allarm extends BaseDomain {
 	@Id
 	@Column
 	@Expose
-	String serial_uuid;
+	private String id_allarme;
+	@Column
+	@Expose
+
+	private String id_prova;
+	@Column
+	@Expose
+
+	private String ab_codi;
+	@Column
+	@Expose
+	private String evento;
 
 	@Column
 	@Expose
 	private Date data_arrivo;
-	@Column
-	@Expose
-	private String evento;
-	@Column
-	@Expose
-	private String ab_codi;
+
 	@Column
 	@Expose
 	private String matricola;
@@ -56,7 +62,7 @@ public class Allarm extends BaseDomain {
 	/**
 	 * 
 	 */
-	public Allarm() {
+	public Allarmi() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -100,20 +106,28 @@ public class Allarm extends BaseDomain {
 		this.user = user;
 	}
 
-	public String getSerial_uuid() {
-		return serial_uuid;
-	}
-
-	public void setSerial_uuid(String serial_uuid) {
-		this.serial_uuid = serial_uuid;
-	}
-
 	public String getEvento() {
 		return evento;
 	}
 
 	public void setEvento(String evento) {
 		this.evento = evento;
+	}
+
+	public String getId_allarme() {
+		return id_allarme;
+	}
+
+	public void setId_allarme(String id_allarme) {
+		this.id_allarme = id_allarme;
+	}
+
+	public String getId_prova() {
+		return id_prova;
+	}
+
+	public void setId_prova(String id_prova) {
+		this.id_prova = id_prova;
 	}
 
 }

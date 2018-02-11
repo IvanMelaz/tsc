@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import it.tsc.dao.BaseDao;
 import it.tsc.dao.TscDao;
-import it.tsc.domain.Allarm;
+import it.tsc.domain.Allarmi;
 import it.tsc.domain.Anagrafica;
 import it.tsc.util.JsonUtil;
 
@@ -38,7 +38,7 @@ public class TscDaoImpl extends BaseDao implements TscDao {
 	 * 
 	 * @see it.tsc.dao.TscDao#getAnagrafica(it.tsc.model.Allarm)
 	 */
-	public String getAnagrafica(Allarm allarm) {
+	public String getAnagrafica(Allarmi allarm) {
 		if (allarm.getAb_codi() == null) {
 			throw new IllegalArgumentException("ab_codi is empty");
 		}

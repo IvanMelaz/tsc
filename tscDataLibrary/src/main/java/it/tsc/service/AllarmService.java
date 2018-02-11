@@ -16,11 +16,11 @@ public interface AllarmService {
 	 * @param matricola
 	 * @param data_arrivo
 	 * @param evento
-	 * @param serial_uuid
+	 * @param id_allarme
 	 * @param user
 	 */
 	public void insertAllarmeMatricola(String matricola, String ab_codi, Instant data_arrivo, String evento,
-			String serial_uuid, String user);
+			String id_allarme, String user);
 
 	/**
 	 * Inserisce allarme per telefono (BRONDI)
@@ -28,26 +28,26 @@ public interface AllarmService {
 	 * @param tel
 	 * @param data_arrivo
 	 * @param evento
-	 * @param serial_uuid
+	 * @param id_allarme
 	 * @param user
 	 */
-	public void insertAllarmeTel(String tel, String ab_codi, Date data_arrivo, String evento, String serial_uuid,
+	public void insertAllarmeTel(String tel, String ab_codi, Date data_arrivo, String evento, String id_allarme,
 			String user);
 
 	/**
 	 * rimuove allarme
 	 * 
-	 * @param serial_uuid
+	 * @param id_allarme
 	 */
-	public void removeAllarme(String serial_uuid);
+	public void removeAllarme(String id_allarme);
 
 	/**
 	 * update Allarme
 	 * 
-	 * @param serial_uuid
+	 * @param id_allarme
 	 * @param user
 	 */
-	public void updateAllarme(String serial_uuid, String user);
+	public void updateAllarme(String id_allarme, String user);
 
 	/**
 	 * get allarms in json format

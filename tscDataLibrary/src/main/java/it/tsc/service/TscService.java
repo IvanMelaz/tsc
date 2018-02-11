@@ -3,7 +3,7 @@
  */
 package it.tsc.service;
 
-import it.tsc.domain.Allarm;
+import it.tsc.domain.Allarmi;
 
 /**
  * @author astraservice TSC Service
@@ -16,6 +16,6 @@ public interface TscService {
    * @param allarm
    * @return
    */
-  public String getAnagrafica(Allarm allarm);
+  public String getAnagrafica(Allarmi allarm);
 
 }

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.tsc.dao.TscDao;
-import it.tsc.domain.Allarm;
+import it.tsc.domain.Allarmi;
 import it.tsc.service.TscService;
 
 /**
@@ -31,7 +31,7 @@ public class TscServiceImpl implements TscService {
    * 
    * @see it.tsc.service.TscService#getAnagrafica(it.tsc.model.Allarm)
    */
-  public String getAnagrafica(Allarm allarm) {
+  public String getAnagrafica(Allarmi allarm) {
     return tscDao.getAnagrafica(allarm);
   }
 

@@ -27,7 +27,7 @@ import com.google.gson.Gson;
 
 import it.tsc.config.WebAppConfig;
 import it.tsc.data.config.ServiceConfig;
-import it.tsc.domain.Allarm;
+import it.tsc.domain.Allarmi;
 import it.tsc.domain.PortalUser;
 import it.tsc.web.parallel.WebParallelTest;
 
@@ -68,8 +68,8 @@ public class MvcValidationTest extends WebParallelTest {
   @Test
   @WithMockUser(roles = "ADMIN", username = "matteo")
   public void testUpdateAllarm() throws Exception {
-    Allarm allarm = new Allarm();
-    allarm.setSerial_uuid("123");
+    Allarmi allarm = new Allarmi();
+    allarm.setId_allarme("123");
     // omit email
     ResultMatcher ok = MockMvcResultMatchers.status().isOk();
     MockHttpServletRequestBuilder builder =

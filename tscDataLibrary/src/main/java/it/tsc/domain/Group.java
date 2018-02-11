@@ -22,7 +22,7 @@ import it.tsc.domain.key.CompoundKey;
 @Table(name = "tb_groups", schema = "ks_tsc@cassandra_pu")
 @NamedQueries(value = { @NamedQuery(name = Group.SELECT_GROUPS, query = "SELECT g FROM Group g"),
 		@NamedQuery(name = Group.SELECT_GROUPS_BY_KEY, query = "SELECT g FROM Group g WHERE g.key = :key") })
-public class Group {
+public class Group extends BaseDomain {
 	public static final String SELECT_GROUPS = "select.groups";
 	public static final String SELECT_GROUPS_BY_KEY = "select.groups.by_key";
 

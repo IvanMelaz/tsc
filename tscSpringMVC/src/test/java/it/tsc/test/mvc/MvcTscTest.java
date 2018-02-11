@@ -29,7 +29,7 @@ import org.springframework.web.context.WebApplicationContext;
 import com.google.gson.Gson;
 
 import it.tsc.config.WebAppConfig;
-import it.tsc.domain.Allarm;
+import it.tsc.domain.Allarmi;
 import it.tsc.web.parallel.WebParallelTest;
 
 /**
@@ -66,7 +66,7 @@ public class MvcTscTest extends WebParallelTest {
   @Test
   @WithMockUser(roles = "ADMIN", username = "matteo")
   public void testGetAnagrafica() throws Exception {
-    Allarm allarm = new Allarm();
+    Allarmi allarm = new Allarmi();
     allarm.setAb_codi("000000");
     // omit email
     ResultMatcher ok = MockMvcResultMatchers.status().isOk();

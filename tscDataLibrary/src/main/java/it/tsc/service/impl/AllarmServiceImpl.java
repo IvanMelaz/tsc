@@ -34,9 +34,10 @@ public class AllarmServiceImpl implements AllarmService {
 	 * @see it.tsc.service.AllamService#insertAllarmeMatricola(java.lang.String,
 	 * java.sql.Timestamp, java.lang.String, java.lang.String)
 	 */
+	@Override
 	public void insertAllarmeMatricola(String matricola, String ab_codi, Instant data_arrivo, String evento,
-			String serial_uuid, String user) {
-		allarmDao.insertAllarmeMatricola(matricola, ab_codi, data_arrivo, evento, serial_uuid, user);
+			String id_allarme, String user) {
+		allarmDao.insertAllarmeMatricola(matricola, ab_codi, data_arrivo, evento, id_allarme, user);
 	}
 
 	/*
@@ -46,19 +47,23 @@ public class AllarmServiceImpl implements AllarmService {
 	 * java.lang.String, java.util.Date,java.lang.String, java.lang.String,
 	 * java.lang.String)
 	 */
-	public void insertAllarmeTel(String tel, String ab_codi, Date data_arrivo, String evento, String serial_uuid,
+	@Override
+	public void insertAllarmeTel(String tel, String ab_codi, Date data_arrivo, String evento, String id_allarme,
 			String user) {
 
 	}
 
-	public void removeAllarme(String serial_uuid) {
-		allarmDao.removeAllarme(serial_uuid);
+	@Override
+	public void removeAllarme(String id_allarme) {
+		allarmDao.removeAllarme(id_allarme);
 	}
 
-	public void updateAllarme(String serial_uuid, String user) {
-		allarmDao.updateAllarme(serial_uuid, user);
+	@Override
+	public void updateAllarme(String id_allarme, String user) {
+		allarmDao.updateAllarme(id_allarme, user);
 	}
 
+	@Override
 	public String jsonGetAllarms() {
 		return allarmDao.jsonGetAllarms();
 	}

@@ -3,7 +3,7 @@
  */
 package it.tsc.dao;
 
-import it.tsc.domain.Allarm;
+import it.tsc.domain.Allarmi;
 
 /**
  * @author astraservice Dao for TSC Service
@@ -16,6 +16,6 @@ public interface TscDao {
    * @param allarm
    * @return
    */
-  public String getAnagrafica(Allarm allarm);
+  public String getAnagrafica(Allarmi allarm);
 
 }
