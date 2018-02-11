@@ -14,6 +14,6 @@ CREATE TABLE IF NOT EXISTS ks_tsc.tb_allarmi(
   	PRIMARY KEY (id_allarme)
 );
 
---DROP TABLE IF EXISTS ks_tsc.allarmi;
+--DROP TABLE IF EXISTS ks_tsc.tb_allarmi;
 
 

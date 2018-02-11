@@ -56,7 +56,7 @@ public class UsersDomainTest extends BaseDomainTest {
 
 	@Test
 	public void testScript3() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-		Users users1 = new Users(new CompoundKey("matteo", Role.ROLE_USER), true);
+		// Users users1 = new Users(new CompoundKey("matteo", Role.ROLE_USER), true);
 		Query query = getEntityManager().createNativeQuery(
 				"SELECT username,role,groupName from ks_tsc.tb_groups WHERE role='ROLE_ADMIN' ALLOW FILTERING",
 				Group.class);

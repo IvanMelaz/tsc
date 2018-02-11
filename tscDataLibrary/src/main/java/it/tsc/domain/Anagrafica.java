@@ -53,6 +53,9 @@ public class Anagrafica {
 	private String cellulare;
 	@Column
 	@Expose
+	private String sesso;
+	@Column
+	@Expose
 	private Date data_nascita;
 	@Column
 	@Expose
@@ -93,6 +96,9 @@ public class Anagrafica {
 	@Column
 	@Expose
 	private Date data_installazione;
+	@Expose
+	@Column
+	private Date data_modifica;
 	@Column
 	@Expose
 	private Date data_aggiornamento;
@@ -338,6 +344,22 @@ public class Anagrafica {
 
 	public void setEnte(String ente) {
 		this.ente = ente;
+	}
+
+	public String getSesso() {
+		return sesso;
+	}
+
+	public void setSesso(String sesso) {
+		this.sesso = sesso;
+	}
+
+	public Date getData_modifica() {
+		return data_modifica;
+	}
+
+	public void setData_modifica(Date data_modifica) {
+		this.data_modifica = data_modifica;
 	}
 
 }

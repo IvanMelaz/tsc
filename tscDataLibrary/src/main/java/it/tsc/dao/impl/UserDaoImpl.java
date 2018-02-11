@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.dao.impl;
 
@@ -42,7 +42,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 
 	/**
 	 * to convert v
-	 * 
+	 *
 	 */
 	public UserDaoImpl() {
 
@@ -63,7 +63,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 
 	/*
 	 * extends CommonDao (non-Javadoc)
-	 * 
+	 *
 	 * @see it.tsc.dao.UserDao#getUserRole(java.lang.String)
 	 */
 	@Override
@@ -149,7 +149,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 
 	/*
 	 * (non-Javadoc) extends CommonDao
-	 * 
+	 *
 	 * @see it.tsc.dao.UserDao#getUserRoles(java.lang.String,java.lang.String)
 	 */
 	@Override
@@ -172,7 +172,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see it.tsc.dao.UserDao#isAdmin(it.tsc.model.Role)
 	 */
 	@Override
@@ -187,7 +187,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see it.tsc.dao.UserDao#addUser(java.lang.String, java.lang.String,,
 	 * java.lang.String it.tsc.model.Role)
 	 */
@@ -206,7 +206,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	/*
 	 * (non-Javadoc) public List<GrantedAuthority> getUserRoles(String username,
 	 * String password) { //
-	 * 
+	 *
 	 * @see it.tsc.dao.UserDao#removeUser(java.lang.String)
 	 */
 	@Override
@@ -224,7 +224,6 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 
 	@Override
 	public void updateMfaUserKey(String username, String keyId, String base32Secret, String role) {
-		Users users = new Users(new CompoundKey(username, role), true, keyId, base32Secret);
 		EntityManager entityManager = getEntityManager();
 		TypedQuery<Users> query = entityManager.createNamedQuery(Users.UPDATE_BY_USERNAME_ROLE, Users.class);
 		query.setParameter("username", username);
@@ -237,10 +236,10 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @Override public PortalUser getUser(String username, String email) { // TODO
 	 * Auto-generated method stub return null; }*
-	 * 
+	 *
 	 * @see
 	 * it.tsc.dao.UserDao#updateUser(java.lang.String,java.lang.String,java.lang.
 	 * String,it.tsc.model. Role)
@@ -260,7 +259,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 
 	/**
 	 * map return result to JSON
-	 * 
+	 *
 	 * @return
 	 */
 	@SuppressWarnings("unused")

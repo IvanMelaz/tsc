@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS ks_tsc.tb_anagrafica(
 	cap varchar,
 	telefono varchar,
 	cellulare varchar,
+	sesso varchar,
 	data_nascita time,
 	luogo_nascita varchar,
 	altezza int,
@@ -22,6 +23,7 @@ CREATE TABLE IF NOT EXISTS ks_tsc.tb_anagrafica(
 	dati_tecnici text,
 	data_inserimento timestamp,
 	data_installazione timestamp,
+	data_modifica timestamp,
 	data_aggiornamento timestamp,
 	data_disinstallazione timestamp,
 	motivo_disinstallazione text,
@@ -30,4 +32,4 @@ CREATE TABLE IF NOT EXISTS ks_tsc.tb_anagrafica(
   	PRIMARY KEY (ab_codi)
 );
 
---DROP TABLE IF EXISTS ks_tsc.anagrafica;
+--DROP TABLE IF EXISTS ks_tsc.tb_anagrafica;
