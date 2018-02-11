@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.domain.test;
 
@@ -85,7 +85,7 @@ public class UsersDomainTest extends BaseDomainTest {
 
 	@Test
 	public void truncateAllarmsTest() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-		Query query = getEntityManager().createNativeQuery("TRUNCATE table ks_tsc.tb_allarms;");
+		Query query = getEntityManager().createNativeQuery("TRUNCATE table ks_tsc.tb_allarmi;");
 		// query.setParameter("role", users1.getKey().getRole());
 		logger.debug("query: {}", JsonUtil.getGsonConverter().toJson(query.getResultList()));
 		query.executeUpdate();

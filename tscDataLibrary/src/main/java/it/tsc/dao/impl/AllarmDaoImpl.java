@@ -121,7 +121,7 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 
 		// String sql =
 		// "SELECT JSON ab_codi,data_arrivo,evento,user,id_allarme FROM
-		// ks_tsc.tb_allarms";
+		// ks_tsc.tb_allarmi";
 		// ResultSet resultSet = baseDao.getSession().execute(sql);
 	}
 
