@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.domain.test;
 
@@ -22,7 +22,7 @@ import com.impetus.kundera.client.cassandra.dsdriver.DSClientFactory;
  * @author astraservice Class for Base Test Domain
  */
 public class BaseDomainTest extends DSClientFactory {
-	public final String PU = "cassandra_pu";
+	public final String PU = "mysql_pu";
 	private EntityManager em = null;
 	protected static final Logger logger = LoggerFactory.getLogger(BaseDomainTest.class);
 	private Map<String, Object> propertyMap = new HashMap<String, Object>();
@@ -33,7 +33,7 @@ public class BaseDomainTest extends DSClientFactory {
 
 	/**
 	 * return EntityManager
-	 * 
+	 *
 	 * @return
 	 */
 	protected EntityManager getEntityManager() {

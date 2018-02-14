@@ -18,7 +18,7 @@ import com.google.gson.annotations.Expose;
  * @author astraservice Anagrafica Utente
  */
 @Entity
-@Table(name = "tb_anagrafica", schema = "ks_tsc@cassandra_pu")
+@Table(name = "anagrafica", schema = "telesoccorso@mysql_pu")
 @NamedQueries(value = {
 		@NamedQuery(name = Anagrafica.SELECT_ALL_ANAGRAFICA, query = "SELECT a FROM Anagrafica a WHERE a.ab_codi = :ab_codi") })
 public class Anagrafica {

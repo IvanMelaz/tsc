@@ -4,7 +4,6 @@
 package it.tsc.dao.impl;
 
 import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -45,7 +44,7 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 	public void insertAllarme(String ab_codi, Instant data_arrivo, String evento, String id_allarme, String user) {
 		Allarmi allarm = new Allarmi();
 		allarm.setAb_codi(ab_codi);
-		allarm.setData_arrivo(Date.from(data_arrivo));
+		// allarm.setData_arrivo(Date.from(data_arrivo));
 		allarm.setEvento(evento);
 		allarm.setId_allarme(id_allarme);
 		allarm.setUser(user);
@@ -71,7 +70,7 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 			String user) {
 		Allarmi allarm = new Allarmi();
 		allarm.setAb_codi(ab_codi);
-		allarm.setData_arrivo(Date.from(data_arrivo));
+		// allarm.setData_arrivo(Date.from(data_arrivo));
 		allarm.setEvento(evento);
 		allarm.setId_allarme(id_allarme);
 		allarm.setUser(user);

@@ -18,7 +18,7 @@ import com.google.gson.annotations.Expose;
  * @author astraservice POJO class for allarm
  */
 @Entity
-@Table(name = "tb_allarmi", schema = "ks_tsc@cassandra_pu")
+@Table(name = "allarmi", schema = "telesoccorso@mysql_pu")
 @NamedQueries(value = {
 		@NamedQuery(name = Allarmi.SELECT_ALL_ALLARMS, query = "SELECT a.id_allarme,a.ab_codi,a.data_arrivo,a.evento,a.user FROM Allarmi a"),
 		@NamedQuery(name = Allarmi.UPDATE_ALLARM, query = "UPDATE Allarmi a SET a.user=:user WHERE a.id_allarme=:id_allarme") })
@@ -45,8 +45,8 @@ public class Allarmi extends BaseDomain {
 	@Expose
 	private String evento;
 
-	@Column
 	@Expose
+	@Column
 	private Date data_arrivo;
 
 	@Column

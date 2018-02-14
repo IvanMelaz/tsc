@@ -3,16 +3,16 @@ mysql> show schemas;
 +--------------------+
 | Database           |
 +--------------------+
-| information_schema | 
-| asterisk           | 
-| asteriskcdrdb      | 
-| asteriskrealtime   | 
-| endpoints          | 
-| meetme             | 
-| mysql              | 
-| telesoccorso       | 
-| test               | 
-| tsc                | 
+| information_schema |
+| asterisk           |
+| asteriskcdrdb      |
+| asteriskrealtime   |
+| endpoints          |
+| meetme             |
+| mysql              |
+| telesoccorso       |
+| test               |
+| tsc                |
 +--------------------+
 10 rows in set (0.09 sec)
 
@@ -20,54 +20,54 @@ mysql> show tables;
 +------------------------+
 | Tables_in_telesoccorso |
 +------------------------+
-| allarme_tecnico        | 
-| allarmi                | 
-| ambulanze              | 
-| anagrafica             | 
-| analisi                | 
-| asi_convenzioni        | 
-| asi_gmed               | 
-| asi_medici             | 
-| asi_turni              | 
-| assenza                | 
-| cdr                    | 
-| coda_eve               | 
-| coda_prove             | 
-| convivente             | 
-| croci                  | 
-| enti                   | 
-| eventi_allarme         | 
-| eventip0               | 
-| gmed                   | 
-| indirizzisociali       | 
-| infermieri             | 
-| info_allarme           | 
-| info_prova             | 
-| login_info             | 
-| medici                 | 
-| medicinali             | 
-| ospedali               | 
-| pagamenti              | 
-| patologie              | 
-| pediatrica             | 
-| phone_info             | 
-| prove                  | 
-| prove_day              | 
-| prove_fascia           | 
-| prove_fogli            | 
-| prove_nr               | 
-| socc_amici             | 
-| socc_pub               | 
-| stipulante             | 
-| storico_eventi         | 
-| tabellap0              | 
-| tecnico                | 
-| tipo_allarme           | 
-| tsc_group              | 
-| tsc_group_user_link    | 
-| tsc_user               | 
-| vw_CentraleUtente      | 
-| vw_provecompleanno     | 
+| allarme_tecnico        |
+| allarmi                |
+| ambulanze              |
+| anagrafica             |
+| analisi                |
+| asi_convenzioni        |
+| asi_gmed               |
+| asi_medici             |
+| asi_turni              |
+| assenza                |
+| cdr                    |
+| coda_eve               |
+| coda_prove             |
+| convivente             |
+| croci                  |
+| enti                   |
+| eventi_allarme         |
+| eventip0               |
+| gmed                   |
+| indirizzisociali       |
+| infermieri             |
+| info_allarme           |
+| info_prova             |
+| login_info             |
+| medici                 |
+| medicinali             |
+| ospedali               |
+| pagamenti              |
+| patologie              |
+| pediatrica             |
+| phone_info             |
+| prove                  |
+| prove_day              |
+| prove_fascia           |
+| prove_fogli            |
+| prove_nr               |
+| socc_amici             |
+| socc_pub               |
+| stipulante             |
+| storico_eventi         |
+| tabellap0              |
+| tecnico                |
+| tipo_allarme           |
+| tsc_group              |
+| tsc_group_user_link    |
+| tsc_user               |
+| vw_CentraleUtente      |
+| vw_provecompleanno     |
 +------------------------+
 48 rows in set (0.00 sec)
 **/
@@ -112,17 +112,13 @@ CREATE TABLE `allarmi` (
   `ID_PROVA` varchar(50) default NULL COMMENT 'ID della prova correlata ad allarme',
   `AB_CODI` varchar(10) NOT NULL COMMENT 'Codice Utente',
   `EVENTO` varchar(50) default NULL,
-  `DATA` varchar(10) default NULL,
-  `ORA` varchar(10) default NULL,
+  `DATA_ARRIVO` timestamp NOT NULL default CURRENT_TIMESTAMP COMMENT 'Data (timestamp) arrivo dell'' allarme',
   `USER` varchar(50) default NULL,
   `ESITO` varchar(255) default NULL,
-  `DATA_ESITO` timestamp NOT NULL default CURRENT_TIMESTAMP COMMENT 'Data (timestamp) chiusura dell'' esito allarme',
+  `DATA_ESITO` timestamp NOT NULL default CURRENT_TIMESTAMP COMMENT 'Data (timestamp) esito dell'' esito allarme',
   `CONCLUSIONI` longtext,
-  `DATA_CHIUSO` varchar(10) default NULL,
-  `ORA_CHIUSO` varchar(10) default NULL,
-  `VISUALIZZAZIONE` int(11) NOT NULL auto_increment,
+  `DATA_CHIUSO` timestamp NOT NULL default CURRENT_TIMESTAMP COMMENT 'Data (timestamp) chiusura dell'' allarme',
   PRIMARY KEY  (`ID_ALLARME`),
-  UNIQUE KEY `VISUALIZZAZIONE` (`VISUALIZZAZIONE`),
   KEY `IDX_AB_CODI` (`AB_CODI`),
   KEY `IDX_ID_PROVA` (`ID_PROVA`),
   CONSTRAINT `FK_ALLARMI.ANAGRAFICA` FOREIGN KEY (`AB_CODI`) REFERENCES `anagrafica` (`AB_CODI`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -1118,9 +1114,14 @@ CREATE TABLE `tsc_group_user_link` (
 
 DROP TABLE IF EXISTS `tsc_user`;
 CREATE TABLE `tsc_user` (
-  `uid` mediumint(8) NOT NULL COMMENT 'User id',
-  `name` varchar(60) NOT NULL COMMENT 'User name',
-  PRIMARY KEY  (`uid`)
+  `username` varchar(60) NOT NULL COMMENT 'User name',
+  `password` varchar(255),
+  `email`varchar(255),
+  `role`varchar(255),
+  `keyId`varchar(255),
+  `base32Secret` varchar(255),
+  mfaEnabled TINYINT(1),
+  PRIMARY KEY  (`username`,`role`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1178,14 +1179,14 @@ DROP TABLE IF EXISTS `vw_provecompleanno`;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2018-02-11 12:40:07
-[nodo1 tmp]# 
-[nodo1 tmp]# 
-[nodo1 tmp]# 
-[nodo1 tmp]# 
+[nodo1 tmp]#
+[nodo1 tmp]#
+[nodo1 tmp]#
+[nodo1 tmp]#
 [nodo1 tmp]# clear
 
 [nodo1 tmp]# mysqldump -u root -p --no-data telesoccorso
-Enter password: 
+Enter password:
 -- MySQL dump 10.11
 --
 -- Host: localhost    Database: telesoccorso
@@ -2216,7 +2217,7 @@ CREATE TABLE `tipo_allarme` (
 DROP TABLE IF EXISTS `tsc_group`;
 CREATE TABLE `tsc_group` (
   `groupid` smallint(5) NOT NULL,
-  `name` varchar(50) NOT NULL,
+  `groupname` varchar(50) NOT NULL,
   PRIMARY KEY  (`groupid`),
   UNIQUE KEY `groupid` (`groupid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -2238,9 +2239,14 @@ CREATE TABLE `tsc_group_user_link` (
 
 DROP TABLE IF EXISTS `tsc_user`;
 CREATE TABLE `tsc_user` (
-  `uid` mediumint(8) NOT NULL COMMENT 'User id',
-  `name` varchar(60) NOT NULL COMMENT 'User name',
-  PRIMARY KEY  (`uid`)
+  `username` varchar(60) NOT NULL COMMENT 'User name',
+  `password` varchar(255),
+  `email`varchar(255),
+  `role`varchar(255),
+  `keyId`varchar(255),
+  `base32Secret` varchar(255),
+  mfaEnabled TINYINT(1),
+  PRIMARY KEY  (`username`,`role`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

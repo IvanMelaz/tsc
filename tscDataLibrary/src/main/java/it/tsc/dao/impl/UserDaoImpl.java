@@ -135,8 +135,6 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 
 	@Override
 	public String jsonGetAllUsers() {
-		// String sql = "SELECT JSON username,role,email FROM ks_tsc.tb_users;";
-		// ResultSet resultSet = baseDao.getSession().execute(sql);
 		EntityManager entityManager = getEntityManager();
 		TypedQuery<Users> query = entityManager.createNamedQuery(Users.SELECT_ALL_USERS, Users.class);
 		List<Users> list = query.getResultList();

@@ -7,7 +7,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>tscSpringMVC Maven Webapp</name>
   <url>http://maven.apache.org</url>
-  
+
 	<properties>
 		<jdk.version>1.6</jdk.version>
 		<spring.version>4.3.8.RELEASE</spring.version>
@@ -21,23 +21,23 @@
 		<quartz.version>2.2.1</quartz.version>
 		<guava.version>21.0</guava.version>
 		<gson.version>2.8.0</gson.version>
-		<hibernate.validation.version>5.4.1.Final</hibernate.validation.version>
+		<hibernate.validation.version>5.2.12.Final</hibernate.validation.version>
 	</properties>
-  
+
   <dependencies>
-  
+
 	<dependency>
 		<groupId>tscSpringMVC</groupId>
 		<artifactId>tscDataLibrary</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</dependency>
-	
+
     <dependency>
 		<groupId>tscSpringMVC</groupId>
 		<artifactId>tscSharedLibrary</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</dependency>
-  
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -59,7 +59,7 @@
 		<version>${servletapi.version}</version>
 		<scope>provided</scope>
 	</dependency>
-	
+
 	<dependency>
 		<groupId>javax</groupId>
 		<artifactId>javaee-api</artifactId>
@@ -72,45 +72,45 @@
 		<artifactId>tiles-jsp</artifactId>
 		<version>${tiles.version}</version>
 	</dependency>
-	
+
 	<dependency>
 		<groupId>org.apache.tiles</groupId>
 		<artifactId>tiles-servlet</artifactId>
 		<version>${tiles.version}</version>
 	</dependency>
-	
+
 	<dependency>
 		<groupId>org.apache.tiles</groupId>
 		<artifactId>tiles-template</artifactId>
 		<version>${tiles.version}</version>
 	</dependency>
-	
+
 	<dependency>
 		<groupId>org.apache.tiles</groupId>
 		<artifactId>tiles-el</artifactId>
 		<version>${tiles.version}</version>
 	</dependency>
-	
+
 	<dependency>
         <groupId>org.apache.tiles</groupId>
         <artifactId>tiles-extras</artifactId>
         <version>${tiles.version}</version>
     </dependency>
-    
+
 	<!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
 	<dependency>
 	    <groupId>org.reflections</groupId>
 	    <artifactId>reflections</artifactId>
 	    <version>0.9.11</version>
 	</dependency>
-	
+
 	<!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
 <!-- 	<dependency>
 	    <groupId>joda-time</groupId>
 	    <artifactId>joda-time</artifactId>
 	    <version>2.9.9</version>
 	</dependency> -->
-    
+
     <!-- fix cassandra netty -->
 <!-- 	<dependency>
 	  <groupId>io.netty</groupId>
@@ -120,7 +120,7 @@
 	</dependency> -->
 
   </dependencies>
-  
+
   <!-- BUILD -->
   <build>
     <finalName>tscSpringMVC</finalName>
@@ -139,7 +139,7 @@
           	  </excludes>
 	        </configuration>
 	    </plugin>
-		
+
 		<plugin>
 		    <groupId>org.apache.maven.plugins</groupId>
 		    <artifactId>maven-war-plugin</artifactId>
@@ -155,7 +155,7 @@
 		      </webResources>
 		    </configuration>
 		  </plugin>
-		  
+
 	        <plugin>
 	            <groupId>org.apache.maven.plugins</groupId>
 	            <artifactId>maven-surefire-plugin</artifactId>
@@ -165,7 +165,7 @@
 	                <threadCount>5</threadCount>
 	            </configuration>
 	        </plugin>
-		  
+
 	  </plugins>
   </build>
 </project>

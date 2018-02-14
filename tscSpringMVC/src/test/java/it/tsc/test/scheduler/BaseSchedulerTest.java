@@ -1,9 +1,10 @@
 /**
- * 
+ *
  */
 package it.tsc.test.scheduler;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -36,7 +37,7 @@ public class BaseSchedulerTest extends WebParallelTest {
   private AllarmServiceJob allarmServiceJob;
 
   /**
-   * 
+   *
    */
   public BaseSchedulerTest() {
 
@@ -61,6 +62,7 @@ public class BaseSchedulerTest extends WebParallelTest {
     Assert.assertTrue(cronTriggerFactoryBean != null);
   }
 
+  @Ignore
   @Test
   public void testJobScheduler() {
     Assert.assertTrue(allarmServiceJob != null);

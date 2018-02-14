@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.domain;
 
@@ -24,16 +24,16 @@ import it.tsc.domain.key.CompoundKey;
  * @author astraservice tb_users
  */
 @Entity
-@Table(name = "tb_users", schema = "ks_tsc@cassandra_pu")
+@Table(name = "tsc_user", schema = "telesoccorso@mysql_pu")
 @NamedQueries(value = { @NamedQuery(name = Users.SELECT_ALL_USERS, query = "SELECT u FROM Users u"),
 		@NamedQuery(name = Users.SELECT_BY_USERNAME, query = "SELECT u FROM Users u WHERE u.key.username = :username"),
-		@NamedQuery(name = Users.SELECT_BY_USERNAME_ROLE, query = "SELECT u FROM Users u WHERE u.key.username = :username AND u.role=:role"),
+		@NamedQuery(name = Users.SELECT_BY_USERNAME_ROLE, query = "SELECT u FROM Users u WHERE u.key.username = :username AND u.key.role=:role"),
 		@NamedQuery(name = Users.SELECT_BY_USERNAME_EMAIL, query = "SELECT u FROM Users u WHERE u.key.username = :username AND u.email=:email"),
 		@NamedQuery(name = Users.UPDATE_BY_USERNAME_ROLE, query = "UPDATE Users u SET u.keyId=:keyId,u.base32Secret=:base32Secret WHERE u.key.username = :username AND u.key.role=:role"),
 		@NamedQuery(name = Users.UPDATE_USER, query = "UPDATE Users u SET u.password=:password,u.email=:email,u.mfaEnabled=:mfaEnabled WHERE u.key.username = :username AND u.key.role = :role") })
 public class Users extends BaseDomain {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -5293616948185366680L;
 	public static final String SELECT_ALL_USERS = "select.users";
@@ -70,14 +70,14 @@ public class Users extends BaseDomain {
 	private List<Group> groups = new ArrayList<Group>();
 
 	/**
-	 * 
+	 *
 	 */
 	public Users() {
 		super();
 	}
 
 	/**
-	 * 
+	 *
 	 * @param key
 	 * @param mfaEnabled
 	 */
@@ -88,7 +88,7 @@ public class Users extends BaseDomain {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param key
 	 * @param password
 	 * @param email
@@ -102,7 +102,7 @@ public class Users extends BaseDomain {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param key
 	 * @param base32Secret
 	 * @param mfaEnabled

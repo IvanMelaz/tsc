@@ -31,7 +31,7 @@ public class AnagraficaDaoTest extends BaseDaoTest {
 
   @Test
   public void anagraficaDao() {
-    logger.info("anagraficaService user {}", gson.toJson(anagraficaService.getAnagrafica("N001")));
+    logger.info("anagraficaService user {}", gson.toJson(anagraficaService.getAnagrafica("N0000")));
   }
 
 

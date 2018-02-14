@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.domain;
 
@@ -19,7 +19,7 @@ import it.tsc.domain.key.CompoundKey;
  *
  */
 @Entity
-@Table(name = "tb_groups", schema = "ks_tsc@cassandra_pu")
+@Table(name = "tsc_group", schema = "telesoccorso@mysql_pu")
 @NamedQueries(value = { @NamedQuery(name = Group.SELECT_GROUPS, query = "SELECT g FROM Group g"),
 		@NamedQuery(name = Group.SELECT_GROUPS_BY_KEY, query = "SELECT g FROM Group g WHERE g.key = :key") })
 public class Group extends BaseDomain {
@@ -34,7 +34,7 @@ public class Group extends BaseDomain {
 	private String groupName;
 
 	/**
-	 * 
+	 *
 	 */
 	public Group() {
 		super();

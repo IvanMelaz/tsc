@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.dao.impl;
 
@@ -27,7 +27,7 @@ public class TscDaoImpl extends BaseDao implements TscDao {
 	private static Logger logger = LoggerFactory.getLogger(TscDaoImpl.class);
 
 	/**
-	 * 
+	 *
 	 */
 	public TscDaoImpl() {
 
@@ -35,9 +35,10 @@ public class TscDaoImpl extends BaseDao implements TscDao {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see it.tsc.dao.TscDao#getAnagrafica(it.tsc.model.Allarmi)
 	 */
+	@Override
 	public String getAnagrafica(Allarmi allarm) {
 		if (allarm.getAb_codi() == null) {
 			throw new IllegalArgumentException("ab_codi is empty");
@@ -52,14 +53,6 @@ public class TscDaoImpl extends BaseDao implements TscDao {
 		String result = JsonUtil.getGsonConverter().toJson(list);
 		logger.debug("getAnagrafica {}", result);
 		return result;
-
-		// String sql =
-		// "SELECT JSON ab_codi,nominativo,centrale,sesso FROM ks_tsc.tb_anagrafica
-		// WHERE ab_codi = :ab_codi ALLOW FILTERING;";
-		// PreparedStatement preparedStmt = baseDao.prepareAndCacheStatement(sql);
-		// BoundStatement bound = preparedStmt.bind().setString("ab_codi",
-		// allarm.getAb_codi());
-		// ResultSet resultSet = baseDao.getSession().execute(bound);
 	}
 
 }

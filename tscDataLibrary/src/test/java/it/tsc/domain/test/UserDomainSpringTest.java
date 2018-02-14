@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.domain.test;
 
@@ -7,6 +7,7 @@ import static org.junit.Assert.assertNotNull;
 
 import javax.persistence.EntityManager;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -39,6 +40,7 @@ public class UserDomainSpringTest {
 		assertNotNull(entityManager);
 	}
 
+	@Ignore
 	@Test
 	public void testUsers() {
 		CompoundKey key1 = new CompoundKey("matteo", Role.ROLE_ADMIN);

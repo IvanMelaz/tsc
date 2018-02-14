@@ -29,7 +29,7 @@ SELECT
 `MOTIVO_DISINSTALLAZIONE`,
 `CENTRALE`,
 `ENTE`
-INTO OUTFILE '/tmp/anagrafica.csv'
+INTO OUTFILE '/home/astraservice/Documents/tsc/export/anagrafica.csv'
     FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
-    LINES TERMINATED BY '///\r'
+    LINES TERMINATED BY '\r\n'
 FROM anagrafica;
