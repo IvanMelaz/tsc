@@ -51,12 +51,6 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 
 		EntityManager entityManager = getEntityManager();
 		entityManager.persist(allarm);
-		// entityManager.close();
-
-		// AllarmAccessor allarmAccessor = baseDao.createAccessor(AllarmAccessor.class);
-		// allarmAccessor.insertAllarme(ab_codi, data_arrivo,
-		// evento, id_allarme,
-		// user);
 	}
 
 	/*

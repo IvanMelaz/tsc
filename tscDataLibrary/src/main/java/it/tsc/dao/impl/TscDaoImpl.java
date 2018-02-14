@@ -3,11 +3,10 @@
  */
 package it.tsc.dao.impl;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -40,17 +39,15 @@ public class TscDaoImpl extends BaseDao implements TscDao {
 	 */
 	@Override
 	public String getAnagrafica(Allarmi allarm) {
-		if (allarm.getAb_codi() == null) {
-			throw new IllegalArgumentException("ab_codi is empty");
-		}
+		Validate.notBlank(allarm.getAb_codi(), "ab_codi cannot be blank");
 		EntityManager entityManager = getEntityManager();
 		TypedQuery<Anagrafica> query = entityManager.createNamedQuery(Anagrafica.SELECT_ALL_ANAGRAFICA,
 				Anagrafica.class);
 		query.setParameter("ab_codi", allarm.getAb_codi());
-		List<Anagrafica> list = query.getResultList();
+		Anagrafica anagrafica = query.getSingleResult();
 		// entityManager.close();
 
-		String result = JsonUtil.getGsonConverter().toJson(list);
+		String result = JsonUtil.getGsonConverter().toJson(anagrafica);
 		logger.debug("getAnagrafica {}", result);
 		return result;
 	}

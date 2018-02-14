@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.gson.Gson;
 
+import it.tsc.domain.Anagrafica;
 import it.tsc.service.AnagraficaService;
 
 /**
@@ -31,7 +32,14 @@ public class AnagraficaDaoTest extends BaseDaoTest {
 
   @Test
   public void anagraficaDao() {
-    logger.info("anagraficaService user {}", gson.toJson(anagraficaService.getAnagrafica("N0000")));
+    logger.info("anagraficaService user {}", gson.toJson(anagraficaService.getAnagrafica("0000")));
+  }
+
+  @Test
+  public void insertAnagraficaDao() {
+    Anagrafica anagrafica = new Anagrafica();
+    anagrafica.setAb_codi("N0000");
+    anagraficaService.insertAnagrafica(anagrafica);
   }
 
 

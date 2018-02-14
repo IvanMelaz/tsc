@@ -13,4 +13,6 @@ public interface AnagraficaDao {
 
 	public Anagrafica getAnagrafica(String ab_codi);
 
+	public void insertAnagrafica(Anagrafica anagrafica);
+
 }

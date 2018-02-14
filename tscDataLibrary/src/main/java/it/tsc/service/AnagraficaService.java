@@ -11,10 +11,17 @@ import it.tsc.domain.Anagrafica;
 public interface AnagraficaService {
 	/**
 	 * get Anagrafica by code
-	 * 
+	 *
 	 * @param ab_codi
 	 * @return
 	 */
 	public Anagrafica getAnagrafica(String ab_codi);
+
+	/**
+	 * insert Record in Anagrafica
+	 * 
+	 * @param anagrafica
+	 */
+	public void insertAnagrafica(Anagrafica anagrafica);
 
 }

@@ -40,12 +40,19 @@ public class AnagraficaDaoImpl extends BaseDao implements AnagraficaDao {
 		EntityManager entityManager = getEntityManager();
 		TypedQuery<Anagrafica> query = entityManager.createNamedQuery(Anagrafica.SELECT_ALL_ANAGRAFICA,
 				Anagrafica.class);
+		query.setParameter("ab_codi", ab_codi);
 		try {
 			anagrafica = query.getSingleResult();
 		} catch (Exception e) {
 			logger.error("getAnagrafica Exception: ", e);
 		}
 		return anagrafica;
+	}
+
+	@Override
+	public void insertAnagrafica(Anagrafica anagrafica) {
+		EntityManager entityManager = getEntityManager();
+		entityManager.persist(anagrafica);
 	}
 
 }

@@ -36,4 +36,9 @@ public class AnagraficaServiceImpl implements AnagraficaService {
 		return anagraficaDao.getAnagrafica(ab_codi);
 	}
 
+	@Override
+	public void insertAnagrafica(Anagrafica anagrafica) {
+		anagraficaDao.insertAnagrafica(anagrafica);
+	}
+
 }

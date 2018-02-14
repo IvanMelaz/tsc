@@ -8,15 +8,15 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 	  var target = $(e.target).attr("href") // activated tab
 	  console.log(target);
 	  if (target=='user') {
-		
+
 	}
 	  switch (target) {
 		case '#user':
 			/* load grid */
 				var data = {name:PORTAL_USER};
-				$.ajax({ 
-				    url:addContextPath('/user/userService/jsonGetUser'),  
-				    type:"GET", 
+				$.ajax({
+				    url:addContextPath('/user/userService/jsonGetUser'),
+				    type:"GET",
 				    contentType: "application/json; charset=utf-8",
 			        beforeSend: function(xhr) {
 			            xhr.setRequestHeader("Accept", "application/json");
@@ -33,13 +33,13 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 				    }
 				});
 			break;
-			
+
 			case '#list-group':
 			/* load grid */
 				var data = {name:PORTAL_USER};
-				$.ajax({ 
-				    url:addContextPath('/admin/userService/jsonGetAllUsers'),  
-				    type:"GET", 
+				$.ajax({
+				    url:addContextPath('/admin/userService/jsonGetAllUsers'),
+				    type:"GET",
 				    contentType: "application/json; charset=utf-8",
 			        beforeSend: function(xhr) {
 			            xhr.setRequestHeader("Accept", "application/json");
@@ -66,11 +66,11 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 <div class="tab-content">
 	  <div id="anagrafic" class="tab-pane fade mh-100">
 		<h5>Anagrafica</h5>
-	  </div>	  
+	  </div>
 	  <div id="rescuers" class="tab-pane fade mh-100">
 	    <h5>Soccorritori</h5>
 	  </div>
-	  
+
 	  <div id="user" class="tab-pane fade mh-100">
 	    <h5>Profilo utente</h5>
 			<grid:grid
@@ -85,15 +85,15 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 				    selecting:false
 				</jsp:attribute>
 			    <jsp:attribute name="fields">
-					{name: "key.username",type:"text",width:30,title:"nome"},
-			       	{name: "key.role",type:"text",width:30,title:"ruolo"},
+					{name: "username",type:"text",width:30,title:"nome"},
+			       	{name: "role",type:"text",width:30,title:"ruolo"},
 			       	{name: "email",type:"text",width: 30,title:"email"}
 			    </jsp:attribute>
 			</grid:grid>
 	  </div>
-	  
+
 	  <!-- profile admin -->
-	  
+
 	  <sec:authorize access="hasRole('ADMIN') or hasRole('SADMIN')">
 		  <div id="list-group" class="tab-pane fade mh-100">
 		    <h5>Permessi utente</h5>
@@ -109,26 +109,26 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 					    selecting:false
 					</jsp:attribute>
 				    <jsp:attribute name="fields">
-						{name: "key.username",type:"text",width:30,title:"nome"},
-				       	{name: "key.role",type:"text",width:30,title:"ruolo"},
+						{name: "username",type:"text",width:30,title:"nome"},
+				       	{name: "role",type:"text",width:30,title:"ruolo"},
 				       	{name: "email",type:"text",width: 30,title:"email"}
 				    </jsp:attribute>
 				</grid:grid>
 			  </div>
-			  
+
 			  <div id="add-user" class="tab-pane fade mh-100">
 			  	<h5>Aggiungi Utente</h5>
 		  		<tiles:insertTemplate template="addUser.jsp" />
 			  </div>
-			  
+
 			  <div id="remove-user" class="tab-pane fade mh-100">
 			  	<h5>Rimuovi Utente</h5>
 			  </div>
-	  </sec:authorize>	  
-	  
+	  </sec:authorize>
+
 	  <!-- logout -->
 	  <div id="logout">
 
 	  </div>
-	  
+
 	</div>

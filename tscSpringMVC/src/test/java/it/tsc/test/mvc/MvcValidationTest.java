@@ -51,7 +51,7 @@ public class MvcValidationTest extends WebParallelTest {
   private Gson gson = new Gson();
 
   /**
-   * 
+   *
    */
   public MvcValidationTest() {
     // TODO Auto-generated constructor stub

@@ -1,24 +1,24 @@
-<beans:beans 
+<beans:beans
 	xmlns:security="http://www.springframework.org/schema/security"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
-	http://www.springframework.org/schema/security	
+	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-4.2.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
-   
-    <context:property-placeholder location="classpath:cassandra.properties" />
-   
+
+    <context:property-placeholder location="classpath:db.properties" />
+
     <context:component-scan base-package="it.tsc.component,it.tsc.service.impl,it.tsc.dao" />
-   
+
     <beans:import resource="classpath:spring-beans.xml"/>
-   
+
     <!-- annotated methods with security -->
     <security:global-method-security pre-post-annotations="enabled"/>
-   
+
     <!-- skip CRSF for WS -->
 	<security:http auto-config="true" use-expressions="true" pattern="/services/TscWebService**" >
 	    <security:csrf disabled="true" />
@@ -26,8 +26,8 @@
 	<security:http auto-config="true" use-expressions="true" pattern="/tscSpringMVC/services/TscWebService**" >
 	    <security:csrf disabled="true" />
 	</security:http>
-   
-    
+
+
 	<security:http auto-config="true" use-expressions="true">
 	        <!-- Interceptor urls -->
  			<security:intercept-url pattern="/login" access="permitAll" />
@@ -49,10 +49,10 @@
 	        <security:intercept-url pattern="/admin**" access="hasRole('ROLE_SADMIN') or hasRole('ROLE_ADMIN')" />
 	        <security:intercept-url pattern="/backOffice**" access="hasRole('ROLE_SADMIN') or hasRole('ROLE_BACKOFFICE')" />
 	        <security:intercept-url pattern="/impersonate**" access="hasRole('IMPERSONATE')" />
-	        
+
 	        <!-- manage access denied -->
 	        <security:access-denied-handler ref="customAccessDeniedHandler" />
-	
+
 	        <security:form-login login-page="/login"
 	                             default-target-url="/admin"
 	                             login-processing-url="/j_spring_security_check"
@@ -60,16 +60,16 @@
 	                             username-parameter="username"
 	                             password-parameter="password"
 	                             authentication-success-handler-ref="authSuccessHandler" />
-	
+
 	        <!-- Logout -->
 	        <security:logout invalidate-session="true" delete-cookies="true" logout-success-url="/login?logout" />
-	
+
 	        <!-- enable csrf protection -->
 	        <security:csrf disabled="false"/>
 	    </security:http>
-	    
+
 	    <security:authentication-manager alias="authenticationManager">
     		<security:authentication-provider ref="customAuthenticationProvider" />
 		</security:authentication-manager>
-	    
+
 </beans:beans>

@@ -25,12 +25,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  */
 @Configuration
 @ComponentScan(basePackages = { "it.tsc.service", "it.tsc.dao" })
-@PropertySource(value = { "classpath:cassandra.properties",
-		"classpath:mysql.properties" }, ignoreResourceNotFound = false)
+@PropertySource(value = { "classpath:db.properties" })
 public class ServiceConfig {
 	private static Logger logger = LoggerFactory.getLogger(ServiceConfig.class);
 	@Value("${mysql-persistence-unit}")
-	private String PERSISTENCE_UNIT;
+	private String MYSQL_PERSISTENCE_UNIT;
+
+	@Value("${cassandra-persistence-unit}")
+	private String CASSANDRA_PERSISTENCE_UNIT;
 
 	/**
 	 *
@@ -59,7 +61,7 @@ public class ServiceConfig {
 	 */
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
-		entityManagerFactory.setPersistenceUnitName(PERSISTENCE_UNIT);
+		entityManagerFactory.setPersistenceUnitName(MYSQL_PERSISTENCE_UNIT);
 		return entityManagerFactory;
 	}
 
