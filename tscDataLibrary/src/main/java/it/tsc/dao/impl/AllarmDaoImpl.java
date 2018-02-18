@@ -108,14 +108,8 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 		EntityManager entityManager = getEntityManager();
 		TypedQuery<Allarmi> query = entityManager.createNamedQuery(Allarmi.SELECT_ALL_ALLARMS, Allarmi.class);
 		List<Allarmi> list = query.getResultList();
-
 		String result = JsonUtil.getGsonConverter().toJson(list);
 		return result;
-
-		// String sql =
-		// "SELECT JSON ab_codi,data_arrivo,evento,user,id_allarme FROM
-		// ks_tsc.tb_allarmi";
-		// ResultSet resultSet = baseDao.getSession().execute(sql);
 	}
 
 }
