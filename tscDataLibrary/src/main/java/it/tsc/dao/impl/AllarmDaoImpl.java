@@ -7,6 +7,8 @@ import java.time.Instant;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
@@ -37,20 +39,30 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see it.tsc.dao.AllarmDao#insertAllarme(java.lang.String, java.sql.Timestamp,
-	 * java.lang.String, java.lang.String, java.lang.String)
+	 * @see it.tsc.dao.AllarmDao#insertAllarme(java.lang.String,
+	 * java.sql.Timestamp, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void insertAllarme(String ab_codi, Instant data_arrivo, String evento, String id_allarme, String user) {
-		Allarmi allarm = new Allarmi();
-		allarm.setAb_codi(ab_codi);
-		// allarm.setData_arrivo(Date.from(data_arrivo));
-		allarm.setEvento(evento);
-		allarm.setId_allarme(id_allarme);
-		allarm.setUser(user);
+	public void insertAllarme(String ab_codi, Instant data_arrivo,
+			String evento, String id_allarme, String user) {
+		try {
+			EntityTransaction tx = getEntityManager().getTransaction();
+			tx.begin();
+			StoredProcedureQuery query = getEntityManager()
+					.createNamedStoredProcedureQuery(Allarmi.SP_INSERT_ALLARM);
+			query.setParameter("p_ab_codi", ab_codi);
+			query.setParameter("p_matricola", "######");
+			query.setParameter("p_mux", "INFAM");
+			query.setParameter("p_evento", "1");
+			query.setParameter("p_centrale", "MILANO");
+			query.executeUpdate();
+			tx.commit();
+		} catch (Exception e) {
+			logger.error("insertAllarme :{}", e);
+			throw new IllegalArgumentException(e);
+		}
 
-		EntityManager entityManager = getEntityManager();
-		entityManager.persist(allarm);
+		// @formatter:on
 	}
 
 	/*
@@ -60,7 +72,8 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 	 * java.sql.Timestamp, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void insertAllarmeTel(String tel, String ab_codi, Instant data_arrivo, String evento, String id_allarme,
+	public void insertAllarmeTel(String tel, String ab_codi,
+			Instant data_arrivo, String evento, String id_allarme,
 			String user) {
 		Allarmi allarm = new Allarmi();
 		allarm.setAb_codi(ab_codi);
@@ -89,14 +102,16 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 		entityManager.remove(allarm);
 		// entityManager.close();
 
-		// AllarmAccessor allarmAccessor = baseDao.createAccessor(AllarmAccessor.class);
+		// AllarmAccessor allarmAccessor =
+		// baseDao.createAccessor(AllarmAccessor.class);
 		// allarmAccessor.removeAllarme(id_allarme);
 	}
 
 	@Override
 	public void updateAllarme(String id_allarme, String user) {
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Allarmi> query = entityManager.createNamedQuery(Allarmi.UPDATE_ALLARM, Allarmi.class);
+		TypedQuery<Allarmi> query = entityManager
+				.createNamedQuery(Allarmi.UPDATE_ALLARM, Allarmi.class);
 		query.setParameter("id_allarme", id_allarme);
 		query.setParameter("user", user);
 		query.executeUpdate();
@@ -106,7 +121,8 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 	@Override
 	public String jsonGetAllarms() {
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Allarmi> query = entityManager.createNamedQuery(Allarmi.SELECT_ALL_ALLARMS, Allarmi.class);
+		TypedQuery<Allarmi> query = entityManager
+				.createNamedQuery(Allarmi.SELECT_ALL_ALLARMS, Allarmi.class);
 		List<Allarmi> list = query.getResultList();
 		String result = JsonUtil.getGsonConverter().toJson(list);
 		return result;

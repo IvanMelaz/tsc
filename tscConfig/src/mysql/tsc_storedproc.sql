@@ -21,7 +21,7 @@
 DELIMITER ;;
 /*!50003 DROP FUNCTION IF EXISTS `fn_GetDayOfWeek_IT` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 FUNCTION `fn_GetDayOfWeek_IT`() RETURNS varchar(10) CHARSET latin1
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 FUNCTION `fn_GetDayOfWeek_IT`() RETURNS varchar(10) CHARSET latin1
     DETERMINISTIC
     COMMENT 'restituisce il giorno in italiano, della settimana'
 BEGIN
@@ -50,7 +50,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP FUNCTION IF EXISTS `fn_RetIDCode` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 FUNCTION `fn_RetIDCode`(p_centrale VARCHAR(50)) RETURNS varchar(50) CHARSET latin1
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 FUNCTION `fn_RetIDCode`(p_centrale VARCHAR(50)) RETURNS varchar(50) CHARSET latin1
     DETERMINISTIC
 BEGIN
   DECLARE v_RetCode CHAR(50);
@@ -75,7 +75,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP FUNCTION IF EXISTS `fn_RetIDProva` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 FUNCTION `fn_RetIDProva`(p_AB_CODI VARCHAR(10)) RETURNS varchar(50) CHARSET latin1
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 FUNCTION `fn_RetIDProva`(p_AB_CODI VARCHAR(10)) RETURNS varchar(50) CHARSET latin1
     DETERMINISTIC
 BEGIN
   DECLARE v_RetCode CHAR(50);
@@ -100,7 +100,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP FUNCTION IF EXISTS `fn_RetIDProva_from_CodaProve` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 FUNCTION `fn_RetIDProva_from_CodaProve`(p_AB_CODI VARCHAR(10)) RETURNS varchar(50) CHARSET latin1
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 FUNCTION `fn_RetIDProva_from_CodaProve`(p_AB_CODI VARCHAR(10)) RETURNS varchar(50) CHARSET latin1
     DETERMINISTIC
 BEGIN
 
@@ -121,7 +121,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP FUNCTION IF EXISTS `fn_RetIDProva_from_ProveDay` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 FUNCTION `fn_RetIDProva_from_ProveDay`(p_ab_codi VARCHAR(10)) RETURNS varchar(50) CHARSET latin1
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 FUNCTION `fn_RetIDProva_from_ProveDay`(p_ab_codi VARCHAR(10)) RETURNS varchar(50) CHARSET latin1
     DETERMINISTIC
 BEGIN
 
@@ -139,11 +139,38 @@ BEGIN
      RETURN v_ID;
 
 END */;;
+/*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
+/*!50003 DROP PROCEDURE IF EXISTS `new_proc` */;;
+/*!50003 SET SESSION SQL_MODE=""*/;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `new_proc`(IN p_ente VARCHAR(50), IN p_descrizione VARCHAR(50), IN p_referente VARCHAR(50), IN p_tel_1 VARCHAR(20), IN p_tel_2 VARCHAR(20), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_cap VARCHAR(5))
+BEGIN
 
+INSERT INTO `enti` (
+ENTE,
+DESCRIZIONE,
+REFERENTE,
+TEL_1,
+TEL_2,
+INDIRIZZO,
+COMUNE,
+CAP
+)
+VALUES
+(
+p_ente,
+p_descrizione,
+p_referente,
+p_tel_1,
+p_tel_2,
+p_indirizzo,
+p_comune,
+p_cap
+);
+END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_c_CreaFogliProvaDay` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_c_CreaFogliProvaDay`()
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_c_CreaFogliProvaDay`()
 BEGIN
 
 ## field per il fetch dei dati ##
@@ -233,7 +260,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_c_SpostaProveDay_in_NR` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_c_SpostaProveDay_in_NR`(IN p_user VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_c_SpostaProveDay_in_NR`(IN p_user VARCHAR(50))
 BEGIN
 ## field per il fetch dei dati ##
   DECLARE  c_ID,c_AB_CODI, c_FOGLIO, c_GIORNO, c_FASCIA, c_USER VARCHAR(50);
@@ -320,7 +347,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_d_Analisi` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_d_Analisi`(IN p_id INTEGER(11))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_d_Analisi`(IN p_id INTEGER(11))
 BEGIN
 
 DELETE
@@ -333,7 +360,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_d_CodaEve` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_d_CodaEve`(IN p_ID_Allarme VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_d_CodaEve`(IN p_ID_Allarme VARCHAR(50))
 BEGIN
 
 DELETE
@@ -346,7 +373,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_d_CodaProve` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_d_CodaProve`(IN p_ID VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_d_CodaProve`(IN p_ID VARCHAR(50))
 BEGIN
 ## cancella coda prove usando id della prova ##
 
@@ -360,7 +387,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_d_Convivente` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_d_Convivente`(IN p_id INTEGER(11))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_d_Convivente`(IN p_id INTEGER(11))
 BEGIN
 
 DELETE
@@ -373,7 +400,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_d_Ente` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_d_Ente`(IN p_id INTEGER(11))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_d_Ente`(IN p_id INTEGER(11))
 BEGIN
 
 ## cancella prova per ID dall' ente ##
@@ -387,7 +414,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_d_Gmed` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_d_Gmed`(IN p_id INTEGER(11))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_d_Gmed`(IN p_id INTEGER(11))
 BEGIN
 
 DELETE
@@ -400,7 +427,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_d_Login` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_d_Login`(IN p_id INTEGER(20))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_d_Login`(IN p_id INTEGER(20))
 BEGIN
 
 START TRANSACTION;
@@ -422,7 +449,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_d_Mdb` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_d_Mdb`(IN p_id INTEGER(11))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_d_Mdb`(IN p_id INTEGER(11))
 BEGIN
 
 DELETE
@@ -435,7 +462,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_d_ProvaUtente` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_d_ProvaUtente`(IN p_IDProva INTEGER)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_d_ProvaUtente`(IN p_IDProva INTEGER)
 BEGIN
 
 ## cancella prova per ID dalle prove del giorno ##
@@ -449,7 +476,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_d_ProveDay` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_d_ProveDay`(IN p_IDProva VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_d_ProveDay`(IN p_IDProva VARCHAR(50))
 BEGIN
 
 ## cancella prova per ID dalle prove del giorno ##
@@ -463,7 +490,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_d_ProveNR` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_d_ProveNR`(IN p_IDProva VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_d_ProveNR`(IN p_IDProva VARCHAR(50))
 BEGIN
 
 ## cancella prova per ID dalle prove del giorno ##
@@ -477,7 +504,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_d_Soccamici` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_d_Soccamici`(IN p_id INTEGER(11))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_d_Soccamici`(IN p_id INTEGER(11))
 BEGIN
 
 DELETE
@@ -490,7 +517,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_d_Soccpubb` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_d_Soccpubb`(IN p_id INTEGER(11))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_d_Soccpubb`(IN p_id INTEGER(11))
 BEGIN
 
 DELETE
@@ -503,7 +530,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_Anagrafica` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_Anagrafica`(IN p_ab_codi VARCHAR(10), IN p_matricola VARCHAR(50), IN p_nominativo VARCHAR(50), IN p_sesso VARCHAR(50), IN p_centrale VARCHAR(50), IN p_telefono VARCHAR(50), IN p_cellulare VARCHAR(50), IN p_indirizzo VARCHAR(255), IN p_comune VARCHAR(255), IN p_provincia VARCHAR(2), IN p_cap VARCHAR(50), IN p_tavola VARCHAR(15), IN p_zona VARCHAR(5), IN p_data_nascita DATE, IN p_luogo_nascita VARCHAR(50), IN p_altezza SMALLINT, IN p_peso SMALLINT, IN p_patologia LONGTEXT, IN p_terapia LONGTEXT, IN p_evidenzia LONGTEXT, IN p_note LONGTEXT, IN p_altro LONGTEXT, IN p_dati_abita LONGTEXT, IN p_sopravvivenza VARCHAR(5), IN p_dati_tecnici LONGTEXT, IN p_ente VARCHAR(5))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_Anagrafica`(IN p_ab_codi VARCHAR(10), IN p_matricola VARCHAR(50), IN p_nominativo VARCHAR(50), IN p_sesso VARCHAR(50), IN p_centrale VARCHAR(50), IN p_telefono VARCHAR(50), IN p_cellulare VARCHAR(50), IN p_indirizzo VARCHAR(255), IN p_comune VARCHAR(255), IN p_provincia VARCHAR(2), IN p_cap VARCHAR(50), IN p_tavola VARCHAR(15), IN p_zona VARCHAR(5), IN p_data_nascita DATE, IN p_luogo_nascita VARCHAR(50), IN p_altezza SMALLINT, IN p_peso SMALLINT, IN p_patologia LONGTEXT, IN p_terapia LONGTEXT, IN p_evidenzia LONGTEXT, IN p_note LONGTEXT, IN p_altro LONGTEXT, IN p_dati_abita LONGTEXT, IN p_sopravvivenza VARCHAR(5), IN p_dati_tecnici LONGTEXT, IN p_ente VARCHAR(5))
 BEGIN
 INSERT INTO
   anagrafica(
@@ -572,7 +599,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_Analisi` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_Analisi`(p_ab_codi VARCHAR(10), p_nominativo VARCHAR(50), p_numero VARCHAR(50), p_tel_1 VARCHAR(50), p_tel_2 VARCHAR(50), p_tel_fax VARCHAR(50), p_referente VARCHAR(50), p_cellulare VARCHAR(50), p_orario VARCHAR(50), p_note VARCHAR(50), p_indirizzo VARCHAR(50), p_comune VARCHAR(50), p_prov VARCHAR(50), p_cap VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_Analisi`(p_ab_codi VARCHAR(10), p_nominativo VARCHAR(50), p_numero VARCHAR(50), p_tel_1 VARCHAR(50), p_tel_2 VARCHAR(50), p_tel_fax VARCHAR(50), p_referente VARCHAR(50), p_cellulare VARCHAR(50), p_orario VARCHAR(50), p_note VARCHAR(50), p_indirizzo VARCHAR(50), p_comune VARCHAR(50), p_prov VARCHAR(50), p_cap VARCHAR(50))
 BEGIN
 INSERT INTO `analisi`(
 AB_CODI,
@@ -611,7 +638,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_Asi` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_Asi`(IN p_convenzione VARCHAR(50), IN p_dossier VARCHAR(50), IN p_nominativo VARCHAR(50), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_telefono VARCHAR(50), IN p_medico VARCHAR(50), IN p_tempo VARCHAR(50), IN p_uscita VARCHAR(50), IN p_note VARCHAR(50), IN p_user VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_Asi`(IN p_convenzione VARCHAR(50), IN p_dossier VARCHAR(50), IN p_nominativo VARCHAR(50), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_telefono VARCHAR(50), IN p_medico VARCHAR(50), IN p_tempo VARCHAR(50), IN p_uscita VARCHAR(50), IN p_note VARCHAR(50), IN p_user VARCHAR(50))
 BEGIN
 INSERT INTO `asi_gmed`(
 DATA,
@@ -648,7 +675,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_Assenza` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_Assenza`(IN p_ab_codi VARCHAR(10), IN p_tipo VARCHAR(50), IN p_note LONGTEXT)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_Assenza`(IN p_ab_codi VARCHAR(10), IN p_tipo VARCHAR(50), IN p_note LONGTEXT)
 BEGIN
 INSERT INTO `assenza`(
 AB_CODI,
@@ -667,7 +694,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_Coda_prove` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_Coda_prove`(IN p_id VARCHAR(50), IN p_ab_codi VARCHAR(10), IN p_user VARCHAR(10))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_Coda_prove`(IN p_id VARCHAR(50), IN p_ab_codi VARCHAR(10), IN p_user VARCHAR(10))
 BEGIN
 ## insert in CODA_PROVE
    INSERT INTO coda_prove
@@ -684,7 +711,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_Convivente` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_Convivente`(IN p_ab_codi VARCHAR(10), IN p_nominativo VARCHAR(255), IN p_cointestatario VARCHAR(50), IN p_cellulare VARCHAR(50), IN p_sesso VARCHAR(1), IN p_data_nascita VARCHAR(50), IN p_luogo_nascita VARCHAR(50), IN p_altezza SMALLINT, IN p_peso SMALLINT, IN p_patologia LONGTEXT, IN p_terapia VARCHAR(255), IN p_evidenzia VARCHAR(20), IN p_note LONGTEXT, IN p_parentela VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_Convivente`(IN p_ab_codi VARCHAR(10), IN p_nominativo VARCHAR(255), IN p_cointestatario VARCHAR(50), IN p_cellulare VARCHAR(50), IN p_sesso VARCHAR(1), IN p_data_nascita VARCHAR(50), IN p_luogo_nascita VARCHAR(50), IN p_altezza SMALLINT, IN p_peso SMALLINT, IN p_patologia LONGTEXT, IN p_terapia VARCHAR(255), IN p_evidenzia VARCHAR(20), IN p_note LONGTEXT, IN p_parentela VARCHAR(50))
 BEGIN
 INSERT INTO convivente
 (
@@ -724,7 +751,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_Ente` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_Ente`(IN p_ente VARCHAR(50), IN p_descrizione VARCHAR(50), IN p_tel_1 VARCHAR(50), IN p_tel_2 VARCHAR(50), IN p_referente VARCHAR(50), IN p_comune VARCHAR(50), IN p_indirizzo VARCHAR(50), IN p_cap VARCHAR(5))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_Ente`(IN p_ente VARCHAR(50), IN p_descrizione VARCHAR(50), IN p_tel_1 VARCHAR(50), IN p_tel_2 VARCHAR(50), IN p_referente VARCHAR(50), IN p_comune VARCHAR(50), IN p_indirizzo VARCHAR(50), IN p_cap VARCHAR(5))
 BEGIN
 INSERT INTO `enti` (
 ENTE,
@@ -751,7 +778,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_GeneraAllarme` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_GeneraAllarme`(p_ab_codi VARCHAR(10), p_matricola VARCHAR(50), p_mux VARCHAR(50), p_evento VARCHAR(10), p_centrale VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_GeneraAllarme`(p_ab_codi VARCHAR(10), p_matricola VARCHAR(50), p_mux VARCHAR(50), p_evento VARCHAR(10), p_centrale VARCHAR(50))
 BEGIN
 
   DECLARE v_id VARCHAR(50) DEFAULT "";
@@ -808,7 +835,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_GestioneProva` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_GestioneProva`(IN p_ID VARCHAR(50), IN p_Tipo_Allarme VARCHAR(10), IN p_User VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_GestioneProva`(IN p_ID VARCHAR(50), IN p_Tipo_Allarme VARCHAR(10), IN p_User VARCHAR(50))
     COMMENT 'Gestione della prova elencata in Prove Day'
 BEGIN
 
@@ -996,7 +1023,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_Gmed` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_Gmed`(p_ab_codi VARCHAR(10), p_nominativo VARCHAR(50), p_tel_1 VARCHAR(50), p_tel_2 VARCHAR(50), p_numero VARCHAR(50), p_referente VARCHAR(50), p_cellulare VARCHAR(50), p_tipo VARCHAR(50), p_note VARCHAR(50), p_orario VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_Gmed`(p_ab_codi VARCHAR(10), p_nominativo VARCHAR(50), p_tel_1 VARCHAR(50), p_tel_2 VARCHAR(50), p_numero VARCHAR(50), p_referente VARCHAR(50), p_cellulare VARCHAR(50), p_tipo VARCHAR(50), p_note VARCHAR(50), p_orario VARCHAR(50))
 BEGIN
 INSERT INTO gmed (
 AB_CODI,
@@ -1027,7 +1054,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_Infermieri` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_Infermieri`(IN p_convenzione VARCHAR(50), IN p_dossier VARCHAR(50), IN p_nominativo VARCHAR(50), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_telefono VARCHAR(50), IN p_infermiere VARCHAR(50), IN p_tempo VARCHAR(50), IN p_uscita VARCHAR(50), IN p_note VARCHAR(50), IN p_user VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_Infermieri`(IN p_convenzione VARCHAR(50), IN p_dossier VARCHAR(50), IN p_nominativo VARCHAR(50), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_telefono VARCHAR(50), IN p_infermiere VARCHAR(50), IN p_tempo VARCHAR(50), IN p_uscita VARCHAR(50), IN p_note VARCHAR(50), IN p_user VARCHAR(50))
 BEGIN
 INSERT INTO `infermieri`(
 DATA,
@@ -1064,7 +1091,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_InsertAllarmi_in_Allarmi` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_InsertAllarmi_in_Allarmi`(IN p_id VARCHAR(50), IN p_idprova INTEGER(11), IN p_ab_codi VARCHAR(10), IN p_evento VARCHAR(50), IN p_user VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_InsertAllarmi_in_Allarmi`(IN p_id VARCHAR(50), IN p_idprova INTEGER(11), IN p_ab_codi VARCHAR(10), IN p_evento VARCHAR(50), IN p_user VARCHAR(50))
 BEGIN
 INSERT INTO `allarmi`(
 ID_ALLARME,
@@ -1089,7 +1116,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_InsertAllarmi_in_CodaEve` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_InsertAllarmi_in_CodaEve`(p_matricola VARCHAR(10), p_evento VARCHAR(50), p_centrale VARCHAR(50), p_mux VARCHAR(10), p_ritardo VARCHAR(2))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_InsertAllarmi_in_CodaEve`(p_matricola VARCHAR(10), p_evento VARCHAR(50), p_centrale VARCHAR(50), p_mux VARCHAR(10), p_ritardo VARCHAR(2))
     COMMENT 'SP inserimento allarme in coda_eventi dallo schedulatore, inseri'
 BEGIN
 
@@ -1193,7 +1220,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_InsertAllarmi_in_CodaEve_Brondi` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_InsertAllarmi_in_CodaEve_Brondi`(IN p_telefono VARCHAR(20), IN p_filename VARCHAR(100), IN p_centrale VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_InsertAllarmi_in_CodaEve_Brondi`(IN p_telefono VARCHAR(20), IN p_filename VARCHAR(100), IN p_centrale VARCHAR(50))
     COMMENT 'SP inserimento allarme in coda_eventi dallo schedulatore, per la'
 BEGIN
 
@@ -1312,7 +1339,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_InsertAllarmi_in_CodaEve_Italtel` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_InsertAllarmi_in_CodaEve_Italtel`(IN p_matricola VARCHAR(10), IN p_evento VARCHAR(15), IN p_centrale VARCHAR(50), IN p_mux VARCHAR(5), IN p_ritardo VARCHAR(2))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_InsertAllarmi_in_CodaEve_Italtel`(IN p_matricola VARCHAR(10), IN p_evento VARCHAR(15), IN p_centrale VARCHAR(50), IN p_mux VARCHAR(5), IN p_ritardo VARCHAR(2))
 BEGIN
 
   DECLARE v_id VARCHAR(50) DEFAULT "";
@@ -1420,7 +1447,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_InsertProve` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_InsertProve`(IN p_ab_codi VARCHAR(50), IN p_giorno VARCHAR(50), IN p_foglio VARCHAR(50), IN p_fascia VARCHAR(50), IN p_note VARCHAR(50), IN p_richiamare VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_InsertProve`(IN p_ab_codi VARCHAR(50), IN p_giorno VARCHAR(50), IN p_foglio VARCHAR(50), IN p_fascia VARCHAR(50), IN p_note VARCHAR(50), IN p_richiamare VARCHAR(50))
 BEGIN
 INSERT INTO prove
 (
@@ -1444,7 +1471,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_Login` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_Login`(IN p_user VARCHAR(50), IN p_foglio VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_Login`(IN p_user VARCHAR(50), IN p_foglio VARCHAR(50))
 BEGIN
 INSERT INTO `login_info`
 (
@@ -1460,7 +1487,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_Mdb` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_Mdb`(p_ab_codi VARCHAR(10), p_medico VARCHAR(50), p_indirizzo VARCHAR(50), p_comune VARCHAR(50), p_tel_amb VARCHAR(50), p_tel_casa VARCHAR(50), p_tel_cell VARCHAR(50), p_numero VARCHAR(50), p_specialista VARCHAR(50), p_orario VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_Mdb`(p_ab_codi VARCHAR(10), p_medico VARCHAR(50), p_indirizzo VARCHAR(50), p_comune VARCHAR(50), p_tel_amb VARCHAR(50), p_tel_casa VARCHAR(50), p_tel_cell VARCHAR(50), p_numero VARCHAR(50), p_specialista VARCHAR(50), p_orario VARCHAR(50))
 BEGIN
 INSERT INTO medici (
 AB_CODI,
@@ -1491,7 +1518,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_Pediatrica` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_Pediatrica`(IN p_convenzione VARCHAR(50), IN p_dossier VARCHAR(50), IN p_nominativo VARCHAR(50), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_telefono VARCHAR(50), IN p_medico VARCHAR(50), IN p_tempo VARCHAR(50), IN p_uscita VARCHAR(50), IN p_note VARCHAR(50), IN p_user VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_Pediatrica`(IN p_convenzione VARCHAR(50), IN p_dossier VARCHAR(50), IN p_nominativo VARCHAR(50), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_telefono VARCHAR(50), IN p_medico VARCHAR(50), IN p_tempo VARCHAR(50), IN p_uscita VARCHAR(50), IN p_note VARCHAR(50), IN p_user VARCHAR(50))
 BEGIN
 INSERT INTO `pediatrica`(
 DATA,
@@ -1528,7 +1555,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_Soccamici` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_Soccamici`(p_ab_codi VARCHAR(10), p_nominativo VARCHAR(255), p_tel_casa VARCHAR(50), p_tel_uff VARCHAR(50), p_tel_cell VARCHAR(50), p_tempo_casa VARCHAR(50), p_tempo_uff VARCHAR(50), p_chiavi VARCHAR(50), p_coinquilino VARCHAR(50), p_parente VARCHAR(50), p_numero VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_Soccamici`(p_ab_codi VARCHAR(10), p_nominativo VARCHAR(255), p_tel_casa VARCHAR(50), p_tel_uff VARCHAR(50), p_tel_cell VARCHAR(50), p_tempo_casa VARCHAR(50), p_tempo_uff VARCHAR(50), p_chiavi VARCHAR(50), p_coinquilino VARCHAR(50), p_parente VARCHAR(50), p_numero VARCHAR(50))
 BEGIN
 INSERT INTO socc_amici
 (
@@ -1562,7 +1589,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_Soccpubb` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_Soccpubb`(IN p_ab_codi VARCHAR(10), IN p_tipo VARCHAR(50), IN p_tel_1 VARCHAR(50), IN p_tel_2 VARCHAR(50), IN p_numero VARCHAR(50), IN p_cellulare VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_Soccpubb`(IN p_ab_codi VARCHAR(10), IN p_tipo VARCHAR(50), IN p_tel_1 VARCHAR(50), IN p_tel_2 VARCHAR(50), IN p_numero VARCHAR(50), IN p_cellulare VARCHAR(50))
 BEGIN
 INSERT INTO socc_pub
 (
@@ -1586,7 +1613,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_i_Stipulante` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_i_Stipulante`(IN p_ab_codi VARCHAR(10), IN p_nominativo VARCHAR(50), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_prov VARCHAR(50), IN p_cap VARCHAR(50), IN p_telefono VARCHAR(50), IN p_cellulare VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_i_Stipulante`(IN p_ab_codi VARCHAR(10), IN p_nominativo VARCHAR(50), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_prov VARCHAR(50), IN p_cap VARCHAR(50), IN p_telefono VARCHAR(50), IN p_cellulare VARCHAR(50))
 BEGIN
 INSERT INTO stipulante(
 AB_CODI,
@@ -1613,7 +1640,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_AllarmeChiuso` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_AllarmeChiuso`(IN p_id_allarme VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_AllarmeChiuso`(IN p_id_allarme VARCHAR(50))
 BEGIN
 UPDATE `allarmi`
 SET
@@ -1626,7 +1653,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Anagrafica` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Anagrafica`(IN p_ab_codi VARCHAR(10), IN p_matricola VARCHAR(50), IN p_nominativo VARCHAR(50), IN p_sesso VARCHAR(50), IN p_centrale VARCHAR(50), IN p_telefono VARCHAR(50), IN p_cellulare VARCHAR(50), IN p_ente VARCHAR(5))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Anagrafica`(IN p_ab_codi VARCHAR(10), IN p_matricola VARCHAR(50), IN p_nominativo VARCHAR(50), IN p_sesso VARCHAR(50), IN p_centrale VARCHAR(50), IN p_telefono VARCHAR(50), IN p_cellulare VARCHAR(50), IN p_ente VARCHAR(5))
 BEGIN
 UPDATE anagrafica
 SET
@@ -1645,7 +1672,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Analisi` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Analisi`(IN p_id INTEGER(11), IN p_nominativo VARCHAR(50), IN p_numero VARCHAR(50), IN p_tel_1 VARCHAR(50), IN p_tel_2 VARCHAR(50), IN p_tel_fax VARCHAR(50), IN p_referente VARCHAR(50), IN p_cellulare VARCHAR(50), IN p_orario VARCHAR(50), IN p_note VARCHAR(50), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_prov VARCHAR(50), IN p_cap VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Analisi`(IN p_id INTEGER(11), IN p_nominativo VARCHAR(50), IN p_numero VARCHAR(50), IN p_tel_1 VARCHAR(50), IN p_tel_2 VARCHAR(50), IN p_tel_fax VARCHAR(50), IN p_referente VARCHAR(50), IN p_cellulare VARCHAR(50), IN p_orario VARCHAR(50), IN p_note VARCHAR(50), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_prov VARCHAR(50), IN p_cap VARCHAR(50))
 BEGIN
 UPDATE `analisi`
 SET
@@ -1669,7 +1696,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Asi` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Asi`(IN p_id INTEGER(11), IN p_diagnosi LONGTEXT, IN p_terapia LONGTEXT, IN p_prognosi LONGTEXT)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Asi`(IN p_id INTEGER(11), IN p_diagnosi LONGTEXT, IN p_terapia LONGTEXT, IN p_prognosi LONGTEXT)
 BEGIN
 UPDATE `asi_gmed`
 SET
@@ -1685,7 +1712,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Codaprove` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Codaprove`(p_ab_codi VARCHAR(10), p_user VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Codaprove`(p_ab_codi VARCHAR(10), p_user VARCHAR(50))
     COMMENT 'Usata per il cambio utente, da non confondere con la insert'
 BEGIN
 UPDATE `coda_prove`
@@ -1697,7 +1724,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Coda_Eve` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Coda_Eve`(p_user VARCHAR(50), p_id VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Coda_Eve`(p_user VARCHAR(50), p_id VARCHAR(50))
 BEGIN
 UPDATE `coda_eve`
 SET
@@ -1708,7 +1735,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Convivente` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Convivente`(IN p_id VARCHAR(50), IN p_ab_codi VARCHAR(10), IN p_nominativo VARCHAR(255), IN p_cointestatario VARCHAR(50), IN p_cellulare VARCHAR(50), IN p_sesso VARCHAR(1), IN p_data_nascita VARCHAR(50), IN p_luogo_nascita VARCHAR(50), IN p_altezza SMALLINT, IN p_peso SMALLINT, IN p_patologia LONGTEXT, IN p_terapia VARCHAR(255), IN p_evidenzia VARCHAR(20), IN p_note LONGTEXT, IN p_parentela VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Convivente`(IN p_id VARCHAR(50), IN p_ab_codi VARCHAR(10), IN p_nominativo VARCHAR(255), IN p_cointestatario VARCHAR(50), IN p_cellulare VARCHAR(50), IN p_sesso VARCHAR(1), IN p_data_nascita VARCHAR(50), IN p_luogo_nascita VARCHAR(50), IN p_altezza SMALLINT, IN p_peso SMALLINT, IN p_patologia LONGTEXT, IN p_terapia VARCHAR(255), IN p_evidenzia VARCHAR(20), IN p_note LONGTEXT, IN p_parentela VARCHAR(50))
 BEGIN
 UPDATE convivente
 SET
@@ -1731,7 +1758,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Disinstallazione` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Disinstallazione`(IN p_ab_codi VARCHAR(10), IN p_motivo VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Disinstallazione`(IN p_ab_codi VARCHAR(10), IN p_motivo VARCHAR(50))
 BEGIN
 UPDATE anagrafica
 SET
@@ -1745,7 +1772,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Ente` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Ente`(IN p_id INTEGER(11), IN p_ente VARCHAR(5), IN p_descrizione VARCHAR(50), IN p_referente VARCHAR(50), IN p_tel_1 VARCHAR(20), IN p_tel_2 VARCHAR(20), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_cap VARCHAR(5))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Ente`(IN p_id INTEGER(11), IN p_ente VARCHAR(5), IN p_descrizione VARCHAR(50), IN p_referente VARCHAR(50), IN p_tel_1 VARCHAR(20), IN p_tel_2 VARCHAR(20), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_cap VARCHAR(5))
 BEGIN
 UPDATE enti
 SET
@@ -1764,7 +1791,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Enti` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Enti`(IN p_id INTEGER(11), IN p_ente VARCHAR(5), IN p_descrizione VARCHAR(50), IN p_referente VARCHAR(50), IN p_tel_1 VARCHAR(20), IN p_tel_2 VARCHAR(20), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_cap VARCHAR(5))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Enti`(IN p_id INTEGER(11), IN p_ente VARCHAR(5), IN p_descrizione VARCHAR(50), IN p_referente VARCHAR(50), IN p_tel_1 VARCHAR(20), IN p_tel_2 VARCHAR(20), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_cap VARCHAR(5))
 BEGIN
 UPDATE enti
 SET
@@ -1783,7 +1810,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_EsitoAllarme` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_EsitoAllarme`(IN p_ID VARCHAR(50), IN p_ID_Prova VARCHAR(50), IN p_AB_CODI VARCHAR(10), IN p_Esito VARCHAR(5))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_EsitoAllarme`(IN p_ID VARCHAR(50), IN p_ID_Prova VARCHAR(50), IN p_AB_CODI VARCHAR(10), IN p_Esito VARCHAR(5))
 BEGIN
 
 
@@ -1851,7 +1878,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_GestioneAllarme` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_GestioneAllarme`(IN p_ID_Allarme VARCHAR(50), IN p_Tipo_Allarme VARCHAR(10), IN p_User VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_GestioneAllarme`(IN p_ID_Allarme VARCHAR(50), IN p_Tipo_Allarme VARCHAR(10), IN p_User VARCHAR(50))
     COMMENT 'Stored Procedure di gestione allarme gestisce gli Esiti P,C,E,R,'
 BEGIN
 
@@ -2029,7 +2056,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_GestioneCodaProve` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_GestioneCodaProve`(IN p_ID VARCHAR(50), IN p_Tipo_Allarme VARCHAR(10), IN p_User VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_GestioneCodaProve`(IN p_ID VARCHAR(50), IN p_Tipo_Allarme VARCHAR(10), IN p_User VARCHAR(50))
     COMMENT 'Gestione della prova elencata in Prove Day'
 BEGIN
 
@@ -2089,7 +2116,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_GestioneProvaDay` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_GestioneProvaDay`(IN p_ID VARCHAR(50), IN p_Tipo_Allarme VARCHAR(10), IN p_User VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_GestioneProvaDay`(IN p_ID VARCHAR(50), IN p_Tipo_Allarme VARCHAR(10), IN p_User VARCHAR(50))
     COMMENT 'Gestione della prova elencata in Prove Day'
 BEGIN
 
@@ -2262,7 +2289,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Gmed` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Gmed`(IN p_id INTEGER(11), IN p_nominativo VARCHAR(50), IN p_tel_1 VARCHAR(50), IN p_tel_2 VARCHAR(50), IN p_numero VARCHAR(50), IN p_referente VARCHAR(50), IN p_cellulare VARCHAR(50), IN p_tipo VARCHAR(50), IN p_note LONGTEXT, IN p_orario LONGTEXT)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Gmed`(IN p_id INTEGER(11), IN p_nominativo VARCHAR(50), IN p_tel_1 VARCHAR(50), IN p_tel_2 VARCHAR(50), IN p_numero VARCHAR(50), IN p_referente VARCHAR(50), IN p_cellulare VARCHAR(50), IN p_tipo VARCHAR(50), IN p_note LONGTEXT, IN p_orario LONGTEXT)
 BEGIN
 UPDATE gmed
 SET
@@ -2282,7 +2309,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Infermieri` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Infermieri`(IN p_id INTEGER(11), IN p_referto LONGTEXT)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Infermieri`(IN p_id INTEGER(11), IN p_referto LONGTEXT)
 BEGIN
 UPDATE `infermieri`
 SET
@@ -2296,7 +2323,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_InfoAllarme` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_InfoAllarme`(IN p_uid VARCHAR(32), IN p_id_allarme VARCHAR(50), IN p_ab_codi VARCHAR(10), IN p_nominativo VARCHAR(255), IN p_user VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_InfoAllarme`(IN p_uid VARCHAR(32), IN p_id_allarme VARCHAR(50), IN p_ab_codi VARCHAR(10), IN p_nominativo VARCHAR(255), IN p_user VARCHAR(50))
 BEGIN
 
 ##############################
@@ -2327,7 +2354,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_InfoAllarmeNote` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_InfoAllarmeNote`(IN p_id VARCHAR(32), IN p_info LONGTEXT)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_InfoAllarmeNote`(IN p_id VARCHAR(32), IN p_info LONGTEXT)
 BEGIN
      UPDATE `info_allarme`
      SET `info_allarme`.`INFO` = p_info
@@ -2336,7 +2363,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Mdb` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Mdb`(IN p_id INTEGER(11), IN p_medico VARCHAR(50), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_tel_amb VARCHAR(50), IN p_tel_casa VARCHAR(50), IN p_tel_cell VARCHAR(50), IN p_numero VARCHAR(50), IN p_specialista VARCHAR(50), IN p_orario LONGTEXT)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Mdb`(IN p_id INTEGER(11), IN p_medico VARCHAR(50), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_tel_amb VARCHAR(50), IN p_tel_casa VARCHAR(50), IN p_tel_cell VARCHAR(50), IN p_numero VARCHAR(50), IN p_specialista VARCHAR(50), IN p_orario LONGTEXT)
 BEGIN
 UPDATE medici
 SET
@@ -2356,7 +2383,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_NoteScheda` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_NoteScheda`(IN p_ab_codi VARCHAR(10), IN p_note LONGTEXT)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_NoteScheda`(IN p_ab_codi VARCHAR(10), IN p_note LONGTEXT)
 BEGIN
      UPDATE anagrafica
      SET anagrafica.NOTE = p_note
@@ -2365,7 +2392,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Pediatrica` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Pediatrica`(IN p_id INTEGER(11), IN p_referto LONGTEXT)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Pediatrica`(IN p_id INTEGER(11), IN p_referto LONGTEXT)
 BEGIN
 UPDATE `pediatrica`
 SET
@@ -2379,7 +2406,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_ProvaDay_u_Campo_Gestione` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_ProvaDay_u_Campo_Gestione`(IN p_ID VARCHAR(50), IN p_Tipo_Allarme VARCHAR(10))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_ProvaDay_u_Campo_Gestione`(IN p_ID VARCHAR(50), IN p_Tipo_Allarme VARCHAR(10))
     COMMENT 'Gestione della prova elencata in Prove Day'
 BEGIN
 
@@ -2392,7 +2419,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Prove` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Prove`(IN p_id INTEGER(11), IN p_giorno VARCHAR(50), IN p_foglio VARCHAR(50), IN p_fascia VARCHAR(50), IN p_note VARCHAR(50), IN p_richiamare VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Prove`(IN p_id INTEGER(11), IN p_giorno VARCHAR(50), IN p_foglio VARCHAR(50), IN p_fascia VARCHAR(50), IN p_note VARCHAR(50), IN p_richiamare VARCHAR(50))
     SQL SECURITY INVOKER
 BEGIN
 UPDATE prove
@@ -2409,7 +2436,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Reinstallazione` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Reinstallazione`(IN p_ab_codi VARCHAR(10))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Reinstallazione`(IN p_ab_codi VARCHAR(10))
 BEGIN
 UPDATE anagrafica
 SET
@@ -2422,7 +2449,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Rientro` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Rientro`(IN p_id INTEGER(11))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Rientro`(IN p_id INTEGER(11))
 BEGIN
 UPDATE `assenza`
 SET
@@ -2435,7 +2462,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Scheda` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Scheda`(IN p_ab_codi VARCHAR(10), IN p_indirizzo VARCHAR(255), IN p_comune VARCHAR(255), IN p_provincia VARCHAR(2), IN p_cap VARCHAR(50), IN p_tavola VARCHAR(15), IN p_zona VARCHAR(5), IN p_data_nascita DATE, IN p_luogo_nascita VARCHAR(50), IN p_altezza SMALLINT, IN p_peso SMALLINT, IN p_patologia LONGTEXT, IN p_terapia LONGTEXT, IN p_evidenzia LONGTEXT, IN p_note LONGTEXT, IN p_altro LONGTEXT, IN p_dati_abita LONGTEXT, IN p_sopravvivenza VARCHAR(5), IN p_dati_tecnici LONGTEXT, IN p_data_ins VARCHAR(10), IN p_data_inst VARCHAR(10), IN p_data_disinst VARCHAR(10), IN p_motivo_disinst VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Scheda`(IN p_ab_codi VARCHAR(10), IN p_indirizzo VARCHAR(255), IN p_comune VARCHAR(255), IN p_provincia VARCHAR(2), IN p_cap VARCHAR(50), IN p_tavola VARCHAR(15), IN p_zona VARCHAR(5), IN p_data_nascita DATE, IN p_luogo_nascita VARCHAR(50), IN p_altezza SMALLINT, IN p_peso SMALLINT, IN p_patologia LONGTEXT, IN p_terapia LONGTEXT, IN p_evidenzia LONGTEXT, IN p_note LONGTEXT, IN p_altro LONGTEXT, IN p_dati_abita LONGTEXT, IN p_sopravvivenza VARCHAR(5), IN p_dati_tecnici LONGTEXT, IN p_data_ins VARCHAR(10), IN p_data_inst VARCHAR(10), IN p_data_disinst VARCHAR(10), IN p_motivo_disinst VARCHAR(50))
 BEGIN
 UPDATE anagrafica
 SET
@@ -2469,7 +2496,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_SetUser_in_CodaEve` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_SetUser_in_CodaEve`(IN p_id_allarme VARCHAR(50), IN p_user VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_SetUser_in_CodaEve`(IN p_id_allarme VARCHAR(50), IN p_user VARCHAR(50))
     COMMENT 'Aggiunge la prenotazione dell Utente in un allarme arrivato'
 BEGIN
   DECLARE v_user VARCHAR(50);
@@ -2532,7 +2559,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_SetUser_in_ProveDay` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_SetUser_in_ProveDay`(IN p_ID VARCHAR(50), IN p_User VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_SetUser_in_ProveDay`(IN p_ID VARCHAR(50), IN p_User VARCHAR(50))
     COMMENT 'Prenota la prova da prove day  aggiornando il campo user con\r\n'
 BEGIN
 
@@ -2549,7 +2576,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Soccamici` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Soccamici`(IN p_id INTEGER(11), IN p_nominativo VARCHAR(255), IN p_tel_casa VARCHAR(50), IN p_tel_uff VARCHAR(50), IN p_tel_cell VARCHAR(50), IN p_tempo_casa VARCHAR(50), IN p_tempo_uff VARCHAR(50), IN p_chiavi VARCHAR(50), IN p_coinquilino VARCHAR(50), IN p_parente VARCHAR(50), IN p_numero VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Soccamici`(IN p_id INTEGER(11), IN p_nominativo VARCHAR(255), IN p_tel_casa VARCHAR(50), IN p_tel_uff VARCHAR(50), IN p_tel_cell VARCHAR(50), IN p_tempo_casa VARCHAR(50), IN p_tempo_uff VARCHAR(50), IN p_chiavi VARCHAR(50), IN p_coinquilino VARCHAR(50), IN p_parente VARCHAR(50), IN p_numero VARCHAR(50))
 BEGIN
 UPDATE socc_amici
 SET
@@ -2569,7 +2596,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Soccpubb` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Soccpubb`(IN p_id INTEGER(11), IN p_tipo VARCHAR(50), IN p_tel_1 VARCHAR(50), IN p_tel_2 VARCHAR(50), IN p_numero VARCHAR(50), IN p_cellulare VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Soccpubb`(IN p_id INTEGER(11), IN p_tipo VARCHAR(50), IN p_tel_1 VARCHAR(50), IN p_tel_2 VARCHAR(50), IN p_numero VARCHAR(50), IN p_cellulare VARCHAR(50))
 BEGIN
 UPDATE socc_pub
 SET
@@ -2584,7 +2611,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_u_Stipulante` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_u_Stipulante`(IN p_ab_codi VARCHAR(10), IN p_nominativo VARCHAR(50), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_prov VARCHAR(50), IN p_cap VARCHAR(50), IN p_cf VARCHAR(16), IN p_piva VARCHAR(11), IN p_telefono VARCHAR(50), IN p_cellulare VARCHAR(50), IN p_tel_ufficio VARCHAR(50), IN p_referente VARCHAR(50), IN p_imponibile VARCHAR(10), IN p_iva VARCHAR(10), IN p_importo_iva VARCHAR(10), IN p_totale VARCHAR(20), IN p_contratto VARCHAR(50), IN p_pagamento VARCHAR(50), IN p_modo_pagamento VARCHAR(50), IN p_note LONGTEXT, IN p_parentela VARCHAR(50), IN p_email VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_u_Stipulante`(IN p_ab_codi VARCHAR(10), IN p_nominativo VARCHAR(50), IN p_indirizzo VARCHAR(50), IN p_comune VARCHAR(50), IN p_prov VARCHAR(50), IN p_cap VARCHAR(50), IN p_cf VARCHAR(16), IN p_piva VARCHAR(11), IN p_telefono VARCHAR(50), IN p_cellulare VARCHAR(50), IN p_tel_ufficio VARCHAR(50), IN p_referente VARCHAR(50), IN p_imponibile VARCHAR(10), IN p_iva VARCHAR(10), IN p_importo_iva VARCHAR(10), IN p_totale VARCHAR(20), IN p_contratto VARCHAR(50), IN p_pagamento VARCHAR(50), IN p_modo_pagamento VARCHAR(50), IN p_note LONGTEXT, IN p_parentela VARCHAR(50), IN p_email VARCHAR(50))
 BEGIN
 UPDATE stipulante
 SET
@@ -2616,7 +2643,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_AllarmiAperti` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_AllarmiAperti`(IN p_user VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_AllarmiAperti`(IN p_user VARCHAR(50))
 BEGIN
      SELECT allarmi.`AB_CODI`,
             allarmi.`ID_ALLARME`,
@@ -2649,7 +2676,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Anagrafica` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Anagrafica`(
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Anagrafica`(
 IN p_ab_codi VARCHAR(10)
 )
 BEGIN
@@ -2659,21 +2686,21 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Analisi` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Analisi`(p_ab_codi VARCHAR(10))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Analisi`(p_ab_codi VARCHAR(10))
 BEGIN
 SELECT * FROM `analisi` WHERE `analisi`.`AB_CODI` = p_ab_codi ORDER by analisi.NUMERO ASC;
 END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Asi` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Asi`()
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Asi`()
 BEGIN
 SELECT * FROM `asi_gmed` WHERE `asi_gmed`.`DATA_CHIUSO` IS NULL ORDER BY asi_gmed.`ID` DESC;
 END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Asi_Scheda` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Asi_Scheda`(IN p_id INTEGER(11))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Asi_Scheda`(IN p_id INTEGER(11))
 BEGIN
 
 SELECT * FROM `asi_gmed`
@@ -2684,7 +2711,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Assenza` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Assenza`(IN p_ab_codi VARCHAR(10))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Assenza`(IN p_ab_codi VARCHAR(10))
 BEGIN
       SELECT * FROM `assenza`
 
@@ -2694,7 +2721,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_CodaEveSound` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_CodaEveSound`(IN p_user VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_CodaEveSound`(IN p_user VARCHAR(50))
 BEGIN
 
 SELECT
@@ -2714,7 +2741,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Codaprove` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Codaprove`(IN p_user VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Codaprove`(IN p_user VARCHAR(50))
 BEGIN
 SELECT * FROM
     `coda_prove`
@@ -2731,7 +2758,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Coda_Eve` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Coda_Eve`(IN p_user VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Coda_Eve`(IN p_user VARCHAR(50))
 BEGIN
 
 SELECT
@@ -2763,7 +2790,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Context` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Context`()
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Context`()
 BEGIN
 SELECT * FROM `cdr`
 ORDER BY `cdr`.`calldate` DESC LIMIT 150;
@@ -2771,7 +2798,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Context_Brondi` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Context_Brondi`()
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Context_Brondi`()
 BEGIN
 SELECT * FROM `cdr`
 WHERE (dcontext = 'mycustom-brondi')
@@ -2780,7 +2807,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Convivente` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Convivente`(
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Convivente`(
 IN p_ab_codi VARCHAR(10)
 )
 BEGIN
@@ -2809,7 +2836,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_CountPerEnte` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_CountPerEnte`(IN p_User VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_CountPerEnte`(IN p_User VARCHAR(50))
 BEGIN
  -- Select prove per foglio con ab_codi in
  -- centrale dell' utente selezionato
@@ -2827,7 +2854,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_CountProvePerFoglio` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_CountProvePerFoglio`(IN p_Day VARCHAR(10), IN p_User VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_CountProvePerFoglio`(IN p_Day VARCHAR(10), IN p_User VARCHAR(50))
 BEGIN
  -- Select prove per foglio con ab_codi in
  -- centrale dell' utente selezionato
@@ -2847,7 +2874,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Disinstallato` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Disinstallato`(IN p_ab_codi VARCHAR(10))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Disinstallato`(IN p_ab_codi VARCHAR(10))
 BEGIN
       SELECT * FROM `anagrafica`
 
@@ -2857,7 +2884,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Enti` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Enti`()
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Enti`()
 BEGIN
 
 SELECT * FROM `enti`ORDER BY `enti`.`ENTE` ASC;
@@ -2866,7 +2893,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Fascia` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Fascia`()
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Fascia`()
 BEGIN
       SELECT
             `prove_fascia`.FASCIA
@@ -2877,7 +2904,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_GetPhone` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_GetPhone`(IN ip_address VARCHAR(15))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_GetPhone`(IN ip_address VARCHAR(15))
 BEGIN
 SELECT
   `phone_info`.`Channel`
@@ -2889,7 +2916,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Gmed` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Gmed`(p_ab_codi VARCHAR(10))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Gmed`(p_ab_codi VARCHAR(10))
 BEGIN
 
 SELECT * FROM `gmed` WHERE (`gmed`.AB_CODI = p_ab_codi) ORDER by gmed.NUMERO ASC;
@@ -2898,7 +2925,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_His_allarmi` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_His_allarmi`(IN p_ab_codi VARCHAR(10))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_His_allarmi`(IN p_ab_codi VARCHAR(10))
 BEGIN
       SELECT * FROM `allarmi`
 
@@ -2910,7 +2937,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_His_Assenza` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_His_Assenza`(IN p_ab_codi VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_His_Assenza`(IN p_ab_codi VARCHAR(50))
 BEGIN
 SELECT * FROM `assenza`
 WHERE `assenza`.`AB_CODI`=p_ab_codi
@@ -2919,7 +2946,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_His_eve` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_His_eve`(IN p_ab_codi VARCHAR(10))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_His_eve`(IN p_ab_codi VARCHAR(10))
 BEGIN
       SELECT * FROM `storico_eventi`
 
@@ -2931,14 +2958,14 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Infermieri` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Infermieri`()
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Infermieri`()
 BEGIN
 SELECT * FROM `infermieri` WHERE `infermieri`.`DATA_CHIUSO` IS NULL ORDER BY infermieri.`ID` DESC;
 END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Infermieri_Scheda` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Infermieri_Scheda`(IN p_id INTEGER(11))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Infermieri_Scheda`(IN p_id INTEGER(11))
 BEGIN
 
 SELECT * FROM `infermieri`
@@ -2949,7 +2976,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_InfoAllarme` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_InfoAllarme`(IN p_id_allarme VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_InfoAllarme`(IN p_id_allarme VARCHAR(50))
     COMMENT 'Stored Procedure di gestione allarme gestisce gli Esiti P,C,E,R,'
 BEGIN
 
@@ -2974,7 +3001,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Login` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Login`(IN p_user VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Login`(IN p_user VARCHAR(50))
 BEGIN
       SELECT
             `login_info`.`USER`,
@@ -2988,7 +3015,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Mdb` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Mdb`(p_ab_codi VARCHAR(10))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Mdb`(p_ab_codi VARCHAR(10))
 BEGIN
 
 SELECT * FROM medici WHERE (medici.AB_CODI = p_ab_codi) ORDER by medici.NUMERO ASC;
@@ -2997,7 +3024,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Moduloallarmi` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Moduloallarmi`(IN p_id_allarme VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Moduloallarmi`(IN p_id_allarme VARCHAR(50))
 BEGIN
 
 SELECT allarmi.`AB_CODI`,
@@ -3013,14 +3040,14 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Pediatrica` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Pediatrica`()
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Pediatrica`()
 BEGIN
 SELECT * FROM `pediatrica` WHERE `pediatrica`.`DATA_CHIUSO` IS NULL ORDER BY pediatrica.`ID` DESC;
 END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Pediatrica_Scheda_new` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Pediatrica_Scheda_new`(IN p_id INTEGER(11))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Pediatrica_Scheda_new`(IN p_id INTEGER(11))
 BEGIN
 
 SELECT * FROM `pediatrica`
@@ -3031,7 +3058,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_PhoneInfo` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_PhoneInfo`(IN p_User VARCHAR(50), IN p_IP_Address VARCHAR(15))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_PhoneInfo`(IN p_User VARCHAR(50), IN p_IP_Address VARCHAR(15))
     COMMENT 'La sp restituisce le info sulla mappatura user-IP-telefono'
 BEGIN
 
@@ -3058,7 +3085,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Prove` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Prove`(p_ab_codi VARCHAR(10))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Prove`(p_ab_codi VARCHAR(10))
 BEGIN
       SELECT
             prove.ID,
@@ -3077,7 +3104,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Prove_day` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Prove_day`(IN p_user VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Prove_day`(IN p_user VARCHAR(50))
 BEGIN
 SELECT  prove_day.* FROM
 
@@ -3103,7 +3130,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Prove_nr` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Prove_nr`(IN p_user VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Prove_nr`(IN p_user VARCHAR(50))
 BEGIN
 SELECT  prove_nr.*
 
@@ -3125,7 +3152,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Richiamare` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Richiamare`(IN p_ab_codi VARCHAR(10))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Richiamare`(IN p_ab_codi VARCHAR(10))
 BEGIN
 
 SELECT `prove`.`RICHIAMARE` FROM `prove`
@@ -3136,14 +3163,14 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Schedulatore` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Schedulatore`()
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Schedulatore`()
 BEGIN
 SELECT * FROM `storico_eventi` ORDER by `storico_eventi`.`VISUALIZZAZIONE` DESC LIMIT 0, 100;
 END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Soccamici` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Soccamici`(p_ab_codi VARCHAR(10))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Soccamici`(p_ab_codi VARCHAR(10))
 BEGIN
       SELECT
              socc_amici.ID,
@@ -3167,7 +3194,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Soccpubb` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Soccpubb`(
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Soccpubb`(
 IN p_ab_codi VARCHAR(10)
 )
 BEGIN
@@ -3190,7 +3217,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_Stipulante` */;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO"*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_Stipulante`(p_ab_codi VARCHAR(10))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_Stipulante`(p_ab_codi VARCHAR(10))
 BEGIN
 
 SELECT
@@ -3232,7 +3259,7 @@ END */;;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_v_TecniciAperti` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`mysql`@``*/ /*!50003 PROCEDURE `sp_v_TecniciAperti`(IN p_user VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 PROCEDURE `sp_v_TecniciAperti`(IN p_user VARCHAR(50))
 BEGIN
      SELECT allarmi.`AB_CODI`,
             allarmi.`ID_ALLARME`,

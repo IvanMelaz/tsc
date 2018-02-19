@@ -18,13 +18,11 @@
 		</properties>
 	</persistence-unit>
 	<!-- mysql -->
-	<persistence-unit name="mysql_pu">
-		<provider>com.impetus.kundera.KunderaPersistence</provider>
+	<persistence-unit name="mysql_pu" >
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 			<properties>
-			<property name="kundera.client.lookup.class" value="com.impetus.client.rdbms.RDBMSClientFactory" />
-			<property name="kundera.annotations.scan.package" value="it.tsc.domain" />
-  			<property name="hibernate.show_sql" value="false" />
-			<property name="hibernate.format_sql" value="false" />
+  			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/telesoccorso" />

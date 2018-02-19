@@ -10,6 +10,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 
 import com.google.gson.annotations.Expose;
@@ -21,10 +25,18 @@ import com.google.gson.annotations.Expose;
 @Table(name = "allarmi", schema = "telesoccorso@mysql_pu")
 @NamedQueries(value = {
 		@NamedQuery(name = Allarmi.SELECT_ALL_ALLARMS, query = "SELECT a.id_allarme,a.ab_codi,a.data_arrivo,a.evento,a.user FROM Allarmi a"),
-		@NamedQuery(name = Allarmi.UPDATE_ALLARM, query = "UPDATE Allarmi a SET a.user=:user WHERE a.id_allarme=:id_allarme") })
+		@NamedQuery(name = Allarmi.UPDATE_ALLARM, query = "UPDATE Allarmi a SET a.user=:user WHERE a.id_allarme=:id_allarme")})
+@NamedStoredProcedureQueries(value = {
+		@NamedStoredProcedureQuery(name = Allarmi.SP_INSERT_ALLARM, procedureName = "sp_i_GeneraAllarme", parameters = {
+				@StoredProcedureParameter(name = "p_ab_codi", type = String.class, mode = ParameterMode.IN),
+				@StoredProcedureParameter(name = "p_matricola", type = String.class, mode = ParameterMode.IN),
+				@StoredProcedureParameter(name = "p_mux", type = String.class, mode = ParameterMode.IN),
+				@StoredProcedureParameter(name = "p_evento", type = String.class, mode = ParameterMode.IN),
+				@StoredProcedureParameter(name = "p_centrale", type = String.class, mode = ParameterMode.IN)})})
 public class Allarmi extends BaseDomain {
 	public static final String SELECT_ALL_ALLARMS = "json.select.allarms";
 	public static final String UPDATE_ALLARM = "update.allarm";
+	public static final String SP_INSERT_ALLARM = "sp.insert.allarmo";
 	/**
 	 *
 	 */

@@ -11,7 +11,8 @@ public interface AllarmDao {
 	 * @param id_allarme
 	 * @param user
 	 */
-	public void insertAllarme(String ab_codi, Instant data_arrivo, String evento, String id_allarme, String user);
+	public void insertAllarme(String ab_codi, Instant data_arrivo,
+			String evento, String id_allarme, String user);
 
 	/**
 	 * Inserisce allarme per telefono (BRONDI)
@@ -22,8 +23,8 @@ public interface AllarmDao {
 	 * @param id_allarme
 	 * @param user
 	 */
-	public void insertAllarmeTel(String tel, String ab_codi, Instant data_arrivo, String evento, String id_allarme,
-			String user);
+	public void insertAllarmeTel(String tel, String ab_codi,
+			Instant data_arrivo, String evento, String id_allarme, String user);
 
 	/**
 	 * rimuove allarme

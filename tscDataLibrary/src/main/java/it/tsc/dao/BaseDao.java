@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.dao;
 
@@ -16,7 +16,7 @@ public class BaseDao {
 	private EntityManager entityManager;
 
 	/**
-	 * 
+	 *
 	 */
 	public BaseDao() {
 
