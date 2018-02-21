@@ -25,12 +25,14 @@ import it.tsc.domain.key.CompoundKey;
  */
 @Entity
 @Table(name = "tsc_user", schema = "telesoccorso@mysql_pu")
-@NamedQueries(value = { @NamedQuery(name = Users.SELECT_ALL_USERS, query = "SELECT u FROM Users u"),
+@NamedQueries(value = {
+		@NamedQuery(name = Users.SELECT_ALL_USERS, query = "SELECT u FROM Users u"),
 		@NamedQuery(name = Users.SELECT_BY_USERNAME, query = "SELECT u FROM Users u WHERE u.key.username = :username"),
 		@NamedQuery(name = Users.SELECT_BY_USERNAME_ROLE, query = "SELECT u FROM Users u WHERE u.key.username = :username AND u.key.role=:role"),
 		@NamedQuery(name = Users.SELECT_BY_USERNAME_EMAIL, query = "SELECT u FROM Users u WHERE u.key.username = :username AND u.email=:email"),
 		@NamedQuery(name = Users.UPDATE_BY_USERNAME_ROLE, query = "UPDATE Users u SET u.keyId=:keyId,u.base32Secret=:base32Secret WHERE u.key.username = :username AND u.key.role=:role"),
-		@NamedQuery(name = Users.UPDATE_USER, query = "UPDATE Users u SET u.password=:password,u.email=:email,u.mfaEnabled=:mfaEnabled WHERE u.key.username = :username AND u.key.role = :role") })
+		@NamedQuery(name = Users.UPDATE_USER, query = "UPDATE Users u SET u.password=:password,u.email=:email,u.mfaEnabled=:mfaEnabled WHERE u.key.username = :username AND u.key.role = :role"),
+		@NamedQuery(name = Users.DELETE_BY_USERNAME_ROLE, query = "DELETE Users u WHERE u.key.username = :username AND u.key.role=:role")})
 public class Users extends BaseDomain {
 	/**
 	 *
@@ -42,6 +44,7 @@ public class Users extends BaseDomain {
 	public static final String SELECT_BY_USERNAME_EMAIL = "select.by.username.email";
 	public static final String UPDATE_BY_USERNAME_ROLE = "update.by.username.role";
 	public static final String UPDATE_USER = "update.user";
+	public static final String DELETE_BY_USERNAME_ROLE = "delete.by.username.role";
 
 	@EmbeddedId
 	@Expose
@@ -93,7 +96,8 @@ public class Users extends BaseDomain {
 	 * @param password
 	 * @param email
 	 */
-	public Users(CompoundKey key, String password, String email, boolean mfaEnabled) {
+	public Users(CompoundKey key, String password, String email,
+			boolean mfaEnabled) {
 		super();
 		this.key = key;
 		this.password = password;
@@ -108,7 +112,8 @@ public class Users extends BaseDomain {
 	 * @param mfaEnabled
 	 * @param keyId
 	 */
-	public Users(CompoundKey key, boolean mfaEnabled, String base32Secret, String keyId) {
+	public Users(CompoundKey key, boolean mfaEnabled, String base32Secret,
+			String keyId) {
 		super();
 		this.key = key;
 		this.base32Secret = base32Secret;
@@ -117,7 +122,8 @@ public class Users extends BaseDomain {
 	}
 
 	public List<Group> getGroups(EntityManager entityManager) {
-		TypedQuery<Group> findQuery = entityManager.createNamedQuery(Group.SELECT_GROUPS_BY_KEY, Group.class);
+		TypedQuery<Group> findQuery = entityManager
+				.createNamedQuery(Group.SELECT_GROUPS_BY_KEY, Group.class);
 		findQuery.setParameter("key", this.getKey());
 		return findQuery.getResultList();
 		// return this.groups;

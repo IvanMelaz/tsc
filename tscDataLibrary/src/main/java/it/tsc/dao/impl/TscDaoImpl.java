@@ -40,14 +40,19 @@ public class TscDaoImpl extends BaseDao implements TscDao {
 	@Override
 	public String getAnagrafica(Allarmi allarm) {
 		Validate.notBlank(allarm.getAb_codi(), "ab_codi cannot be blank");
+		String result = null;
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Anagrafica> query = entityManager.createNamedQuery(Anagrafica.SELECT_ALL_ANAGRAFICA,
-				Anagrafica.class);
-		query.setParameter("ab_codi", allarm.getAb_codi());
-		Anagrafica anagrafica = query.getSingleResult();
+		try {
+			TypedQuery<Anagrafica> query = entityManager.createNamedQuery(
+					Anagrafica.SELECT_ANAGRAFICA_BY_ABCODI, Anagrafica.class);
+			query.setParameter("ab_codi", allarm.getAb_codi());
+			Anagrafica anagrafica = query.getSingleResult();
+			result = JsonUtil.getGsonConverter().toJson(anagrafica);
+		} catch (Exception e) {
+			logger.error("getAnagrafica: {}", e);
+		}
 		// entityManager.close();
 
-		String result = JsonUtil.getGsonConverter().toJson(anagrafica);
 		logger.debug("getAnagrafica {}", result);
 		return result;
 	}

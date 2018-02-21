@@ -1,15 +1,12 @@
 /**
- * 
+ *
  */
 package it.tsc.test.dao;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.lang.reflect.InvocationTargetException;
-
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -21,8 +18,6 @@ import com.google.gson.Gson;
 
 import it.tsc.domain.PortalUser;
 import it.tsc.domain.Role;
-import it.tsc.domain.Users;
-import it.tsc.domain.key.CompoundKey;
 import it.tsc.service.UserService;
 
 /**
@@ -42,7 +37,7 @@ public class UserDaoTest extends BaseDaoTest {
   private EntityManager entityManager;
 
   /**
-   * 
+   *
    */
   public UserDaoTest() {
 
@@ -137,16 +132,5 @@ public class UserDaoTest extends BaseDaoTest {
     userService.jsonGetUser("admin");
     logger.info("user admin {}", userService.jsonGetUser("admin"));
   }
-
-  @Test
-  public void insertPortalUser()
-      throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-    Users users1 = new Users(new CompoundKey("matteo", Role.ROLE_USER), true);
-    Query query = entityManager.createNativeQuery(
-        "INSERT INTO ks_tsc.tb_users (username, password, email, role) VALUES('admin', '$2a$10$0hfDFZ/MroZz62ttl762guvdeFnc1iXwL6fm1603Et4LzXY6qxYHO', 'admin@infamiglia.it', 'ROLE_SADMIN')",
-        Users.class);
-    query.executeUpdate();
-  }
-
 
 }

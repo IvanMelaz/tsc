@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.test.persistence;
 
@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.impetus.client.cassandra.common.CassandraConstants;
@@ -23,6 +24,7 @@ import it.tsc.web.parallel.WebParallelTest;
  */
 public class PersistenceTest extends WebParallelTest {
 
+  @Ignore
   @Test
   public void testPersistence() {
     // enable CQL3

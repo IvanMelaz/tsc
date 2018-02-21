@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.test.dao;
 
@@ -13,6 +13,7 @@ import javax.persistence.TypedQuery;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import it.tsc.domain.Allarmi;
 import it.tsc.domain.Anagrafica;
 
 /**
@@ -38,10 +39,10 @@ public class GenericDaoTest extends BaseDaoTest {
     // entityManager.flush();
 
     TypedQuery<Anagrafica> query =
-        entityManager.createQuery("select a from Anagrafica a", Anagrafica.class);
+        entityManager.createNamedQuery(Allarmi.SELECT_ALL_ALLARMS, Anagrafica.class);
     assertTrue(query.getResultList().size() == 1);
     entityManager.remove(anagrafica);
-    query = entityManager.createQuery("select a from Anagrafica a", Anagrafica.class);
+    query = entityManager.createNamedQuery(Allarmi.SELECT_ALL_ALLARMS, Anagrafica.class);
     assertTrue(query.getResultList().size() == 0);
   }
 

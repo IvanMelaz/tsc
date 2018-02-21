@@ -20,9 +20,9 @@ import com.google.gson.annotations.Expose;
 @Entity
 @Table(name = "anagrafica", schema = "telesoccorso@mysql_pu")
 @NamedQueries(value = {
-		@NamedQuery(name = Anagrafica.SELECT_ALL_ANAGRAFICA, query = "SELECT a FROM Anagrafica a WHERE a.ab_codi = :ab_codi") })
+		@NamedQuery(name = Anagrafica.SELECT_ANAGRAFICA_BY_ABCODI, query = "SELECT a FROM Anagrafica a WHERE TRIM(a.ab_codi) = TRIM(:ab_codi)")})
 public class Anagrafica {
-	public static final String SELECT_ALL_ANAGRAFICA = "json.select.anagrafica";
+	public static final String SELECT_ANAGRAFICA_BY_ABCODI = ".select.anagrafica.by.abcodi";
 	@Id
 	@Column
 	@Expose

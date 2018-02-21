@@ -3,7 +3,7 @@
  */
 package it.tsc.domain.test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
@@ -27,17 +27,18 @@ public class DomainTest extends BaseDomainTest {
 
 	@Test
 	public void allarmsTest() {
-		TypedQuery<Allarmi> findQuery = getEntityManager().createNamedQuery("Select a.id_allarme from Allarmi a",
-				Allarmi.class);
-		List<Allarmi> allAllarms = findQuery.getResultList();
-		assertEquals(0L, allAllarms.size());
+		TypedQuery<String> findQuery = getEntityManager()
+				.createNamedQuery(Allarmi.ALLARM_FIND_QUERY, String.class);
+		List<String> allAllarms = findQuery.getResultList();
+		assertNotEquals(0L, allAllarms.size());
 		assertNotNull(getEntityManager());
 	}
 
 	@Test
 	public void userTest() {
-		TypedQuery<Users> findQuery = getEntityManager()
-				.createQuery("Select u from Users u where u.key.username = :username", Users.class);
+		TypedQuery<Users> findQuery = getEntityManager().createQuery(
+				"Select u from Users u where u.key.username = :username",
+				Users.class);
 		findQuery.setParameter("username", "admin");
 		List<Users> allUsers = findQuery.getResultList();
 		assertNotNull(getEntityManager());
@@ -46,7 +47,8 @@ public class DomainTest extends BaseDomainTest {
 	@Test
 	public void userTestAndRole() {
 		TypedQuery<Users> findQuery = getEntityManager().createQuery(
-				"Select u from Users u where u.key.username = :username and u.key.role = :role", Users.class);
+				"Select u from Users u where u.key.username = :username and u.key.role = :role",
+				Users.class);
 		findQuery.setParameter("username", "admin");
 		findQuery.setParameter("role", "ROLE_SADMIN");
 		List<Users> allUsers = findQuery.getResultList();

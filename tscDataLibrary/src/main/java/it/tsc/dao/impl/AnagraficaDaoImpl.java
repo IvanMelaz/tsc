@@ -20,7 +20,8 @@ import it.tsc.domain.Anagrafica;
  */
 @Repository("anagraficaDao")
 public class AnagraficaDaoImpl extends BaseDao implements AnagraficaDao {
-	private static Logger logger = LoggerFactory.getLogger(AnagraficaDaoImpl.class);
+	private static Logger logger = LoggerFactory
+			.getLogger(AnagraficaDaoImpl.class);
 
 	/**
 	 *
@@ -38,8 +39,8 @@ public class AnagraficaDaoImpl extends BaseDao implements AnagraficaDao {
 	public Anagrafica getAnagrafica(String ab_codi) {
 		Anagrafica anagrafica = null;
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Anagrafica> query = entityManager.createNamedQuery(Anagrafica.SELECT_ALL_ANAGRAFICA,
-				Anagrafica.class);
+		TypedQuery<Anagrafica> query = entityManager.createNamedQuery(
+				Anagrafica.SELECT_ANAGRAFICA_BY_ABCODI, Anagrafica.class);
 		query.setParameter("ab_codi", ab_codi);
 		try {
 			anagrafica = query.getSingleResult();

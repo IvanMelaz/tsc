@@ -2,9 +2,9 @@
 
 /* Tooltip */
 .test + .tooltip > .tooltip-inner {
-    background-color: #73AD21; 
-    color: #FFFFFF; 
-    border: 1px solid red; 
+    background-color: #73AD21;
+    color: #FFFFFF;
+    border: 1px solid red;
     padding: 5px;
     font-size: 10px;
 }
@@ -27,12 +27,12 @@
 /* grid */
 .jsgrid-row {
     border-left: 1px solid yellow;
-} 
+}
 
 /* H3 radient style */
 #gradient {
     height: 100px;
-    background: red; /* For browsers that do not support gradients */        
+    background: red; /* For browsers that do not support gradients */
     background: -webkit-linear-gradient(90deg, #ccffe6, #66ffb5); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(90deg, #ccffe6, #66ffb5); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(90deg, #ccffe6, #66ffb5); /* For Firefox 3.6 to 15 */
@@ -53,8 +53,7 @@
 .tab-content{padding:0px}
 
 /* footer */
-#footer {
-  background-color: #f3e5f5;
-  padding: 1px;
+.footer {
+  flex-shrink: 0;
 }
 

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.controller.endpoint;
 
@@ -17,6 +17,7 @@ import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
+import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
 import org.slf4j.Logger;
@@ -26,43 +27,51 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.server.standard.SpringConfigurator;
 
-import it.tsc.service.AllarmService;
+import it.tsc.service.QueueService;
 
 /**
  * @author astraservice
  *
  */
 @Controller
-@ServerEndpoint(value = "/user/allarmEndpoint", configurator = SpringConfigurator.class)
+@ServerEndpoint(value = "/user/allarmEndpoint/{userid}", configurator = SpringConfigurator.class)
 @Service
 public class WebSocketAllarmController {
   private static Logger logger = LoggerFactory.getLogger(WebSocketAllarmController.class);
   private ScheduledExecutorService service = null;
   private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
-
+  private EndpointConfig endpointConfig;
   @Autowired
-  private AllarmService allarmService;
+  private QueueService queueService;
 
   /**
-   * 
+   *
    */
   public WebSocketAllarmController() {
 
   }
 
   @OnOpen
-  public void onOpenSession(Session session, EndpointConfig config) {
+  public void onOpenSession(@PathParam("userid") String userid, Session session,
+      EndpointConfig endpointConfig) {
     /**
      * Manage session
      */
-    HttpSession httpSession = (HttpSession) config.getUserProperties().get("HTTP_SESSION");
+    HttpSession httpSession = (HttpSession) endpointConfig.getUserProperties().get("HTTP_SESSION");
+    this.endpointConfig = endpointConfig;
+    // Session ID
+    // to user ID
+
     if (httpSession != null) {
       httpSession.setAttribute("WEBSOCKET_SESSION", session);
-      logger.debug("manage session attribute {}", session);
+      logger.debug("manage session attribute {} session id: {} user: {}", session, session.getId(),
+          userid);
     }
     synchronized (clients) {
       logger.debug("add item to clients: {}", session.getId());
       clients.add(session);
+      this.endpointConfig.getUserProperties().put(session.getId(), userid); // store mapping of
+      // WebSocket
     }
 
     if (clients.size() != 0) {
@@ -97,11 +106,14 @@ public class WebSocketAllarmController {
      * broadcast message
      */
     synchronized (clients) {
-      for (Session sess : session.getOpenSessions()) {
+      for (Session sess : clients) {
+        /**
+         * check the mapping
+         */
+        String userid = (String) this.endpointConfig.getUserProperties().get(sess.getId());
         if (sess.isOpen()) {
           try {
-            String result = allarmService.jsonGetAllarms();
-            sess.getBasicRemote().sendText(result);
+            sess.getBasicRemote().sendText(queueService.jsonQueueGetAllarms(userid));
           } catch (IOException ex) {
             logger.error(ex.getMessage());
           }

@@ -26,7 +26,6 @@ import it.tsc.util.JsonUtil;
  */
 @Repository("allarmDao")
 public class AllarmDaoImpl extends BaseDao implements AllarmDao {
-	@SuppressWarnings("unused")
 	private static Logger logger = LoggerFactory.getLogger(AllarmDaoImpl.class);
 
 	/**

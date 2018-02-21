@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.test.mvc;
 
@@ -50,7 +50,7 @@ public class MvcTscTest extends WebParallelTest {
   private Gson gson = new Gson();
 
   /**
-   * 
+   *
    */
   public MvcTscTest() {
     // TODO Auto-generated constructor stub
@@ -67,7 +67,7 @@ public class MvcTscTest extends WebParallelTest {
   @WithMockUser(roles = "ADMIN", username = "matteo")
   public void testGetAnagrafica() throws Exception {
     Allarmi allarm = new Allarmi();
-    allarm.setAb_codi("000000");
+    allarm.setAb_codi("0000");
     // omit email
     ResultMatcher ok = MockMvcResultMatchers.status().isOk();
     MockHttpServletRequestBuilder builder =

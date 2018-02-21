@@ -51,7 +51,8 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	@Override
 	public String jsonGetUser(String username) {
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Users> query = entityManager.createNamedQuery(Users.SELECT_BY_USERNAME, Users.class);
+		TypedQuery<Users> query = entityManager
+				.createNamedQuery(Users.SELECT_BY_USERNAME, Users.class);
 		query.setParameter("username", username);
 		List<Users> list = query.getResultList();
 		// entityManager.close();
@@ -71,7 +72,8 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		PortalUser PortalUser = null;
 
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Users> query = entityManager.createNamedQuery(Users.SELECT_BY_USERNAME, Users.class);
+		TypedQuery<Users> query = entityManager
+				.createNamedQuery(Users.SELECT_BY_USERNAME, Users.class);
 		query.setParameter("username", username);
 		List<Users> list = query.getResultList();
 		// entityManager.close();
@@ -90,7 +92,8 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 			roles.add(user.getKey().getRole());
 		}
 		if (roles != null && roles.size() > 0) {
-			PortalUser = new PortalUser(username, password, roles, email, base32Secret, mfaEnabled);
+			PortalUser = new PortalUser(username, password, roles, email,
+					base32Secret, mfaEnabled);
 		}
 		return PortalUser;
 	}
@@ -100,7 +103,8 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		PortalUser PortalUser = null;
 
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Users> query = entityManager.createNamedQuery(Users.SELECT_BY_USERNAME_EMAIL, Users.class);
+		TypedQuery<Users> query = entityManager
+				.createNamedQuery(Users.SELECT_BY_USERNAME_EMAIL, Users.class);
 		query.setParameter("username", username);
 		query.setParameter("email", email);
 		List<Users> list = query.getResultList();
@@ -122,13 +126,15 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		// PortalUserAccessor userAccessor =
 		// manager.createAccessor(PortalUserAccessor.class);
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Users> query = entityManager.createNamedQuery(Users.SELECT_ALL_USERS, Users.class);
+		TypedQuery<Users> query = entityManager
+				.createNamedQuery(Users.SELECT_ALL_USERS, Users.class);
 		List<Users> list = query.getResultList();
 		// entityManager.close();
 
 		UserTransform t = new UserTransform();
 		for (Users user : list) {
-			t.addUser(user.getKey().getUsername(), user.getKey().getRole(), user.getEmail());
+			t.addUser(user.getKey().getUsername(), user.getKey().getRole(),
+					user.getEmail());
 		}
 		return t.getUsers();
 	}
@@ -136,7 +142,8 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	@Override
 	public String jsonGetAllUsers() {
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Users> query = entityManager.createNamedQuery(Users.SELECT_ALL_USERS, Users.class);
+		TypedQuery<Users> query = entityManager
+				.createNamedQuery(Users.SELECT_ALL_USERS, Users.class);
 		List<Users> list = query.getResultList();
 		// entityManager.close();
 
@@ -154,7 +161,8 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	public List<GrantedAuthority> getUserRoles(String username) {
 		List<GrantedAuthority> roles = null;
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Users> query = entityManager.createNamedQuery(Users.SELECT_BY_USERNAME, Users.class);
+		TypedQuery<Users> query = entityManager
+				.createNamedQuery(Users.SELECT_BY_USERNAME, Users.class);
 		query.setParameter("username", username);
 		List<Users> list = query.getResultList();
 		// entityManager.close();
@@ -176,7 +184,8 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	@Override
 	public boolean isAdmin(Role role) {
 		if (role != null) {
-			return role.equals(Role.ROLE_ADMIN) || role.equals(Role.ROLE_SADMIN);
+			return role.equals(Role.ROLE_ADMIN)
+					|| role.equals(Role.ROLE_SADMIN);
 		} else {
 			return false;
 		}
@@ -190,9 +199,11 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	 * java.lang.String it.tsc.model.Role)
 	 */
 	@Override
-	public boolean addUser(String username, String password, String email, Role role, boolean mfaEnabled) {
+	public boolean addUser(String username, String password, String email,
+			Role role, boolean mfaEnabled) {
 		Validate.notEmpty(password, "Password cannot be empty");
-		Users user = new Users(new CompoundKey(username, role), bcryptEncoder.encode(password), email, mfaEnabled);
+		Users user = new Users(new CompoundKey(username, role),
+				bcryptEncoder.encode(password), email, mfaEnabled);
 		EntityManager entityManager = getEntityManager();
 		entityManager.persist(user);
 		// entityManager.close();
@@ -209,50 +220,59 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	 */
 	@Override
 	public boolean removeUser(String username, Role role) {
-		String sql = "DELETE FROM ks_tsc.tb_users WHERE username='" + username + "' AND role ='" + role.toString()
-				+ "' IF EXISTS";
-		Query query = getEntityManager().createNativeQuery(sql, Users.class);
-		query.executeUpdate();
-		// entityManager.close();
-
-		// logger.debug("result: {}", rs.wasApplied());
-		// return rs.wasApplied();
-		return true;
+		EntityManager entityManager = getEntityManager();
+		entityManager.getTransaction().begin();
+		TypedQuery<Users> query = entityManager
+				.createNamedQuery(Users.DELETE_BY_USERNAME_ROLE, Users.class);
+		query.setParameter("username", username);
+		query.setParameter("role", role);
+		boolean result = query.executeUpdate() != 0 ? true : false;
+		entityManager.getTransaction().commit();
+		return result;
 	}
 
 	@Override
-	public void updateMfaUserKey(String username, String keyId, String base32Secret, String role) {
+	public void updateMfaUserKey(String username, String keyId,
+			String base32Secret, String role) {
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Users> query = entityManager.createNamedQuery(Users.UPDATE_BY_USERNAME_ROLE, Users.class);
+		entityManager.getTransaction().begin();
+		TypedQuery<Users> query = entityManager
+				.createNamedQuery(Users.UPDATE_BY_USERNAME_ROLE, Users.class);
 		query.setParameter("username", username);
 		query.setParameter("role", role);
 		query.setParameter("keyId", keyId);
 		query.setParameter("base32Secret", base32Secret);
 		query.executeUpdate();
-		// entityManager.close();
+		entityManager.getTransaction().commit();
 	}
 
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @Override public PortalUser getUser(String username, String email) { // TODO
-	 * Auto-generated method stub return null; }*
+	 * @Override public PortalUser getUser(String username, String email) { //
+	 * TODO Auto-generated method stub return null; }*
 	 *
 	 * @see
-	 * it.tsc.dao.UserDao#updateUser(java.lang.String,java.lang.String,java.lang.
-	 * String,it.tsc.model. Role)
+	 * it.tsc.dao.UserDao#updateUser(java.lang.String,java.lang.String,java.
+	 * lang. String,it.tsc.model. Role)
 	 */
 	@Override
-	public void updateUser(String username, String password, String email, Role role, boolean mfaEnabled) {
+	public void updateUser(String username, String password, String email,
+			Role role, boolean mfaEnabled) {
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Users> query = entityManager.createNamedQuery(Users.UPDATE_USER, Users.class);
-		query.setParameter("username", username);
-		query.setParameter("password", bcryptEncoder.encode(password));
-		query.setParameter("email", email);
-		query.setParameter("role", role.toString());
-		query.setParameter("mfaEnabled", mfaEnabled);
-		query.executeUpdate();
-		// entityManager.close();
+		try {
+			Query query = entityManager.createNamedQuery(Users.UPDATE_USER,
+					Users.class);
+			query.setParameter("username", username);
+			query.setParameter("password", bcryptEncoder.encode(password));
+			query.setParameter("email", email);
+			query.setParameter("role", role.toString());
+			query.setParameter("mfaEnabled", mfaEnabled);
+			int result = query.executeUpdate();
+			// entityManager.close();
+		} catch (Exception e) {
+			logger.error("updateUser: {}", e);
+		}
 	}
 
 	/**

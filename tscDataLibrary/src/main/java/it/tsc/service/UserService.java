@@ -1,11 +1,14 @@
 /**
- * 
+ *
  */
 package it.tsc.service;
 
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.tsc.domain.PortalUser;
 import it.tsc.domain.Role;
@@ -18,7 +21,7 @@ public interface UserService {
 
 	/**
 	 * get User object
-	 * 
+	 *
 	 * @param username
 	 * @return
 	 */
@@ -26,7 +29,7 @@ public interface UserService {
 
 	/**
 	 * get User object (renew pwd service)
-	 * 
+	 *
 	 * @param username
 	 * @param email
 	 * @return
@@ -35,7 +38,7 @@ public interface UserService {
 
 	/**
 	 * get User in JSON format
-	 * 
+	 *
 	 * @param username
 	 * @return
 	 */
@@ -43,21 +46,21 @@ public interface UserService {
 
 	/**
 	 * get All Users
-	 * 
+	 *
 	 * @return (Only for admin role is permitted)
 	 */
 	public List<PortalUser> getAllUsers();
 
 	/**
 	 * get All Users in JSON format
-	 * 
+	 *
 	 * @return (Only for admin role is permitted)
 	 */
 	public String jsonGetAllUsers();
 
 	/**
 	 * Return Roles for user
-	 * 
+	 *
 	 * @param username
 	 * @return
 	 */
@@ -65,7 +68,7 @@ public interface UserService {
 
 	/**
 	 * Determines if User have Admin role
-	 * 
+	 *
 	 * @param role
 	 * @return
 	 */
@@ -73,7 +76,7 @@ public interface UserService {
 
 	/**
 	 * Determines if User have Admin role
-	 * 
+	 *
 	 * @param user
 	 * @return
 	 */
@@ -81,7 +84,7 @@ public interface UserService {
 
 	/**
 	 * Determines if User have Super Admin role
-	 * 
+	 *
 	 * @param user
 	 * @return
 	 */
@@ -89,7 +92,7 @@ public interface UserService {
 
 	/**
 	 * Add user
-	 * 
+	 *
 	 * @param username
 	 *            (Only admin role is permitted)
 	 * @param password
@@ -98,20 +101,23 @@ public interface UserService {
 	 * @param mfaEnabled
 	 * @return
 	 */
-	public boolean addUser(String username, String password, String email, Role role, boolean mfaEnabled);
+	public boolean addUser(String username, String password, String email,
+			Role role, boolean mfaEnabled);
 
 	/**
 	 * Remove user
-	 * 
+	 *
 	 * @param username
 	 * @param role
 	 * @return
 	 */
+	@Transactional(readOnly = false, isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED, rollbackFor = {
+			Exception.class})
 	public boolean removeUser(String username, Role role);
 
 	/**
 	 * update user
-	 * 
+	 *
 	 * @param username
 	 *            (Only admin role is permitted)
 	 * @param password
@@ -119,15 +125,17 @@ public interface UserService {
 	 * @param role
 	 * @param mfaEnabled
 	 */
-	public void updateUser(String username, String password, String email, Role role, boolean mfaEnabled);
+	public void updateUser(String username, String password, String email,
+			Role role, boolean mfaEnabled);
 
 	/**
 	 * insert MFA key updating user
-	 * 
+	 *
 	 * @param username
 	 * @param keyId
 	 * @param base32Secret
 	 */
-	public void updateMfaUserKey(String username, String keyId, String base32Secret);
+	public void updateMfaUserKey(String username, String keyId,
+			String base32Secret);
 
 }
