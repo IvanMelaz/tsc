@@ -112,17 +112,21 @@ CREATE TABLE `allarmi` (
   `ID_PROVA` varchar(50) default NULL COMMENT 'ID della prova correlata ad allarme',
   `AB_CODI` varchar(10) NOT NULL COMMENT 'Codice Utente',
   `EVENTO` varchar(50) default NULL,
-  `DATA_ARRIVO` timestamp NOT NULL default CURRENT_TIMESTAMP COMMENT 'Data (timestamp) arrivo dell'' allarme',
+  `DATA` varchar(10) default NULL,
+  `ORA` varchar(10) default NULL,
   `USER` varchar(50) default NULL,
   `ESITO` varchar(255) default NULL,
-  `DATA_ESITO` timestamp NOT NULL default CURRENT_TIMESTAMP COMMENT 'Data (timestamp) esito dell'' esito allarme',
+  `DATA_ESITO` timestamp NOT NULL default CURRENT_TIMESTAMP COMMENT 'Data (timestamp) chiusura dell'' esito allarme',
   `CONCLUSIONI` longtext,
-  `DATA_CHIUSO` timestamp NOT NULL default CURRENT_TIMESTAMP COMMENT 'Data (timestamp) chiusura dell'' allarme',
+  `DATA_CHIUSO` varchar(10) default NULL,
+  `ORA_CHIUSO` varchar(10) default NULL,
+  `VISUALIZZAZIONE` int(11) NOT NULL auto_increment,
   PRIMARY KEY  (`ID_ALLARME`),
+  UNIQUE KEY `VISUALIZZAZIONE` (`VISUALIZZAZIONE`),
   KEY `IDX_AB_CODI` (`AB_CODI`),
   KEY `IDX_ID_PROVA` (`ID_PROVA`),
   CONSTRAINT `FK_ALLARMI.ANAGRAFICA` FOREIGN KEY (`AB_CODI`) REFERENCES `anagrafica` (`AB_CODI`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=249672 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=249147 DEFAULT CHARSET=latin1;
 
 --
 -- Table structure for table `ambulanze`

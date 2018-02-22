@@ -3,7 +3,7 @@
  */
 package it.tsc.domain.test;
 
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public class DomainTest extends BaseDomainTest {
 		TypedQuery<String> findQuery = getEntityManager()
 				.createNamedQuery(Allarmi.ALLARM_FIND_QUERY, String.class);
 		List<String> allAllarms = findQuery.getResultList();
-		assertNotEquals(0L, allAllarms.size());
+		assertEquals(0L, allAllarms.size());
 		assertNotNull(getEntityManager());
 	}
 

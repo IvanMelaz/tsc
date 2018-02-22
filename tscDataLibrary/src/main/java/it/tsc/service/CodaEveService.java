@@ -6,7 +6,7 @@ package it.tsc.service;
 /**
  * @author "astraservice" Service for allarm on coda_eve
  */
-public interface QueueService {
+public interface CodaEveService {
 
 	/**
 	 * get allarms in json format

@@ -4,15 +4,13 @@
 package it.tsc.domain;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import com.google.gson.annotations.Expose;
-
-import it.tsc.domain.key.CompoundKey;
 
 /**
  * @author astraservice
@@ -20,14 +18,15 @@ import it.tsc.domain.key.CompoundKey;
  */
 @Entity
 @Table(name = "tsc_group", schema = "telesoccorso@mysql_pu")
-@NamedQueries(value = { @NamedQuery(name = Group.SELECT_GROUPS, query = "SELECT g FROM Group g"),
-		@NamedQuery(name = Group.SELECT_GROUPS_BY_KEY, query = "SELECT g FROM Group g WHERE g.key = :key") })
+@NamedQueries(value = {
+		@NamedQuery(name = Group.SELECT_GROUPS, query = "SELECT g FROM Group g")})
 public class Group extends BaseDomain {
 	public static final String SELECT_GROUPS = "select.groups";
-	public static final String SELECT_GROUPS_BY_KEY = "select.groups.by_key";
 
-	@EmbeddedId
-	private CompoundKey key = new CompoundKey();
+	@Id
+	@Column(name = "groupid")
+	@Expose
+	private int groupId;
 
 	@Column(name = "groupname")
 	@Expose
@@ -40,9 +39,9 @@ public class Group extends BaseDomain {
 		super();
 	}
 
-	public Group(CompoundKey key, String groupName) {
+	public Group(int groupId, String groupName) {
 		super();
-		this.key = key;
+		this.groupId = groupId;
 		this.groupName = groupName;
 	}
 
@@ -50,7 +49,7 @@ public class Group extends BaseDomain {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Group) {
-			// return this.getGroupName().equals(((Group) obj).getGroupName());
+			return this.getGroupName().equals(((Group) obj).getGroupName());
 		}
 		return false;
 	}
@@ -60,20 +59,25 @@ public class Group extends BaseDomain {
 		return 0;
 	}
 
-	public CompoundKey getKey() {
-		return key;
-	}
-
-	public void setKey(CompoundKey key) {
-		this.key = key;
-	}
-
 	public String getGroupName() {
 		return groupName;
 	}
 
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
+	}
+
+	public int getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(int groupId) {
+		this.groupId = groupId;
+	}
+
+	@Override
+	public String toString() {
+		return "Group [groupId=" + groupId + ", groupName=" + groupName + "]";
 	}
 
 }

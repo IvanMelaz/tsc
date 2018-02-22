@@ -20,9 +20,9 @@ import com.google.gson.annotations.Expose;
 @Entity
 @Table(name = "coda_eve", schema = "telesoccorso@mysql_pu")
 @NamedStoredProcedureQueries(value = {
-		@NamedStoredProcedureQuery(name = QueueAllarm.SP_V_CODA_EVE, procedureName = "sp_v_Coda_Eve", parameters = {
+		@NamedStoredProcedureQuery(name = CodaEve.SP_V_CODA_EVE, procedureName = "sp_v_Coda_Eve", parameters = {
 				@StoredProcedureParameter(name = "p_user", type = String.class, mode = ParameterMode.IN)})})
-public class QueueAllarm extends BaseDomain {
+public class CodaEve extends BaseDomain {
 	/**
 	 *
 	 */
@@ -37,7 +37,7 @@ public class QueueAllarm extends BaseDomain {
 	/**
 	 *
 	 */
-	public QueueAllarm() {
+	public CodaEve() {
 
 	}
 

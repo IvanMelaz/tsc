@@ -32,7 +32,7 @@ public class AllarmsDaoTest extends BaseDaoTest {
 
   @Test
   public void testInsertAllarme() throws ParseException {
-    allarmService.insertAllarme("00000", TimeUtil.getCurrentInstantDate(), "1",
+    allarmService.insertAllarme("0000", TimeUtil.getCurrentInstantDate(), "1",
         PortalUtil.generateUUID(), "matteo");
   }
 

@@ -27,7 +27,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.server.standard.SpringConfigurator;
 
-import it.tsc.service.QueueService;
+import it.tsc.service.CodaEveService;
 
 /**
  * @author astraservice
@@ -42,7 +42,7 @@ public class WebSocketAllarmController {
   private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
   private EndpointConfig endpointConfig;
   @Autowired
-  private QueueService queueService;
+  private CodaEveService queueService;
 
   /**
    *

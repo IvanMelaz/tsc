@@ -10,27 +10,27 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import it.tsc.service.QueueService;
+import it.tsc.service.CodaEveService;
 
 /**
  * @author astraservice
  *
  */
-public class QueueDaoTest extends BaseDaoTest {
-  private static Logger logger = LoggerFactory.getLogger(QueueDaoTest.class);
+public class CodaEveDaoTest extends BaseDaoTest {
+  private static Logger logger = LoggerFactory.getLogger(CodaEveDaoTest.class);
   @Autowired
-  private QueueService queueService;
+  private CodaEveService codaEveService;
 
   /**
    *
    */
-  public QueueDaoTest() {
+  public CodaEveDaoTest() {
     // TODO Auto-generated constructor stub
   }
 
   @Test
   public void queueServiceTest() throws ParseException {
-    logger.debug(queueService.jsonQueueGetAllarms("matteo"));
+    logger.debug(codaEveService.jsonQueueGetAllarms("matteo"));
   }
 
 }

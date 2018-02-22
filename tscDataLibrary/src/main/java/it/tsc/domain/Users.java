@@ -14,7 +14,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.persistence.TypedQuery;
 
 import com.google.gson.annotations.Expose;
 
@@ -29,7 +28,7 @@ import it.tsc.domain.key.CompoundKey;
 		@NamedQuery(name = Users.SELECT_ALL_USERS, query = "SELECT u FROM Users u"),
 		@NamedQuery(name = Users.SELECT_BY_USERNAME, query = "SELECT u FROM Users u WHERE u.key.username = :username"),
 		@NamedQuery(name = Users.SELECT_BY_USERNAME_ROLE, query = "SELECT u FROM Users u WHERE u.key.username = :username AND u.key.role=:role"),
-		@NamedQuery(name = Users.SELECT_BY_USERNAME_EMAIL, query = "SELECT u FROM Users u WHERE u.key.username = :username AND u.email=:email"),
+		@NamedQuery(name = Users.SELECT_BY_USERNAME_EMAIL, query = "SELECT u FROM Users u WHERE TRIM(u.key.username) = TRIM(:username) AND TRIM(u.email)=TRIM(:email)"),
 		@NamedQuery(name = Users.UPDATE_BY_USERNAME_ROLE, query = "UPDATE Users u SET u.keyId=:keyId,u.base32Secret=:base32Secret WHERE u.key.username = :username AND u.key.role=:role"),
 		@NamedQuery(name = Users.UPDATE_USER, query = "UPDATE Users u SET u.password=:password,u.email=:email,u.mfaEnabled=:mfaEnabled WHERE u.key.username = :username AND u.key.role = :role"),
 		@NamedQuery(name = Users.DELETE_BY_USERNAME_ROLE, query = "DELETE Users u WHERE u.key.username = :username AND u.key.role=:role")})
@@ -122,10 +121,11 @@ public class Users extends BaseDomain {
 	}
 
 	public List<Group> getGroups(EntityManager entityManager) {
-		TypedQuery<Group> findQuery = entityManager
-				.createNamedQuery(Group.SELECT_GROUPS_BY_KEY, Group.class);
-		findQuery.setParameter("key", this.getKey());
-		return findQuery.getResultList();
+		return null;
+		// TypedQuery<Group> findQuery = entityManager
+		// .createNamedQuery(Group.SELECT_GROUPS_BY_KEY, Group.class);
+		// findQuery.setParameter("key", this.getKey());
+		// return findQuery.getResultList();
 		// return this.groups;
 	}
 

@@ -7,7 +7,7 @@ package it.tsc.dao;
  * @author "astraservice"
  *
  */
-public interface QueueDao {
+public interface CodaEveDao {
 
 	/**
 	 * get allarms in json format

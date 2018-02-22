@@ -8,21 +8,21 @@ import javax.persistence.StoredProcedureQuery;
 import org.springframework.stereotype.Repository;
 
 import it.tsc.dao.BaseDao;
-import it.tsc.dao.QueueDao;
-import it.tsc.domain.QueueAllarm;
+import it.tsc.dao.CodaEveDao;
+import it.tsc.domain.CodaEve;
 import it.tsc.util.JsonUtil;
 
 /**
  * @author "astraservice"
  *
  */
-@Repository("queueDao")
-public class QueueDaoImpl extends BaseDao implements QueueDao {
+@Repository("codaEveDao")
+public class CodaEveDaoImpl extends BaseDao implements CodaEveDao {
 
 	/**
 	 *
 	 */
-	public QueueDaoImpl() {
+	public CodaEveDaoImpl() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -34,7 +34,7 @@ public class QueueDaoImpl extends BaseDao implements QueueDao {
 	@Override
 	public String jsonGetAllarms(String user) {
 		StoredProcedureQuery query = getEntityManager()
-				.createNamedStoredProcedureQuery(QueueAllarm.SP_V_CODA_EVE);
+				.createNamedStoredProcedureQuery(CodaEve.SP_V_CODA_EVE);
 		query.setParameter("p_user", user);
 
 		String result = JsonUtil.getGsonConverter()

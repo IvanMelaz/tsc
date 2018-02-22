@@ -44,8 +44,8 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 	@Override
 	public void insertAllarme(String ab_codi, Instant data_arrivo,
 			String evento, String id_allarme, String user) {
+		EntityTransaction tx = getEntityManager().getTransaction();
 		try {
-			EntityTransaction tx = getEntityManager().getTransaction();
 			tx.begin();
 			StoredProcedureQuery query = getEntityManager()
 					.createNamedStoredProcedureQuery(Allarmi.SP_INSERT_ALLARM);
@@ -58,6 +58,7 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 			tx.commit();
 		} catch (Exception e) {
 			logger.error("insertAllarme :{}", e);
+			tx.rollback();
 			throw new IllegalArgumentException(e);
 		}
 

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
@@ -205,11 +206,19 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		Users user = new Users(new CompoundKey(username, role),
 				bcryptEncoder.encode(password), email, mfaEnabled);
 		EntityManager entityManager = getEntityManager();
-		entityManager.persist(user);
-		// entityManager.close();
-		logger.debug("result: {}", user);
-		// return rs.wasApplied();
-		return true;
+		EntityTransaction tx = entityManager.getTransaction();
+		tx.begin();
+		try {
+			entityManager.persist(user);
+			entityManager.flush();
+			logger.debug("result: {}", user);
+			tx.commit();
+			return true;
+		} catch (Exception e) {
+			logger.error("addUser: {}", e);
+			tx.rollback();
+			return false;
+		}
 	}
 
 	/*
@@ -220,14 +229,21 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	 */
 	@Override
 	public boolean removeUser(String username, Role role) {
+		boolean result = false;
 		EntityManager entityManager = getEntityManager();
-		entityManager.getTransaction().begin();
-		TypedQuery<Users> query = entityManager
-				.createNamedQuery(Users.DELETE_BY_USERNAME_ROLE, Users.class);
-		query.setParameter("username", username);
-		query.setParameter("role", role);
-		boolean result = query.executeUpdate() != 0 ? true : false;
-		entityManager.getTransaction().commit();
+		EntityTransaction tx = entityManager.getTransaction();
+		tx.begin();
+		try {
+			Query query = entityManager
+					.createNamedQuery(Users.DELETE_BY_USERNAME_ROLE);
+			query.setParameter("username", username);
+			query.setParameter("role", role.name());
+			result = query.executeUpdate() != 0 ? true : false;
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+			logger.error("removeUser: {}", e);
+		}
 		return result;
 	}
 
@@ -235,15 +251,21 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	public void updateMfaUserKey(String username, String keyId,
 			String base32Secret, String role) {
 		EntityManager entityManager = getEntityManager();
-		entityManager.getTransaction().begin();
-		TypedQuery<Users> query = entityManager
-				.createNamedQuery(Users.UPDATE_BY_USERNAME_ROLE, Users.class);
-		query.setParameter("username", username);
-		query.setParameter("role", role);
-		query.setParameter("keyId", keyId);
-		query.setParameter("base32Secret", base32Secret);
-		query.executeUpdate();
-		entityManager.getTransaction().commit();
+		EntityTransaction tx = entityManager.getTransaction();
+		tx.begin();
+		try {
+			TypedQuery<Users> query = entityManager.createNamedQuery(
+					Users.UPDATE_BY_USERNAME_ROLE, Users.class);
+			query.setParameter("username", username);
+			query.setParameter("role", role);
+			query.setParameter("keyId", keyId);
+			query.setParameter("base32Secret", base32Secret);
+			query.executeUpdate();
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+			logger.error("updateMfaUserKey: {}", e);
+		}
 	}
 
 	/*
@@ -260,6 +282,8 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	public void updateUser(String username, String password, String email,
 			Role role, boolean mfaEnabled) {
 		EntityManager entityManager = getEntityManager();
+		EntityTransaction tx = entityManager.getTransaction();
+		tx.begin();
 		try {
 			Query query = entityManager.createNamedQuery(Users.UPDATE_USER,
 					Users.class);
@@ -269,8 +293,9 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 			query.setParameter("role", role.toString());
 			query.setParameter("mfaEnabled", mfaEnabled);
 			int result = query.executeUpdate();
-			// entityManager.close();
+			tx.commit();
 		} catch (Exception e) {
+			tx.rollback();
 			logger.error("updateUser: {}", e);
 		}
 	}

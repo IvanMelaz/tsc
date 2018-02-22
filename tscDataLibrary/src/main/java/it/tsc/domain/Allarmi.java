@@ -24,7 +24,7 @@ import com.google.gson.annotations.Expose;
 @Entity
 @Table(name = "allarmi", schema = "telesoccorso@mysql_pu")
 @NamedQueries(value = {
-		@NamedQuery(name = Allarmi.SELECT_ALL_ALLARMS, query = "SELECT a.id_allarme,a.ab_codi,a.data_arrivo,a.evento,a.user FROM Allarmi a"),
+		@NamedQuery(name = Allarmi.SELECT_ALL_ALLARMS, query = "SELECT a.id_allarme,a.ab_codi,a.data,a.ora,a.evento,a.user FROM Allarmi a"),
 		@NamedQuery(name = Allarmi.UPDATE_ALLARM, query = "UPDATE Allarmi a SET a.user=:user WHERE a.id_allarme=:id_allarme"),
 		@NamedQuery(name = Allarmi.ALLARM_FIND_QUERY, query = "SELECT a.id_allarme FROM Allarmi a")})
 @NamedStoredProcedureQueries(value = {
@@ -59,9 +59,13 @@ public class Allarmi extends BaseDomain {
 	@Expose
 	private String evento;
 
+	@Column(name = "data")
 	@Expose
-	@Column
-	private Date data_arrivo;
+	private String data;
+
+	@Column(name = "ora")
+	@Expose
+	private String ora;
 
 	@Column
 	@Expose
@@ -81,7 +85,11 @@ public class Allarmi extends BaseDomain {
 
 	@Column
 	@Expose
-	private Date data_chiuso;
+	private String data_chiuso;
+
+	@Column
+	@Expose
+	private String ora_chiuso;
 
 	/**
 	 *
@@ -96,14 +104,6 @@ public class Allarmi extends BaseDomain {
 
 	public void setAb_codi(String ab_codi) {
 		this.ab_codi = ab_codi;
-	}
-
-	public Date getData_arrivo() {
-		return data_arrivo;
-	}
-
-	public void setData_arrivo(Date data_arrivo) {
-		this.data_arrivo = data_arrivo;
 	}
 
 	public String getUser() {
@@ -162,12 +162,42 @@ public class Allarmi extends BaseDomain {
 		this.conclusioni = conclusioni;
 	}
 
-	public Date getData_chiuso() {
-		return data_chiuso;
+	public String getData() {
+		return data;
 	}
 
-	public void setData_chiuso(Date data_chiuso) {
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	public String getOra() {
+		return ora;
+	}
+
+	public void setOra(String ora) {
+		this.ora = ora;
+	}
+
+	public String getOra_chiuso() {
+		return ora_chiuso;
+	}
+
+	public void setOra_chiuso(String ora_chiuso) {
+		this.ora_chiuso = ora_chiuso;
+	}
+
+	public void setData_chiuso(String data_chiuso) {
 		this.data_chiuso = data_chiuso;
+	}
+
+	@Override
+	public String toString() {
+		return "Allarmi [id_allarme=" + id_allarme + ", id_prova=" + id_prova
+				+ ", ab_codi=" + ab_codi + ", evento=" + evento + ", data="
+				+ data + ", ora=" + ora + ", user=" + user + ", esito=" + esito
+				+ ", data_esito=" + data_esito + ", conclusioni=" + conclusioni
+				+ ", data_chiuso=" + data_chiuso + ", ora_chiuso=" + ora_chiuso
+				+ "]";
 	}
 
 }
