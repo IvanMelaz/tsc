@@ -3285,6 +3285,97 @@ AND
             (allarmi.`ESITO` = "A");
 
 END */;;
+
+/*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
+/*!50003 DROP FUNCTION IF EXISTS `nextval` */;;
+/*!50003 SET SESSION SQL_MODE=""*/;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 FUNCTION `nextval`(`seq_name` varchar(100))
+RETURNS bigint NOT DETERMINISTIC
+BEGIN
+    DECLARE cur_val bigint;
+
+    SELECT
+        cur_value INTO cur_val
+    FROM
+        sequence
+    WHERE
+        name = seq_name;
+
+    IF cur_val IS NOT NULL THEN
+        UPDATE
+            sequence
+        SET
+            cur_value = IF (
+                (cur_value + increment) > max_value OR (cur_value + increment) < min_value,
+                IF (
+                    cycle = TRUE,
+                    IF (
+                        (cur_value + increment) > max_value,
+                        min_value,
+                        max_value
+                    ),
+                    NULL
+                ),
+                cur_value + increment
+            )
+        WHERE
+            name = seq_name;
+    END IF;
+    RETURN cur_val;
+END */;;
+
+/*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
+/*!50003 DROP FUNCTION IF EXISTS `currval` */;;
+/*!50003 SET SESSION SQL_MODE=""*/;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 FUNCTION `currval`(`seq_name` varchar(100))
+RETURNS bigint(20) NOT DETERMINISTIC
+BEGIN
+    DECLARE cur_val bigint(20);
+
+    SELECT
+        cur_value INTO cur_val
+    FROM
+        sequence
+    WHERE
+        `name` = seq_name
+    ;
+
+    RETURN cur_val;
+END */;;
+
+/*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
+/*!50003 DROP FUNCTION IF EXISTS `setval` */;;
+/*!50003 SET SESSION SQL_MODE=""*/;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 FUNCTION `setval` (`seq_name` varchar(100), `new_val` bigint(20))
+RETURNS bigint(20) NOT DETERMINISTIC
+BEGIN
+	DECLARE cur_val bigint(20);
+
+    SELECT
+        cur_value INTO cur_val
+    FROM
+        sequence
+    WHERE
+        `name` = seq_name;
+
+	IF cur_val IS NOT NULL THEN
+	    UPDATE
+			sequence
+		SET
+			cur_value = new_val
+	    WHERE
+	        `name` = seq_name;
+
+	ELSE
+		INSERT INTO
+			sequence
+		    	(`name`,cur_value)
+			VALUES
+		    	(seq_name,new_val);
+	END IF;
+	RETURN new_val;
+END */;;
+
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
 DELIMITER ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

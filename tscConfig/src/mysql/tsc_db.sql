@@ -2278,6 +2278,19 @@ DROP TABLE IF EXISTS `vw_provecompleanno`;
   `RICHIAMARE` char(0)
 ) */;
 
+DROP TABLE IF EXISTS `sequence`;
+CREATE TABLE `sequence` (
+    `name` varchar(100) NOT NULL,
+    `increment` int(11) NOT NULL DEFAULT 1,
+    `min_value` int(11) NOT NULL DEFAULT 1,
+    `max_value` bigint(20) NOT NULL DEFAULT 9223372036854775807,
+    `cur_value` bigint(20) DEFAULT 1,
+    `cycle` boolean NOT NULL DEFAULT FALSE,
+    PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
 --
 -- Final view structure for view `vw_CentraleUtente`
 --
