@@ -86,7 +86,7 @@ public class UserDaoTest extends BaseDaoTest {
 
   @Test
   public void testAddUser() {
-    userService.addUser("testUser", "testUser", "testUser@tsc.it", Role.ROLE_USER, true);
+    userService.addUser("testUser", "testUser", "testUser@tsc.it", Role.ROLE_USER, false);
     // assertTrue(bcryptEncoder.matches("testUser", userService.getUser("testUser").getPassword()));
   }
 
