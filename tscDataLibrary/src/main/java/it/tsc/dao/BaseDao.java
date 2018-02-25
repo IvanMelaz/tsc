@@ -3,8 +3,11 @@
  */
 package it.tsc.dao;
 
+import java.sql.Connection;
+
 import javax.persistence.EntityManager;
 
+import org.hibernate.internal.SessionImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -24,6 +27,12 @@ public class BaseDao {
 
 	public EntityManager getEntityManager() {
 		return this.entityManager;
+	}
+
+	public Connection getConnection() {
+		Connection connection = ((SessionImpl) entityManager.getDelegate())
+				.connection();
+		return connection;
 	}
 
 }

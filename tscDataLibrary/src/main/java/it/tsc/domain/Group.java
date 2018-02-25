@@ -17,11 +17,16 @@ import com.google.gson.annotations.Expose;
  *
  */
 @Entity
-@Table(name = "tsc_group", schema = "telesoccorso@mysql_pu")
+@Table(name = Group.TABLE_NAME, schema = "telesoccorso@mysql_pu")
 @NamedQueries(value = {
 		@NamedQuery(name = Group.SELECT_GROUPS, query = "SELECT g FROM Group g")})
 public class Group extends BaseDomain {
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1913835724827889810L;
 	public static final String SELECT_GROUPS = "select.groups";
+	public static final String TABLE_NAME = "tsc_group";
 
 	@Id
 	@Column(name = "groupid")

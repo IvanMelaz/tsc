@@ -1,13 +1,13 @@
 /**
  *
  */
-package it.tsc.service;
+package it.tsc.dao;
 
 /**
  * @author "astraservice"
  *
  */
-public interface SequenceService {
+public interface SequenceDao {
 
 	/**
 	 * get NextVal from sequence

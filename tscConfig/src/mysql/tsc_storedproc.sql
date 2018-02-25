@@ -3290,7 +3290,7 @@ END */;;
 /*!50003 DROP FUNCTION IF EXISTS `nextval` */;;
 /*!50003 SET SESSION SQL_MODE=""*/;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`%`*/ /*!50003 FUNCTION `nextval`(`seq_name` varchar(100))
-RETURNS bigint NOT DETERMINISTIC
+RETURNS bigint(20) NOT DETERMINISTIC
 BEGIN
     DECLARE cur_val bigint;
 
@@ -3321,7 +3321,7 @@ BEGIN
         WHERE
             name = seq_name;
     END IF;
-    RETURN cur_val;
+    RETURN cur_val +1;
 END */;;
 
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE*/;;
