@@ -30,7 +30,7 @@ public class AppController extends BaseController {
 
   /**
    * home access page
-   * 
+   *
    * @param ab_codi
    * @param request
    * @return
@@ -46,7 +46,7 @@ public class AppController extends BaseController {
 
   /**
    * admin access page
-   * 
+   *
    * @param ab_codi
    * @param mfaCode
    * @param user
@@ -80,7 +80,7 @@ public class AppController extends BaseController {
 
   /**
    * add MFA code
-   * 
+   *
    * @param user
    * @param request
    * @param mfaCode
@@ -127,7 +127,7 @@ public class AppController extends BaseController {
 
   /**
    * check MFA access code
-   * 
+   *
    * @param user
    * @param request
    * @param mfaCode
@@ -154,7 +154,7 @@ public class AppController extends BaseController {
       mfaCodeValid = isMfaCodeValid(mfaCode, base32Secret);
     } catch (Exception e) {
       model.addObject("error", "MFA code raising exception");
-      logger.error(e.getMessage());
+      logger.error("checkMfaSecurityCode: {}", e);
     }
     /**
      * skip validation if MFA is not enabled
@@ -171,7 +171,7 @@ public class AppController extends BaseController {
 
   /**
    * redirect to working page
-   * 
+   *
    * @param userAttrs
    * @param request
    * @param model
@@ -192,7 +192,7 @@ public class AppController extends BaseController {
 
   /**
    * reset MFA
-   * 
+   *
    * @param user
    * @param request
    * @return
@@ -215,7 +215,7 @@ public class AppController extends BaseController {
 
   /**
    * check if mfa is valid
-   * 
+   *
    * @param mfaCode
    * @param base32Secret
    * @return
@@ -228,7 +228,7 @@ public class AppController extends BaseController {
 
   /**
    * retrieve user information with Base32Secret from db
-   * 
+   *
    * @param user
    * @return
    */
@@ -243,7 +243,7 @@ public class AppController extends BaseController {
 
   /**
    * get return view with MFA Check
-   * 
+   *
    * @param model
    * @param viewName
    * @param request

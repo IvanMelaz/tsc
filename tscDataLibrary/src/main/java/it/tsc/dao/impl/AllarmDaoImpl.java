@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 
@@ -44,7 +45,7 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 	@Override
 	public void insertAllarme(String ab_codi, Instant data_arrivo,
 			String evento, String id_allarme, String user) {
-		EntityTransaction tx = getEntityManager().getTransaction();
+		EntityTransaction tx = getEntityTransaction();
 		try {
 			tx.begin();
 			StoredProcedureQuery query = getEntityManager()
@@ -110,8 +111,7 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 	@Override
 	public void updateAllarme(String id_allarme, String user) {
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Allarmi> query = entityManager
-				.createNamedQuery(Allarmi.UPDATE_ALLARM, Allarmi.class);
+		Query query = entityManager.createNamedQuery(Allarmi.UPDATE_ALLARM);
 		query.setParameter("id_allarme", id_allarme);
 		query.setParameter("user", user);
 		query.executeUpdate();

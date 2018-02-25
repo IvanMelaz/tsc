@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.controller.rest;
 
@@ -44,7 +44,7 @@ public class RestUserServiceController extends RestBaseController {
 
   /**
    * get TSC User
-   * 
+   *
    * @param user
    * @return
    */
@@ -59,7 +59,7 @@ public class RestUserServiceController extends RestBaseController {
 
   /**
    * get All user in JSON format
-   * 
+   *
    * @param user
    * @return
    */
@@ -74,7 +74,7 @@ public class RestUserServiceController extends RestBaseController {
 
   /**
    * Add user rest service errors = validator.validate(portalUser);
-   * 
+   *
    * @param user
    * @param portalUser
    * @param result
@@ -111,7 +111,7 @@ public class RestUserServiceController extends RestBaseController {
 
   /**
    * remove User
-   * 
+   *
    * @param user
    * @param portalUser
    * @param result
@@ -147,7 +147,7 @@ public class RestUserServiceController extends RestBaseController {
 
   /**
    * get User in JSON format
-   * 
+   *
    * @param user
    * @return
    */
@@ -183,8 +183,12 @@ public class RestUserServiceController extends RestBaseController {
        */
       res.setStatus(Response.SUCCESS.toString());
       if (user == null) {
-        logger.debug("error requesting jsonAskNewPassword user: {} username: {} emai: {}", user,
+        res.setStatus(Response.FAILURE.toString());
+        res.setResultMessage("error requesting password, invalid user");
+        logger.error("error requesting jsonAskNewPassword user: {} username: {} emai: {}", user,
             portalUser.getUsername(), portalUser.getEmail());
+      } else {
+        res.setStatus(Response.SUCCESS.toString());
       }
     }
     return res;
@@ -213,7 +217,7 @@ public class RestUserServiceController extends RestBaseController {
        */
       res.setStatus(Response.SUCCESS.toString());
       if (user == null) {
-        logger.debug("error requesting jsonAskNewPassword user: {} username: {} emai: {}", user,
+        logger.error("error requesting jsonAskNewPassword user: {} username: {} emai: {}", user,
             portalUser.getUsername(), portalUser.getEmail());
       } ;
     }

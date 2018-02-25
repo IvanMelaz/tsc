@@ -49,22 +49,22 @@ public class Users extends BaseDomain {
 	@Expose
 	private CompoundKey key = new CompoundKey();
 
-	@Column
+	@Column(name = "password")
 	private String password;
 
-	@Column(name = "base32secret")
+	@Column(name = "base32Secret")
 	@Expose
 	private String base32Secret;
 
-	@Column(name = "mfaenabled")
+	@Column(name = "mfaEnabled")
 	@Expose
 	private boolean mfaEnabled;
 
-	@Column
+	@Column(name = "email")
 	@Expose
 	private String email;
 
-	@Column(name = "keyid")
+	@Column(name = "keyId")
 	@Expose
 	private String keyId;
 

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.google.gson.annotations.Expose;
 
@@ -17,7 +18,8 @@ import com.google.gson.annotations.Expose;
  *
  */
 @Entity
-@Table(name = Group.TABLE_NAME, schema = "telesoccorso@mysql_pu")
+@Table(name = Group.TABLE_NAME, schema = "telesoccorso@mysql_pu", uniqueConstraints = @UniqueConstraint(columnNames = {
+		"groupname"}))
 @NamedQueries(value = {
 		@NamedQuery(name = Group.SELECT_GROUPS, query = "SELECT g FROM Group g")})
 public class Group extends BaseDomain {

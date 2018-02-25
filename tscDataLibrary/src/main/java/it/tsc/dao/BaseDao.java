@@ -6,6 +6,7 @@ package it.tsc.dao;
 import java.sql.Connection;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 import org.hibernate.internal.SessionImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class BaseDao {
 
 	public EntityManager getEntityManager() {
 		return this.entityManager;
+	}
+
+	public EntityTransaction getEntityTransaction() {
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		return entityTransaction;
 	}
 
 	public Connection getConnection() {

@@ -87,7 +87,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		boolean mfaEnabled = true;
 		for (Users user : list) {
 			email = user.getEmail();
-			password = user.getPassword();
+			password = user.getPassword().trim();
 			base32Secret = user.getBase32Secret();
 			mfaEnabled = user.isMfaEnabled();
 			roles.add(user.getKey().getRole());
@@ -203,8 +203,10 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	public boolean addUser(String username, String password, String email,
 			Role role, boolean mfaEnabled) {
 		Validate.notEmpty(password, "Password cannot be empty");
+		Validate.notEmpty(username, "username cannot be empty");
+		Validate.notEmpty(email, "email cannot be empty");
 		Users user = new Users(new CompoundKey(username, role),
-				bcryptEncoder.encode(password), email, mfaEnabled);
+				bcryptEncoder.encode(password).trim(), email, mfaEnabled);
 		EntityManager entityManager = getEntityManager();
 		EntityTransaction tx = entityManager.getTransaction();
 		tx.begin();
@@ -254,13 +256,17 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		EntityTransaction tx = entityManager.getTransaction();
 		tx.begin();
 		try {
-			TypedQuery<Users> query = entityManager.createNamedQuery(
-					Users.UPDATE_BY_USERNAME_ROLE, Users.class);
+			Query query = entityManager
+					.createNamedQuery(Users.UPDATE_BY_USERNAME_ROLE);
 			query.setParameter("username", username);
 			query.setParameter("role", role);
-			query.setParameter("keyId", keyId);
-			query.setParameter("base32Secret", base32Secret);
+			query.setParameter("keyId", keyId.trim());
+			query.setParameter("base32Secret", base32Secret.trim());
 			query.executeUpdate();
+			if (query.executeUpdate() == 0) {
+				logger.error("Impossible to update user: ", username, keyId);
+				throw new IllegalArgumentException("Impossible to update user");
+			}
 			tx.commit();
 		} catch (Exception e) {
 			tx.rollback();
