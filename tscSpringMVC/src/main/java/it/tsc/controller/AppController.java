@@ -151,7 +151,7 @@ public class AppController extends BaseController {
     logger.debug("auth: {}", auth.getAuthorities().toString());
 
     try {
-      mfaCodeValid = isMfaCodeValid(mfaCode, base32Secret);
+      mfaCodeValid = !StringUtils.isEmpty(base32Secret) && isMfaCodeValid(mfaCode, base32Secret);
     } catch (Exception e) {
       model.addObject("error", "MFA code raising exception");
       logger.error("checkMfaSecurityCode: {}", e);
@@ -162,7 +162,11 @@ public class AppController extends BaseController {
     if (mfaCodeValid || mfaEnabled == false) {
       redirectToWorkingPage(request, model);
     } else {
-      model.addObject("error", "MFA invalid doesn't check with code");
+      if (StringUtils.isEmpty(base32Secret)) {
+        model.addObject("error", "base32Secret empty - MFA invalid doesn't check with code");
+      } else {
+        model.addObject("error", "MFA invalid doesn't check with code");
+      }
       setMfaAuthenticated(request, "false");
       model.setViewName(ACTION_CHECK_MFA);
     }
