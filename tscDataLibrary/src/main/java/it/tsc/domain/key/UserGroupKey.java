@@ -23,7 +23,7 @@ public class UserGroupKey implements Serializable {
 
 	@Column(name = "groupid")
 	@Expose
-	private String groupid;
+	private Long groupid;
 
 	@Column(name = "username")
 	@Expose
@@ -34,17 +34,17 @@ public class UserGroupKey implements Serializable {
 	public UserGroupKey() {
 		// TODO Auto-generated constructor stub
 	}
-	public String getGroupid() {
-		return groupid;
-	}
-	public void setGroupid(String groupid) {
-		this.groupid = groupid;
-	}
 	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	public Long getGroupid() {
+		return groupid;
+	}
+	public void setGroupid(Long groupid) {
+		this.groupid = groupid;
 	}
 
 }

@@ -1024,7 +1024,7 @@ CREATE TABLE `tsc_group` (
   `groupid` smallint(5) NOT NULL,
   `groupname` varchar(50) NOT NULL,
   PRIMARY KEY  (`groupid`),
-  UNIQUE KEY `groupid` (`groupid`)
+  UNIQUE KEY `uk_group` (`groupname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1035,7 +1035,9 @@ DROP TABLE IF EXISTS `tsc_group_user_link`;
 CREATE TABLE `tsc_group_user_link` (
   `groupid` smallint(5) NOT NULL,
   `username` varchar(60) NOT NULL COMMENT 'User name',
-  PRIMARY KEY  (`groupid`,`username`)
+  PRIMARY KEY  (`groupid`,`username`),
+  CONSTRAINT `FK_ALLARMI.TSC_USER` FOREIGN KEY (`username`) REFERENCES `tsc_user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_ALLARMI.TSC_GROUP` FOREIGN KEY (`groupid`) REFERENCES `tsc_group` (`groupid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1088,7 +1090,7 @@ CREATE TABLE `sequence` (
 /*!50001 DROP TABLE IF EXISTS `vw_CentraleUtente`*/;
 /*!50001 DROP VIEW IF EXISTS `vw_CentraleUtente`*/;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`mysql`@`` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
 /*!50001 VIEW `vw_CentraleUtente` AS select `tsc_user`.`username` AS `tsc_username`,`tsc_group`.`groupname` AS `centrale` from ((`tsc_group` join `tsc_group_user_link` on((`tsc_group`.`groupid` = `tsc_group_user_link`.`groupid`))) join `tsc_user` on((`tsc_group_user_link`.`username` = `tsc_user`.`username`))) */;
 
 --
@@ -1098,7 +1100,7 @@ CREATE TABLE `sequence` (
 /*!50001 DROP TABLE IF EXISTS `vw_provecompleanno`*/;
 /*!50001 DROP VIEW IF EXISTS `vw_provecompleanno`*/;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`mysql`@`` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
 /*!50001 VIEW `vw_provecompleanno` AS select sql_no_cache `anagrafica`.`AB_CODI` AS `AB_CODI`,_latin1'COMPLEANNO' AS `FOGLIO`,_latin1'' AS `GIORNO`,_latin1'COMPLEANNO' AS `FASCIA`,_latin1'' AS `RICHIAMARE` from `anagrafica` where ((substr(`anagrafica`.`DATA_NASCITA`,6,10) = substr(cast(now() as date),6,10)) and (isnull(`anagrafica`.`DATA_DISINSTALLAZIONE`) or (`anagrafica`.`DATA_DISINSTALLAZIONE` = _latin1''))) */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

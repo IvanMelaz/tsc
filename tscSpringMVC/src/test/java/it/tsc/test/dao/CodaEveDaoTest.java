@@ -30,7 +30,7 @@ public class CodaEveDaoTest extends BaseDaoTest {
 
   @Test
   public void queueServiceTest() throws ParseException {
-    logger.debug(codaEveService.jsonQueueGetAllarms("matteo"));
+    logger.debug(codaEveService.jsonQueueGetAllarms("testUser"));
   }
 
 }

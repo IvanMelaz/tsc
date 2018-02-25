@@ -21,19 +21,21 @@ import com.google.gson.annotations.Expose;
 @Table(name = Group.TABLE_NAME, schema = "telesoccorso@mysql_pu", uniqueConstraints = @UniqueConstraint(columnNames = {
 		"groupname"}))
 @NamedQueries(value = {
-		@NamedQuery(name = Group.SELECT_GROUPS, query = "SELECT g FROM Group g")})
+		@NamedQuery(name = Group.SELECT_GROUPS, query = "SELECT g FROM Group g"),
+		@NamedQuery(name = Group.SELECT_GROUP_BY_NAME, query = "SELECT g FROM Group g WHERE g.groupName=:groupName")})
 public class Group extends BaseDomain {
 	/**
 	 *
 	 */
 	private static final long serialVersionUID = 1913835724827889810L;
 	public static final String SELECT_GROUPS = "select.groups";
+	public static final String SELECT_GROUP_BY_NAME = "select.group.by.name";
 	public static final String TABLE_NAME = "tsc_group";
 
 	@Id
 	@Column(name = "groupid")
 	@Expose
-	private int groupId;
+	private Long groupId;
 
 	@Column(name = "groupname")
 	@Expose
@@ -46,7 +48,7 @@ public class Group extends BaseDomain {
 		super();
 	}
 
-	public Group(int groupId, String groupName) {
+	public Group(long groupId, String groupName) {
 		super();
 		this.groupId = groupId;
 		this.groupName = groupName;
@@ -74,17 +76,17 @@ public class Group extends BaseDomain {
 		this.groupName = groupName;
 	}
 
-	public int getGroupId() {
-		return groupId;
-	}
-
-	public void setGroupId(int groupId) {
-		this.groupId = groupId;
-	}
-
 	@Override
 	public String toString() {
 		return "Group [groupId=" + groupId + ", groupName=" + groupName + "]";
+	}
+
+	public Long getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(Long groupId) {
+		this.groupId = groupId;
 	}
 
 }

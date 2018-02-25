@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.test.dao;
 
@@ -35,7 +35,7 @@ public class GroupDaoTest extends WebParallelTest {
   private Gson gson = new Gson();
 
   /**
-   * 
+   *
    */
   public GroupDaoTest() {}
 
@@ -50,17 +50,22 @@ public class GroupDaoTest extends WebParallelTest {
   }
 
   @Test
+  public void testAddGroupOther() {
+    groupService.addGroup("NAPOLI");
+  }
+
+  @Test
   public void testRemoveGroup() {
     groupService.removeGroup("MILANO");
   }
 
   @Test
   public void testAddUserToGroup() {
-    groupService.addUserToGroup("matteo", "MILANO");
+    groupService.addUserToGroup("testUser", "MILANO");
   }
 
   @Test
   public void testRemoveUserFromGroup() {
-    groupService.removeUserFromGroup("matteo", "MILANO");
+    groupService.removeUserFromGroup("testUser", "MILANO");
   }
 }
