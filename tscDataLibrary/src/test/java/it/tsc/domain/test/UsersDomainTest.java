@@ -28,8 +28,8 @@ public class UsersDomainTest extends BaseDomainTest {
 	@Test
 	public void testJsonScript1() throws NoSuchMethodException,
 			IllegalAccessException, InvocationTargetException {
-		Query query = getEntityManager().createNativeQuery(
-				"SELECT groupname from tsc_group", Group.class);
+		Query query = getEntityManager()
+				.createNativeQuery("SELECT groupname from tsc_group");
 		logger.debug("query: {}",
 				JsonUtil.getGsonConverter().toJson(query.getResultList()));
 	}
@@ -38,7 +38,7 @@ public class UsersDomainTest extends BaseDomainTest {
 	public void testJsonScript2() throws NoSuchMethodException,
 			IllegalAccessException, InvocationTargetException {
 		Query query = getEntityManager().createNativeQuery(
-				"SELECT groupName from tsc_group", Group.class);
+				"SELECT groupName,groupid from tsc_group", Group.class);
 		// query.setParameter("role", users1.getKey().getRole());
 		logger.debug("query: {}",
 				JsonUtil.getGsonConverter().toJson(query.getResultList()));
