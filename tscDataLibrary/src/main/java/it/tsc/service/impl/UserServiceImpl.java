@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.service.impl;
 
@@ -13,6 +13,7 @@ import it.tsc.dao.UserDao;
 import it.tsc.domain.ApplicationUser;
 import it.tsc.domain.PortalUser;
 import it.tsc.domain.Role;
+import it.tsc.domain.User;
 import it.tsc.service.UserService;
 
 /**
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 
 	/**
-	 * 
+	 *
 	 */
 	public UserServiceImpl() {
 		// TODO Auto-generated constructor stub
@@ -34,12 +35,12 @@ public class UserServiceImpl implements UserService {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see it.tsc.service.UserService#getUserRole(java.lang.String)
 	 */
 	@Override
-	public PortalUser getUser(String username) {
-		return userDao.getUser(username);
+	public PortalUser getPortalUser(String username) {
+		return userDao.getPortalUser(username);
 	}
 
 	@Override
@@ -64,9 +65,9 @@ public class UserServiceImpl implements UserService {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * it.tsc.service.UserService#getUserRoles(java.lang.String,java.lang.String)
+	 *
+	 * @see it.tsc.service.UserService#getUserRoles(java.lang.String,java.lang.
+	 * String)
 	 */
 	@Override
 	public List<GrantedAuthority> getUserRoles(String username) {
@@ -75,29 +76,32 @@ public class UserServiceImpl implements UserService {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see it.tsc.service.UserService#isAdmin(it.tsc.model.Role)
 	 */
 	@SuppressWarnings("unlikely-arg-type")
 	public boolean isAdmin(ApplicationUser requester) {
-		return requester.getAuthorities() != null && requester.getAuthorities().contains(Role.ROLE_ADMIN) ? true
-				: false;
+		return requester.getAuthorities() != null
+				&& requester.getAuthorities().contains(Role.ROLE_ADMIN)
+						? true
+						: false;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see it.tsc.service.UserService#addUser(java.lang.String, java.lang.String,
-	 * it.tsc.model.Role, it.tsc.model.User)
+	 *
+	 * @see it.tsc.service.UserService#addUser(java.lang.String,
+	 * java.lang.String, it.tsc.model.Role, it.tsc.model.User)
 	 */
 	@Override
-	public boolean addUser(String username, String password, String email, Role role, boolean mfaEnabled) {
+	public boolean addUser(String username, String password, String email,
+			Role role, boolean mfaEnabled) {
 		return userDao.addUser(username, password, email, role, mfaEnabled);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see it.tsc.service.UserService#removeUser(java.lang.String,
 	 * java.lang.String, it.tsc.model.Role, it.tsc.model.User)
 	 */
@@ -108,12 +112,13 @@ public class UserServiceImpl implements UserService {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see it.tsc.service.UserService#updateUser(java.lang.String,
 	 * it.tsc.model.Role, it.tsc.model.User)
 	 */
 	@Override
-	public void updateUser(String username, String password, String email, Role role, boolean mfaEnabled) {
+	public void updateUser(String username, String password, String email,
+			Role role, boolean mfaEnabled) {
 		userDao.updateUser(username, password, email, role, mfaEnabled);
 	}
 
@@ -124,10 +129,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean isAdmin(PortalUser user) {
-		if (getUser(user.getUsername()) == null) {
+		if (getPortalUser(user.getUsername()) == null) {
 			return false;
-		} else if (getUser(user.getUsername()).getRoles() != null) {
-			return getUser(user.getUsername()).getRoles().contains(Role.ROLE_ADMIN.toString());
+		} else if (getPortalUser(user.getUsername()).getRoles() != null) {
+			return getPortalUser(user.getUsername()).getRoles()
+					.contains(Role.ROLE_ADMIN.toString());
 		} else {
 			return false;
 		}
@@ -136,8 +142,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean isSuperAdmin(PortalUser user) {
-		if (getUser(user.getUsername()) != null && getUser(user.getUsername()).getRoles() != null) {
-			return getUser(user.getUsername()).getRoles().contains(Role.ROLE_SADMIN.toString());
+		if (getPortalUser(user.getUsername()) != null
+				&& getPortalUser(user.getUsername()).getRoles() != null) {
+			return getPortalUser(user.getUsername()).getRoles()
+					.contains(Role.ROLE_SADMIN.toString());
 		} else {
 			return false;
 		}
@@ -145,15 +153,23 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void updateMfaUserKey(String username, String keyId, String base32Secret) {
+	public void updateMfaUserKey(String username, String keyId,
+			String base32Secret) {
 		/**
 		 * iterate all over user role
 		 */
 		if (userDao != null && userDao.getUserRoles(username) != null) {
-			for (GrantedAuthority grantedAuthority : userDao.getUserRoles(username)) {
-				userDao.updateMfaUserKey(username, keyId, base32Secret, grantedAuthority.getAuthority());
+			for (GrantedAuthority grantedAuthority : userDao
+					.getUserRoles(username)) {
+				userDao.updateMfaUserKey(username, keyId, base32Secret,
+						grantedAuthority.getAuthority());
 			}
 		}
+	}
+
+	@Override
+	public List<User> getUser(String username) {
+		return userDao.getUser(username);
 	}
 
 }

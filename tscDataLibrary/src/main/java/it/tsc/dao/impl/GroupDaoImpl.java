@@ -16,8 +16,10 @@ import org.springframework.stereotype.Repository;
 
 import it.tsc.dao.BaseDao;
 import it.tsc.dao.GroupDao;
+import it.tsc.dao.UserDao;
 import it.tsc.domain.Group;
 import it.tsc.domain.GroupUserLink;
+import it.tsc.domain.User;
 import it.tsc.domain.key.UserGroupKey;
 import it.tsc.service.SequenceService;
 
@@ -30,6 +32,8 @@ public class GroupDaoImpl extends BaseDao implements GroupDao {
 	private static Logger logger = LoggerFactory.getLogger(GroupDaoImpl.class);
 	@Autowired
 	private SequenceService sequenceService;
+	@Autowired
+	private UserDao userDao;
 	/*
 	 * (non-Javadoc)
 	 *
@@ -55,7 +59,7 @@ public class GroupDaoImpl extends BaseDao implements GroupDao {
 			tx.begin();
 			group.setGroupId(sequenceService.getNextVal(Group.TABLE_NAME));
 			group.setGroupName(groupname);
-			getEntityManager().persist(group);
+			save(group);
 			getEntityManager().flush();
 			tx.commit();
 		} catch (Exception e) {
@@ -71,12 +75,12 @@ public class GroupDaoImpl extends BaseDao implements GroupDao {
 	 */
 	@Override
 	public void removeGroup(String groupname) {
-		Group group = new Group();
+		Group group = findByName(groupname);
 		EntityTransaction tx = getEntityTransaction();
 		try {
 			tx.begin();
-			group.setGroupName(groupname);
-			getEntityManager().remove(group);
+			remove(group);
+			getEntityManager().flush();
 			tx.commit();
 		} catch (Exception e) {
 			tx.rollback();
@@ -92,15 +96,17 @@ public class GroupDaoImpl extends BaseDao implements GroupDao {
 	 */
 	@Override
 	public void addUserToGroup(String username, String groupname) {
-		GroupUserLink groupUserLink = new GroupUserLink();
-		UserGroupKey key = new UserGroupKey();
-		key.setUsername(username);
-		key.setGroupid(findByName(groupname).getGroupId());
-		groupUserLink.setKey(key);
+		Group group = findByName(groupname);
+
+		List<User> users = userDao.getUser(username);
 		EntityTransaction tx = getEntityTransaction();
 		try {
 			tx.begin();
-			getEntityManager().persist(groupUserLink);
+			for (User user : users) {
+				GroupUserLink groupUserLink = new GroupUserLink(
+						new UserGroupKey(user.getKey(), group.getGroupId()));
+				save(groupUserLink);
+			}
 			getEntityManager().flush();
 			tx.commit();
 		} catch (Exception e) {
@@ -117,16 +123,22 @@ public class GroupDaoImpl extends BaseDao implements GroupDao {
 	 */
 	@Override
 	public void removeUserFromGroup(String username, String groupname) {
-		UserGroupKey key = new UserGroupKey();
-		key.setUsername(username);
-		Long groupId = findByName(groupname).getGroupId();
-		Validate.isTrue(groupId != 0, "groupId cannot be 0");
-		key.setGroupid(findByName(groupname).getGroupId());
+		Group group = findByName(groupname);
+		List<User> users = userDao.getUser(username);
+		Validate.isTrue(group.getGroupId() != 0, "groupId cannot be 0");
 		EntityTransaction tx = getEntityTransaction();
 		try {
 			tx.begin();
-			GroupUserLink g = getEntityManager().find(GroupUserLink.class, key);
-			getEntityManager().remove(g);
+			for (User user : users) {
+				UserGroupKey uGroupKey = new UserGroupKey(user.getKey(),
+						group.getGroupId());
+				GroupUserLink groupUserLink = new GroupUserLink(uGroupKey);
+				getEntityManager()
+						.remove(getEntityManager().contains(groupUserLink)
+								? groupUserLink
+								: getEntityManager().merge(groupUserLink));
+				getEntityManager().flush();
+			}
 			tx.commit();
 		} catch (Exception e) {
 			tx.rollback();

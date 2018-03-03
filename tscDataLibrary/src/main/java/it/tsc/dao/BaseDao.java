@@ -41,4 +41,16 @@ public class BaseDao {
 		return connection;
 	}
 
+	public <T> void save(T entity) {
+		entityManager.persist(!entityManager.contains(entity)
+				? entity
+				: entityManager.merge(entity));
+	}
+
+	public <T> void remove(T entity) {
+		entityManager.remove(entityManager.contains(entity)
+				? entity
+				: entityManager.merge(entity));
+	}
+
 }

@@ -17,7 +17,7 @@ import it.tsc.domain.Role;
  *
  */
 @Embeddable
-public class CompoundKey implements Serializable {
+public class UserKey implements Serializable {
 	/**
 	 * 
 	 */
@@ -31,17 +31,17 @@ public class CompoundKey implements Serializable {
 	@Expose
 	private String role;
 
-	public CompoundKey() {
+	public UserKey() {
 		super();
 	}
 
-	public CompoundKey(String username, String role) {
+	public UserKey(String username, String role) {
 		super();
 		this.username = username;
 		this.role = role;
 	}
 
-	public CompoundKey(String username, Role role) {
+	public UserKey(String username, Role role) {
 		super();
 		this.username = username;
 		this.role = role.toString();

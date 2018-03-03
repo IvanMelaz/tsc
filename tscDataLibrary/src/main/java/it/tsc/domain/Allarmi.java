@@ -24,7 +24,7 @@ import com.google.gson.annotations.Expose;
 @Entity
 @Table(name = "allarmi", schema = "telesoccorso@mysql_pu")
 @NamedQueries(value = {
-		@NamedQuery(name = Allarmi.SELECT_ALL_ALLARMS, query = "SELECT a.id_allarme,a.ab_codi,a.data,a.ora,a.evento,a.user FROM Allarmi a"),
+		@NamedQuery(name = Allarmi.SELECT_ALL_ALLARMS, query = "SELECT a FROM Allarmi a"),
 		@NamedQuery(name = Allarmi.UPDATE_ALLARM, query = "UPDATE Allarmi a SET a.user=:user WHERE a.id_allarme=:id_allarme"),
 		@NamedQuery(name = Allarmi.ALLARM_FIND_QUERY, query = "SELECT a.id_allarme FROM Allarmi a")})
 @NamedStoredProcedureQueries(value = {

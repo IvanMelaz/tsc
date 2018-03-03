@@ -3,21 +3,16 @@
  */
 package it.tsc.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.google.gson.annotations.Expose;
 
-import it.tsc.domain.key.CompoundKey;
+import it.tsc.domain.key.UserKey;
 
 /**
  * @author astraservice tb_users
@@ -25,14 +20,14 @@ import it.tsc.domain.key.CompoundKey;
 @Entity
 @Table(name = "tsc_user", schema = "telesoccorso@mysql_pu")
 @NamedQueries(value = {
-		@NamedQuery(name = Users.SELECT_ALL_USERS, query = "SELECT u FROM Users u"),
-		@NamedQuery(name = Users.SELECT_BY_USERNAME, query = "SELECT u FROM Users u WHERE u.key.username = :username"),
-		@NamedQuery(name = Users.SELECT_BY_USERNAME_ROLE, query = "SELECT u FROM Users u WHERE u.key.username = :username AND u.key.role=:role"),
-		@NamedQuery(name = Users.SELECT_BY_USERNAME_EMAIL, query = "SELECT u FROM Users u WHERE TRIM(u.key.username) = TRIM(:username) AND TRIM(u.email)=TRIM(:email)"),
-		@NamedQuery(name = Users.UPDATE_BY_USERNAME_ROLE, query = "UPDATE Users u SET u.keyId=:keyId,u.base32Secret=:base32Secret WHERE u.key.username = :username AND u.key.role=:role"),
-		@NamedQuery(name = Users.UPDATE_USER, query = "UPDATE Users u SET u.password=:password,u.email=:email,u.mfaEnabled=:mfaEnabled WHERE u.key.username = :username AND u.key.role = :role"),
-		@NamedQuery(name = Users.DELETE_BY_USERNAME_ROLE, query = "DELETE Users u WHERE u.key.username = :username AND u.key.role=:role")})
-public class Users extends BaseDomain {
+		@NamedQuery(name = User.SELECT_ALL_USERS, query = "SELECT u FROM User u"),
+		@NamedQuery(name = User.SELECT_BY_USERNAME, query = "SELECT u FROM User u WHERE u.key.username = :username"),
+		@NamedQuery(name = User.SELECT_BY_USERNAME_ROLE, query = "SELECT u FROM User u WHERE u.key.username = :username AND u.key.role=:role"),
+		@NamedQuery(name = User.SELECT_BY_USERNAME_EMAIL, query = "SELECT u FROM User u WHERE TRIM(u.key.username) = TRIM(:username) AND TRIM(u.email)=TRIM(:email)"),
+		@NamedQuery(name = User.UPDATE_BY_USERNAME_ROLE, query = "UPDATE User u SET u.keyId=:keyId,u.base32Secret=:base32Secret WHERE u.key.username = :username AND u.key.role=:role"),
+		@NamedQuery(name = User.UPDATE_USER, query = "UPDATE User u SET u.password=:password,u.email=:email,u.mfaEnabled=:mfaEnabled WHERE u.key.username = :username AND u.key.role = :role"),
+		@NamedQuery(name = User.DELETE_BY_USERNAME_ROLE, query = "DELETE User u WHERE u.key.username = :username AND u.key.role=:role")})
+public class User extends BaseDomain {
 	/**
 	 *
 	 */
@@ -47,7 +42,7 @@ public class Users extends BaseDomain {
 
 	@EmbeddedId
 	@Expose
-	private CompoundKey key = new CompoundKey();
+	private UserKey key = new UserKey();
 
 	@Column(name = "password")
 	private String password;
@@ -68,13 +63,10 @@ public class Users extends BaseDomain {
 	@Expose
 	private String keyId;
 
-	@Transient
-	private List<Group> groups = new ArrayList<Group>();
-
 	/**
 	 *
 	 */
-	public Users() {
+	public User() {
 		super();
 	}
 
@@ -83,7 +75,7 @@ public class Users extends BaseDomain {
 	 * @param key
 	 * @param mfaEnabled
 	 */
-	public Users(CompoundKey key, boolean mfaEnabled) {
+	public User(UserKey key, boolean mfaEnabled) {
 		super();
 		this.key = key;
 		this.mfaEnabled = mfaEnabled;
@@ -95,7 +87,7 @@ public class Users extends BaseDomain {
 	 * @param password
 	 * @param email
 	 */
-	public Users(CompoundKey key, String password, String email,
+	public User(UserKey key, String password, String email,
 			boolean mfaEnabled) {
 		super();
 		this.key = key;
@@ -111,7 +103,7 @@ public class Users extends BaseDomain {
 	 * @param mfaEnabled
 	 * @param keyId
 	 */
-	public Users(CompoundKey key, boolean mfaEnabled, String base32Secret,
+	public User(UserKey key, boolean mfaEnabled, String base32Secret,
 			String keyId) {
 		super();
 		this.key = key;
@@ -120,20 +112,11 @@ public class Users extends BaseDomain {
 		this.keyId = keyId;
 	}
 
-	public List<Group> getGroups(EntityManager entityManager) {
-		return null;
-		// TypedQuery<Group> findQuery = entityManager
-		// .createNamedQuery(Group.SELECT_GROUPS_BY_KEY, Group.class);
-		// findQuery.setParameter("key", this.getKey());
-		// return findQuery.getResultList();
-		// return this.groups;
-	}
-
-	public CompoundKey getKey() {
+	public UserKey getKey() {
 		return key;
 	}
 
-	public void setKey(CompoundKey key) {
+	public void setKey(UserKey key) {
 		this.key = key;
 	}
 
@@ -175,6 +158,16 @@ public class Users extends BaseDomain {
 
 	public void setMfaEnabled(boolean mfaEnabled) {
 		this.mfaEnabled = mfaEnabled;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("User [key=").append(key).append(", password=")
+				.append(password).append(", base32Secret=").append(base32Secret)
+				.append(", mfaEnabled=").append(mfaEnabled).append(", email=")
+				.append(email).append(", keyId=").append(keyId).append("]");
+		return builder.toString();
 	}
 
 }

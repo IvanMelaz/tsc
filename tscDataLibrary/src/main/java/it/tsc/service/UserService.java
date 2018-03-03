@@ -6,12 +6,10 @@ package it.tsc.service;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import it.tsc.domain.PortalUser;
 import it.tsc.domain.Role;
+import it.tsc.domain.User;
 
 /**
  * @author astraservice
@@ -25,7 +23,15 @@ public interface UserService {
 	 * @param username
 	 * @return
 	 */
-	public PortalUser getUser(String username);
+	public PortalUser getPortalUser(String username);
+
+	/**
+	 * get User Entity Object
+	 *
+	 * @param username
+	 * @return
+	 */
+	public List<User> getUser(String username);
 
 	/**
 	 * get User object (renew pwd service)
@@ -111,8 +117,6 @@ public interface UserService {
 	 * @param role
 	 * @return
 	 */
-	@Transactional(readOnly = false, isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED, rollbackFor = {
-			Exception.class})
 	public boolean removeUser(String username, Role role);
 
 	/**

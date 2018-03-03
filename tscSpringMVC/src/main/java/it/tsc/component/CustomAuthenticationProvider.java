@@ -55,7 +55,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
       throw new BadCredentialsException("Bad Credentials, Insert Username and Password!");
     }
     // get user
-    PortalUser currentUser = userService.getUser(username);
+    PortalUser currentUser = userService.getPortalUser(username);
     /**
      * check password
      */

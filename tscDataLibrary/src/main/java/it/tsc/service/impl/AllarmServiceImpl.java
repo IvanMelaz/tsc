@@ -8,6 +8,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.tsc.dao.AllarmDao;
 import it.tsc.service.AllarmService;
@@ -35,7 +36,8 @@ public class AllarmServiceImpl implements AllarmService {
 	 * java.sql.Timestamp, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void insertAllarme(String ab_codi, Instant data_arrivo, String evento, String id_allarme, String user) {
+	public void insertAllarme(String ab_codi, Instant data_arrivo,
+			String evento, String id_allarme, String user) {
 		allarmDao.insertAllarme(ab_codi, data_arrivo, evento, id_allarme, user);
 	}
 
@@ -47,8 +49,8 @@ public class AllarmServiceImpl implements AllarmService {
 	 * java.lang.String)
 	 */
 	@Override
-	public void insertAllarmeTel(String tel, String ab_codi, Date data_arrivo, String evento, String id_allarme,
-			String user) {
+	public void insertAllarmeTel(String tel, String ab_codi, Date data_arrivo,
+			String evento, String id_allarme, String user) {
 
 	}
 
@@ -57,6 +59,7 @@ public class AllarmServiceImpl implements AllarmService {
 		allarmDao.removeAllarme(id_allarme);
 	}
 
+	@Transactional
 	@Override
 	public void updateAllarme(String id_allarme, String user) {
 		allarmDao.updateAllarme(id_allarme, user);

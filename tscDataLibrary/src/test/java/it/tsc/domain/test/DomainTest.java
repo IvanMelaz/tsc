@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
 import com.google.code.tempusfugit.concurrency.ConcurrentTestRunner;
 
 import it.tsc.domain.Allarmi;
-import it.tsc.domain.Users;
+import it.tsc.domain.User;
 
 /**
  * @author astraservice
@@ -36,22 +36,22 @@ public class DomainTest extends BaseDomainTest {
 
 	@Test
 	public void userTest() {
-		TypedQuery<Users> findQuery = getEntityManager().createQuery(
+		TypedQuery<User> findQuery = getEntityManager().createQuery(
 				"Select u from Users u where u.key.username = :username",
-				Users.class);
+				User.class);
 		findQuery.setParameter("username", "admin");
-		List<Users> allUsers = findQuery.getResultList();
+		List<User> allUsers = findQuery.getResultList();
 		assertNotNull(getEntityManager());
 	}
 
 	@Test
 	public void userTestAndRole() {
-		TypedQuery<Users> findQuery = getEntityManager().createQuery(
+		TypedQuery<User> findQuery = getEntityManager().createQuery(
 				"Select u from Users u where u.key.username = :username and u.key.role = :role",
-				Users.class);
+				User.class);
 		findQuery.setParameter("username", "admin");
 		findQuery.setParameter("role", "ROLE_SADMIN");
-		List<Users> allUsers = findQuery.getResultList();
+		List<User> allUsers = findQuery.getResultList();
 		assertNotNull(getEntityManager());
 	}
 

@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
 import com.google.code.tempusfugit.concurrency.ConcurrentTestRunner;
 
 import it.tsc.domain.Group;
-import it.tsc.domain.Users;
+import it.tsc.domain.User;
 import it.tsc.util.JsonUtil;
 
 /**
@@ -47,9 +47,9 @@ public class UsersDomainTest extends BaseDomainTest {
 	@Test
 	public void testJsonScript3() throws NoSuchMethodException,
 			IllegalAccessException, InvocationTargetException {
-		TypedQuery<Users> query = getEntityManager()
-				.createNamedQuery(Users.SELECT_ALL_USERS, Users.class);
-		List<Users> u = query.getResultList();
+		TypedQuery<User> query = getEntityManager()
+				.createNamedQuery(User.SELECT_ALL_USERS, User.class);
+		List<User> u = query.getResultList();
 	}
 
 }

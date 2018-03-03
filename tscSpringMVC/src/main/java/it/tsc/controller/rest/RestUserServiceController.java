@@ -54,7 +54,7 @@ public class RestUserServiceController extends RestBaseController {
   public @ResponseBody PortalUser getUser(@AuthenticationPrincipal Principal user) {
     // TODO return rest json service get user
     logger.debug("/admin/userService/getUser");
-    return userService.getUser(user.getName());
+    return userService.getPortalUser(user.getName());
   }
 
   /**

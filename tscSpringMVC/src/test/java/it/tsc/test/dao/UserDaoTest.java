@@ -45,7 +45,7 @@ public class UserDaoTest extends BaseDaoTest {
 
   @Test
   public void testUserDao() {
-    logger.info("userService user {}", gson.toJson(userService.getUser("testUser")));
+    logger.info("userService user {}", gson.toJson(userService.getPortalUser("testUser")));
   }
 
   @Test

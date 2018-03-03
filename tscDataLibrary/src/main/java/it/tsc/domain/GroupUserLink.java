@@ -7,8 +7,6 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import com.google.gson.annotations.Expose;
-
 import it.tsc.domain.key.UserGroupKey;
 
 /**
@@ -20,22 +18,31 @@ import it.tsc.domain.key.UserGroupKey;
 public class GroupUserLink {
 
 	@EmbeddedId
-	@Expose
-	private UserGroupKey key = new UserGroupKey();
+	private UserGroupKey userGroupKey = new UserGroupKey();
 
 	/**
 	 *
 	 */
 	public GroupUserLink() {
-
+		super();
+	}
+	public GroupUserLink(UserGroupKey userGroupKey) {
+		super();
+		this.userGroupKey = userGroupKey;
+	}
+	public UserGroupKey getUserGroupKey() {
+		return userGroupKey;
 	}
 
-	public UserGroupKey getKey() {
-		return key;
+	public void setUserGroupKey(UserGroupKey userGroupKey) {
+		this.userGroupKey = userGroupKey;
 	}
-
-	public void setKey(UserGroupKey key) {
-		this.key = key;
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("GroupUserLink [userGroupKey=").append(userGroupKey)
+				.append("]");
+		return builder.toString();
 	}
 
 }

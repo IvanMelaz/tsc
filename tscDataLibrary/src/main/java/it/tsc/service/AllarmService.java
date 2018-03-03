@@ -6,6 +6,8 @@ package it.tsc.service;
 import java.time.Instant;
 import java.util.Date;
 
+import org.springframework.transaction.annotation.Transactional;
+
 /**
  * @author astraservice Manage Allarmi in TSC
  */
@@ -19,7 +21,8 @@ public interface AllarmService {
 	 * @param id_allarme
 	 * @param user
 	 */
-	public void insertAllarme(String ab_codi, Instant data_arrivo, String evento, String id_allarme, String user);
+	public void insertAllarme(String ab_codi, Instant data_arrivo,
+			String evento, String id_allarme, String user);
 
 	/**
 	 * Inserisce allarme per telefono (BRONDI)
@@ -30,8 +33,8 @@ public interface AllarmService {
 	 * @param id_allarme
 	 * @param user
 	 */
-	public void insertAllarmeTel(String tel, String ab_codi, Date data_arrivo, String evento, String id_allarme,
-			String user);
+	public void insertAllarmeTel(String tel, String ab_codi, Date data_arrivo,
+			String evento, String id_allarme, String user);
 
 	/**
 	 * rimuove allarme
@@ -46,6 +49,7 @@ public interface AllarmService {
 	 * @param id_allarme
 	 * @param user
 	 */
+	@Transactional
 	public void updateAllarme(String id_allarme, String user);
 
 	/**

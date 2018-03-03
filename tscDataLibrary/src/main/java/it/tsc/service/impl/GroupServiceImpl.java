@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.service.impl;
 
@@ -19,49 +19,59 @@ import it.tsc.service.GroupService;
 @Service("groupService")
 public class GroupServiceImpl implements GroupService {
 
-  @Autowired
-  private GroupDao groupDao;
+	@Autowired
+	private GroupDao groupDao;
 
-  /**
-   * 
-   */
-  public GroupServiceImpl() {
+	/**
+	 *
+	 */
+	public GroupServiceImpl() {
 
-  }
+	}
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see it.tsc.service.GroupService#getAllGroup()
-   */
-  public List<Group> getAllGroups() {
-    return groupDao.getAllGroups();
-  }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see it.tsc.service.GroupService#getAllGroup()
+	 */
+	@Override
+	public List<Group> getAllGroups() {
+		return groupDao.getAllGroups();
+	}
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see it.tsc.service.GroupService#addGroup(java.lang.String)
-   */
-  public void addGroup(String groupname) {
-    groupDao.addGroup(groupname);
-  }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see it.tsc.service.GroupService#addGroup(java.lang.String)
+	 */
+	@Override
+	public void addGroup(String groupname) {
+		groupDao.addGroup(groupname);
+	}
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see it.tsc.service.GroupService#removeGroup(java.lang.String)
-   */
-  public void removeGroup(String groupname) {
-    groupDao.removeGroup(groupname);
-  }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see it.tsc.service.GroupService#removeGroup(java.lang.String)
+	 */
+	@Override
+	public void removeGroup(String groupname) {
+		groupDao.removeGroup(groupname);
+	}
 
-  public void addUserToGroup(String username, String groupname) {
-    groupDao.addUserToGroup(username, groupname);
-  }
+	@Override
+	public void addUserToGroup(String username, String groupname) {
+		groupDao.addUserToGroup(username, groupname);
+	}
 
-  public void removeUserFromGroup(String username, String groupname) {
-    groupDao.removeUserFromGroup(username, groupname);
-  }
+	@Override
+	public void removeUserFromGroup(String username, String groupname) {
+		groupDao.removeUserFromGroup(username, groupname);
+	}
+
+	@Override
+	public Group findByName(String groupname) {
+		return groupDao.findByName(groupname);
+	}
 
 }

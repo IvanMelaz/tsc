@@ -16,16 +16,20 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author astraservice
  *
  */
 @Configuration
-@ComponentScan(basePackages = { "it.tsc.service", "it.tsc.dao" })
-@PropertySource(value = { "classpath:db.properties" })
+@EnableTransactionManagement
+@ComponentScan(basePackages = {"it.tsc.service", "it.tsc.dao"})
+@PropertySource(value = {"classpath:db.properties"})
 public class ServiceConfig {
 	private static Logger logger = LoggerFactory.getLogger(ServiceConfig.class);
 	@Value("${mysql-persistence-unit}")
@@ -66,16 +70,27 @@ public class ServiceConfig {
 	}
 
 	@Bean(name = "entityManager")
-	public EntityManager entityManager(@Qualifier("entityManagerFactory") EntityManagerFactory entityManagerFactory) {
+	public EntityManager entityManager(
+			@Qualifier("entityManagerFactory") EntityManagerFactory entityManagerFactory) {
 		EntityManager entityManager = null;
 		if (entityManagerFactory != null) {
-			if (entityManager == null || (entityManager != null && !entityManager.isOpen())) {
+			if (entityManager == null
+					|| (entityManager != null && !entityManager.isOpen())) {
 				entityManager = entityManagerFactory.createEntityManager();
 			}
 		} else {
 			throw new RuntimeException("entityManagerFactory cannot be null");
 		}
 		return entityManager;
+	}
+
+	@Bean(name = "transactionManager")
+	public PlatformTransactionManager transactionManager(
+			@Qualifier("entityManagerFactory") EntityManagerFactory entityManagerFactory) {
+		JpaTransactionManager transactionManager = new JpaTransactionManager();
+		transactionManager
+				.setEntityManagerFactory(entityManagerFactory().getObject());
+		return transactionManager;
 	}
 
 	@PreDestroy

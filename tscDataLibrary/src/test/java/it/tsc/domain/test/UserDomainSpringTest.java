@@ -18,8 +18,8 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import it.tsc.data.config.ServiceConfig;
 import it.tsc.domain.Role;
-import it.tsc.domain.Users;
-import it.tsc.domain.key.CompoundKey;
+import it.tsc.domain.User;
+import it.tsc.domain.key.UserKey;
 
 /**
  * @author astraservice
@@ -40,11 +40,11 @@ public class UserDomainSpringTest {
 
 	@Test
 	public void testUsers() {
-		CompoundKey key1 = new CompoundKey("matteo", Role.ROLE_ADMIN);
-		Users users1 = new Users(key1, true);
+		UserKey key1 = new UserKey("matteo", Role.ROLE_ADMIN);
+		User users1 = new User(key1, true);
 
-		CompoundKey key2 = new CompoundKey("matteo", Role.ROLE_USER);
-		Users users2 = new Users(key2, true);
+		UserKey key2 = new UserKey("matteo", Role.ROLE_USER);
+		User users2 = new User(key2, true);
 
 		// Group group1 = new Group(key1, "MILANO");
 		// Group group2 = new Group(key1, "NAPOLI");

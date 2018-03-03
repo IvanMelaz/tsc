@@ -239,7 +239,7 @@ public class AppController extends BaseController {
   private PortalUser getUserInfo(Principal user) {
     PortalUser portalUser = null;
     if (user != null) {
-      portalUser = getUserService().getUser(user.getName());
+      portalUser = getUserService().getPortalUser(user.getName());
       Validate.notNull(portalUser, "portalUser cannot be null");
     }
     return portalUser;

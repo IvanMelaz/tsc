@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.dao;
 
@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import it.tsc.domain.PortalUser;
 import it.tsc.domain.Role;
+import it.tsc.domain.User;
 
 /**
  * @author astraservice
@@ -17,7 +18,7 @@ import it.tsc.domain.Role;
 public interface UserDao {
 	/**
 	 * get User in JSON format
-	 * 
+	 *
 	 * @param username
 	 * @return
 	 */
@@ -25,15 +26,23 @@ public interface UserDao {
 
 	/**
 	 * get User Object
-	 * 
+	 *
 	 * @param username
 	 * @return
 	 */
-	public PortalUser getUser(String username);
+	public PortalUser getPortalUser(String username);
+
+	/**
+	 * get User Entity Object
+	 *
+	 * @param username
+	 * @return
+	 */
+	public List<User> getUser(String username);
 
 	/**
 	 * get User Object(for pwd recovery)
-	 * 
+	 *
 	 * @param username
 	 * @param email
 	 * @return
@@ -42,21 +51,21 @@ public interface UserDao {
 
 	/**
 	 * get All Users in JSON format
-	 * 
+	 *
 	 * @return (Only for admin role is permitted)
 	 */
 	public String jsonGetAllUsers();
 
 	/**
 	 * get All Users
-	 * 
+	 *
 	 * @return (Only for admin role is permitted)
 	 */
 	public List<PortalUser> getAllUsers();
 
 	/**
 	 * Return Roles for user
-	 * 
+	 *
 	 * @param username
 	 * @return
 	 */
@@ -64,7 +73,7 @@ public interface UserDao {
 
 	/**
 	 * Determines if User have Admin role
-	 * 
+	 *
 	 * @param role
 	 * @return
 	 */
@@ -72,7 +81,7 @@ public interface UserDao {
 
 	/**
 	 * Add user
-	 * 
+	 *
 	 * @param username
 	 *            (Only admin role is permitted)
 	 * @param password
@@ -81,11 +90,12 @@ public interface UserDao {
 	 * @param mfaEnabled
 	 * @return
 	 */
-	public boolean addUser(String username, String password, String email, Role role, boolean mfaEnabled);
+	public boolean addUser(String username, String password, String email,
+			Role role, boolean mfaEnabled);
 
 	/**
 	 * Remove user
-	 * 
+	 *
 	 * @param username
 	 *            (Only admin role is permitted)
 	 * @return
@@ -94,21 +104,23 @@ public interface UserDao {
 
 	/**
 	 * update user
-	 * 
+	 *
 	 * @param username
 	 *            (Only admin role is permitted)
 	 * @param password
 	 * @param email
 	 * @param role
 	 */
-	public void updateUser(String username, String password, String email, Role role, boolean mfaEnabled);
+	public void updateUser(String username, String password, String email,
+			Role role, boolean mfaEnabled);
 
 	/**
 	 * insert MFA key updating user
-	 * 
+	 *
 	 * @param username
 	 * @param keyId
 	 * @param base32Secret
 	 */
-	public void updateMfaUserKey(String username, String keyId, String base32Secret, String role);
+	public void updateMfaUserKey(String username, String keyId,
+			String base32Secret, String role);
 }

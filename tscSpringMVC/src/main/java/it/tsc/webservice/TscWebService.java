@@ -61,7 +61,7 @@ public class TscWebService {
 
     logger.debug("username: {}", user);
     // !bcryptEncoder.matches(password, userService.getUser(user).getPassword())
-    if (userService.getUser(user) == null) {
+    if (userService.getPortalUser(user) == null) {
       logger.debug("invalid username for service access");
       throw new SOAPException("invalid username or password for service access");
     } else {

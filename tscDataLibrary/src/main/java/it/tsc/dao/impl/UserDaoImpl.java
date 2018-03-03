@@ -26,8 +26,8 @@ import it.tsc.dao.BaseDao;
 import it.tsc.dao.UserDao;
 import it.tsc.domain.PortalUser;
 import it.tsc.domain.Role;
-import it.tsc.domain.Users;
-import it.tsc.domain.key.CompoundKey;
+import it.tsc.domain.User;
+import it.tsc.domain.key.UserKey;
 import it.tsc.util.JsonUtil;
 import it.tsc.util.UserTransform;
 
@@ -52,10 +52,10 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	@Override
 	public String jsonGetUser(String username) {
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Users> query = entityManager
-				.createNamedQuery(Users.SELECT_BY_USERNAME, Users.class);
+		TypedQuery<User> query = entityManager
+				.createNamedQuery(User.SELECT_BY_USERNAME, User.class);
 		query.setParameter("username", username);
-		List<Users> list = query.getResultList();
+		List<User> list = query.getResultList();
 		// entityManager.close();
 
 		String result = JsonUtil.getGsonConverter().toJson(list);
@@ -69,14 +69,14 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	 * @see it.tsc.dao.UserDao#getUserRole(java.lang.String)
 	 */
 	@Override
-	public PortalUser getUser(String username) {
+	public PortalUser getPortalUser(String username) {
 		PortalUser PortalUser = null;
 
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Users> query = entityManager
-				.createNamedQuery(Users.SELECT_BY_USERNAME, Users.class);
+		TypedQuery<User> query = entityManager
+				.createNamedQuery(User.SELECT_BY_USERNAME, User.class);
 		query.setParameter("username", username);
-		List<Users> list = query.getResultList();
+		List<User> list = query.getResultList();
 		// entityManager.close();
 
 		List<String> roles = new ArrayList<String>();
@@ -85,7 +85,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		String password = "";
 		String base32Secret = "";
 		boolean mfaEnabled = true;
-		for (Users user : list) {
+		for (User user : list) {
 			email = user.getEmail();
 			password = user.getPassword().trim();
 			base32Secret = user.getBase32Secret();
@@ -104,15 +104,15 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		PortalUser PortalUser = null;
 
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Users> query = entityManager
-				.createNamedQuery(Users.SELECT_BY_USERNAME_EMAIL, Users.class);
+		TypedQuery<User> query = entityManager
+				.createNamedQuery(User.SELECT_BY_USERNAME_EMAIL, User.class);
 		query.setParameter("username", username);
 		query.setParameter("email", email);
-		List<Users> list = query.getResultList();
+		List<User> list = query.getResultList();
 		// entityManager.close();
 
 		List<String> roles = new ArrayList<String>();
-		for (Users user : list) {
+		for (User user : list) {
 			roles.add(user.getKey().getRole());
 		}
 		if (roles != null && roles.size() > 0) {
@@ -127,13 +127,13 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		// PortalUserAccessor userAccessor =
 		// manager.createAccessor(PortalUserAccessor.class);
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Users> query = entityManager
-				.createNamedQuery(Users.SELECT_ALL_USERS, Users.class);
-		List<Users> list = query.getResultList();
+		TypedQuery<User> query = entityManager
+				.createNamedQuery(User.SELECT_ALL_USERS, User.class);
+		List<User> list = query.getResultList();
 		// entityManager.close();
 
 		UserTransform t = new UserTransform();
-		for (Users user : list) {
+		for (User user : list) {
 			t.addUser(user.getKey().getUsername(), user.getKey().getRole(),
 					user.getEmail());
 		}
@@ -143,9 +143,9 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	@Override
 	public String jsonGetAllUsers() {
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Users> query = entityManager
-				.createNamedQuery(Users.SELECT_ALL_USERS, Users.class);
-		List<Users> list = query.getResultList();
+		TypedQuery<User> query = entityManager
+				.createNamedQuery(User.SELECT_ALL_USERS, User.class);
+		List<User> list = query.getResultList();
 		// entityManager.close();
 
 		String result = JsonUtil.getGsonConverter().toJson(list);
@@ -162,13 +162,13 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	public List<GrantedAuthority> getUserRoles(String username) {
 		List<GrantedAuthority> roles = null;
 		EntityManager entityManager = getEntityManager();
-		TypedQuery<Users> query = entityManager
-				.createNamedQuery(Users.SELECT_BY_USERNAME, Users.class);
+		TypedQuery<User> query = entityManager
+				.createNamedQuery(User.SELECT_BY_USERNAME, User.class);
 		query.setParameter("username", username);
-		List<Users> list = query.getResultList();
+		List<User> list = query.getResultList();
 		// entityManager.close();
 
-		for (Users user : list) {
+		for (User user : list) {
 			if (roles == null) {
 				roles = new ArrayList<GrantedAuthority>();
 			}
@@ -205,7 +205,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		Validate.notEmpty(password, "Password cannot be empty");
 		Validate.notEmpty(username, "username cannot be empty");
 		Validate.notEmpty(email, "email cannot be empty");
-		Users user = new Users(new CompoundKey(username, role),
+		User user = new User(new UserKey(username, role),
 				bcryptEncoder.encode(password).trim(), email, mfaEnabled);
 		EntityManager entityManager = getEntityManager();
 		EntityTransaction tx = entityManager.getTransaction();
@@ -237,7 +237,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		tx.begin();
 		try {
 			Query query = entityManager
-					.createNamedQuery(Users.DELETE_BY_USERNAME_ROLE);
+					.createNamedQuery(User.DELETE_BY_USERNAME_ROLE);
 			query.setParameter("username", username);
 			query.setParameter("role", role.name());
 			result = query.executeUpdate() != 0 ? true : false;
@@ -257,7 +257,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		tx.begin();
 		try {
 			Query query = entityManager
-					.createNamedQuery(Users.UPDATE_BY_USERNAME_ROLE);
+					.createNamedQuery(User.UPDATE_BY_USERNAME_ROLE);
 			query.setParameter("username", username);
 			query.setParameter("role", role);
 			query.setParameter("keyId", keyId.trim());
@@ -291,8 +291,8 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		EntityTransaction tx = entityManager.getTransaction();
 		tx.begin();
 		try {
-			Query query = entityManager.createNamedQuery(Users.UPDATE_USER,
-					Users.class);
+			Query query = entityManager.createNamedQuery(User.UPDATE_USER,
+					User.class);
 			query.setParameter("username", username);
 			query.setParameter("password", bcryptEncoder.encode(password));
 			query.setParameter("email", email);
@@ -314,6 +314,15 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	@SuppressWarnings("unused")
 	private String returnJson(Row row) {
 		return row.getString("[json]");
+	}
+
+	@Override
+	public List<User> getUser(String username) {
+		EntityManager entityManager = getEntityManager();
+		TypedQuery<User> query = entityManager
+				.createNamedQuery(User.SELECT_BY_USERNAME, User.class);
+		query.setParameter("username", username);
+		return query.getResultList();
 	}
 
 }

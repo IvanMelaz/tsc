@@ -76,17 +76,23 @@ public class Group extends BaseDomain {
 		this.groupName = groupName;
 	}
 
-	@Override
-	public String toString() {
-		return "Group [groupId=" + groupId + ", groupName=" + groupName + "]";
-	}
-
 	public Long getGroupId() {
 		return groupId;
 	}
 
 	public void setGroupId(Long groupId) {
 		this.groupId = groupId;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Group [groupId=");
+		builder.append(groupId);
+		builder.append(", groupName=");
+		builder.append(groupName);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

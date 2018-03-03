@@ -110,12 +110,19 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 
 	@Override
 	public void updateAllarme(String id_allarme, String user) {
-		EntityManager entityManager = getEntityManager();
-		Query query = entityManager.createNamedQuery(Allarmi.UPDATE_ALLARM);
-		query.setParameter("id_allarme", id_allarme);
-		query.setParameter("user", user);
-		query.executeUpdate();
-		logger.debug("updateAllarme: {}", id_allarme);
+		EntityTransaction tx = getEntityTransaction();
+		try {
+			EntityManager entityManager = getEntityManager();
+			Query query = entityManager.createNamedQuery(Allarmi.UPDATE_ALLARM);
+			query.setParameter("id_allarme", id_allarme);
+			query.setParameter("user", user);
+			query.executeUpdate();
+			tx.commit();
+			logger.debug("updateAllarme: {}", id_allarme);
+		} catch (Exception e) {
+			tx.rollback();
+			logger.error("addGroup: {}", e);
+		}
 	}
 
 	@Override

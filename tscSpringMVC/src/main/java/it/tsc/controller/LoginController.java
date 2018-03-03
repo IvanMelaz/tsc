@@ -47,7 +47,7 @@ public class LoginController extends BaseController {
     /**
      * retrieve user data
      */
-    PortalUser user = getUserService().getUser(username);
+    PortalUser user = getUserService().getPortalUser(username);
     if (user != null) {
       model.addObject("email", user.getEmail());
     } else {

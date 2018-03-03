@@ -1035,8 +1035,9 @@ DROP TABLE IF EXISTS `tsc_group_user_link`;
 CREATE TABLE `tsc_group_user_link` (
   `groupid` smallint(5) NOT NULL,
   `username` varchar(60) NOT NULL COMMENT 'User name',
-  PRIMARY KEY  (`groupid`,`username`),
-  CONSTRAINT `FK_ALLARMI.TSC_USER` FOREIGN KEY (`username`) REFERENCES `tsc_user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  `role`varchar(255),
+  PRIMARY KEY  (`groupid`,`username`,`role`),
+  CONSTRAINT `FK_ALLARMI.TSC_USER` FOREIGN KEY (`username`,`role`) REFERENCES `tsc_user` (`username`,`role`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_ALLARMI.TSC_GROUP` FOREIGN KEY (`groupid`) REFERENCES `tsc_group` (`groupid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
