@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans 
+<beans:beans
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ws="http://jax-ws.dev.java.net/spring/core"
     xmlns:wss="http://jax-ws.dev.java.net/spring/servlet"
+    xmlns:jee="http://www.springframework.org/schema/jee"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 	http://www.springframework.org/schema/context
@@ -12,19 +13,24 @@
     http://jax-ws.dev.java.net/spring/core
     http://jax-ws.java.net/spring/core.xsd
     http://jax-ws.dev.java.net/spring/servlet
-    http://jax-ws.java.net/spring/servlet.xsd">
-    
+    http://jax-ws.java.net/spring/servlet.xsd
+    http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+
+<jee:jndi-lookup id="jndiDataSource"
+                    jndi-name="jdbc/tsc_db"
+                    expected-type="javax.sql.DataSource" />
+
     <context:component-scan base-package="it.tsc.data.config" />
-	
+
 	<beans:bean id="customAuthenticationProvider"  class="it.tsc.component.CustomAuthenticationProvider"/>
 	<beans:bean id="authSuccessHandler"  class="it.tsc.security.handler.AuthSuccessHandler"/>
 	<beans:bean id="customLogoutHandler"  class="it.tsc.security.handler.CustomLogoutHandler"/>
-	   
+
 	<beans:bean id="customAccessDeniedHandler"
 		class="it.tsc.security.handler.CustomAccessDeniedHandler">
 		<beans:property name="errorPage" value="/tscSpringMVC/403" />
 	</beans:bean>
-	
+
 	<!-- ws declaration -->
 	<beans:bean id="cxf" class="org.apache.cxf.bus.spring.SpringBus" />
 	<beans:bean id="myPasswordCallback" class="it.tsc.webservice.UTPasswordCallback" />

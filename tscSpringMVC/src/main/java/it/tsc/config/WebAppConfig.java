@@ -30,6 +30,7 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import it.tsc.data.config.JndiConfig;
 import it.tsc.data.config.ServiceConfig;
 import it.tsc.interceptor.PageRequestInterceptor;
 
@@ -38,7 +39,7 @@ import it.tsc.interceptor.PageRequestInterceptor;
 @ComponentScan(basePackages = { "it.tsc.data.config", "it.tsc.service.impl", "it.tsc.dao.impl",
     "it.tsc.controller", "it.tsc.component", "it.tsc.webservice" })
 @ImportResource({ "classpath:spring-beans.xml" })
-@Import({ ServiceConfig.class })
+@Import({ ServiceConfig.class, JndiConfig.class })
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
   public WebAppConfig() {
@@ -97,7 +98,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
   /**
    * JSP Resolver
-   * 
+   *
    * @return
    */
   @Bean
@@ -123,7 +124,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
   /**
    * i18n message
-   * 
+   *
    * @return
    */
   @Bean
@@ -138,7 +139,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
   /**
    * i18N Locale
-   * 
+   *
    * @return
    */
   @Bean
@@ -150,7 +151,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
   /**
    * i18N Locale Resolver
-   * 
+   *
    * @return
    */
   @Bean(name = "localeResolver")

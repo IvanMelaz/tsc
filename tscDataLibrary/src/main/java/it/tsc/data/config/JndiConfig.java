@@ -6,10 +6,11 @@ package it.tsc.data.config;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
-import org.springframework.jndi.JndiTemplate;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 /**
@@ -26,20 +27,14 @@ public class JndiConfig extends BaseConfig {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Bean(name = "dataSource")
-	public DataSource dataSource() throws NamingException {
-		return (DataSource) new JndiTemplate()
-				.lookup(environment.getProperty(jdbcUrl));
-	}
-
+	@Primary
 	@Bean(name = "entityManagerFactory")
-	/**
-	 *
-	 * @return
-	 */
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory(
+			@Qualifier("jndiDataSource") DataSource dataSource)
+			throws NamingException {
 		LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactory.setPersistenceUnitName(MYSQL_PERSISTENCE_UNIT);
+		entityManagerFactory.setDataSource(dataSource);
 		return entityManagerFactory;
 	}
 
