@@ -5,9 +5,9 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>tscDataLibrary</name>
-  
+
   <dependencies>
-  
+
      <!-- cross dependency -->
      <dependency>
 		<groupId>junit</groupId>
@@ -15,22 +15,22 @@
 		<version>4.12</version>
 		<scope>test</scope>
 	</dependency>
-	
+
     <!-- parallel test -->
 	<dependency>
 	  <groupId>com.google.code.tempus-fugit</groupId>
 	  <artifactId>tempus-fugit</artifactId>
 	  <version>1.1</version>
 	</dependency>
-	
+
 	<dependency>
 		<groupId>tscSpringMVC</groupId>
 		<artifactId>tscSharedLibrary</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</dependency>
-	
+
   </dependencies>
-  
+
   <!-- BUILD -->
   <build>
     <finalName>tscDataLibrary</finalName>
@@ -42,11 +42,10 @@
 	          <target>1.8</target>
           	  <verbose>true</verbose>
           	  <fork>true</fork>
-          	  <executable>/usr/lib/jvm/jdk1.8.0_144/bin/javac</executable>
           	  <compilerVersion>1.8</compilerVersion>
 	        </configuration>
 	    </plugin>
 	  </plugins>
   </build>
-  
+
 </project>
