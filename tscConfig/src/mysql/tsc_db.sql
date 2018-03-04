@@ -10,6 +10,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Create database
+--
+
+CREATE DATABASE IF NOT EXISTS telesoccorso;
+
+--
 -- Table structure for table `allarme_tecnico`
 --
 
