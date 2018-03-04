@@ -21,8 +21,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import it.tsc.data.config.ServiceConfig;
 import it.tsc.service.AllarmService;
 import it.tsc.service.UserService;
-import it.tsc.service.impl.AllarmServiceImpl;
-import it.tsc.service.impl.UserServiceImpl;
 import it.tsc.util.PortalUtil;
 import it.tsc.util.TimeUtil;
 
@@ -47,9 +45,13 @@ public class TscWebService {
 
     String allarm_uuid = PortalUtil.generateUUID();
     Validate.notNull(context, "context cannot be null");
-    allarmService = context.getBean("allarmService", AllarmServiceImpl.class);
+    String[] beanNames = context.getBeanDefinitionNames();
+    for (String string : beanNames) {
+      logger.debug("spring beans : {}", string);
+    }
+    allarmService = context.getBean("allarmService", AllarmService.class);
     Validate.notNull(allarmService, "allarmService cannot be null");
-    userService = context.getBean("userService", UserServiceImpl.class);
+    userService = context.getBean("userService", UserService.class);
     Validate.notNull(userService, "userService cannot be null");
     bcryptEncoder = context.getBean("bcryptEncoder", BCryptPasswordEncoder.class);
     Validate.notNull(bcryptEncoder, "bcryptEncoder cannot be null");

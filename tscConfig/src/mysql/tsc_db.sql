@@ -14,7 +14,7 @@
 --
 
 CREATE DATABASE IF NOT EXISTS telesoccorso;
-
+USE telesoccorso;
 --
 -- Table structure for table `allarme_tecnico`
 --
