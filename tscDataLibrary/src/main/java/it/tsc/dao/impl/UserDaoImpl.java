@@ -298,7 +298,6 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 			query.setParameter("email", email);
 			query.setParameter("role", role.toString());
 			query.setParameter("mfaEnabled", mfaEnabled);
-			int result = query.executeUpdate();
 			tx.commit();
 		} catch (Exception e) {
 			tx.rollback();

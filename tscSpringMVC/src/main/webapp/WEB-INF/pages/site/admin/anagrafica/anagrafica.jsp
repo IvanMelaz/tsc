@@ -5,7 +5,7 @@
 <spring:message code="label.anagrafica.failure" text="label.anagrafica.failure"  var="label.anagrafica.failure"/>
 
    <div id="anagrafica" align="center">
-	<table border="0" cellpadding="2" cellspacing="5" style="border-collapse: collapse" width="700">
+	<table style="border-collapse: collapse" >
     <tr>
       <td align="left">
                     <font color="#C0C0C0"

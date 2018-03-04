@@ -9,13 +9,8 @@ import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.callback.UnsupportedCallbackException;
 
 import org.apache.wss4j.common.ext.WSPasswordCallback;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import it.tsc.service.UserService;
 
 public class UTPasswordCallback implements CallbackHandler {
-  @Autowired
-  private UserService userService;
 
   private Map<String, String> passwords = new HashMap<String, String>();
 
