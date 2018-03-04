@@ -23,9 +23,9 @@
 		</cxf:outInterceptors>
 	</cxf:bus>
 	
-  <jaxws:server id="tscWebService" address="/TscWebService">
+  <jaxws:server id="tscWebService" address="/EuropeAssistanceWebService">
     <jaxws:serviceBean>
-      <bean class="it.tsc.webservice.TscWebService"/>
+      <bean class="it.tsc.webservice.EuropeAssistanceWebService"/>
     </jaxws:serviceBean>
 	<jaxws:inInterceptors>
 	    <bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">

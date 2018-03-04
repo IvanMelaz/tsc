@@ -62,8 +62,6 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 			tx.rollback();
 			throw new IllegalArgumentException(e);
 		}
-
-		// @formatter:on
 	}
 
 	/*
