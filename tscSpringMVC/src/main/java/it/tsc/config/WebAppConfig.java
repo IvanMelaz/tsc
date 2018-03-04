@@ -30,7 +30,6 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import it.tsc.data.config.JndiConfig;
 import it.tsc.data.config.ServiceConfig;
 import it.tsc.interceptor.PageRequestInterceptor;
 
@@ -39,7 +38,7 @@ import it.tsc.interceptor.PageRequestInterceptor;
 @ComponentScan(basePackages = { "it.tsc.data.config", "it.tsc.service.impl", "it.tsc.dao.impl",
     "it.tsc.controller", "it.tsc.component", "it.tsc.webservice" })
 @ImportResource({ "classpath:spring-beans.xml" })
-@Import({ ServiceConfig.class, JndiConfig.class })
+@Import({ ServiceConfig.class })
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
   public WebAppConfig() {
