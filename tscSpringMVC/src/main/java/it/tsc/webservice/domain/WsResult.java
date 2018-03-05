@@ -14,6 +14,10 @@ public class WsResult {
   private String messaggioErrore;
   private int codiceErrore = 0;
 
+  public WsResult() {
+    super();
+  }
+
   public WsResult(Esito esito, String messaggioErrore, int codiceErrore) {
     super();
     this.esito = esito;
