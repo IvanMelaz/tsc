@@ -15,8 +15,8 @@ public enum ErrorCode {
   NUMERO_ORDINE(4,"Il numero ordine deve essere inserito"),
   NUMERO_DOSSIER(5,"Il numero dossier deve essere inserito"),
   CODICE_BP(6,"Il codice BP deve essere inserito"),
-  TIPOLOGIA_SERVIZIO(7,"La tipologia di servizio  deve essere specificata"),
-  TIPOLOGIA_CONSULENZA(8,"La tipologia di consulenza deve essere specificata");
+  TIPOLOGIA_SERVIZIO(7,"La tipologia di servizio  deve essere specificata, valori validi(CONSULENZA,INVIO_MEDICO))"),
+  TIPOLOGIA_CONSULENZA(8,"La tipologia di consulenza deve essere specificata, valoti validi (SCRITTA,PHONE)");
 //@formatter:on
 
   private int numVal;

@@ -128,21 +128,25 @@ public class EuropeAssistanceWebService {
     if (StringUtils.isEmpty(codiceBP.trim())) {
       return populateErrorResult(ErrorCode.CODICE_BP);
     }
-    if (StringUtils.isEmpty(tipologiaServizio.toString().trim())) {
+    if (tipologiaServizio == null || (StringUtils.isEmpty(tipologiaServizio.toString().trim())
+        || this.getEnumFromString(TipologiaServizio.class,
+            tipologiaServizio.toString().trim()) == null)) {
       return populateErrorResult(ErrorCode.TIPOLOGIA_SERVIZIO);
     }
-    if (StringUtils.isEmpty(tipologiaConsulenza.toString().trim())) {
-      return populateErrorResult(ErrorCode.TIPOLOGIA_SERVIZIO);
+    if (tipologiaConsulenza == null || (StringUtils.isEmpty(tipologiaConsulenza.toString().trim())
+        || this.getEnumFromString(TipologiaConsulenza.class,
+            tipologiaConsulenza.toString().trim()) == null)) {
+      return populateErrorResult(ErrorCode.TIPOLOGIA_CONSULENZA);
     }
 
     /**
      * Check campi mandatori
      */
     Validate.notNull(context, "context cannot be null");
+    allarmService = context.getBean("allarmService", AllarmService.class);
     Validate.notNull(allarmService, "allarmService cannot be null");
     WsResult result = new WsResult(Esito.OK, "", 0);
     try {
-      allarmService = context.getBean("allarmService", AllarmService.class);
       // allarmService.insertAllarme(ab_codi, TimeUtil.getCurrentInstantDate(), evento,
       // PortalUtil.generateUUID(), "");
       logger.debug("EuropeAssistanceWebService: sussess inserting allarm");
@@ -165,6 +169,24 @@ public class EuropeAssistanceWebService {
     Esito esito = Esito.KO;
     WsResult result = new WsResult(esito, errorCode.getDescription(), errorCode.getNumVal());
     return result;
+  }
+
+  /**
+   * A common method for all enums since they can't have another base class
+   *
+   * @param <T> Enum type
+   * @param c enum type. All enums must be all caps.
+   * @param string case insensitive
+   * @return corresponding enum, or null
+   */
+  private <T extends Enum<T>> T getEnumFromString(Class<T> c, String string) {
+    if (c != null && string != null) {
+      try {
+        return Enum.valueOf(c, string.trim().toUpperCase());
+      } catch (IllegalArgumentException ex) {
+      }
+    }
+    return null;
   }
 
 }

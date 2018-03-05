@@ -3,13 +3,11 @@
  */
 package it.tsc.webservice.domain.types;
 
-import it.tsc.webservice.domain.ConvertibleAdapter;
-
 /**
  * @author "astraservice"
  *
  */
-public enum TipologiaConsulenza implements ConvertibleAdapter {
+public enum TipologiaConsulenza {
   SCRITTA(0), PHONE(1);
 
   private int numVal;
@@ -22,9 +20,4 @@ public enum TipologiaConsulenza implements ConvertibleAdapter {
     return numVal;
   }
 
-  @Override
-  public boolean convertibleAs(String convertible) {
-    TipologiaConsulenza.valueOf(convertible);
-    return false;
-  }
 }
