@@ -16,9 +16,9 @@
     http://jax-ws.java.net/spring/servlet.xsd
     http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
 
-<jee:jndi-lookup id="jndiDataSource"
+<!-- 	<jee:jndi-lookup id="jndiDataSource"
                     jndi-name="jdbc/tsc_db"
-                    expected-type="javax.sql.DataSource" />
+                    expected-type="javax.sql.DataSource" /> -->
 
     <context:component-scan base-package="it.tsc.data.config" />
 

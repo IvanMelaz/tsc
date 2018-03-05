@@ -3,28 +3,22 @@
  */
 package it.tsc.webservice.domain;
 
+import it.tsc.webservice.domain.types.Esito;
+
 /**
  * @author "astraservice"
  *
  */
 public class WsResult {
-  private String esito;
+  private Esito esito;
   private String messaggioErrore;
   private int codiceErrore = 0;
 
-  /**
-   *
-   */
-  public WsResult() {
-    // TODO Auto-generated constructor stub
-  }
-
-  public String getEsito() {
-    return esito;
-  }
-
-  public void setEsito(String esito) {
+  public WsResult(Esito esito, String messaggioErrore, int codiceErrore) {
+    super();
     this.esito = esito;
+    this.messaggioErrore = messaggioErrore;
+    this.codiceErrore = codiceErrore;
   }
 
   public String getMessaggioErrore() {
@@ -41,6 +35,14 @@ public class WsResult {
 
   public void setCodiceErrore(int codiceErrore) {
     this.codiceErrore = codiceErrore;
+  }
+
+  public Esito getEsito() {
+    return esito;
+  }
+
+  public void setEsito(Esito esito) {
+    this.esito = esito;
   }
 
 }

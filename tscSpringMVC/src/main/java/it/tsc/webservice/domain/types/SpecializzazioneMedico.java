@@ -1,7 +1,7 @@
 /**
  * 
  */
-package it.tsc.webservice.domain;
+package it.tsc.webservice.domain.types;
 
 /**
  * @author "astraservice"

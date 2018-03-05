@@ -8,7 +8,6 @@ import static org.junit.Assert.assertTrue;
 import javax.xml.ws.Endpoint;
 import javax.xml.ws.WebServiceException;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -46,7 +45,6 @@ public class WSDialogTest extends WebParallelTest {
     // TODO Auto-generated constructor stub
   }
 
-  @Ignore
   @Test(expected = WebServiceException.class)
   public void testWS() {
     // Create instance of service implementation
@@ -63,7 +61,7 @@ public class WSDialogTest extends WebParallelTest {
   // @Test(expected = Exception.class)
   // public void testSoapHeaders() throws SOAPException, ServiceException, MalformedURLException {
   // URL url = new URL(WS_URL);
-  // QName qname = new QName("http://webservice.tsc.it/", "EuropeAssistanceWebService");
+  // QName qname = new QName("http://mycare24.org/", "EuropeAssistanceWebService");
   //
   // Service service = Service.create(url, qname);
   // EuropeAssistanceWebService EuropeAssistanceWebService =

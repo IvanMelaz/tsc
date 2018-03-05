@@ -1,40 +1,46 @@
 /**
  *
  */
-package it.tsc.data.config;
+package it.tsc.data.exclude.config;
 
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+
+import it.tsc.data.config.BaseConfig;
 
 /**
  * @author "astraservice"
  *
  */
 @Configuration
-@Profile("prod")
-public class JndiConfig extends BaseConfig {
+@Profile("dev")
+public class JdbcConfig extends BaseConfig {
 	/**
-	 * Base Config for Spring Definition
+	 *
 	 */
-	public JndiConfig() {
+	public JdbcConfig() {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Primary
+	/**
+	 * Property placeholder configurer needed to process @Value annotations
+	 */
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer propertyConfigurerAbstractDao() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
+
 	@Bean(name = "entityManagerFactory")
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory(
-			@Qualifier("jndiDataSource") DataSource dataSource)
-			throws NamingException {
+	/**
+	 *
+	 * @return
+	 */
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactory.setPersistenceUnitName(MYSQL_PERSISTENCE_UNIT);
-		entityManagerFactory.setDataSource(dataSource);
 		return entityManagerFactory;
 	}
 
