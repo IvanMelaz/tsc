@@ -25,14 +25,15 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import it.tsc.data.config.ServiceConfig;
-import it.tsc.service.AllarmService;
+import it.tsc.domain.AllarmiEuropeAssistance;
+import it.tsc.domain.types.ErrorCode;
+import it.tsc.domain.types.Esito;
+import it.tsc.domain.types.FasciaOraria;
+import it.tsc.domain.types.SpecializzazioneMedico;
+import it.tsc.domain.types.TipologiaConsulenza;
+import it.tsc.domain.types.TipologiaServizio;
+import it.tsc.service.EuropeAssistanceService;
 import it.tsc.webservice.domain.WsResult;
-import it.tsc.webservice.domain.types.ErrorCode;
-import it.tsc.webservice.domain.types.Esito;
-import it.tsc.webservice.domain.types.FasciaOraria;
-import it.tsc.webservice.domain.types.SpecializzazioneMedico;
-import it.tsc.webservice.domain.types.TipologiaConsulenza;
-import it.tsc.webservice.domain.types.TipologiaServizio;
 
 /**
  * @author astraservice
@@ -40,10 +41,12 @@ import it.tsc.webservice.domain.types.TipologiaServizio;
  */
 @WebService(name = "allarmeEuropeAssistance", targetNamespace = "www.mycare24.org")
 @SOAPBinding(style = Style.RPC, use = Use.LITERAL)
+@SuppressWarnings("unused")
 public class EuropeAssistanceWebService {
   private static Logger logger = LoggerFactory.getLogger(EuropeAssistanceWebService.class);
   private static String DATE_FORMAT = "yyyy-MM-ddThh:mm:ss";
-  private AllarmService allarmService;
+  private static String EU001 = "EU001";
+  private EuropeAssistanceService europeAssistanceService;
   private ApplicationContext context = new AnnotationConfigApplicationContext(ServiceConfig.class);
 
   @Resource
@@ -143,12 +146,34 @@ public class EuropeAssistanceWebService {
      * Check campi mandatori
      */
     Validate.notNull(context, "context cannot be null");
-    allarmService = context.getBean("allarmService", AllarmService.class);
-    Validate.notNull(allarmService, "allarmService cannot be null");
+    europeAssistanceService =
+        context.getBean("europeAssistanceService", EuropeAssistanceService.class);
+    Validate.notNull(europeAssistanceService, "europeAssistanceService cannot be null");
     WsResult result = new WsResult(Esito.OK, "", 0);
     try {
-      // allarmService.insertAllarme(ab_codi, TimeUtil.getCurrentInstantDate(), evento,
-      // PortalUtil.generateUUID(), "");
+      /**
+       * insert allarm EuropAssistance
+       */
+      AllarmiEuropeAssistance allarmiEuropeAssistance = new AllarmiEuropeAssistance();
+      allarmiEuropeAssistance.setAb_codi(EU001);
+      allarmiEuropeAssistance.setDataRichiesta(dataRichiesta);
+      allarmiEuropeAssistance.setNomeCliente(nomeCliente);
+      allarmiEuropeAssistance.setCognomeCliente(cognomeCliente);
+      allarmiEuropeAssistance.setNumeroTelefono1(numeroTelefono1);
+      allarmiEuropeAssistance.setNumeroTelefono2(numeroTelefono2);
+      allarmiEuropeAssistance.setEmail(email);
+      allarmiEuropeAssistance.setIndirizzo(indirizzo);
+      allarmiEuropeAssistance.setNumeroOrdine(numeroOrdine);
+      allarmiEuropeAssistance.setNumeroDossier(numeroDossier);
+      allarmiEuropeAssistance.setCodiceBP(codiceBP);
+      allarmiEuropeAssistance.setTipologiaServizio(tipologiaServizio);
+      allarmiEuropeAssistance.setTipologiaConsulenza(tipologiaConsulenza);
+      allarmiEuropeAssistance.setSpecializzazioneMedico(specializzazioneMedico);
+      allarmiEuropeAssistance.setQuesitoMedico(quesitoMedico);
+      allarmiEuropeAssistance.setFasciaOraria(fasciaOraria);
+      allarmiEuropeAssistance.setLinkMyClinic(linkMyClinic);
+      allarmiEuropeAssistance.setTest(test);
+      europeAssistanceService.saveAllarm(allarmiEuropeAssistance);
       logger.debug("EuropeAssistanceWebService: sussess inserting allarm");
     } catch (Exception e) {
       logger.error("EuropeAssistanceWebService: Exception: {}", e);

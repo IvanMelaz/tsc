@@ -38,7 +38,7 @@ import it.tsc.interceptor.PageRequestInterceptor;
 @ComponentScan(basePackages = { "it.tsc.data.config", "it.tsc.service.impl", "it.tsc.dao.impl",
     "it.tsc.controller", "it.tsc.component", "it.tsc.webservice" })
 @ImportResource({ "classpath:spring-beans.xml" })
-@Import({ ServiceConfig.class })
+@Import({ ServiceConfig.class, ExecutorConfig.class })
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
   public WebAppConfig() {

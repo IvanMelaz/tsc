@@ -3,7 +3,7 @@
  */
 package it.tsc.webservice.domain;
 
-import it.tsc.webservice.domain.types.Esito;
+import it.tsc.domain.types.Esito;
 
 /**
  * @author "astraservice"

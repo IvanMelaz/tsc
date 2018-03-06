@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import it.tsc.data.config.ServiceConfig;
-import it.tsc.data.exclude.config.SchedulerConfig;
+import it.tsc.data.exclude.config.QuartzSchedulerConfig;
 import it.tsc.job.AllarmServiceJob;
 import it.tsc.web.parallel.WebParallelTest;
 
@@ -25,7 +25,7 @@ import it.tsc.web.parallel.WebParallelTest;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { ServiceConfig.class, SchedulerConfig.class },
+@ContextConfiguration(classes = { ServiceConfig.class, QuartzSchedulerConfig.class },
     loader = AnnotationConfigContextLoader.class)
 public class BaseSchedulerTest extends WebParallelTest {
   private static Logger logger = LoggerFactory.getLogger(BaseSchedulerTest.class);

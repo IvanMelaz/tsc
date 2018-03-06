@@ -38,11 +38,12 @@ import it.tsc.service.CodaEveService;
 @Service
 public class WebSocketAllarmController {
   private static Logger logger = LoggerFactory.getLogger(WebSocketAllarmController.class);
-  private ScheduledExecutorService service = null;
   private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
   private EndpointConfig endpointConfig;
   @Autowired
   private CodaEveService queueService;
+  @Autowired
+  private ScheduledExecutorService executorService;
 
   /**
    *
@@ -75,13 +76,12 @@ public class WebSocketAllarmController {
     }
 
     if (clients.size() != 0) {
-      if (service == null) {
-        /**
-         * activate executor if not exist
-         */
-        this.service = Executors.newSingleThreadScheduledExecutor();
-        service.scheduleAtFixedRate(() -> checkAllarmOnDatabase(session), 0, 3, TimeUnit.SECONDS);
-      }
+      /**
+       * activate executor if not exist
+       */
+      this.executorService = Executors.newSingleThreadScheduledExecutor();
+      executorService.scheduleAtFixedRate(() -> checkAllarmOnDatabase(session), 0, 3,
+          TimeUnit.SECONDS);
     }
   }
 

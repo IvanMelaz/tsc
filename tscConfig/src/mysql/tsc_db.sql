@@ -1111,11 +1111,34 @@ CREATE TABLE `sequence` (
 /*!50001 VIEW `vw_provecompleanno` AS select sql_no_cache `anagrafica`.`AB_CODI` AS `AB_CODI`,_latin1'COMPLEANNO' AS `FOGLIO`,_latin1'' AS `GIORNO`,_latin1'COMPLEANNO' AS `FASCIA`,_latin1'' AS `RICHIAMARE` from `anagrafica` where ((substr(`anagrafica`.`DATA_NASCITA`,6,10) = substr(cast(now() as date),6,10)) and (isnull(`anagrafica`.`DATA_DISINSTALLAZIONE`) or (`anagrafica`.`DATA_DISINSTALLAZIONE` = _latin1''))) */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-INSERT INTO telesoccorso.tsc_user (username,password,email,`role`,keyId,base32Secret,mfaEnabled) VALUES
-('admin','$2a$10$t8DqJ7s553sC5HpjKmXPmerbFWJmmcIMZTPPqt2nViLMr3i7z0UFm','admin@infamiglia.it','ROLE_ADMIN','testUser@tsc.it','fwefwefwegeg',1)
-,('admin','$2a$10$0hfDFZ/MroZz62ttl762guvdeFnc1iXwL6fm1603Et4LzXY6qxYHO','admin@infamiglia.it','ROLE_SADMIN','testUser@tsc.it','fwefwefwegeg',1)
-,('testUser','$2a$10$fLct.47bx/fifbKI/OiOkuazU7ZXcl6NbKrWFPzcsVgQXhCf78YGu','testUser@tsc.it','ROLE_ADMIN',NULL,NULL,0)
-;
+--
+-- Table Europe Assistance
+--
+
+DROP TABLE IF EXISTS `tsc_europe`;
+CREATE TABLE `tsc_europe` (
+	`ID_ALLARME` varchar(50) default NULL,
+    `AB_CODI` varchar(10) default NULL,
+    `dataRichiesta` NOT NULL TIMESTAMP,
+    `nomeCliente` VARCHAR(255),
+    `cognomeCliente` NOT NULL VARCHAR(255),
+    `numeroTelefono1` NOT NULL VARCHAR(15),
+    `numeroTelefono2` VARCHAR(15),
+    `email` VARCHAR(255),
+    `indirizzo` VARCHAR(255),
+    `numeroOrdine` NOT NULL INT,
+    `numeroDossier` INT,
+    `codiceBP` NOT NULL VARCHAR(255),
+    `tipologiaServizio` NOT NULL VARCHAR(15),
+    `tipologiaConsulenza` NOT NULL VARCHAR(15),
+    `specializzazioneMedico` VARCHAR(255),
+    `quesitoMedico` VARCHAR(255),
+    `fasciaOraria` VARCHAR(10),
+    `linkMyClinic` VARCHAR(255),
+    `test` TINYINT(1),
+    PRIMARY KEY (`ID_ALLARME`),
+    KEY `IDX_AB_CODI` (`AB_CODI`),
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

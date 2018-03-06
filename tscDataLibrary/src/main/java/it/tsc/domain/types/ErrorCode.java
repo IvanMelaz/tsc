@@ -1,7 +1,7 @@
 /**
  *
  */
-package it.tsc.webservice.domain.types;
+package it.tsc.domain.types;
 
 /**
  * @author "astraservice"
@@ -10,9 +10,9 @@ package it.tsc.webservice.domain.types;
 public enum ErrorCode {
 //@formatter:off
   DATE_REQUIRED(1, "La data e ora richiesta devono essere presente , in formato yyyy-MM-ddThh:mm:ss"),
-  COGNOME_CLIENTE(2,"Il nominativo cliente deve essere inserito"),
+  COGNOME_CLIENTE(2,"Il Cognome cliente deve essere inserito"),
   NUMERO_TELEFONO(3,"Il numero telefono primario deve essere inserito"),
-  NUMERO_ORDINE(4,"Il numero ordine deve essere inserito"),
+  NUMERO_ORDINE(4,"Il numero ordine (numerico) deve essere inserito"),
   NUMERO_DOSSIER(5,"Il numero dossier deve essere inserito"),
   CODICE_BP(6,"Il codice BP deve essere inserito"),
   TIPOLOGIA_SERVIZIO(7,"La tipologia di servizio  deve essere specificata, valori validi(CONSULENZA,INVIO_MEDICO))"),

@@ -5,7 +5,7 @@ package it.tsc.test.generic;
 
 import org.junit.Test;
 
-import it.tsc.webservice.domain.types.TipologiaServizio;
+import it.tsc.domain.types.TipologiaServizio;
 
 /**
  * @author "astraservice"

@@ -1,18 +1,18 @@
 /**
  *
  */
-package it.tsc.webservice.domain.types;
+package it.tsc.domain.types;
 
 /**
  * @author "astraservice"
  *
  */
-public enum TipologiaConsulenza {
-  SCRITTA(0), PHONE(1);
+public enum TipologiaServizio {
+  CONSULENZA(0), INVIO_MEDICO(1);
 
   private int numVal;
 
-  TipologiaConsulenza(int numVal) {
+  TipologiaServizio(int numVal) {
     this.numVal = numVal;
   }
 

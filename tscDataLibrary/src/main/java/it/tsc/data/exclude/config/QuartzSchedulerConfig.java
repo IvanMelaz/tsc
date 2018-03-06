@@ -35,13 +35,13 @@ import it.tsc.job.AutowiringSpringBeanJobFactory;
 @Configuration
 @ComponentScan(basePackages = { "it.tsc.job" })
 @PropertySource(value = { "classpath:quartz.properties" }, ignoreResourceNotFound = false)
-public class SchedulerConfig {
-	private static Logger logger = LoggerFactory.getLogger(SchedulerConfig.class);
+public class QuartzSchedulerConfig {
+	private static Logger logger = LoggerFactory.getLogger(QuartzSchedulerConfig.class);
 
 	/**
 	 * Class for spring definition scheduler
 	 */
-	public SchedulerConfig() {
+	public QuartzSchedulerConfig() {
 
 	}
 
