@@ -1111,35 +1111,6 @@ CREATE TABLE `sequence` (
 /*!50001 VIEW `vw_provecompleanno` AS select sql_no_cache `anagrafica`.`AB_CODI` AS `AB_CODI`,_latin1'COMPLEANNO' AS `FOGLIO`,_latin1'' AS `GIORNO`,_latin1'COMPLEANNO' AS `FASCIA`,_latin1'' AS `RICHIAMARE` from `anagrafica` where ((substr(`anagrafica`.`DATA_NASCITA`,6,10) = substr(cast(now() as date),6,10)) and (isnull(`anagrafica`.`DATA_DISINSTALLAZIONE`) or (`anagrafica`.`DATA_DISINSTALLAZIONE` = _latin1''))) */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Table Europe Assistance
---
-
-DROP TABLE IF EXISTS `tsc_europe`;
-CREATE TABLE `tsc_europe` (
-	`ID_ALLARME` varchar(50) default NULL,
-    `AB_CODI` varchar(10) default NULL,
-    `dataRichiesta` NOT NULL TIMESTAMP,
-    `nomeCliente` VARCHAR(255),
-    `cognomeCliente` NOT NULL VARCHAR(255),
-    `numeroTelefono1` NOT NULL VARCHAR(15),
-    `numeroTelefono2` VARCHAR(15),
-    `email` VARCHAR(255),
-    `indirizzo` VARCHAR(255),
-    `numeroOrdine` NOT NULL INT,
-    `numeroDossier` INT,
-    `codiceBP` NOT NULL VARCHAR(255),
-    `tipologiaServizio` NOT NULL VARCHAR(15),
-    `tipologiaConsulenza` NOT NULL VARCHAR(15),
-    `specializzazioneMedico` VARCHAR(255),
-    `quesitoMedico` VARCHAR(255),
-    `fasciaOraria` VARCHAR(10),
-    `linkMyClinic` VARCHAR(255),
-    `test` TINYINT(1),
-    PRIMARY KEY (`ID_ALLARME`),
-    KEY `IDX_AB_CODI` (`AB_CODI`),
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;

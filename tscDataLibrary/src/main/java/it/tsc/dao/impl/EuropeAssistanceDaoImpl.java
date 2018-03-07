@@ -49,9 +49,10 @@ public class EuropeAssistanceDaoImpl extends BaseDao
 			tx.begin();
 			String id_allarme = functionDao.getNextIdAllarme(CENTRALE_EA);
 			allarmiEuropeAssistance.setId_allarme(id_allarme);
-			save(allarmiEuropeAssistance);
+			saveAndFlush(allarmiEuropeAssistance);
 			logger.debug("saveAllarm: {}",
 					allarmiEuropeAssistance.getId_allarme());
+			tx.commit();
 		} catch (Exception e) {
 			tx.rollback();
 			logger.error("saveAllarm: {}", e);

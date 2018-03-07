@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.domain.key;
 
@@ -19,7 +19,7 @@ import it.tsc.domain.Role;
 @Embeddable
 public class UserKey implements Serializable {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1053059728012977397L;
 
@@ -61,6 +61,38 @@ public class UserKey implements Serializable {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
+		result = prime * result
+				+ ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserKey other = (UserKey) obj;
+		if (role == null) {
+			if (other.role != null)
+				return false;
+		} else if (!role.equals(other.role))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
 	}
 
 }

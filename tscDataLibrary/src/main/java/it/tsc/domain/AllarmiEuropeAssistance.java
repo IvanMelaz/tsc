@@ -7,6 +7,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -45,10 +47,15 @@ public class AllarmiEuropeAssistance extends BaseDomain {
 	@Expose
 	private String ab_codi;
 
-	@Column
+	@Column(name = "data_richiesta")
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Expose
 	private Date dataRichiesta;
+
+	@Column(name = "data_arrivo")
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Expose
+	private Date dataArrivo;
 
 	@Column
 	@Expose
@@ -86,14 +93,17 @@ public class AllarmiEuropeAssistance extends BaseDomain {
 	@Expose
 	private String codiceBP;
 
+	@Enumerated(EnumType.STRING)
 	@Column
 	@Expose
 	private TipologiaServizio tipologiaServizio;
 
+	@Enumerated(EnumType.STRING)
 	@Column
 	@Expose
 	private TipologiaConsulenza tipologiaConsulenza;
 
+	@Enumerated(EnumType.STRING)
 	@Column
 	@Expose
 	private SpecializzazioneMedico specializzazioneMedico;
@@ -102,6 +112,7 @@ public class AllarmiEuropeAssistance extends BaseDomain {
 	@Expose
 	private String quesitoMedico;
 
+	@Enumerated(EnumType.STRING)
 	@Column
 	@Expose
 	private FasciaOraria fasciaOraria;
@@ -270,5 +281,13 @@ public class AllarmiEuropeAssistance extends BaseDomain {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Date getDataArrivo() {
+		return dataArrivo;
+	}
+
+	public void setDataArrivo(Date dataArrivo) {
+		this.dataArrivo = dataArrivo;
 	}
 }

@@ -16,23 +16,24 @@ public enum ErrorCode {
   NUMERO_DOSSIER(5,"Il numero dossier deve essere inserito"),
   CODICE_BP(6,"Il codice BP deve essere inserito"),
   TIPOLOGIA_SERVIZIO(7,"La tipologia di servizio  deve essere specificata, valori validi(CONSULENZA,INVIO_MEDICO))"),
-  TIPOLOGIA_CONSULENZA(8,"La tipologia di consulenza deve essere specificata, valoti validi (SCRITTA,PHONE)");
+  TIPOLOGIA_CONSULENZA(8,"La tipologia di consulenza deve essere specificata, valoti validi (SCRITTA,PHONE)"),
+  FASCIA_ORARIA(9," La fascia oraria deve essere espessa in formato (FASCIA1,FASCIA2,FASCIA3)");
 //@formatter:on
 
-  private int numVal;
-  private String errorDescription;
+	private int numVal;
+	private String errorDescription;
 
-  ErrorCode(int numVal, String errorDescription) {
-    this.numVal = numVal;
-    this.errorDescription = errorDescription;
-  }
+	ErrorCode(int numVal, String errorDescription) {
+		this.numVal = numVal;
+		this.errorDescription = errorDescription;
+	}
 
-  public int getNumVal() {
-    return numVal;
-  }
+	public int getNumVal() {
+		return numVal;
+	}
 
-  public String getDescription() {
-    return errorDescription;
-  }
+	public String getDescription() {
+		return errorDescription;
+	}
 
 }

@@ -59,8 +59,8 @@ public class GroupDaoImpl extends BaseDao implements GroupDao {
 			tx.begin();
 			group.setGroupId(sequenceService.getNextVal(Group.TABLE_NAME));
 			group.setGroupName(groupname);
-			save(group);
-			getEntityManager().flush();
+			saveAndFlush(group);
+			// getEntityManager().flush();
 			tx.commit();
 		} catch (Exception e) {
 			tx.rollback();
@@ -79,8 +79,8 @@ public class GroupDaoImpl extends BaseDao implements GroupDao {
 		EntityTransaction tx = getEntityTransaction();
 		try {
 			tx.begin();
-			remove(group);
-			getEntityManager().flush();
+			removeAndFlush(group);
+			// getEntityManager().flush();
 			tx.commit();
 		} catch (Exception e) {
 			tx.rollback();
@@ -105,7 +105,7 @@ public class GroupDaoImpl extends BaseDao implements GroupDao {
 			for (User user : users) {
 				GroupUserLink groupUserLink = new GroupUserLink(
 						new UserGroupKey(user.getKey(), group.getGroupId()));
-				save(groupUserLink);
+				saveAndFlush(groupUserLink);
 			}
 			getEntityManager().flush();
 			tx.commit();

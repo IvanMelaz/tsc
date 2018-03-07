@@ -141,6 +141,10 @@ public class EuropeAssistanceWebService {
             tipologiaConsulenza.toString().trim()) == null)) {
       return populateErrorResult(ErrorCode.TIPOLOGIA_CONSULENZA);
     }
+    if (fasciaOraria == null || (!StringUtils.isEmpty(fasciaOraria.toString().trim())
+        && this.getEnumFromString(FasciaOraria.class, fasciaOraria.toString().trim()) == null)) {
+      return populateErrorResult(ErrorCode.FASCIA_ORARIA);
+    }
 
     /**
      * Check campi mandatori
@@ -149,7 +153,7 @@ public class EuropeAssistanceWebService {
     europeAssistanceService =
         context.getBean("europeAssistanceService", EuropeAssistanceService.class);
     Validate.notNull(europeAssistanceService, "europeAssistanceService cannot be null");
-    WsResult result = new WsResult(Esito.OK, "", 0);
+    WsResult result = null;
     try {
       /**
        * insert allarm EuropAssistance
@@ -174,6 +178,7 @@ public class EuropeAssistanceWebService {
       allarmiEuropeAssistance.setLinkMyClinic(linkMyClinic);
       allarmiEuropeAssistance.setTest(test);
       europeAssistanceService.saveAllarm(allarmiEuropeAssistance);
+      result = new WsResult(Esito.OK, "", 0, allarmiEuropeAssistance.getId_allarme());
       logger.debug("EuropeAssistanceWebService: sussess inserting allarm");
     } catch (Exception e) {
       logger.error("EuropeAssistanceWebService: Exception: {}", e);
@@ -192,7 +197,7 @@ public class EuropeAssistanceWebService {
    */
   private WsResult populateErrorResult(ErrorCode errorCode) {
     Esito esito = Esito.KO;
-    WsResult result = new WsResult(esito, errorCode.getDescription(), errorCode.getNumVal());
+    WsResult result = new WsResult(esito, errorCode.getDescription(), errorCode.getNumVal(), "");
     return result;
   }
 

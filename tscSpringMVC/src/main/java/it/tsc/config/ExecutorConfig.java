@@ -9,31 +9,34 @@ import java.util.concurrent.ScheduledExecutorService;
 import javax.annotation.PreDestroy;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @author "astraservice"
  *
  */
+@Configuration
 public class ExecutorConfig {
-	private ScheduledExecutorService executorService = null;
-	/**
-	 *
-	 */
-	public ExecutorConfig() {
-		// TODO Auto-generated constructor stub
-	}
+  private ScheduledExecutorService executorService = null;
 
-	@Bean(name = "executorService")
-	public ScheduledExecutorService executorService() {
-		return executorService = Executors.newSingleThreadScheduledExecutor();
-	}
+  /**
+   *
+   */
+  public ExecutorConfig() {
+    // TODO Auto-generated constructor stub
+  }
 
-	@PreDestroy
-	public void shutwownExecutor() {
-		// Your code..
-		if (!executorService.isShutdown()) {
-			executorService.shutdown();
-		}
-	}
+  @Bean(name = "executorService")
+  public ScheduledExecutorService executorService() {
+    return executorService = Executors.newSingleThreadScheduledExecutor();
+  }
+
+  @PreDestroy
+  public void shutwownExecutor() {
+    // Your code..
+    if (!executorService.isShutdown()) {
+      executorService.shutdown();
+    }
+  }
 
 }

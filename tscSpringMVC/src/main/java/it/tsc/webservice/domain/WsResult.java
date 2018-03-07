@@ -13,16 +13,19 @@ public class WsResult {
   private Esito esito;
   private String messaggioErrore;
   private int codiceErrore = 0;
+  private String progressivoAllarme;
 
   public WsResult() {
     super();
   }
 
-  public WsResult(Esito esito, String messaggioErrore, int codiceErrore) {
+  public WsResult(Esito esito, String messaggioErrore, int codiceErrore,
+      String progressivoAllarme) {
     super();
     this.esito = esito;
     this.messaggioErrore = messaggioErrore;
     this.codiceErrore = codiceErrore;
+    this.progressivoAllarme = progressivoAllarme;
   }
 
   public String getMessaggioErrore() {
@@ -47,6 +50,14 @@ public class WsResult {
 
   public void setEsito(Esito esito) {
     this.esito = esito;
+  }
+
+  public String getProgressivoAllarme() {
+    return progressivoAllarme;
+  }
+
+  public void setProgressivoAllarme(String progressivoAllarme) {
+    this.progressivoAllarme = progressivoAllarme;
   }
 
 }
