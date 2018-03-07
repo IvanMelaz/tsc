@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.controller;
 
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 import it.tsc.domain.Role;
-import it.tsc.service.UserService;
 
 /**
  * @author astraservice Base class for all controller
@@ -38,11 +37,8 @@ public class BaseController {
   protected String ACTION_CHECK_MFA = "checkMfaSecurityCode";
   protected String ACTION_ERROR_PAGE = "errorPage";
 
-  @Autowired
-  private UserService userService;
-
   /**
-   * 
+   *
    */
   public BaseController() {
     // TODO Auto-generated constructor stub
@@ -70,13 +66,9 @@ public class BaseController {
     return mav;
   }
 
-  protected UserService getUserService() {
-    return userService;
-  }
-
   /**
    * Role Map
-   * 
+   *
    * @return
    */
   protected Map<String, String> roles() {
@@ -90,7 +82,7 @@ public class BaseController {
 
   /**
    * check if authenticated add parameter mfaEnabled
-   * 
+   *
    * @param request
    * @return
    */
@@ -118,7 +110,7 @@ public class BaseController {
 
   /**
    * set Authenticated
-   * 
+   *
    * @param request
    * @param value
    */
@@ -128,7 +120,7 @@ public class BaseController {
 
   /**
    * get User Role , can return null
-   * 
+   *
    * @return
    */
   protected Role getUserRole() {

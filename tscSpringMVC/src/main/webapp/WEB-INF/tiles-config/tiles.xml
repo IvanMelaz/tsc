@@ -83,4 +83,10 @@
        <put-attribute name="body" value="/WEB-INF/pages/errorPage.jsp" />
    </definition>
 
+   <!-- europe assistance -->
+   <definition name="europeAssistance" extends="notprofiled-base-definition">
+       <put-attribute name="title" value="europeAssistance report" />
+       <put-attribute name="body" value="/WEB-INF/pages/europeAssistance/test/allarmi.jsp" />
+   </definition>
+
 </tiles-definitions>

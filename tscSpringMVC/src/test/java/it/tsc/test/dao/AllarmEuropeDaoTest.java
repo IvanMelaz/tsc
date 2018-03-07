@@ -39,4 +39,9 @@ public class AllarmEuropeDaoTest extends BaseDaoTest {
     europeAssistanceService.saveAllarm(allarmiEuropeAssistance);
   }
 
+  @Test
+  public void listEuropeAllarmTest() {
+    logger.debug("listJsonAllarmiOpen: {}", europeAssistanceService.listJsonAllarmiOpen());
+  }
+
 }

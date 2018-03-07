@@ -18,4 +18,11 @@ public interface EuropeAssistanceDao {
 	 */
 	public void saveAllarm(AllarmiEuropeAssistance allarmiEuropeAssistance);
 
+	/**
+	 * retrieve List (size == 20) od persisted Allarms
+	 *
+	 * @return
+	 */
+	public String listJsonAllarmiOpen();
+
 }

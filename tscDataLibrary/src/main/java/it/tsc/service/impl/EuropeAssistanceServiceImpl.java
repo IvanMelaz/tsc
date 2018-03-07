@@ -30,4 +30,9 @@ public class EuropeAssistanceServiceImpl implements EuropeAssistanceService {
 		europeAssistanceDao.saveAllarm(allarmiEuropeAssistance);
 	}
 
+	@Override
+	public String listJsonAllarmiOpen() {
+		return europeAssistanceDao.listJsonAllarmiOpen();
+	}
+
 }

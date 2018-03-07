@@ -25,7 +25,7 @@ import it.tsc.domain.Role;
 
 @Controller
 @RequestMapping("/")
-public class AppController extends BaseController {
+public class AppController extends ServiceController {
   private static Logger logger = LoggerFactory.getLogger(AppController.class);
 
   /**

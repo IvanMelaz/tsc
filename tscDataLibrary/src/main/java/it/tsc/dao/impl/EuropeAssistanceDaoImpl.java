@@ -3,7 +3,11 @@
  */
 package it.tsc.dao.impl;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +18,7 @@ import it.tsc.dao.BaseDao;
 import it.tsc.dao.EuropeAssistanceDao;
 import it.tsc.dao.FunctionDao;
 import it.tsc.domain.AllarmiEuropeAssistance;
+import it.tsc.util.JsonUtil;
 
 /**
  * @author "astraservice"
@@ -26,6 +31,7 @@ public class EuropeAssistanceDaoImpl extends BaseDao
 	private static Logger logger = LoggerFactory
 			.getLogger(EuropeAssistanceDaoImpl.class);
 	private static final String CENTRALE_EA = "MILANO";
+	private static final int RESULT_LIMIT = 20;
 	@Autowired
 	private FunctionDao functionDao;
 
@@ -57,6 +63,18 @@ public class EuropeAssistanceDaoImpl extends BaseDao
 			tx.rollback();
 			logger.error("saveAllarm: {}", e);
 		}
+	}
+
+	@Override
+	public String listJsonAllarmiOpen() {
+		EntityManager entityManager = getEntityManager();
+		TypedQuery<AllarmiEuropeAssistance> query = entityManager
+				.createNamedQuery(AllarmiEuropeAssistance.SELECT_ALLARM_EA,
+						AllarmiEuropeAssistance.class);
+		List<AllarmiEuropeAssistance> list = query.getResultList();
+		query.setMaxResults(RESULT_LIMIT);
+		String result = JsonUtil.getGsonConverter().toJson(list);
+		return result;
 	}
 
 }
