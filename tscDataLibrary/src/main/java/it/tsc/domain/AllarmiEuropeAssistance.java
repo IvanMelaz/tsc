@@ -35,7 +35,6 @@ public class AllarmiEuropeAssistance extends BaseDomain {
 	 *
 	 */
 	private static final long serialVersionUID = 1338024278631839150L;
-
 	public static final String SELECT_ALLARM_EA = "select.allarm.ea";
 
 	@Id
