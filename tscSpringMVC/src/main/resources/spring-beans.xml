@@ -33,6 +33,5 @@
 
 	<!-- ws declaration -->
 	<beans:bean id="cxf" class="org.apache.cxf.bus.spring.SpringBus" />
-	<beans:bean id="myPasswordCallback" class="it.tsc.webservice.UTPasswordCallback" />
 
 </beans:beans>

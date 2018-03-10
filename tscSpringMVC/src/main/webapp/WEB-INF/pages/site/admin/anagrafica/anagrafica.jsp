@@ -72,7 +72,7 @@
 			<b><font face="Arial">
 			<input type="text" size="5" data-bind="value: tavola"></font></b></td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<td align="left"><b><font face="Arial" size="2" color="#C0C0C0">
 			Comune:</font></b></td>
 			<td colspan="3" style="border-style: ridge; border-width: 0px; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px" align="left">
@@ -121,7 +121,7 @@
 			<td colspan="3" align="left">
                     <font color="#4682B4" face="Arial" size="1"><b>
                     <input type="text" size="28" data-bind="value: stato_nascita"></b></font></td>
-		</tr>
+		</tr> -->
 	</table>
 </div>
 
@@ -130,7 +130,15 @@
 		    ab_codi: ko.observable(),
 		    nominativo: ko.observable(),
 		    centrale: ko.observable(),
-		    sesso: ko.observable()
+		    sesso: ko.observable(),
+		    telefono: ko.observable(),
+		    matricola: ko.observable(),
+		    cellulare: ko.observable(),
+		    ente: ko.observable(),
+		    indirizzo: ko.observable(),
+		    comune: ko.observable(),
+		    zona: ko.observable(),
+		    tavola: ko.observable()
 	};
 
 	ko.applyBindings(viewModel,document.getElementById('anagrafica'));

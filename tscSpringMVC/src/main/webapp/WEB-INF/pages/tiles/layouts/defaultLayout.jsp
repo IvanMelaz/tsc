@@ -1,9 +1,9 @@
 <%@include file="/WEB-INF/pages/jspf/include.jspf" %>
 <%@ taglib tagdir="/WEB-INF/tags/panel" prefix="panel" %>
 <%@ taglib tagdir="/WEB-INF/tags/grid" prefix="grid" %>
- 
+
 <html>
- 
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="_csrf" content="${_csrf.token}"/>
@@ -13,13 +13,13 @@
     <title><tiles:getAsString name="title" /></title>
     <tiles:insertAttribute name="css-scripts" />
 </head>
-  
-<%-- 
+
+<%--
 Current Locale : ${pageContext.response.locale} --%>
 
 <script type="text/javascript">
 $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
+    $('[data-toggle="tooltip"]').tooltip();
 });
 </script>
 
@@ -37,13 +37,14 @@ $(document).ready(function(){
             return;
         }
         // Create a new instance of the websocket/tscSpringMVC/
+        var portalUser = '${pageContext.request.userPrincipal.name}';
         var webSocketurl = 'ws://';
         webSocketurl += '${pageContext.request.getServerName()}' + ':';
         webSocketurl += '${pageContext.request.serverPort}';
         webSocketurl += '${pageContext.request.contextPath}';
-        webSocketurl += '/user/allarmEndpoint';
+        webSocketurl += '/user/allarmEndpoint/' + portalUser;
         webSocket = new WebSocket(webSocketurl);
-         
+
         /**
          * Binds functions to the listeners for the websocket.
          */
@@ -61,7 +62,7 @@ $(document).ready(function(){
 
         webSocket.onmessage = function(event){
         	// loadData with custom filter
-			console.log('onmessage data: ',event.data);
+        	console.log('event: %O',event.data);
 			try {
 				$("#allarmGrid").jsGrid({data:JSON.parse(event.data)});
 		    	} catch(e) {
@@ -69,9 +70,9 @@ $(document).ready(function(){
 		    }
         	//console.log(JSON.stringify(event.data));
         	/**
-        	* Play allarm 
+        	* Play allarm
         	**/
-        	
+
         	var arr = {};
 			try {
 					arr = JSON.parse(event.data);
@@ -101,7 +102,7 @@ $(document).ready(function(){
         		sound.play();
         	};
         };
-        
+
         webSocket.onclose = function(event){
             var reason;
             console.log('event.code:',event);
@@ -140,26 +141,27 @@ $(document).ready(function(){
             console.log('Connection closed reason:',reason);
         };
     }
-   
+
     function closeSocket(){
         webSocket.close();
     }
-    
+
     /**
     * check id user is empty,null or undefined
     */
     function userExists(arr,user) {
    	  return arr.some(function(el) {
    	    return el.user === user || el.user === undefined || el.user === null;
-   	  }); 
+   	  });
    	}
 
 	$(document).ready(function(){
 		openSocket();
 	});
-	
-	$( window ).unload(function() {
+
+	$(window).on("unload", function(e) {
 		closeSocket();
+	    console.log("close event triggered");
 	});
 </script>
 
@@ -168,7 +170,7 @@ $(document).ready(function(){
 	<div class="panel-heading">
 		<tiles:insertAttribute name="header" />
 	</div>
-	
+
 	<div class="container-fluid">
 		<div class="row">
      		<div class="col-md-3">

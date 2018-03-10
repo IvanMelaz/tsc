@@ -119,7 +119,7 @@ public class AllarmDaoImpl extends BaseDao implements AllarmDao {
 			logger.debug("updateAllarme: {}", id_allarme);
 		} catch (Exception e) {
 			tx.rollback();
-			logger.error("addGroup: {}", e);
+			logger.error("updateAllarme: {}", e);
 		}
 	}
 

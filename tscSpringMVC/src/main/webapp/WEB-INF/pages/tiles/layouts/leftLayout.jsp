@@ -12,10 +12,10 @@ function allarmGridRowClick(args,url) {
 	url = '${pageContext.request.contextPath}' + url;
 
 	if (allarm.user==='') {
-		$.ajax({ 
-		    url:url,  
+		$.ajax({
+		    url:url,
 		    data:JSON.stringify(allarmData),
-		    type:"POST", 
+		    type:"POST",
 		    contentType: "application/json; charset=utf-8",
 	        beforeSend: function(xhr) {
 	            xhr.setRequestHeader("Accept", "application/json");
@@ -49,10 +49,10 @@ function proveGridRowClick(args,url) {
 	url = '${pageContext.request.contextPath}' + url;
 
 	if (allarm.user==='') {
-		$.ajax({ 
-		    url:url,  
+		$.ajax({
+		    url:url,
 		    data:JSON.stringify(allarmData),
-		    type:"POST", 
+		    type:"POST",
 		    contentType: "application/json; charset=utf-8",
 	        beforeSend: function(xhr) {
 	            xhr.setRequestHeader("Accept", "application/json");
@@ -70,7 +70,7 @@ function proveGridRowClick(args,url) {
 		    }
 		});
 	}else {
-		
+
 	}
 }
 </script>
@@ -79,7 +79,7 @@ function proveGridRowClick(args,url) {
 	<div id="gradient" style="color:black;text-align:center;"><spring:message code="label.allarmi" text="label.allarmi"/></div>
 	<grid:grid
 		id="allarmGrid"
-		callbackFunction="allarmGridRowClick(args,'/user/allarmService/updateAllarm');">
+		callbackFunction="allarmGridRowClick(args,'/user/codaEveService/updateAllarm');">
 		<jsp:attribute name="options">
 			height:"50%",
 			width: "100%",
@@ -113,7 +113,7 @@ function proveGridRowClick(args,url) {
 	<div id="gradient" style="color:black;text-align:center;"><spring:message code="label.prove" text="label.prove"/></div>
 	<grid:grid
 		id="proveGrid"
-		callbackFunction="proveGridRowClick(args,'/user/allarmService/updateAllarm');">
+		callbackFunction="proveGridRowClick(args,'/user/codaEveService/updateAllarm');">
 		<jsp:attribute name="options">
 			height:"50%",
 			width: "100%",

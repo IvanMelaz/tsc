@@ -1,7 +1,7 @@
 /**
  *
  */
-package it.tsc.config;
+package it.tsc.data.config;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class ExecutorConfig {
-  private ScheduledExecutorService executorService = null;
+  private ScheduledExecutorService scheduledExecutorService = null;
 
   /**
    *
@@ -26,16 +26,16 @@ public class ExecutorConfig {
     // TODO Auto-generated constructor stub
   }
 
-  @Bean(name = "executorService")
-  public ScheduledExecutorService executorService() {
-    return executorService = Executors.newSingleThreadScheduledExecutor();
+  @Bean(name = "scheduledExecutorService")
+  public ScheduledExecutorService scheduledExecutorService() {
+    return scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
   }
 
   @PreDestroy
   public void shutwownExecutor() {
     // Your code..
-    if (!executorService.isShutdown()) {
-      executorService.shutdown();
+    if (!scheduledExecutorService.isShutdown()) {
+      scheduledExecutorService.shutdown();
     }
   }
 

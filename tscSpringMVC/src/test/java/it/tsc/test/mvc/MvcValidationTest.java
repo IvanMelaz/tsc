@@ -73,7 +73,7 @@ public class MvcValidationTest extends WebParallelTest {
     // omit email
     ResultMatcher ok = MockMvcResultMatchers.status().isOk();
     MockHttpServletRequestBuilder builder =
-        MockMvcRequestBuilders.post("/user/allarmService/updateAllarm");
+        MockMvcRequestBuilders.post("/user/codaEveService/updateAllarm");
     builder.content(gson.toJson(allarm));
     builder.header("Accept", "application/json");
     builder.header("Content-Type", "application/json");

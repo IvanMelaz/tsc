@@ -3,8 +3,11 @@
  */
 package it.tsc.dao.impl;
 
+import javax.persistence.EntityTransaction;
 import javax.persistence.StoredProcedureQuery;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import it.tsc.dao.BaseDao;
@@ -18,7 +21,8 @@ import it.tsc.util.JsonUtil;
  */
 @Repository("codaEveDao")
 public class CodaEveDaoImpl extends BaseDao implements CodaEveDao {
-
+	private static Logger logger = LoggerFactory
+			.getLogger(CodaEveDaoImpl.class);
 	/**
 	 *
 	 */
@@ -40,6 +44,42 @@ public class CodaEveDaoImpl extends BaseDao implements CodaEveDao {
 		String result = JsonUtil.getGsonConverter()
 				.toJson(query.getResultList());
 		return result;
+	}
+
+	@Override
+	public void removeAllarme(String id_allarme) {
+		EntityTransaction tx = getEntityTransaction();
+		try {
+			tx.begin();
+			StoredProcedureQuery query = getEntityManager()
+					.createNamedStoredProcedureQuery(CodaEve.SP_V_CODA_EVE);
+			query.setParameter("p_ID_allermer", id_allarme);
+			query.executeUpdate();
+			tx.commit();
+		} catch (Exception e) {
+			logger.error("removeAllarme :{}", e);
+			tx.rollback();
+			throw new IllegalArgumentException(e);
+		}
+	}
+
+	@Override
+	public void updateAllarme(String id_allarme, String user) {
+		EntityTransaction tx = getEntityTransaction();
+		try {
+			tx.begin();
+			StoredProcedureQuery query = getEntityManager()
+					.createNamedStoredProcedureQuery(
+							CodaEve.SP_U_SET_USER_IN_CODAEVE);
+			query.setParameter("p_ID_allarme", id_allarme);
+			query.setParameter("p_user", user);
+			query.executeUpdate();
+			tx.commit();
+		} catch (Exception e) {
+			logger.error("updateAllarme :{}", e);
+			tx.rollback();
+			throw new IllegalArgumentException(e);
+		}
 	}
 
 }

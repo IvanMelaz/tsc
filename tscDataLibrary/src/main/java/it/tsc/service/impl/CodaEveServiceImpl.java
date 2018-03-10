@@ -21,7 +21,7 @@ public class CodaEveServiceImpl implements CodaEveService {
 	 *
 	 */
 	public CodaEveServiceImpl() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	/*
@@ -32,6 +32,16 @@ public class CodaEveServiceImpl implements CodaEveService {
 	@Override
 	public String jsonQueueGetAllarms(String user) {
 		return codaEveDao.jsonGetAllarms(user);
+	}
+
+	@Override
+	public void removeAllarme(String id_allarme) {
+		codaEveDao.removeAllarme(id_allarme);
+	}
+
+	@Override
+	public void updateAllarme(String id_allarme, String user) {
+		codaEveDao.updateAllarme(id_allarme, user);
 	}
 
 }

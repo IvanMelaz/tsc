@@ -30,6 +30,7 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import it.tsc.data.config.ExecutorConfig;
 import it.tsc.data.config.ServiceConfig;
 import it.tsc.interceptor.PageRequestInterceptor;
 

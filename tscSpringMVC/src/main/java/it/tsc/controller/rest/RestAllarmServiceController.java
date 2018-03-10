@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.tsc.domain.Allarmi;
-import it.tsc.service.AllarmService;
+import it.tsc.service.CodaEveService;
 
 /**
  * @author astraservice
@@ -29,7 +29,7 @@ public class RestAllarmServiceController {
   private static Logger logger = LoggerFactory.getLogger(RestAllarmServiceController.class);
 
   @Autowired
-  private AllarmService allarmService;
+  private CodaEveService codaEveService;
 
   /**
    * remove allarm from queue
@@ -46,7 +46,7 @@ public class RestAllarmServiceController {
       @AuthenticationPrincipal Principal user) {
     logger.debug("getSerial_uuid() {} user: {}", allarmi.getId_allarme());
     logger.debug("user: {}", user.getName());
-    allarmService.removeAllarme(allarmi.getId_allarme());
+    codaEveService.removeAllarme(allarmi.getId_allarme());
     return allarmi;
   }
 
@@ -59,12 +59,12 @@ public class RestAllarmServiceController {
    */
   @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_SADMIN') or hasAuthority('ROLE_USER')")
   @RequestMapping(
-      value = { "/user/allarmService/updateAllarm", "/admin/allarmService/updateAllarm" },
+      value = { "/user/codaEveService/updateAllarm", "/admin/codaEveService/updateAllarm" },
       method = RequestMethod.POST, produces = "application/json")
   public @ResponseBody Allarmi updateAllarm(@RequestBody Allarmi allarm,
       @AuthenticationPrincipal Principal user) {
     logger.debug("getSerial_uuid() {} user: {}", allarm.getId_allarme(), user.getName());
-    allarmService.updateAllarme(allarm.getId_allarme(), user.getName());
+    codaEveService.updateAllarme(allarm.getId_allarme(), user.getName());
     return allarm;
   }
 
