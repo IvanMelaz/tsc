@@ -8,7 +8,7 @@
 <script type="text/javascript">
 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 	  var target = $(e.target).attr("href") // activated tab
-	  console.log(target);
+	  console.log('data-toggle="tab: ',target);
 	  if (target=='user') {
 
 	}
@@ -26,7 +26,7 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 			            xhr.setRequestHeader(HEADER, TOKEN);
 			        },
 				    success: function(resposeJsonObject){
-				    	console.log(resposeJsonObject);
+				    	console.log('jsonGetUser: ',resposeJsonObject);
 				        // Success Message Handler
 						try {
 			        			$("#userGrid").jsGrid({data:JSON.parse(resposeJsonObject)});
@@ -50,7 +50,7 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 			            xhr.setRequestHeader(HEADER, TOKEN);
 			        },
 				    success: function(resposeJsonObject){
-				    	console.log(resposeJsonObject);
+				    	console.log('jsonGetAllUsers: ',resposeJsonObject);
 				        // Success Message Handler
 						try {
 				        		$("#allUserGrid").jsGrid({data:JSON.parse(resposeJsonObject)});

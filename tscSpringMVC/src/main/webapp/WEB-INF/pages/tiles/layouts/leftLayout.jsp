@@ -98,7 +98,7 @@ function proveGridRowClick(args,url) {
 			},
 	       	{name: "nominativo",type:"text",visible:false,width:0},
 	       	{name: "id_allarme",type:"text",visible:false,width:0},
-			{name: "data_arrivo",type:"date",width: 15,
+			{name: "ora",type:"date",width: 15,
 			    itemTemplate: function(value,item) {
 			    	var tooltip = $('<div>' + value + '</div>').attr("title",item.id_allarme);
 			        return tooltip;
@@ -132,7 +132,7 @@ function proveGridRowClick(args,url) {
 			},
 	       	{name: "nominativo",type:"text",visible:false,width:0},
 	       	{name: "id_allarme",type:"text",visible:false,width:0},
-			{name: "data_arrivo",type:"date",width: 15,
+			{name: "ora",type:"date",width: 15,
 			    itemTemplate: function(value,item) {
 			    	var tooltip = $('<div>' + value + '</div>').attr("title",item.id_allarme);
 			        return tooltip;

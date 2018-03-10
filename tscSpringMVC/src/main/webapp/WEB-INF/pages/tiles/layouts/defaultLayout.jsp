@@ -57,12 +57,12 @@ $(document).ready(function(){
             /**
             * fire event versus grid
             **/
-            console.log(JSON.stringify(event));
+            console.log('event onopen: %O',JSON.stringify(event));
         };
 
         webSocket.onmessage = function(event){
         	// loadData with custom filter
-        	console.log('event: %O',event.data);
+        	// console.log('event: %O',event.data);
 			try {
 				$("#allarmGrid").jsGrid({data:JSON.parse(event.data)});
 		    	} catch(e) {

@@ -72,7 +72,7 @@
 			<b><font face="Arial">
 			<input type="text" size="5" data-bind="value: tavola"></font></b></td>
 		</tr>
-		<!-- <tr>
+		<tr>
 			<td align="left"><b><font face="Arial" size="2" color="#C0C0C0">
 			Comune:</font></b></td>
 			<td colspan="3" style="border-style: ridge; border-width: 0px; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px" align="left">
@@ -121,27 +121,14 @@
 			<td colspan="3" align="left">
                     <font color="#4682B4" face="Arial" size="1"><b>
                     <input type="text" size="28" data-bind="value: stato_nascita"></b></font></td>
-		</tr> -->
+		</tr>
 	</table>
 </div>
 
 <script type="text/javascript">
 	var viewModel = {
-		    ab_codi: ko.observable(),
-		    nominativo: ko.observable(),
-		    centrale: ko.observable(),
-		    sesso: ko.observable(),
-		    telefono: ko.observable(),
-		    matricola: ko.observable(),
-		    cellulare: ko.observable(),
-		    ente: ko.observable(),
-		    indirizzo: ko.observable(),
-		    comune: ko.observable(),
-		    zona: ko.observable(),
-		    tavola: ko.observable()
-	};
 
-	ko.applyBindings(viewModel,document.getElementById('anagrafica'));
+	};
 
 	function loadAnagrafica(data,url) {
 		//Receiving data from the server<h1 data-bind="text: name"></h1>
@@ -156,20 +143,18 @@
 		            xhr.setRequestHeader(HEADER, TOKEN);
 		        },
 			    success: function(resposeJsonObject){
-			    	console.log(resposeJsonObject);
+			    	console.log('loadAnagrafica resposeJsonObject: ',resposeJsonObject);
 			        // Success Message Handler
 		        	var parsed;
 					try {
 							parsed = JSON.parse(resposeJsonObject);
+							viewModel=ko.mapping.fromJS(parsed);
+				        	//apply bindings
+				        	ko.cleanNode(document.getElementById('anagrafica'));
+				        	ko.applyBindings(viewModel,document.getElementById('anagrafica'));
 			    		} catch(e) {
 			    			toastr.error(e,"loadAnagrafica");
 			    	}
-			        if (parsed.length >0) {
-				        viewModel.ab_codi(parsed[0].ab_codi);
-				        viewModel.nominativo(parsed[0].nominativo);
-				        viewModel.centrale(parsed[0].centrale);
-				        viewModel.sesso(parsed[0].sesso);
-					}
 			    }
 			});
 	}
