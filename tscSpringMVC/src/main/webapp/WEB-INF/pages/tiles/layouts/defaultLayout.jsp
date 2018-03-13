@@ -1,5 +1,5 @@
 <%@include file="/WEB-INF/pages/jspf/include.jspf" %>
-<%@ taglib tagdir="/WEB-INF/tags/panel" prefix="panel" %>
+<%@ taglib tagdir="/WEB-INF/tags/panel" prefix="resizable" %>
 <%@ taglib tagdir="/WEB-INF/tags/grid" prefix="grid" %>
 
 <html>
