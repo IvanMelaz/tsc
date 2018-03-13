@@ -73,11 +73,11 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 
 <!-- Tab panes -->
 <div class="tab-content">
-	  <div id="anagrafic" role="tabpanel" class="tab-pane active">
-		<div id="gradient" style="color:black;text-align:center;"><spring:message code="label.anagrafica" text="label.anagrafica"/></div>
+	  <div id="anagrafica" role="tabpanel" class="tab-pane active">
+		<div id="gradient" style="color:black;text-align:center;"><spring:message code="label.anagrafic" text="label.anagrafic"/></div>
 		<tiles:insertTemplate template="anagrafica/anagrafica.jsp" flush="true"/>
 	  </div>
-	  <div id="rescuers" role="tabpanel" class="tab-pane">
+	  <div id="soccorritori" role="tabpanel" class="tab-pane">
 	    <div id="gradient" style="color:black;text-align:center;"><spring:message code="label.soccorritori" text="label.soccorritori"/></div>
 	  	<tiles:insertTemplate template="anagrafica/soccorritori.jsp" flush="true"/>
 	  </div>

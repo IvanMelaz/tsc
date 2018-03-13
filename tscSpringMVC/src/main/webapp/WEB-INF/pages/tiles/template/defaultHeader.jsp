@@ -14,8 +14,8 @@ $('#portalTab a').click(function (e) {
 	    <a class="dropdown-toggle" data-toggle="dropdown" href="#noAction1">
 	    <spring:message code="label.tsc" text="label.tsc"/><span class="caret"></span></a>
 	        <ul class="dropdown-menu">
-	            <li><a href="#anagrafic" data-toggle="tab"><spring:message code="label.anagrafic" /></a></li>
-	            <li><a href="#rescuers"  data-toggle="tab" ><spring:message code="label.rescuers" /></a></li>
+	            <li><a href="#anagrafica" data-toggle="tab"><spring:message code="label.anagrafica" /></a></li>
+	            <li><a href="#soccorritori"  data-toggle="tab" ><spring:message code="label.soccorritori" /></a></li>
 	        </ul>
 	    </li>
     <li class="dropdown">
@@ -35,8 +35,8 @@ $('#portalTab a').click(function (e) {
 		        <ul class="dropdown-menu">
 		            <li><a href="#add-user" data-toggle="tab" ><spring:message code="label.add-user" text="label.add-user"/></a></li>
 		        	<li><a href="#remove-user" data-toggle="tab" ><spring:message code="label.remove-user" text="label.remove-user"/></a></li>
-					<li><a href="#add-group" data-toggle="tab"><spring:message code="label.add-group" text="label.add-group"/></a></li> 
-					<li><a href="#remove-group" data-toggle="tab"><spring:message code="label.remove-group" text="label.remove-group"/></a></li> 
+					<li><a href="#add-group" data-toggle="tab"><spring:message code="label.add-group" text="label.add-group"/></a></li>
+					<li><a href="#remove-group" data-toggle="tab"><spring:message code="label.remove-group" text="label.remove-group"/></a></li>
 		        </ul>
 	    </li>
     </sec:authorize>
@@ -45,14 +45,14 @@ $('#portalTab a').click(function (e) {
 		<c:set var="image" >
 			<c:url value='/resources/images/logout.png' />
 		</c:set>
-		<a href="#logout" style="background:url('${image}') left no-repeat;display:block;" 
+		<a href="#logout" style="background:url('${image}') left no-repeat;display:block;"
 			data-toggle="modal" data-target="#logoutModal" >
 				<spring:message code="label.logout" text="Logout"/>
 				<!-- modal window -->
-				<modal:modal button_close="Chiudi" button_send="Logout" 
+				<modal:modal button_close="Chiudi" button_send="Logout"
 					text="Si vuole effettuare il logout?" title="Logout" id="logoutModal"
 					callback_function="$('#logoutForm').submit();" formModal="true">
-					
+
 						<!-- logout form -->
 						<c:if test="${pageContext.request.userPrincipal.name != null}">
 							<div id="logoutFormDiv" style="display: none;">
@@ -71,4 +71,3 @@ $('#portalTab a').click(function (e) {
 
 
 
-	
