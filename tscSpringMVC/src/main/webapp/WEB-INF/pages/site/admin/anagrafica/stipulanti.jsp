@@ -1,10 +1,10 @@
 <%@include file="/WEB-INF/pages/jspf/include.jspf" %>
-<%@ taglib tagdir="/WEB-INF/tags/form" prefix="ajaxForm" %>
+<%@ taglib tagdir="/WEB-INF/tags/form" prefix="form" %>
 
 <spring:message code="label.anagrafic.success" text="label.anagrafic.success"  var="label.anagrafic.success"/>
 <spring:message code="label.anagrafic.failure" text="label.anagrafic.failure"  var="label.anagrafic.failure"/>
 
-<div id="anagrafica">
+<div id="stipulanti">
 	<div class="row" >
 	        <div class="col-xs-3 form-group">
 	            <label><spring:message code="label.anagrafic.ab_codi" text="label.anagrafic.ab_codi" /></label>
@@ -27,16 +27,6 @@
 	        <div class="col-xs-6 form-group">
 	            <label><spring:message code="label.anagrafic.matricola" text="label.anagrafic.matricola" /></label>
 	            <input data-bind="value: $data.matricola" class="form-control input-sm" readonly="readonly"/>
-	        </div>
-	</div>
-	<div class="row" >
-	        <div class="col-xs-6 form-group">
-	            <label><spring:message code="label.anagrafic.telefono" text="label.anagrafic.telefono" /></label>
-	            <input data-bind="value: $data.telefono"  class="form-control input-sm" readonly="readonly"/>
-	        </div>
-	        <div class="col-xs-6 form-group">
-	            <label><spring:message code="label.anagrafic.cellulare" text="label.anagrafic.cellulare" /></label>
-	            <input data-bind="value: $data.cellulare" class="form-control input-sm" readonly="readonly"/>
 	        </div>
 	</div>
 </div>

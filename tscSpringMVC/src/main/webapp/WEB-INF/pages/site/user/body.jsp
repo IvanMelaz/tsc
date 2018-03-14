@@ -64,11 +64,21 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 
 
 <div class="tab-content">
-	  <div id="anagrafic" class="tab-pane fade mh-100">
-		<h5>Anagrafica</h5>
+	  <div id="anagrafica" role="tabpanel" class="tab-pane active">
+		<div id="gradient" style="color:black;text-align:center;"><spring:message code="label.anagrafic" text="label.anagrafic"/></div>
+		<tiles:insertTemplate template="anagrafica/anagrafica.jsp" flush="true"/>
 	  </div>
-	  <div id="rescuers" class="tab-pane fade mh-100">
-	    <h5>Soccorritori</h5>
+	  <div id="conviventi" role="tabpanel" class="tab-pane">
+	    <div id="gradient" style="color:black;text-align:center;"><spring:message code="label.soccorritori" text="label.soccorritori"/></div>
+	  	<tiles:insertTemplate template="anagrafica/conviventi.jsp" flush="true"/>
+	  </div>
+	  <div id="stipulanti" role="tabpanel" class="tab-pane">
+	    <div id="gradient" style="color:black;text-align:center;"><spring:message code="label.soccorritori" text="label.soccorritori"/></div>
+	  	<tiles:insertTemplate template="anagrafica/stipulanti.jsp" flush="true"/>
+	  </div>
+	  <div id="soccorritori" role="tabpanel" class="tab-pane">
+	    <div id="gradient" style="color:black;text-align:center;"><spring:message code="label.soccorritori" text="label.soccorritori"/></div>
+	  	<tiles:insertTemplate template="anagrafica/soccorritori.jsp" flush="true"/>
 	  </div>
 
 	  <div id="user" class="tab-pane fade mh-100">

@@ -15,6 +15,8 @@ $('#portalTab a').click(function (e) {
 	    <spring:message code="label.tsc" text="label.tsc"/><span class="caret"></span></a>
 	        <ul class="dropdown-menu">
 	            <li><a href="#anagrafica" data-toggle="tab"><spring:message code="label.anagrafica" /></a></li>
+	            <li><a href="#conviventi"  data-toggle="tab" ><spring:message code="label.conviventi" /></a></li>
+	            <li><a href="#stipulanti"  data-toggle="tab" ><spring:message code="label.stipulanti" /></a></li>
 	            <li><a href="#soccorritori"  data-toggle="tab" ><spring:message code="label.soccorritori" /></a></li>
 	        </ul>
 	    </li>
