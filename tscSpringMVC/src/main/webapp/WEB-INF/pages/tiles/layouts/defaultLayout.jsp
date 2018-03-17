@@ -29,6 +29,10 @@ $(document).ready(function(){
  * WebSocket js file
  */
     var webSocket;
+
+	/**
+	 * Open WebSocket function
+	 */
     function openSocket(){
     	console.log('open socket');
         // Ensures only one connection is open at a time
@@ -139,7 +143,15 @@ $(document).ready(function(){
         	* close then reopen url
         	**/
             console.log('Connection closed reason:',reason);
+            setTimeout(function() {
+            	openSocket();
+              }, 3000);
         };
+
+        webSocket.onerror = function(err) {
+            console.error('Socket encountered error: ', err.message, 'Closing socket');
+            webSocket.close();
+          };
     }
 
     function closeSocket(){

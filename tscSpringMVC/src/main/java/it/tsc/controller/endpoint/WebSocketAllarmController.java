@@ -69,8 +69,8 @@ public class WebSocketAllarmController {
           userid);
     }
     synchronized (clients) {
-      logger.debug("add item to clients: {}", session.getId());
       clients.add(session);
+      logger.debug("add item to clients: {} clients size: {}", session.getId(), clients.size());
       this.endpointConfig.getUserProperties().put(session.getId(), userid); // store mapping of
       // WebSocket
     }

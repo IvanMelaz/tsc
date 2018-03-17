@@ -15,7 +15,7 @@
 <link href="<c:url value='/resources/css/portal.css' />"  rel="stylesheet"></link>
 
 <!-- js library -->
-<script src="<c:url value='/resources/js/jquery-latest-min.js' />"></script>
+<script src="<c:url value='/resources/js/jquery-3.3.1.min.js' />"></script>
 <script src="<c:url value='/resources/js/bootstrap.min.js' />"></script>
 <script src="<c:url value='/resources/js/bootstrap-table.min.js' />"></script>
 <script src="<c:url value='/resources/js/jquery-ui.min.js' />"></script>
