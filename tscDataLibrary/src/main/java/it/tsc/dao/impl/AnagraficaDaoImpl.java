@@ -3,8 +3,10 @@
  */
 package it.tsc.dao.impl;
 
+import static org.junit.Assert.assertNotNull;
+
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
+import javax.persistence.StoredProcedureQuery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,12 +40,12 @@ public class AnagraficaDaoImpl extends BaseDao implements AnagraficaDao {
 	@Override
 	public Anagrafica getAnagrafica(String ab_codi) {
 		Anagrafica anagrafica = null;
-		EntityManager entityManager = getEntityManager();
-		TypedQuery<Anagrafica> query = entityManager.createNamedQuery(
-				Anagrafica.SELECT_ANAGRAFICA_BY_ABCODI, Anagrafica.class);
-		query.setParameter("ab_codi", ab_codi);
+		StoredProcedureQuery query = getEntityManager()
+				.createNamedStoredProcedureQuery(Anagrafica.SP_V_ANAGRAFCA);
+		query.setParameter("p_ab_codi", ab_codi);
 		try {
-			anagrafica = query.getSingleResult();
+			anagrafica = (Anagrafica) query.getSingleResult();
+			assertNotNull(anagrafica);
 		} catch (Exception e) {
 			logger.error("getAnagrafica Exception: ", e);
 		}
