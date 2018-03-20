@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.test.dao;
 
@@ -24,7 +24,7 @@ public class TscDaoTest extends BaseDaoTest {
   private TscService tscService;
 
   /**
-   * 
+   *
    */
   public TscDaoTest() {
     logger.debug("TscDaoTest");
@@ -38,7 +38,7 @@ public class TscDaoTest extends BaseDaoTest {
   @Test
   public void testGetAnagrafica() {
     Allarmi allarm = new Allarmi();
-    allarm.setAb_codi("000000");
+    allarm.setAb_codi("N000");
     assertNotNull(tscService.getAnagrafica(allarm));
   }
 

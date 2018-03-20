@@ -29,6 +29,8 @@
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/telesoccorso" />
 			<property name="hibernate.connection.username" value="root" />
 			<property name="hibernate.connection.password" value="midara" />
+			<property name="hibernate.cache.use_second_level_cache" value="false"/>
+			<property name="hibernate.cache.use_query_cache" value="false"/>
 			<property name="hibernate.current_session_context_class"
 			value="org.hibernate.context.internal.ThreadLocalSessionContext" />
 		</properties>

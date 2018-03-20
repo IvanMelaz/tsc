@@ -65,6 +65,11 @@ public class GroupDaoTest extends WebParallelTest {
   }
 
   @Test
+  public void testAddTestUserToGroupNapoli() {
+    groupService.addUserToGroup("testUser", "napoli");
+  }
+
+  @Test
   public void testRemoveUserFromGroup() {
     groupService.removeUserFromGroup("admin", "MILANO");
   }

@@ -6,11 +6,14 @@ package it.tsc.domain;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.google.gson.annotations.Expose;
 
@@ -27,90 +30,126 @@ public class Anagrafica {
 	@Column
 	@Expose
 	private String ab_codi;
+
 	@Column
 	@Expose
 	private String matricola;
+
 	@Column
 	@Expose
 	private String nominativo;
+
 	@Column
 	@Expose
 	private String indirizzo;
+
 	@Column
 	@Expose
 	private String comune;
+
 	@Column
 	@Expose
 	private String provincia;
+
 	@Column
 	@Expose
 	private String cap;
+
 	@Column
 	@Expose
 	private String telefono;
+
 	@Column
 	@Expose
 	private String cellulare;
+
 	@Column
 	@Expose
 	private String sesso;
+
+	@Convert(converter = it.tsc.domain.converter.DataConverter.class)
 	@Column
 	@Expose
 	private Date data_nascita;
+
 	@Column
 	@Expose
 	private String luogo_nascita;
+
 	@Column
 	@Expose
 	private int altezza;
+
 	@Column
 	@Expose
 	private int peso;
+
 	@Column
 	@Expose
 	private String patologia;
+
 	@Column
 	@Expose
 	private String terapia;
+
 	@Column
 	@Expose
 	private String evidenzia;
+
 	@Column
 	@Expose
 	private String note;
+
 	@Column
 	@Expose
 	private String altro;
+
 	@Column
 	@Expose
 	private String dati_abita;
+
 	@Column
 	@Expose
 	private String sopravvivenza;
+
 	@Column
 	@Expose
 	private String dati_tecnici;
+
+	@Temporal(TemporalType.DATE)
+	@Convert(converter = it.tsc.domain.converter.DataConverter.class)
 	@Column
 	@Expose
 	private Date data_inserimento;
+
+	@Convert(converter = it.tsc.domain.converter.DataConverter.class)
 	@Column
 	@Expose
 	private Date data_installazione;
+
+	@Convert(converter = it.tsc.domain.converter.DataConverter.class)
 	@Expose
 	@Column
 	private Date data_modifica;
+
+	@Convert(converter = it.tsc.domain.converter.DataConverter.class)
 	@Column
 	@Expose
 	private Date data_aggiornamento;
+
+	@Convert(converter = it.tsc.domain.converter.DataConverter.class)
 	@Column
 	@Expose
 	private Date data_disinstallazione;
+
 	@Column
 	@Expose
 	private String motivo_disinstallazione;
+
 	@Column
 	@Expose
 	private String centrale;
+
 	@Column
 	@Expose
 	private String ente;

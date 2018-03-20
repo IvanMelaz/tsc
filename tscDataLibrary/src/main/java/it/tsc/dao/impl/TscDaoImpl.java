@@ -48,12 +48,12 @@ public class TscDaoImpl extends BaseDao implements TscDao {
 			query.setParameter("ab_codi", allarm.getAb_codi());
 			Anagrafica anagrafica = query.getSingleResult();
 			result = JsonUtil.getGsonConverter().toJson(anagrafica);
+			logger.debug("getAnagrafica result: {}", result);
 		} catch (Exception e) {
 			logger.error("getAnagrafica: {}", e);
 		}
 		// entityManager.close();
 
-		logger.debug("getAnagrafica {}", result);
 		return result;
 	}
 

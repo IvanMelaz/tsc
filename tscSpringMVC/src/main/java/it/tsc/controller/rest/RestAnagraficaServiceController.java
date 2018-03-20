@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.controller.rest;
 
@@ -25,21 +25,21 @@ import it.tsc.service.TscService;
  *
  */
 @RestController
-public class RestTscServiceController extends RestBaseController {
-  private static Logger logger = LoggerFactory.getLogger(RestTscServiceController.class);
+public class RestAnagraficaServiceController extends RestBaseController {
+  private static Logger logger = LoggerFactory.getLogger(RestAnagraficaServiceController.class);
   @Autowired
   private TscService tscService;
 
   /**
-   * 
+   *
    */
-  public RestTscServiceController() {
+  public RestAnagraficaServiceController() {
 
   }
 
   /**
    * get TSC User
-   * 
+   *
    * @param user
    * @return
    */
@@ -49,7 +49,7 @@ public class RestTscServiceController extends RestBaseController {
   public @ResponseBody String getAnagrafica(@AuthenticationPrincipal Principal user,
       @RequestBody Allarmi allarm, BindingResult result) {
     // TODO return rest json service get user
-    logger.debug("/user/tscService/getAnagrafica");
+    logger.debug("/user/tscService/getAnagrafica result:{} ", tscService.getAnagrafica(allarm));
     return tscService.getAnagrafica(allarm);
   }
 
