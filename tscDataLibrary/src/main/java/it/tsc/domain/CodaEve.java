@@ -30,7 +30,17 @@ import com.google.gson.annotations.Expose;
 				@StoredProcedureParameter(name = "p_ID_allarme", type = String.class, mode = ParameterMode.IN),
 				@StoredProcedureParameter(name = "p_user", type = String.class, mode = ParameterMode.IN)}),
 		@NamedStoredProcedureQuery(name = CodaEve.SP_D_CODA_EVE, procedureName = "sp_d_CodaEve", parameters = {
-				@StoredProcedureParameter(name = "p_ID_allarme", type = String.class, mode = ParameterMode.IN)})})
+				@StoredProcedureParameter(name = "p_ID_allarme", type = String.class, mode = ParameterMode.IN)}),
+		@NamedStoredProcedureQuery(name = CodaEve.SP_I_INSERTALLARM_IN_CODA_EVE, procedureName = "sp_i_InsertAllarmi_in_CodaEve", parameters = {
+				@StoredProcedureParameter(name = "p_matricola", type = String.class, mode = ParameterMode.IN),
+				@StoredProcedureParameter(name = "p_evento", type = String.class, mode = ParameterMode.IN),
+				@StoredProcedureParameter(name = "p_centrale", type = String.class, mode = ParameterMode.IN),
+				@StoredProcedureParameter(name = "p_mux", type = String.class, mode = ParameterMode.IN),
+				@StoredProcedureParameter(name = "p_ritardo", type = String.class, mode = ParameterMode.IN)}),
+		@NamedStoredProcedureQuery(name = CodaEve.SP_I_INSERTALLARM_TEL_IN_CODA_EVE, procedureName = "sp_i_InsertAllarmi_in_CodaEve_Brondi", parameters = {
+				@StoredProcedureParameter(name = "p_telefono", type = String.class, mode = ParameterMode.IN),
+				@StoredProcedureParameter(name = "p_filename", type = String.class, mode = ParameterMode.IN),
+				@StoredProcedureParameter(name = "p_centrale", type = String.class, mode = ParameterMode.IN)})})
 public class CodaEve extends BaseDomain {
 	/**
 	 *
@@ -39,6 +49,8 @@ public class CodaEve extends BaseDomain {
 	public static final String SP_V_CODA_EVE = "sp.v.coda_eve";
 	public static final String SP_U_SET_USER_IN_CODAEVE = "sp.u.setuser.in.coda_eve";
 	public static final String SP_D_CODA_EVE = "sp.d.coda_eve";
+	public static final String SP_I_INSERTALLARM_IN_CODA_EVE = "sp.i.insertallarm.in.coda_eve";
+	public static final String SP_I_INSERTALLARM_TEL_IN_CODA_EVE = "sp.i.insertallarm.tel.in.coda_eve";
 
 	@Id
 	@Column

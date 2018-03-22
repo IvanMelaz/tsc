@@ -44,4 +44,11 @@ public class CodaEveServiceImpl implements CodaEveService {
 		codaEveDao.updateAllarme(id_allarme, user);
 	}
 
+	@Override
+	public void insertAllarmiInCodaEve(String matricola, String evento,
+			String centrale, String mux, String ritardo) {
+		codaEveDao.insertAllarmiInCodaEve(matricola, evento, centrale, mux,
+				ritardo);
+	}
+
 }

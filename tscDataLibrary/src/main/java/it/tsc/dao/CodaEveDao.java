@@ -30,6 +30,18 @@ public interface CodaEveDao {
 	 * @param id_allarme
 	 * @param user
 	 */
+
 	public void updateAllarme(String id_allarme, String user);
+	/**
+	 * insert Allarm in CodaEve
+	 *
+	 * @param matricola
+	 * @param evento
+	 * @param centrale
+	 * @param mux
+	 * @param ritardo
+	 */
+	public void insertAllarmiInCodaEve(String matricola, String evento,
+			String centrale, String mux, String ritardo);
 
 }

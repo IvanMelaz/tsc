@@ -52,7 +52,7 @@ public class CodaEveDaoImpl extends BaseDao implements CodaEveDao {
 		try {
 			tx.begin();
 			StoredProcedureQuery query = getEntityManager()
-					.createNamedStoredProcedureQuery(CodaEve.SP_V_CODA_EVE);
+					.createNamedStoredProcedureQuery(CodaEve.SP_D_CODA_EVE);
 			query.setParameter("p_ID_allermer", id_allarme);
 			query.executeUpdate();
 			tx.commit();
@@ -77,6 +77,30 @@ public class CodaEveDaoImpl extends BaseDao implements CodaEveDao {
 			tx.commit();
 		} catch (Exception e) {
 			logger.error("updateAllarme :{}", e);
+			tx.rollback();
+			throw new IllegalArgumentException(e);
+		}
+	}
+
+	@Override
+	public void insertAllarmiInCodaEve(String matricola, String evento,
+			String centrale, String mux, String ritardo) {
+		EntityTransaction tx = getEntityTransaction();
+		try {
+			tx.begin();
+			StoredProcedureQuery query = getEntityManager()
+					.createNamedStoredProcedureQuery(
+							CodaEve.SP_I_INSERTALLARM_IN_CODA_EVE);
+			query.setParameter("matricola", matricola);
+			query.setParameter("evento", evento);
+			query.setParameter("centrale", centrale);
+			query.setParameter("mux", mux);
+			query.setParameter("ritardo", ritardo);
+
+			query.executeUpdate();
+			tx.commit();
+		} catch (Exception e) {
+			logger.error("insertAllarmiInCodaEve :{}", e);
 			tx.rollback();
 			throw new IllegalArgumentException(e);
 		}
