@@ -39,6 +39,12 @@
 	            <input data-bind="value: $data.cellulare" class="form-control input-sm" readonly="readonly"/>
 	        </div>
 	</div>
+	<div class="row" >
+	        <div class="col-xs-12 form-group">
+	            <label><spring:message code="label.anagrafic.indirizzo" text="label.anagrafic.indirizzo" /></label>
+	            <input data-bind="value: $data.indirizzo"  class="form-control input-sm" readonly="readonly"/>
+	        </div>
+	</div>
 </div>
 
 <script type="text/javascript">
