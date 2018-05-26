@@ -82,7 +82,7 @@ public class AllarmiEuropeAssistance extends BaseDomain {
 
 	@Column
 	@Expose
-	private int numeroOrdine;
+	private String numeroOrdine;
 
 	@Column
 	@Expose
@@ -196,11 +196,11 @@ public class AllarmiEuropeAssistance extends BaseDomain {
 		this.indirizzo = indirizzo;
 	}
 
-	public int getNumeroOrdine() {
+	public String getNumeroOrdine() {
 		return numeroOrdine;
 	}
 
-	public void setNumeroOrdine(int numeroOrdine) {
+	public void setNumeroOrdine(String numeroOrdine) {
 		this.numeroOrdine = numeroOrdine;
 	}
 

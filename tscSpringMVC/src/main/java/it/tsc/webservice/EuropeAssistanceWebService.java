@@ -77,7 +77,7 @@ public class EuropeAssistanceWebService {
       mode=Mode.IN)String indirizzo,
 
       @WebParam(name="numeroOrdine",
-      mode=Mode.IN)int numeroOrdine,
+      mode=Mode.IN)String numeroOrdine,
 
       @WebParam(name="numeroDossier",
       mode=Mode.IN)String numeroDossier,
@@ -122,7 +122,7 @@ public class EuropeAssistanceWebService {
     if (StringUtils.isEmpty(numeroTelefono1.trim())) {
       return populateErrorResult(ErrorCode.NUMERO_TELEFONO);
     }
-    if (StringUtils.isEmpty(String.valueOf(numeroOrdine).trim())) {
+    if (StringUtils.isEmpty(numeroOrdine)) {
       return populateErrorResult(ErrorCode.NUMERO_ORDINE);
     }
     if (StringUtils.isEmpty(numeroDossier.trim())) {
