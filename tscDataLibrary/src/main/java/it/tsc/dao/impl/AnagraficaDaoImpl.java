@@ -3,11 +3,10 @@
  */
 package it.tsc.dao.impl;
 
-import static org.junit.Assert.assertNotNull;
-
 import javax.persistence.EntityManager;
 import javax.persistence.StoredProcedureQuery;
 
+import org.apache.commons.lang.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -45,7 +44,7 @@ public class AnagraficaDaoImpl extends BaseDao implements AnagraficaDao {
 		query.setParameter("p_ab_codi", ab_codi);
 		try {
 			anagrafica = (Anagrafica) query.getSingleResult();
-			assertNotNull(anagrafica);
+			Validate.notNull(anagrafica, "getSingleResult callot be null ");
 		} catch (Exception e) {
 			logger.error("getAnagrafica Exception: ", e);
 		}
