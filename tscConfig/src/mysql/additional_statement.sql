@@ -22,7 +22,7 @@ CREATE TABLE `tsc_europe` (
     `NUMEROTELEFONO2` varchar(15),
     `EMAIL` varchar(255),
     `INDIRIZZO` varchar(255),
-    `NUMEROORDINE` int not null,
+    `NUMEROORDINE` varchar(255) not null,
     `NUMERODOSSIER` varchar(255),
     `CODICEBP` varchar(255) not null,
     `TIPOLOGIASERVIZIO` varchar(15) not null,
