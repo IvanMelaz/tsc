@@ -1,6 +1,14 @@
 <%@include file="/WEB-INF/pages/jspf/include.jspf" %>
 
 <div id="login-box">
+	<h2><spring:message code="label.login.access" text=""/></h2>
+
+	<c:if test="${not empty error}">
+		<div class="error"><spring:message code="message.accessDenied" text=""/></div>
+	</c:if>
+	<c:if test="${not empty msg}">
+		<div class="msg"><spring:message code="message.logout" text=""/></div>
+	</c:if>
 
 	<form name='loginForm'
 	  action="<c:url value='j_spring_security_check' />" method='POST' role="form"
@@ -29,6 +37,7 @@
 
       <a href="<c:url value='/askNewPassword' />"  rel="stylesheet" media="screen"><spring:message code="label.password.forgotten" text="Non ricordo la password"/></a>
 
-	  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	  <input type="hidden" name="${_csrf.parameterName}"
+		value="${_csrf.token}" />
 	</form>
 </div>
