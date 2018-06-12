@@ -1,8 +1,17 @@
 package it.tsc.repository;
 
-import java.time.Instant;
+import java.util.List;
 
-public interface AllarmDao {
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import it.tsc.domain.Allarmi;
+
+@Repository("allarmDao")
+public interface AllarmDao extends CrudRepository<Allarmi, String> {
 	/**
 	 * Inserisce allarme
 	 *
@@ -11,27 +20,33 @@ public interface AllarmDao {
 	 * @param id_allarme
 	 * @param user
 	 */
-	public void insertAllarme(String ab_codi, Instant data_arrivo,
-			String evento, String id_allarme, String user);
+	@Procedure("sp_i_GeneraAllarme")
+	public void insertAllarme(@Param("ab_codi") String ab_codi,
+			@Param("p_matricola") String matricola, @Param("p_mux") String mux,
+			@Param("p_evento") String evento,
+			@Param("p_centrale") String centrale);
 
 	/**
 	 * Inserisce allarme per telefono (BRONDI)
 	 *
-	 * @param tel
 	 * @param data_arrivo
 	 * @param evento
 	 * @param id_allarme
 	 * @param user
 	 */
-	public void insertAllarmeTel(String tel, String ab_codi,
-			Instant data_arrivo, String evento, String id_allarme, String user);
+	@Procedure("sp_i_GeneraAllarme")
+	public void insertAllarme(@Param("ab_codi") String ab_codi,
+			@Param("p_evento") String evento,
+			@Param("id_allarme") String id_allarme,
+			@Param("p_user") String user);
 
 	/**
 	 * rimuove allarme
 	 *
 	 * @param id_allarme
 	 */
-	public void removeAllarme(String id_allarme);
+	@Query("delete Allarmi a where a.id_allarme=:id_allarme ")
+	public void removeAllarme(@Param("id_allarme") String id_allarme);
 
 	/**
 	 * update Allarme
@@ -39,12 +54,15 @@ public interface AllarmDao {
 	 * @param id_allarme
 	 * @param user
 	 */
-	public void updateAllarme(String id_allarme, String user);
+	@Query("update Allarmi a set a.user =:user where a.id_allarme=:id_allarme")
+	public void updateAllarme(@Param("id_allarme") String id_allarme,
+			@Param("user") String user);
 
 	/**
 	 * get allarms in json format
 	 *
 	 * @return
 	 */
-	public String jsonGetAllarms();
+	@Query("select a from Allarmi a")
+	public List<Allarmi> jsonGetAllarms();
 }

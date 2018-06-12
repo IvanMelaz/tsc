@@ -104,6 +104,11 @@
 		    <artifactId>two-factor-auth</artifactId>
 		    <version>1.0</version>
 		</dependency>
+		<dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-jsp</artifactId>
+			<version>3.0.5</version>
+		</dependency>
     </dependencies>
 
     <build>
