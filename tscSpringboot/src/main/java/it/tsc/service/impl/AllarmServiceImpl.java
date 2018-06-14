@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.tsc.repository.AllarmDao;
 import it.tsc.service.AllarmService;
-import it.tsc.util.JsonUtil;
 
 /**
  * @author astraservice
@@ -65,11 +64,6 @@ public class AllarmServiceImpl implements AllarmService {
 	@Override
 	public void updateAllarme(String id_allarme, String user) {
 		allarmDao.updateAllarme(id_allarme, user);
-	}
-
-	@Override
-	public String jsonGetAllarms() {
-		return JsonUtil.returnJson(allarmDao.jsonGetAllarms());
 	}
 
 }

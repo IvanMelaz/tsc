@@ -21,6 +21,7 @@ public interface AllarmService {
 	 * @param id_allarme
 	 * @param user
 	 */
+	@Transactional
 	public void insertAllarme(String ab_codi, Instant data_arrivo,
 			String evento, String id_allarme, String user);
 
@@ -33,6 +34,7 @@ public interface AllarmService {
 	 * @param id_allarme
 	 * @param user
 	 */
+	@Transactional
 	public void insertAllarmeTel(String tel, String ab_codi, Date data_arrivo,
 			String evento, String id_allarme, String user);
 
@@ -41,6 +43,7 @@ public interface AllarmService {
 	 *
 	 * @param id_allarme
 	 */
+	@Transactional
 	public void removeAllarme(String id_allarme);
 
 	/**
@@ -51,12 +54,5 @@ public interface AllarmService {
 	 */
 	@Transactional
 	public void updateAllarme(String id_allarme, String user);
-
-	/**
-	 * get allarms in json format
-	 *
-	 * @return
-	 */
-	public String jsonGetAllarms();
 
 }
