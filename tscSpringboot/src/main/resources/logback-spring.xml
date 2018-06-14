@@ -16,6 +16,10 @@
 		<appender-ref ref="STDOUT" />
 	</logger>
 
+	<logger name="com.zaxxer.hikari" level="ERROR" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
 	<logger name="it.tsc" level="DEBUG" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
