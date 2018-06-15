@@ -19,9 +19,9 @@ public interface AnagraficaService {
 
 	/**
 	 * insert Record in Anagrafica
-	 * 
+	 *
 	 * @param anagrafica
 	 */
-	public void insertAnagrafica(Anagrafica anagrafica);
+	public Anagrafica insertAnagrafica(Anagrafica anagrafica);
 
 }

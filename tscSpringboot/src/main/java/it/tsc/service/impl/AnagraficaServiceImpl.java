@@ -16,29 +16,30 @@ import it.tsc.service.AnagraficaService;
  */
 @Service("anagraficaService")
 public class AnagraficaServiceImpl implements AnagraficaService {
-  @Autowired
-  private AnagraficaDao anagraficaDao;
 
-  /**
-   *
-   */
-  public AnagraficaServiceImpl() {
-    // TODO Auto-generated constructor stub
-  }
+	@Autowired
+	private AnagraficaDao anagraficaDao;
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see it.tsc.service.AnagraficaService#getAnagrafica(java.lang.String)
-   */
-  @Override
-  public Anagrafica getAnagrafica(String ab_codi) {
-    return anagraficaDao.getAnagrafica(ab_codi);
-  }
+	/**
+	 *
+	 */
+	public AnagraficaServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
 
-  @Override
-  public void insertAnagrafica(Anagrafica anagrafica) {
-    anagraficaDao.insertAnagrafica(anagrafica);
-  }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see it.tsc.service.AnagraficaService#getAnagrafica(java.lang.String)
+	 */
+	@Override
+	public Anagrafica getAnagrafica(String ab_codi) {
+		return anagraficaDao.getAnagrafica(ab_codi);
+	}
+
+	@Override
+	public Anagrafica insertAnagrafica(Anagrafica anagrafica) {
+		return anagraficaDao.save(anagrafica);
+	}
 
 }

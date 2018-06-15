@@ -11,10 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.NamedStoredProcedureQueries;
-import javax.persistence.NamedStoredProcedureQuery;
-import javax.persistence.ParameterMode;
-import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,15 +25,9 @@ import com.google.gson.annotations.Expose;
 @NamedQueries(value = {
 		@NamedQuery(name = Anagrafica.SELECT_ANAGRAFICA_BY_ABCODI, query = "SELECT a FROM Anagrafica a WHERE TRIM(a.ab_codi) = TRIM(:ab_codi)")})
 //@formatter:off
-@NamedStoredProcedureQueries(value = {
-		@NamedStoredProcedureQuery(name = Anagrafica.SP_V_ANAGRAFCA,
-				procedureName = Anagrafica.SP_V_ANAGRAFCA,
-				parameters = {@StoredProcedureParameter(name = "p_ab_codi", type = String.class, mode = ParameterMode.IN)},
-				resultClasses= {Anagrafica.class})})
 //@formatter:on
 public class Anagrafica {
 	public static final String SELECT_ANAGRAFICA_BY_ABCODI = ".select.anagrafica.by.abcodi";
-	public static final String SP_V_ANAGRAFCA = "sp_v_Anagrafica";
 	@Id
 	@Column
 	@Expose
