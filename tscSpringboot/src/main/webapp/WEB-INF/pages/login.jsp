@@ -1,6 +1,9 @@
 <%@include file="/WEB-INF/pages/jspf/include.jspf" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <div id="login-box">
+
+	${fn:replace(SPRING_SECURITY_LAST_EXCEPTION.message, 'Bad credentials', 'Username/Password are incorrect')}
 
 	<form name='loginForm'
 	  action="<c:url value='j_spring_security_check' />" method='POST' role="form"

@@ -22,7 +22,7 @@
 
 	<beans:bean id="customAccessDeniedHandler"
 		class="it.tsc.security.handler.CustomAccessDeniedHandler">
-		<beans:property name="errorPage" value="/tscSpringMVC/403" />
+		<beans:property name="errorPage" value="/errorPage" />
 	</beans:bean>
 
 </beans:beans>

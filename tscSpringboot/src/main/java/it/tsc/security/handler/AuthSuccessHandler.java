@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package it.tsc.security.handler;
 
@@ -22,82 +22,91 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
  * @author astraservice
  *
  */
-public class AuthSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
-  private static Logger logger = LoggerFactory.getLogger(AuthSuccessHandler.class);
-  private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+public class AuthSuccessHandler
+		extends
+			SavedRequestAwareAuthenticationSuccessHandler {
+	private static Logger logger = LoggerFactory
+			.getLogger(AuthSuccessHandler.class);
+	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
-  @Override
-  public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-      Authentication authentication) throws IOException, ServletException {
-    handle(request, response, authentication);
-    clearAuthenticationAttributes(request);
-  }
+	@Override
+	public void onAuthenticationSuccess(HttpServletRequest request,
+			HttpServletResponse response, Authentication authentication)
+			throws IOException, ServletException {
+		handle(request, response, authentication);
+		clearAuthenticationAttributes(request);
+	}
 
-  @Override
-  protected void handle(HttpServletRequest request, HttpServletResponse response,
-      Authentication authentication) throws IOException {
+	@Override
+	protected void handle(HttpServletRequest request,
+			HttpServletResponse response, Authentication authentication)
+			throws IOException {
 
-    String targetUrl = determineTargetUrl(authentication);
+		String targetUrl = determineTargetUrl(authentication);
 
-    if (response.isCommitted()) {
-      logger.debug("Response has already been committed. Unable to redirect to " + targetUrl);
-      return;
-    }
+		if (response.isCommitted()) {
+			logger.debug(
+					"Response has already been committed. Unable to redirect to "
+							+ targetUrl);
+			return;
+		}
+		logger.debug("redirect to " + targetUrl);
+		redirectStrategy.sendRedirect(request, response, targetUrl);
+	}
 
-    redirectStrategy.sendRedirect(request, response, targetUrl);
-  }
+	/**
+	 * determin target url based on Authentication
+	 *
+	 * @param authentication
+	 * @return
+	 */
+	protected String determineTargetUrl(Authentication authentication) {
+		boolean isUser = false;
+		boolean isAdmin = false;
+		boolean isImpersonate = false;
+		boolean isBackOffice = false;
+		Collection<? extends GrantedAuthority> authorities = authentication
+				.getAuthorities();
+		for (GrantedAuthority grantedAuthority : authorities) {
+			if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
+				isUser = true;
+				break;
+			} else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")
+					|| grantedAuthority.getAuthority().equals("ROLE_SADMIN")) {
+				isAdmin = true;
+				break;
+			} else if (grantedAuthority.getAuthority()
+					.equals("ROLE_IMPERSONATE")) {
+				isImpersonate = true;
+				break;
+			} else if (grantedAuthority.getAuthority()
+					.equals("ROLE_BACKOFFICE")) {
+				isBackOffice = true;
+				break;
+			}
+		}
 
-  /**
-   * determin target url based on Authentication
-   * 
-   * @param authentication
-   * @return
-   */
-  protected String determineTargetUrl(Authentication authentication) {
-    boolean isUser = false;
-    boolean isAdmin = false;
-    boolean isImpersonate = false;
-    boolean isBackOffice = false;
-    Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-    for (GrantedAuthority grantedAuthority : authorities) {
-      if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
-        isUser = true;
-        break;
-      } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")
-          || grantedAuthority.getAuthority().equals("ROLE_SADMIN")) {
-        isAdmin = true;
-        break;
-      } else if (grantedAuthority.getAuthority().equals("ROLE_IMPERSONATE")) {
-        isImpersonate = true;
-        break;
-      } else if (grantedAuthority.getAuthority().equals("ROLE_BACKOFFICE")) {
-        isBackOffice = true;
-        break;
-    }
-    }
+		if (isUser) {
+			return "/user";
+		} else if (isAdmin) {
+			return "/admin";
+		} else if (isImpersonate) {
+			return "/impersonate";
+		} else if (isBackOffice) {
+			return "/backOffice";
+		} else {
+			throw new IllegalStateException();
+		}
+	}
 
-    if (isUser) {
-      return "/user";
-    } else if (isAdmin) {
-      return "/admin";
-    } else if (isImpersonate) {
-      return "/impersonate";
-    }else if (isBackOffice) {
-      return "/backOffice";
-    } else {
-      throw new IllegalStateException();
-    }
-  }
+	@Override
+	public void setRedirectStrategy(RedirectStrategy redirectStrategy) {
+		this.redirectStrategy = redirectStrategy;
+	}
 
-  @Override
-  public void setRedirectStrategy(RedirectStrategy redirectStrategy) {
-    this.redirectStrategy = redirectStrategy;
-  }
-
-  @Override
-  protected RedirectStrategy getRedirectStrategy() {
-    return redirectStrategy;
-  }
-
+	@Override
+	protected RedirectStrategy getRedirectStrategy() {
+		return redirectStrategy;
+	}
 
 }
