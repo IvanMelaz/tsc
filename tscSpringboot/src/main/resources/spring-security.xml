@@ -33,6 +33,13 @@
 	        <security:intercept-url pattern="/askNewPassword" access="permitAll" />
 	        <security:intercept-url pattern="/renewPassword" access="permitAll" />
 
+	        <security:intercept-url pattern="/startAlarm" access="permitAll" />
+	        <security:intercept-url pattern="/positionUpdate" access="permitAll" />
+	        <security:intercept-url pattern="/endAlarm" access="permitAll" />
+	        <security:intercept-url pattern="/register" access="permitAll" />
+	        <security:intercept-url pattern="/deregister" access="permitAll" />
+	        <security:intercept-url pattern="/hearbeat" access="permitAll" />
+
 	        <!-- rest service -->
 	        <security:intercept-url pattern="/allarmiEuropeAssistance" access="permitAll" />
 
