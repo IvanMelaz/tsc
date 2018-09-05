@@ -38,8 +38,7 @@ public class RestSmartWatcherController {
 		// TODO Auto-generated constructor stub
 	}
 
-	@RequestMapping(value = {
-			"/startAlarm​"}, method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/startAlarm", method = RequestMethod.POST, headers = "Accept=application/json")
 	public ResponseEntity<String> startAlarm​(
 			@RequestBody BaseSmartWatcher baseSmartWatcher) {
 		if (smartWatcherService
@@ -58,21 +57,18 @@ public class RestSmartWatcherController {
 		}
 	}
 
-	@RequestMapping(value = {
-			"/positionUpdate​"}, method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/positionUpdate​", method = RequestMethod.POST, headers = "Accept=application/json")
 	public void positionUpdate(
 			@RequestBody PositionSmartWatcher positionSmartWatcher) {
 
 	}
 
-	@RequestMapping(value = {
-			"/endAlarm​​"}, method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/endAlarm​​", method = RequestMethod.POST, headers = "Accept=application/json")
 	public void endAlarm​(@RequestBody BaseSmartWatcher baseSmartWatcher) {
 
 	}
 
-	@RequestMapping(value = {
-			"/register​​"}, method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/register​​", method = RequestMethod.POST, headers = "Accept=application/json")
 	public ResponseEntity<String> register​(
 			@RequestBody DeviceSmartWatcher deviceSmartWatcher) {
 		if (smartWatcherService
@@ -91,16 +87,14 @@ public class RestSmartWatcherController {
 		}
 	}
 
-	@RequestMapping(value = {
-			"/deregister​​"}, method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/deregister​​", method = RequestMethod.POST, headers = "Accept=application/json")
 	public void deregister(@RequestBody BaseSmartWatcher baseSmartWatcher) {
 
 	}
 
-	@RequestMapping(value = {
-			"/hearbeat​​"}, method = RequestMethod.POST, produces = "application/json")
-	public void hearbeat() {
-
+	@RequestMapping(value = "/heartbeat​​", method = RequestMethod.POST, headers = "Accept=application/json")
+	public ResponseEntity<String> hearbeat() {
+		return ResponseEntity.status(HttpStatus.OK).body("");
 	}
 
 }

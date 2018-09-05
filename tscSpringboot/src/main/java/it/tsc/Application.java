@@ -1,5 +1,7 @@
 package it.tsc;
 
+import java.util.Arrays;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -35,13 +37,13 @@ public class Application extends SpringBootServletInitializer {
 	@Bean
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
 		return args -> {
-			/*
-			 * logger.debug(
-			 * "Let's inspect the beans provided by Spring Boot and application:"
-			 * ); String[] beanNames = ctx.getBeanDefinitionNames();
-			 * Arrays.sort(beanNames); for (String beanName : beanNames) {
-			 * logger.debug(beanName); }
-			 */
+			logger.debug(
+					"Let's inspect the beans provided by Spring Boot and application:");
+			String[] beanNames = ctx.getBeanDefinitionNames();
+			Arrays.sort(beanNames);
+			for (String beanName : beanNames) {
+				logger.debug(beanName);
+			} ;
 		};
 	}
 

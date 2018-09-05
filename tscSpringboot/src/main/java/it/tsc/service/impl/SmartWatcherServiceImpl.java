@@ -13,7 +13,7 @@ import it.tsc.service.SmartWatcherService;
  */
 @Service("smartWatcherService")
 public class SmartWatcherServiceImpl implements SmartWatcherService {
-	private static String REGISTERED_NUMBER = "";
+	private static String REGISTERED_NUMBER = "1234";
 	/**
 	 *
 	 */
