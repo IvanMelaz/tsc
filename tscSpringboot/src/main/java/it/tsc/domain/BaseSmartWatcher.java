@@ -16,7 +16,7 @@ public class BaseSmartWatcher {
 	 *
 	 */
 	public BaseSmartWatcher() {
-		// TODO Auto-generated constructor stub
+
 	}
 	public String getPhoneNumber() {
 		return phoneNumber;

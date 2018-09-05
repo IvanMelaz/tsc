@@ -41,17 +41,17 @@
 			access="permitAll" />
 		<!-- SmartWatch -->
 		<security:intercept-url pattern="/startAlarm"
-			access="permitAll" />
+			access="permitAll" method="POST" />
 		<security:intercept-url pattern="/positionUpdate"
-			access="permitAll" />
+			access="permitAll" method="POST" />
 		<security:intercept-url pattern="/endAlarm"
-			access="permitAll" />
+			access="permitAll" method="POST" />
 		<security:intercept-url pattern="/register"
-			access="permitAll" />
+			access="permitAll" method="POST" />
 		<security:intercept-url pattern="/deregister"
-			access="permitAll" />
+			access="permitAll" method="POST" />
 		<security:intercept-url pattern="/hearbeat"
-			access="permitAll" />
+			access="permitAll" method="POST" />
 
 		<!-- rest service -->
 		<security:intercept-url pattern="/allarmiEuropeAssistance"

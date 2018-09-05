@@ -3,6 +3,8 @@
  */
 package it.tsc.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import it.tsc.service.SmartWatcherService;
@@ -13,7 +15,10 @@ import it.tsc.service.SmartWatcherService;
  */
 @Service("smartWatcherService")
 public class SmartWatcherServiceImpl implements SmartWatcherService {
-	private static String REGISTERED_NUMBER = "1234";
+	private static String REGISTERED_NUMBER = "+41770123456";
+	private static final Logger log = LoggerFactory
+			.getLogger(SmartWatcherServiceImpl.class);
+
 	/**
 	 *
 	 */
@@ -67,6 +72,7 @@ public class SmartWatcherServiceImpl implements SmartWatcherService {
 
 	@Override
 	public boolean registerAllarm(String phoneNumber) {
+		log.debug("registerAllarm for: {}", phoneNumber);
 		if (phoneNumber.equals(REGISTERED_NUMBER)) {
 			return true;
 		} else {

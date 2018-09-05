@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import it.tsc.domain.BaseSmartWatcher;
 import it.tsc.domain.DeviceSmartWatcher;
 import it.tsc.domain.MessageSmartWatcher;
-import it.tsc.domain.PositionSmartWatcher;
 import it.tsc.service.SmartWatcherService;
 import it.tsc.util.JsonUtil;
 
@@ -57,10 +56,23 @@ public class RestSmartWatcherController {
 		}
 	}
 
-	@RequestMapping(value = "/positionUpdate​", method = RequestMethod.POST, headers = "Accept=application/json")
-	public void positionUpdate(
-			@RequestBody PositionSmartWatcher positionSmartWatcher) {
-
+	@RequestMapping(value = "/positionUpdate", method = RequestMethod.POST, headers = "Accept=application/json")
+	public ResponseEntity<String> positionUpdate(
+			@RequestBody BaseSmartWatcher baseSmartWatcher) {
+		if (smartWatcherService
+				.checkRegisteredDevice(baseSmartWatcher.getPhoneNumber())) {
+			log.debug("user number {} registered",
+					baseSmartWatcher.getPhoneNumber());
+			return new ResponseEntity<>("", HttpStatus.CREATED);
+		} else {
+			log.debug("user number {} bad_request",
+					baseSmartWatcher.getPhoneNumber());
+			return new ResponseEntity<>(
+					JsonUtil.getGsonConverter()
+							.toJson(new MessageSmartWatcher(
+									MessageSmartWatcher.BAD_REQUEST)),
+					HttpStatus.BAD_REQUEST);
+		}
 	}
 
 	@RequestMapping(value = "/endAlarm​​", method = RequestMethod.POST, headers = "Accept=application/json")
@@ -88,13 +100,22 @@ public class RestSmartWatcherController {
 	}
 
 	@RequestMapping(value = "/deregister​​", method = RequestMethod.POST, headers = "Accept=application/json")
-	public void deregister(@RequestBody BaseSmartWatcher baseSmartWatcher) {
-
-	}
-
-	@RequestMapping(value = "/heartbeat​​", method = RequestMethod.POST, headers = "Accept=application/json")
-	public ResponseEntity<String> hearbeat() {
-		return ResponseEntity.status(HttpStatus.OK).body("");
+	public ResponseEntity<String> deregister(
+			@RequestBody BaseSmartWatcher baseSmartWatcher) {
+		if (smartWatcherService
+				.checkRegisteredDevice(baseSmartWatcher.getPhoneNumber())) {
+			log.debug("user number {} registered",
+					baseSmartWatcher.getPhoneNumber());
+			return new ResponseEntity<>("", HttpStatus.CREATED);
+		} else {
+			log.debug("user number {} bad_request",
+					baseSmartWatcher.getPhoneNumber());
+			return new ResponseEntity<>(
+					JsonUtil.getGsonConverter()
+							.toJson(new MessageSmartWatcher(
+									MessageSmartWatcher.BAD_REQUEST)),
+					HttpStatus.BAD_REQUEST);
+		}
 	}
 
 }
