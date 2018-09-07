@@ -1,5 +1,4 @@
 <%@include file="/WEB-INF/pages/jspf/include.jspf" %>
-<%@ taglib tagdir="/WEB-INF/tags/form" prefix="ajaxForm" %>
 
 <div id="renew-password-box">
 	<h2><spring:message code="label.password.renew" text=""/></h2>
@@ -63,7 +62,7 @@
 	        		<button type="submit" class="btn btn-primary btn-sm"><spring:message code="label.button.send" text="label.button.send" /></button>
 				</td>
             </tr>
-		 </table>	  
+		 </table>
 		</jsp:attribute>
 	</ajaxForm:form>
 </div>

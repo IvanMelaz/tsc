@@ -44,7 +44,7 @@
 		</dependency>
 
 		<!-- Need this to compile JSP,
-			tomcat-embed-jasper version is not working, no idea why -->
+			tomcat-embed-jasper version is not working .. -->
 		<dependency>
 			<groupId>org.eclipse.jdt.core.compiler</groupId>
 			<artifactId>ecj</artifactId>
@@ -87,16 +87,19 @@
 		    <groupId>com.google.code.gson</groupId>
 		    <artifactId>gson</artifactId>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 		<dependency>
 		    <groupId>org.apache.commons</groupId>
 		    <artifactId>commons-lang3</artifactId>
 		</dependency>
+
 		<!-- Database -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+
 		<!-- two factor auth -->
 		<!-- https://mvnrepository.com/artifact/com.j256.two-factor-auth/two-factor-auth -->
 		<dependency>
@@ -104,11 +107,22 @@
 		    <artifactId>two-factor-auth</artifactId>
 		    <version>1.0</version>
 		</dependency>
+
 		<dependency>
             <groupId>org.apache.tiles</groupId>
             <artifactId>tiles-jsp</artifactId>
 			<version>3.0.5</version>
 		</dependency>
+
+		<!-- test -->
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+		<dependency>
+		    <groupId>org.mockito</groupId>
+		    <artifactId>mockito-all</artifactId>
+		    <version>1.9.5</version>
+		    <scope>test</scope>
+		</dependency>
+
     </dependencies>
 
     <build>

@@ -1,12 +1,11 @@
 <%@include file="/WEB-INF/pages/jspf/include.jspf" %>
-<%@ taglib tagdir="/WEB-INF/tags/form" prefix="ajaxForm" %>
 
 <div id="login-box">
 	<h2><spring:message code="label.password.asknew" text=""/></h2>
 
 
 <ajaxForm:form function="askNewPasswordForm" action="jsonAskNewPassword" id="addPortalUser"
-	failure_message="Password [errore richiesta]" success_message="Password [effettuata richiesta con successo] attendere email conferma" 
+	failure_message="Password [errore richiesta]" success_message="Password [effettuata richiesta con successo] attendere email conferma"
 	cssClass="form-inline" >
   	<jsp:attribute name="validateContent">
 		 username: 'required',

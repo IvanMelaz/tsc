@@ -34,7 +34,7 @@ public class RestSmartWatcherController {
 	 *
 	 */
 	public RestSmartWatcherController() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@RequestMapping(value = "/startAlarm", method = RequestMethod.POST, headers = "Accept=application/json")
