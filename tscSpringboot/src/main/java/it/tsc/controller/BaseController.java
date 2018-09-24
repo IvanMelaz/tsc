@@ -43,7 +43,7 @@ public class BaseController {
 	 *
 	 */
 	public BaseController() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public String getMessage(String key) {

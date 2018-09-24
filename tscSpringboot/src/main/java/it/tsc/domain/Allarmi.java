@@ -18,7 +18,7 @@ import com.google.gson.annotations.Expose;
  * @author astraservice POJO class for allarm
  */
 @Entity
-@Table(name = "allarmi", schema = "telesoccorso@mysql_pu")
+@Table(name = "allarmi", schema = "telesoccorso")
 @NamedQueries(value = {
 		@NamedQuery(name = Allarmi.SELECT_ALL_ALLARMS, query = "SELECT a FROM Allarmi a"),
 		@NamedQuery(name = Allarmi.UPDATE_ALLARM, query = "UPDATE Allarmi a SET a.user=:user WHERE a.id_allarme=:id_allarme"),
@@ -84,7 +84,7 @@ public class Allarmi extends BaseDomain {
 	 *
 	 */
 	public Allarmi() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public String getAb_codi() {

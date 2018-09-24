@@ -13,7 +13,7 @@ public class StringTest {
 	 *
 	 */
 	public StringTest() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**

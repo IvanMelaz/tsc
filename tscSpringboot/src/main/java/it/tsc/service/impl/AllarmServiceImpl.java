@@ -27,7 +27,7 @@ public class AllarmServiceImpl implements AllarmService {
 	 *
 	 */
 	public AllarmServiceImpl() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	/*

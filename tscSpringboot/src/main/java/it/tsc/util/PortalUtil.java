@@ -16,7 +16,7 @@ public class PortalUtil {
    * 
    */
   public PortalUtil() {
-    // TODO Auto-generated constructor stub
+    
   }
 
   /**

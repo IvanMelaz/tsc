@@ -33,7 +33,7 @@ public class SpringBootTscTest {
 	 *
 	 */
 	public SpringBootTscTest() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Test

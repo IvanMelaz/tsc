@@ -20,7 +20,7 @@ public class ServiceController extends BaseController {
    *
    */
   public ServiceController() {
-    // TODO Auto-generated constructor stub
+    
   }
 
   protected UserService getUserService() {

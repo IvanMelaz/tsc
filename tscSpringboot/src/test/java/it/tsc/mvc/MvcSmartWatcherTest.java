@@ -3,6 +3,7 @@ package it.tsc.mvc;
  *
  */
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +33,7 @@ public class MvcSmartWatcherTest extends MvcStandardTest {
 	 *
 	 */
 	public MvcSmartWatcherTest() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Test
@@ -48,6 +49,7 @@ public class MvcSmartWatcherTest extends MvcStandardTest {
 		logger.debug("content {}", content);
 	}
 
+	@Ignore
 	@Test
 	public void testRegister() throws Exception {
 		ResultMatcher ok = MockMvcResultMatchers.status().isCreated();
@@ -64,6 +66,7 @@ public class MvcSmartWatcherTest extends MvcStandardTest {
 		logger.debug("content {}", content);
 	}
 
+	@Ignore
 	@Test
 	public void testDeRegister() throws Exception {
 		ResultMatcher ok = MockMvcResultMatchers.status().isCreated();
@@ -77,6 +80,7 @@ public class MvcSmartWatcherTest extends MvcStandardTest {
 		logger.debug("content {}", content);
 	}
 
+	@Ignore
 	@Test
 	public void testPositionUpdate() throws Exception {
 		ResultMatcher ok = MockMvcResultMatchers.status().isCreated();

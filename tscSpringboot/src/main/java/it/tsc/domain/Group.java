@@ -18,7 +18,7 @@ import com.google.gson.annotations.Expose;
  *
  */
 @Entity
-@Table(name = Group.TABLE_NAME, schema = "telesoccorso@mysql_pu", uniqueConstraints = @UniqueConstraint(columnNames = {
+@Table(name = Group.TABLE_NAME, schema = "telesoccorso", uniqueConstraints = @UniqueConstraint(columnNames = {
 		"groupname"}))
 @NamedQueries(value = {
 		@NamedQuery(name = Group.SELECT_GROUPS, query = "SELECT g FROM Group g"),

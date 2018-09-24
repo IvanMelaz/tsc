@@ -1,4 +1,4 @@
-package it.tsc.domain;
+package it.tsc.smartwatch.domain;
 /**
  *
  */
@@ -19,15 +19,6 @@ import com.google.gson.annotations.Expose;
  */
 @Entity
 @Table(name = "coda_eve", schema = "telesoccorso")
-// @NamedStoredProcedureQueries(value = {
-// @NamedStoredProcedureQuery(name = CodaEve.SP_I_INSERTALLARM_TEL_IN_CODA_EVE,
-// procedureName = "sp_i_InsertAllarmi_in_CodaEve_Brondi", parameters = {
-// @StoredProcedureParameter(name = "p_telefono", type = String.class, mode =
-// ParameterMode.IN),
-// @StoredProcedureParameter(name = "p_filename", type = String.class, mode =
-// ParameterMode.IN),
-// @StoredProcedureParameter(name = "p_centrale", type = String.class, mode =
-// ParameterMode.IN)})})
 public class CodaEve extends BaseDomain {
 	private static final long serialVersionUID = -7368201474277648327L;
 

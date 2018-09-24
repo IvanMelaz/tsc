@@ -24,7 +24,7 @@ public class DataConverter implements AttributeConverter<Date, String> {
    *
    */
   public DataConverter() {
-    // TODO Auto-generated constructor stub
+    
   }
 
   @Override

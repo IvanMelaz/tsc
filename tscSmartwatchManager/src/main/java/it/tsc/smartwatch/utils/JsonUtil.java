@@ -1,7 +1,7 @@
 /**
  *
  */
-package it.tsc.util;
+package it.tsc.smartwatch.utils;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class JsonUtil {
 	 *
 	 */
 	public JsonUtil() {
-		
+
 	}
 
 	/**
@@ -47,12 +47,6 @@ public class JsonUtil {
 	public static Gson getGsonConverter() {
 		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation()
 				.create();
-		return gson;
-	}
-
-	public static Gson getGsonHtmlEscapingConverter() {
-		Gson gson = new GsonBuilder().disableHtmlEscaping()
-				.excludeFieldsWithoutExposeAnnotation().create();
 		return gson;
 	}
 

@@ -17,7 +17,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "sequence", schema = "telesoccorso@mysql_pu")
+@Table(name = "sequence", schema = "telesoccorso")
 @NamedStoredProcedureQueries(value = {
 		@NamedStoredProcedureQuery(name = Sequence.SP_NEXT_VALUE, procedureName = "nextval", resultClasses = Long.class, parameters = {
 				@StoredProcedureParameter(name = "seq_name", type = String.class, mode = ParameterMode.IN)}),
@@ -41,7 +41,7 @@ public class Sequence {
 	 *
 	 */
 	public Sequence() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	public String getName() {
 		return name;

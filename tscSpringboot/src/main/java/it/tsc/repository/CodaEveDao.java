@@ -58,4 +58,17 @@ public interface CodaEveDao extends CrudRepository<CodaEve, String> {
 			@Param("p_centrale") String centrale, @Param("p_mux") String mux,
 			@Param("p_ritardo") String ritardo);
 
+	/**
+	 * insert Allarm in coda eve using phone number
+	 *
+	 * @param telefono
+	 * @param filename
+	 * @param centrale
+	 */
+	@Procedure("sp_i_InsertAllarmi_in_CodaEve_Brondi")
+	public void insertAllarmiInCodaEve_Brondi(
+			@Param("p_telefono") String telefono,
+			@Param("p_filename") String filename,
+			@Param("p_centrale") String centrale);
+
 }

@@ -24,7 +24,7 @@ public class AnagraficaServiceImpl implements AnagraficaService {
 	 *
 	 */
 	public AnagraficaServiceImpl() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/*

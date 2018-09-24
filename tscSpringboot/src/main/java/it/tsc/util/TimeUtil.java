@@ -17,7 +17,7 @@ public class TimeUtil {
    * 
    */
   public TimeUtil() {
-    // TODO Auto-generated constructor stub
+    
   }
 
   /**

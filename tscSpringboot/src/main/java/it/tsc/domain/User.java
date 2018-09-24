@@ -18,7 +18,7 @@ import it.tsc.domain.key.UserKey;
  * @author astraservice tb_users
  */
 @Entity
-@Table(name = "tsc_user", schema = "telesoccorso@mysql_pu")
+@Table(name = "tsc_user", schema = "telesoccorso")
 @NamedQueries(value = {
 		@NamedQuery(name = User.SELECT_ALL_USERS, query = "SELECT u FROM User u"),
 		@NamedQuery(name = User.SELECT_BY_USERNAME, query = "SELECT u FROM User u WHERE u.key.username = :username"),

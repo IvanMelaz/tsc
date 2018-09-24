@@ -35,7 +35,7 @@ public class CodaEveServiceImpl implements CodaEveService {
 	@Override
 	public String jsonQueueGetAllarms(String user) {
 		String result = JsonUtil.getGsonConverter()
-				.toJson(codaEveDao.jsonGetAllarms(user));
+				.toJson(codaEveDao.findAll());
 		return result;
 	}
 

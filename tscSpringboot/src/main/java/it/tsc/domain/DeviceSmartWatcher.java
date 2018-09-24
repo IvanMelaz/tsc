@@ -16,7 +16,7 @@ public class DeviceSmartWatcher extends BaseSmartWatcher {
 	 *
 	 */
 	public DeviceSmartWatcher() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	public String getDisplayName() {
 		return displayName;
