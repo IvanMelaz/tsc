@@ -1,4 +1,4 @@
-<%@include file="/WEB-INF/pages/jspf/include.jspf" %>
+<%@include file="pages/include.jspf" %>
 
   <style>
     .mainContent {

@@ -1,4 +1,4 @@
-<%@include file="/WEB-INF/pages/jspf/include.jspf" %>
+<%@include file="pages/include.jspf" %>
 
 <div id="login-box">
 	<h2><spring:message code="label.password.asknew" text=""/></h2>

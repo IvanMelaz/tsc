@@ -1,4 +1,4 @@
-<%@include file="/WEB-INF/pages/jspf/include.jspf" %>
+<%@include file="pages/include.jspf" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <div id="login-box">

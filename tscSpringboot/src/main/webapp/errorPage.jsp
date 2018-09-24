@@ -1,4 +1,4 @@
-<%@include file="/WEB-INF/pages/jspf/include.jspf" %>
+<%@include file="pages/include.jspf" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration
-    debug="true" packagingData="true" scan="true" scanPeriod="15 seconds">
+    debug="true" packagingData="true" scan="false" scanPeriod="15 seconds">
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">

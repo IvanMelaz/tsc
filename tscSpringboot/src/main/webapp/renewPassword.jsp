@@ -1,4 +1,4 @@
-<%@include file="/WEB-INF/pages/jspf/include.jspf" %>
+<%@include file="pages/include.jspf" %>
 
 <div id="renew-password-box">
 	<h2><spring:message code="label.password.renew" text=""/></h2>
