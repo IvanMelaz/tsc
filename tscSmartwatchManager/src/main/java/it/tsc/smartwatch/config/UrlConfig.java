@@ -50,7 +50,7 @@ public class UrlConfig {
 		try {
 			is = new URL(removeUrlPath + "?id_allarme=" + idAllarme)
 					.openStream();
-			log.error("remove allarme: {}", idAllarme);
+			log.info("removeAllAllarm {} path: {}", idAllarme, removeUrlPath);
 		} catch (Exception e) {
 			log.error("readJsonFromUrl error");
 		}

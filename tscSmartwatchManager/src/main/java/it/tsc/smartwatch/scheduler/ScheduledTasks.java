@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -55,14 +56,15 @@ public class ScheduledTasks {
 						}.getType());
 				for (CodaEve codaEve : codaEves) {
 					String telefono = codaEve.getTelefono();
-					UUID uuid = UUID.randomUUID();
-					codaEveDao.insertAllarmiInCodaEve_Brondi(telefono,
-							uuid.toString(), "SMARTWATCH");
-					log.info("insert allarme: {} idAllarme: {}", telefono,
-							codaEve.getId_allarme());
-				}
+					log.info("insert telefono: {}", telefono);
+					if (!StringUtils.isEmpty(telefono)) {
+						UUID uuid = UUID.randomUUID();
+						codaEveDao.insertAllarmiInCodaEve_Brondi(telefono,
+								uuid.toString(), "SMARTWATCH");
+						urlConfig.removeAllarm(codaEve.getId_allarme().trim());
+					}
 
-				log.info("insert allarme {}", data);
+				}
 			} else {
 				log.info("time {} data not present: {}");
 			}
