@@ -17,7 +17,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import it.tsc.smartwatch.Application;
-import it.tsc.smartwatch.config.H2JpaConfig;
+import it.tsc.smartwatch.config.DevelopmentConfig;
 import it.tsc.smartwatch.domain.repository.CodaEveDao;
 
 /**
@@ -25,7 +25,7 @@ import it.tsc.smartwatch.domain.repository.CodaEveDao;
  *
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {Application.class, H2JpaConfig.class})
+@SpringBootTest(classes = {Application.class, DevelopmentConfig.class})
 @ActiveProfiles(value = "production")
 public class ApplicationTest {
 	private static final Logger log = LoggerFactory

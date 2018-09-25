@@ -20,7 +20,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableJpaRepositories(basePackages = "it.tsc.smartwatch.domain")
 @EnableTransactionManagement
-public class MYSQLJPAConfig {
+@Profile("production")
+public class ProductionConfig {
 
 	@Value("${mysql.spring.datasource.url}")
 	private String url;
@@ -31,15 +32,22 @@ public class MYSQLJPAConfig {
 	@Value("${mysql.spring.datasource.driver-class-name}")
 	private String driverClass;
 
-	@Bean
-	@Profile("production")
-	public DataSource dataSource() {
+	@Value("${endpoint.url}")
+	public String endPointUrl;
 
+	@Bean
+	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(driverClass);
 		dataSource.setUrl(url);
 		dataSource.setUsername(user);
 		dataSource.setPassword(password);
 		return dataSource;
+	}
+
+	@Bean
+	public UrlConfig urlConfig() {
+		UrlConfig urlConfig = new UrlConfig(endPointUrl);
+		return urlConfig;
 	}
 }

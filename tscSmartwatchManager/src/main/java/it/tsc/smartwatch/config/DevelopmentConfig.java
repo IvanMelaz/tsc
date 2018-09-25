@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableJpaRepositories(basePackages = "it.tsc.smartwatch.domain")
 @EnableTransactionManagement
-public class H2JpaConfig {
+public class DevelopmentConfig {
 
 	@Bean
 	@Profile("development")
