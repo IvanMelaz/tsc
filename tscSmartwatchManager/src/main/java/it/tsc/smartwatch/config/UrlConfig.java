@@ -14,14 +14,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 public class UrlConfig {
 	private String urlPath;
+	private String removeUrlPath;
 	private static final Logger log = LoggerFactory.getLogger(UrlConfig.class);
-	public UrlConfig(String urlPath) {
+	public UrlConfig(String urlPath, String removeUrlPath) {
 		super();
 		this.urlPath = urlPath;
-	}
-
-	public String getUrlPath() {
-		return urlPath;
+		this.removeUrlPath = removeUrlPath;
 	}
 
 	/**
@@ -47,6 +45,17 @@ public class UrlConfig {
 		return Optional.empty();
 	}
 
+	public void removeAllarm(String idAllarme) {
+		InputStream is;
+		try {
+			is = new URL(removeUrlPath + "?id_allarme=" + idAllarme)
+					.openStream();
+			log.error("remove allarme: {}", idAllarme);
+		} catch (Exception e) {
+			log.error("readJsonFromUrl error");
+		}
+	}
+
 	private String readAll(Reader rd) throws IOException {
 		StringBuilder sb = new StringBuilder();
 		int cp;
@@ -54,6 +63,14 @@ public class UrlConfig {
 			sb.append((char) cp);
 		}
 		return sb.toString();
+	}
+
+	public String getUrlPath() {
+		return urlPath;
+	}
+
+	public String getRemoveUrlPath() {
+		return removeUrlPath;
 	}
 
 }

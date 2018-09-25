@@ -93,6 +93,17 @@ public class RestSmartWatcherController {
 
 	}
 
+	@RequestMapping(value = "/removeAllAllarms", method = RequestMethod.GET, headers = "Accept=application/json")
+	public void removeAllAllarms() {
+		log.debug("removeAllAllarms​​: {}");
+		try {
+			codaEveDao.deleteAll();
+		} catch (Exception e) {
+			log.error("removeAlarm​​s Exception: {}", e);
+		}
+
+	}
+
 	// @RequestMapping(value = "/positionUpdate", method = RequestMethod.POST,
 	// headers = "Accept=application/json")
 	// public ResponseEntity<String> positionUpdate(

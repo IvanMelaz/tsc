@@ -45,12 +45,10 @@ public class CodaEve extends BaseDomain {
 
 	@Temporal(TemporalType.DATE)
 	@Column
-	@Expose
 	private Date data;
 
 	@Temporal(TemporalType.TIME)
 	@Column
-	@Expose
 	private Date ora;
 
 	@Column

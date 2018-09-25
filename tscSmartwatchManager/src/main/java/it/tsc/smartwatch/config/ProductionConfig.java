@@ -34,6 +34,8 @@ public class ProductionConfig {
 
 	@Value("${endpoint.url}")
 	public String endPointUrl;
+	@Value("${removeallarm.endpoint.url}")
+	public String removeEndPointUrl;
 
 	@Bean
 	public DataSource dataSource() {
@@ -47,7 +49,7 @@ public class ProductionConfig {
 
 	@Bean
 	public UrlConfig urlConfig() {
-		UrlConfig urlConfig = new UrlConfig(endPointUrl);
+		UrlConfig urlConfig = new UrlConfig(endPointUrl, removeEndPointUrl);
 		return urlConfig;
 	}
 }

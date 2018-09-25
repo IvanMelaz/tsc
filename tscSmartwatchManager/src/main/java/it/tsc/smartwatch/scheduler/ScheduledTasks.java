@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import it.tsc.smartwatch.config.UrlConfig;
@@ -45,6 +47,9 @@ public class ScheduledTasks {
 		try {
 			if (urlConfig.readJsonFromUrl().isPresent()) {
 				String data = urlConfig.readJsonFromUrl().get();
+				log.info("read data: {} idAllarme: {}", data);
+				Gson gson = new GsonBuilder().setDateFormat("mm DD, yyyy")
+						.excludeFieldsWithoutExposeAnnotation().create();
 				List<CodaEve> codaEves = JsonUtil.getGsonConverter()
 						.fromJson(data, new TypeToken<List<CodaEve>>() {
 						}.getType());
