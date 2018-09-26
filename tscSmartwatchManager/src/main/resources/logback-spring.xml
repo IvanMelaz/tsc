@@ -2,24 +2,17 @@
 <configuration debug="true" packagingData="true" scan="false"
 	scanPeriod="15 seconds">
 
-	<appender name="FILE"
-		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>debug.log</file>
-		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<Pattern>
-				%d{yyyy-MM-dd HH:mm:ss} - %msg%n
-			</Pattern>
-		</encoder>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<!-- rollover daily -->
-			<fileNamePattern>debug.%d{yyyy-MM-dd}.%i.log
-			</fileNamePattern>
-			<timeBasedFileNamingAndTriggeringPolicy
-				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				<maxFileSize>20MB</maxFileSize>
-			</timeBasedFileNamingAndTriggeringPolicy>
-		</rollingPolicy>
-	</appender>
+	<appender name="TIME_BASED_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>smartwatch_debug.log</file>
+		   	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		     		<!-- daily rollover -->
+		     		<fileNamePattern>smartwatch_debug.%d{yyyy-MM-dd-HH-mm}.log</fileNamePattern>
+		     		<maxHistory>7</maxHistory>
+		   	</rollingPolicy>
+		   	<encoder>
+		     		<pattern>%relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+		   	</encoder>
+ 	</appender>
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
@@ -53,7 +46,7 @@
 
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />
-		<appender-ref ref="FILE" />
+		<appender-ref ref="TIME_BASED_FILE" />
 	</root>
 
 </configuration>
