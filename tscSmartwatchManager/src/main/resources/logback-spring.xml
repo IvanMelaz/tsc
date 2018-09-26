@@ -11,7 +11,7 @@
 			</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy
 				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				<!-- or whenever the file size reaches 50MB -->
+				<!-- or whenever the file size reaches 1MB -->
 				<maxFileSize>1MB</maxFileSize>
 			</timeBasedFileNamingAndTriggeringPolicy>
 			<!-- keep 30 days' worth of history -->
