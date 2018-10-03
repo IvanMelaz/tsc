@@ -1,0 +1,1 @@
+COPY ks_tsc.anagrafica from '';

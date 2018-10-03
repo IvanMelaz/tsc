@@ -1,0 +1,9 @@
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"phoneNumber":"333255255"}' \
+http://www.mycare24.org:8080/startAlarm
+
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"phoneNumber":"333255255"}' \
+http://localhost:8080/startAlarm
