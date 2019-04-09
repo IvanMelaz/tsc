@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
-Built-By: "astraservice"
-Build-Jdk: 10.0.1
 Implementation-Title: tscSpringboot
 Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: astraservice
 Implementation-Vendor-Id: tscSpringMVC
+Build-Jdk: 1.8.0_201
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/tscSpringboot
 Created-By: Maven Integration for Eclipse
