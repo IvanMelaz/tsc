@@ -18,7 +18,7 @@ import com.google.gson.annotations.Expose;
  * @author astraservice POJO class for allarm
  */
 @Entity
-@Table(name = "coda_eve", schema = "telesoccorso")
+@Table(name = "coda_eve")
 // @NamedStoredProcedureQueries(value = {
 // @NamedStoredProcedureQuery(name = CodaEve.SP_I_INSERTALLARM_TEL_IN_CODA_EVE,
 // procedureName = "sp_i_InsertAllarmi_in_CodaEve_Brondi", parameters = {

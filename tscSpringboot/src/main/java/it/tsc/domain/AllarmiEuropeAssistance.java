@@ -27,7 +27,7 @@ import it.tsc.domain.types.TipologiaServizio;
  * @author astraservice POJO class for allarm
  */
 @Entity
-@Table(name = "tsc_europe", schema = "telesoccorso")
+@Table(name = "tsc_europe")
 @NamedQueries(value = {
 		@NamedQuery(name = AllarmiEuropeAssistance.SELECT_ALLARM_EA, query = "SELECT a FROM AllarmiEuropeAssistance a ORDER BY a.dataArrivo DESC")})
 public class AllarmiEuropeAssistance extends BaseDomain {

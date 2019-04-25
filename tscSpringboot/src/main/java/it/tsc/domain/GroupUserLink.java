@@ -14,7 +14,7 @@ import it.tsc.domain.key.UserGroupKey;
  *
  */
 @Entity
-@Table(name = "tsc_group_user_link", schema = "telesoccorso")
+@Table(name = "tsc_group_user_link")
 public class GroupUserLink {
 
 	@EmbeddedId

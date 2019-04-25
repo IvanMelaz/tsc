@@ -21,7 +21,7 @@ import com.google.gson.annotations.Expose;
  * @author astraservice Anagrafica Utente
  */
 @Entity
-@Table(name = "anagrafica", schema = "telesoccorso")
+@Table(name = "anagrafica")
 @NamedQueries(value = {
 		@NamedQuery(name = Anagrafica.SELECT_ANAGRAFICA_BY_ABCODI, query = "SELECT a FROM Anagrafica a WHERE TRIM(a.ab_codi) = TRIM(:ab_codi)")})
 //@formatter:off

@@ -57,6 +57,7 @@ public class MvcSmartWatcherTest extends MvcStandardTest {
 		logger.debug("content {}", content);
 	}
 	
+	@Ignore
 	@Test
 	public void testStartAllarmExternalService() throws Exception {
 		sendPost();
