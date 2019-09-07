@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: tscCloudService
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: astraservice
+Implementation-Vendor-Id: tscSpringMVC
+Build-Jdk: 1.8.0_201
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/tscCloudService
+Created-By: Maven Integration for Eclipse
+
