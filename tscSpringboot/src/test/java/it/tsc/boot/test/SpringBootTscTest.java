@@ -29,7 +29,7 @@ import it.tsc.domain.User;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ActiveProfiles("test")
+//@ActiveProfiles("test")
 public class SpringBootTscTest {
 
 	@PersistenceContext
