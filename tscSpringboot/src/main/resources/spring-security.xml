@@ -20,8 +20,19 @@
 		pattern="/services/EuropeAssistanceWebService**">
 		<security:csrf disabled="true" />
 	</security:http>
+
 	<security:http auto-config="true" use-expressions="true"
 		pattern="/tscSpringMVC/services/EuropeAssistanceWebService**">
+		<security:csrf disabled="true" />
+	</security:http>
+
+	<security:http auto-config="true" use-expressions="true"
+				   pattern="/services/TelemedicareWebService**">
+		<security:csrf disabled="true" />
+	</security:http>
+
+	<security:http auto-config="true" use-expressions="true"
+				   pattern="/tscSpringMVC/services/TelemedicareWebService**">
 		<security:csrf disabled="true" />
 	</security:http>
 
@@ -65,6 +76,15 @@
 			pattern="/services/services/EuropeAssistanceWebService**" access="permitAll" />
 		<security:intercept-url pattern="/jaxWs/services/**"
 			access="permitAll" />
+
+		<security:intercept-url pattern="/TelemedicareWebService**"
+								access="permitAll" />
+		<security:intercept-url pattern="/services/TelemedicareWebService**"
+								access="permitAll" />
+		<security:intercept-url
+				pattern="/services/services/TelemedicareWebService**" access="permitAll" />
+		<security:intercept-url pattern="/jaxWs/services/**"
+								access="permitAll" />
 
 		<!-- profiled access , SECURED -->
 		<security:intercept-url pattern="/addMfaSecurityCode"

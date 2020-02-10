@@ -42,7 +42,7 @@ import it.tsc.webservice.domain.WsResult;
 @WebService(name = "allarmeEuropeAssistance", targetNamespace = "www.mycare24.org")
 @SOAPBinding(style = Style.RPC, use = Use.LITERAL)
 @SuppressWarnings("unused")
-public class EuropeAssistanceWebService {
+public class EuropeAssistanceWebService extends BaseWebService {
 	private static Logger logger = LoggerFactory
 			.getLogger(EuropeAssistanceWebService.class);
 	private static String DATE_FORMAT = "yyyy-MM-ddThh:mm:ss";
@@ -199,41 +199,6 @@ public class EuropeAssistanceWebService {
 		}
 
 		return result;
-	}
-
-	/**
-	 * populate output result with error
-	 *
-	 * @param esito
-	 * @param errorCode
-	 * @return
-	 */
-	private WsResult populateErrorResult(ErrorCode errorCode) {
-		Esito esito = Esito.KO;
-		WsResult result = new WsResult(esito, errorCode.getDescription(),
-				errorCode.getNumVal(), "");
-		return result;
-	}
-
-	/**
-	 * A common method for all enums since they can't have another base class
-	 *
-	 * @param <T>
-	 *            Enum type
-	 * @param c
-	 *            enum type. All enums must be all caps.
-	 * @param string
-	 *            case insensitive
-	 * @return corresponding enum, or null
-	 */
-	private <T extends Enum<T>> T getEnumFromString(Class<T> c, String string) {
-		if (c != null && string != null) {
-			try {
-				return Enum.valueOf(c, string.trim().toUpperCase());
-			} catch (IllegalArgumentException ex) {
-			}
-		}
-		return null;
 	}
 
 }

@@ -39,14 +39,10 @@ public class SpringBootTscTest {
 	 *
 	 */
 	public SpringBootTscTest() {
-		
-	}
-
-	@Test
-	public void testCreateClientSuccessfully() throws Exception {
 
 	}
 
+	@Ignore
 	@Test
 	public void userTest() {
 		TypedQuery<User> findQuery = em
@@ -54,6 +50,11 @@ public class SpringBootTscTest {
 		findQuery.setParameter("username", "testUser");
 		List<User> allUsers = findQuery.getResultList();
 		assertNotNull(em);
+	}
+
+	@Test
+	public void testCreateClientSuccessfully() throws Exception {
+
 	}
 
 }

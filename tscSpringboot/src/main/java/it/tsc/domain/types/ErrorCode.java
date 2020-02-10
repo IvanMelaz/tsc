@@ -17,7 +17,10 @@ public enum ErrorCode {
   CODICE_BP(6,"Il codice BP deve essere inserito"),
   TIPOLOGIA_SERVIZIO(7,"La tipologia di servizio  deve essere specificata, valori validi(CONSULENZA,INVIO_MEDICO))"),
   TIPOLOGIA_CONSULENZA(8,"La tipologia di consulenza deve essere specificata, valoti validi (SCRITTA,PHONE)"),
-  FASCIA_ORARIA(9," La fascia oraria deve essere espessa in formato (FASCIA1,FASCIA2,FASCIA3)");
+  FASCIA_ORARIA(9," La fascia oraria deve essere espessa in formato (FASCIA1,FASCIA2,FASCIA3)"),
+	//Telemedicare
+  CODICE_ALLARME(10,"Il codice allarme deve essere inserito e non maggiore di XX caratteri") ,
+  PROGRESSIVO_ALLARME(11,"Il progressivo allarme deve essere inserito e non maggiore di XX caratteri") ;
 //@formatter:on
 
 	private int numVal;
