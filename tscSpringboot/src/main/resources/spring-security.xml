@@ -10,29 +10,19 @@
 	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
 	<beans:import resource="classpath:spring-beans.xml" />
+	<beans:import resource="classpath:spring-webservice.xml" />
 
 	<!-- annotated methods with security -->
 	<security:global-method-security
 		pre-post-annotations="enabled" />
 
-	<!-- skip CRSF for WS -->
 	<security:http auto-config="true" use-expressions="true"
-		pattern="/services/EuropeAssistanceWebService**">
+				   pattern="/services/Telemedicare**">
 		<security:csrf disabled="true" />
 	</security:http>
 
 	<security:http auto-config="true" use-expressions="true"
-		pattern="/tscSpringMVC/services/EuropeAssistanceWebService**">
-		<security:csrf disabled="true" />
-	</security:http>
-
-	<security:http auto-config="true" use-expressions="true"
-				   pattern="/services/TelemedicareWebService**">
-		<security:csrf disabled="true" />
-	</security:http>
-
-	<security:http auto-config="true" use-expressions="true"
-				   pattern="/tscSpringMVC/services/TelemedicareWebService**">
+				   pattern="/tscSpringMVC/services/Telemedicare**">
 		<security:csrf disabled="true" />
 	</security:http>
 
@@ -64,26 +54,17 @@
 			access="permitAll" method="POST" />
 
 		<!-- rest service -->
-		<security:intercept-url pattern="/allarmiEuropeAssistance"
-			access="permitAll" />
+		<security:intercept-url pattern="/allarmiTelemedicare"
+								access="permitAll" />
 
 		<!-- web services -->
-		<security:intercept-url pattern="/EuropeAssistanceWebService**"
-			access="permitAll" />
-		<security:intercept-url pattern="/services/EuropeAssistanceWebService**"
-			access="permitAll" />
-		<security:intercept-url
-			pattern="/services/services/EuropeAssistanceWebService**" access="permitAll" />
-		<security:intercept-url pattern="/jaxWs/services/**"
-			access="permitAll" />
-
-		<security:intercept-url pattern="/TelemedicareWebService**"
+		<security:intercept-url pattern="/Telemedicare**"
 								access="permitAll" />
-		<security:intercept-url pattern="/services/TelemedicareWebService**"
+		<security:intercept-url pattern="/services/Telemedicare**"
 								access="permitAll" />
 		<security:intercept-url
-				pattern="/services/services/TelemedicareWebService**" access="permitAll" />
-		<security:intercept-url pattern="/jaxWs/services/**"
+				pattern="/Service/services/Telemedicare**" access="permitAll" />
+		<security:intercept-url pattern="/jaxWs/Service/**"
 								access="permitAll" />
 
 		<!-- profiled access , SECURED -->

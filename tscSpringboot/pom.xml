@@ -82,6 +82,14 @@
 		    <scope>test</scope>
 		</dependency>
 
+		<!-- cxf Web Services -->
+		<!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-spring-boot-starter-jaxws -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+			<version>3.3.4</version>
+		</dependency>
+
 		<!-- Gson JSON Mapper -->
 		<dependency>
 		    <groupId>com.google.code.gson</groupId>
@@ -98,6 +106,15 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<!-- H2 test DB -->
+		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.200</version>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- two factor auth -->
@@ -128,12 +145,6 @@
 		    <groupId>junit</groupId>
 		    <artifactId>junit</artifactId>
 		    <scope>test</scope>
-		</dependency>
-		
-		<!-- H2 test DB -->
-		<dependency>
-		    <groupId>com.h2database</groupId>
-		    <artifactId>h2</artifactId>
 		</dependency>
 
     </dependencies>

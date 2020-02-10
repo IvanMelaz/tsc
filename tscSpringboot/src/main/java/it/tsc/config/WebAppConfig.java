@@ -1,8 +1,14 @@
 package it.tsc.config;
 
+import javax.xml.ws.Endpoint;
+
+import it.tsc.webservice.impl.TeleMedicareEndPointImpl;
+import org.apache.cxf.Bus;
+import org.apache.cxf.jaxws.EndpointImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -20,6 +26,9 @@ public class WebAppConfig implements WebMvcConfigurer {
 	@Autowired
 	CustomInterceptor customInterceptor;
 
+	@Autowired
+	private Bus bus;
+
 	public WebAppConfig() {
 
 	}
@@ -34,5 +43,12 @@ public class WebAppConfig implements WebMvcConfigurer {
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addRedirectViewController("/", "index.html");
 	}
+
+/*	@Bean
+	public Endpoint endpoint() {
+		EndpointImpl endpoint = new EndpointImpl(bus, new TeleMedicareEndPointImpl());
+		endpoint.publish("/Telemedicare");
+		return endpoint;
+	}*/
 
 }

@@ -8,8 +8,23 @@
         </layout>
     </appender>
 
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logFile.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logFile-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<maxFileSize>100MB</maxFileSize>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>1GB</totalSizeCap>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%-4relative %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+		</layout>
+	</appender>
+
 	<logger name="org.springframework" level="ERROR" additivity="false">
 		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
 	</logger>
 
 <!-- 	<logger name="org.springframework.web.servlet.mvc" level="DEBUG" additivity="false">
@@ -18,14 +33,22 @@
 
 	<logger name="org.hibernate" level="ERROR" additivity="false">
 		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
 	</logger>
 
 	<logger name="com.zaxxer.hikari" level="ERROR" additivity="false">
 		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
 	</logger>
 
 	<logger name="it.tsc" level="DEBUG" additivity="false">
 		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</logger>
+
+	<logger level="TRACE" name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
 	</logger>
 
 <!--     <logger name="org.hibernate.SQL" level="DEBUG" additivity="false" >
@@ -36,7 +59,7 @@
  		<appender-ref ref="STDOUT" />
 	</logger> -->
 
-	<root level="INFO">
+	<root level="DEBUG">
 		<appender-ref ref="STDOUT" />
 	</root>
 
