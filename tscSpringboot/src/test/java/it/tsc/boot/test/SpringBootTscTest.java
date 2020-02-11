@@ -3,25 +3,24 @@
  */
 package it.tsc.boot.test;
 
-import static org.junit.Assert.assertNotNull;
-
-import java.util.List;
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+import it.tsc.domain.User;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import it.tsc.Application;
-import it.tsc.domain.User;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * @author "astraservice"
@@ -29,7 +28,11 @@ import it.tsc.domain.User;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-//@ActiveProfiles("test")
+@TestPropertySource(locations = "/application.test.properties")
+@ImportResource(value = "classpath*:test-configuration.xml")
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
+		DbUnitTestExecutionListener.class })
+@DatabaseSetup("classpath:data/data.xml")
 public class SpringBootTscTest {
 
 	@PersistenceContext
@@ -42,7 +45,6 @@ public class SpringBootTscTest {
 
 	}
 
-	@Ignore
 	@Test
 	public void userTest() {
 		TypedQuery<User> findQuery = em
@@ -53,7 +55,7 @@ public class SpringBootTscTest {
 	}
 
 	@Test
-	public void testCreateClientSuccessfully() throws Exception {
+	public void testCreateClientSuccessfully() {
 
 	}
 

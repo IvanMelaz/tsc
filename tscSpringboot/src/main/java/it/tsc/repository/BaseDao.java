@@ -3,21 +3,23 @@
  */
 package it.tsc.repository;
 
-import java.sql.Connection;
+import org.apache.commons.lang3.Validate;
+import org.hibernate.internal.SessionImpl;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-
-import org.hibernate.internal.SessionImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
+import java.sql.Connection;
 
 /**
  * @author astraservice
- *
  */
 public class BaseDao {
-	@Autowired
-	private EntityManager entityManager;
+
+	@PersistenceUnit
+	private EntityManagerFactory entityManagerFactory;
+
+	private EntityManager entityManager = null;
 
 	/**
 	 *
@@ -27,32 +29,30 @@ public class BaseDao {
 	}
 
 	public EntityManager getEntityManager() {
+		if (entityManager == null) {
+			entityManager = entityManagerFactory.createEntityManager();
+		}
+		Validate.notNull(entityManager, "entityManager cannot be null");
 		return this.entityManager;
 	}
 
-	public EntityTransaction getEntityTransaction() {
-		EntityTransaction entityTransaction = entityManager.getTransaction();
-		return entityTransaction;
-	}
-
 	public Connection getConnection() {
-		Connection connection = ((SessionImpl) entityManager.getDelegate())
+		return ((SessionImpl) getEntityManager().getDelegate())
 				.connection();
-		return connection;
 	}
 
 	public <T> void saveAndFlush(T entity) {
-		entityManager.persist(!entityManager.contains(entity)
+		getEntityManager().persist(!getEntityManager().contains(entity)
 				? entity
-				: entityManager.merge(entity));
-		entityManager.flush();
+				: getEntityManager().merge(entity));
+		getEntityManager().flush();
 	}
 
 	public <T> void removeAndFlush(T entity) {
-		entityManager.remove(entityManager.contains(entity)
+		getEntityManager().remove(getEntityManager().contains(entity)
 				? entity
-				: entityManager.merge(entity));
-		entityManager.flush();
+				: getEntityManager().merge(entity));
+		getEntityManager().flush();
 	}
 
 }

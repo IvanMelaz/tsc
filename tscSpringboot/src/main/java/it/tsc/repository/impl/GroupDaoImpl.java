@@ -3,17 +3,6 @@
  */
 package it.tsc.repository.impl;
 
-import java.util.List;
-
-import javax.persistence.EntityTransaction;
-import javax.persistence.TypedQuery;
-
-import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
 import it.tsc.domain.Group;
 import it.tsc.domain.GroupUserLink;
 import it.tsc.domain.User;
@@ -22,6 +11,15 @@ import it.tsc.repository.BaseDao;
 import it.tsc.repository.GroupDao;
 import it.tsc.repository.UserDao;
 import it.tsc.service.SequenceService;
+import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 /**
  * @author astraservice
@@ -54,7 +52,7 @@ public class GroupDaoImpl extends BaseDao implements GroupDao {
   @Override
   public void addGroup(String groupname) {
     Group group = new Group();
-    EntityTransaction tx = getEntityTransaction();
+    EntityTransaction tx = getEntityManager().getTransaction();
     try {
       tx.begin();
       group.setGroupId(sequenceService.getNextVal(Group.TABLE_NAME));
@@ -76,7 +74,7 @@ public class GroupDaoImpl extends BaseDao implements GroupDao {
   @Override
   public void removeGroup(String groupname) {
     Group group = findByName(groupname);
-    EntityTransaction tx = getEntityTransaction();
+    EntityTransaction tx = getEntityManager().getTransaction();
     try {
       tx.begin();
       removeAndFlush(group);
@@ -98,7 +96,7 @@ public class GroupDaoImpl extends BaseDao implements GroupDao {
     Group group = findByName(groupname);
 
     List<User> users = userDao.getUser(username);
-    EntityTransaction tx = getEntityTransaction();
+    EntityTransaction tx = getEntityManager().getTransaction();
     try {
       tx.begin();
       for (User user : users) {
@@ -124,7 +122,7 @@ public class GroupDaoImpl extends BaseDao implements GroupDao {
     Group group = findByName(groupname);
     List<User> users = userDao.getUser(username);
     Validate.isTrue(group.getGroupId() != 0, "groupId cannot be 0");
-    EntityTransaction tx = getEntityTransaction();
+    EntityTransaction tx = getEntityManager().getTransaction();
     try {
       tx.begin();
       for (User user : users) {

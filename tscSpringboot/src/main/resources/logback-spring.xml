@@ -37,30 +37,30 @@
 	</logger>
 
 	<logger name="com.zaxxer.hikari" level="ERROR" additivity="false">
-		<appender-ref ref="STDOUT" />
-		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT"/>
+		<appender-ref ref="FILE"/>
 	</logger>
 
 	<logger name="it.tsc" level="DEBUG" additivity="false">
-		<appender-ref ref="STDOUT" />
-		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT"/>
+		<appender-ref ref="FILE"/>
 	</logger>
 
-	<logger level="TRACE" name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
-		<appender-ref ref="STDOUT" />
-		<appender-ref ref="FILE" />
+	<logger level="INFO" name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+		<appender-ref ref="STDOUT"/>
+		<appender-ref ref="FILE"/>
 	</logger>
 
-<!--     <logger name="org.hibernate.SQL" level="DEBUG" additivity="false" >
- 		<appender-ref ref="STDOUT" />
-	</logger>
+	<!--     <logger name="org.hibernate.SQL" level="DEBUG" additivity="false" >
+             <appender-ref ref="STDOUT" />
+        </logger>
 
-    <logger name="org.hibernate.type" level="TRACE" additivity="false" >
- 		<appender-ref ref="STDOUT" />
-	</logger> -->
+        <logger name="org.hibernate.type" level="TRACE" additivity="false" >
+             <appender-ref ref="STDOUT" />
+        </logger> -->
 
-	<root level="DEBUG">
-		<appender-ref ref="STDOUT" />
+	<root level="INFO">
+		<appender-ref ref="STDOUT"/>
 	</root>
 
 </configuration>

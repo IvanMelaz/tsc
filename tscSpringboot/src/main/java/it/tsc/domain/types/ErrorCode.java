@@ -18,12 +18,12 @@ public enum ErrorCode {
   TIPOLOGIA_SERVIZIO(7,"La tipologia di servizio  deve essere specificata, valori validi(CONSULENZA,INVIO_MEDICO))"),
   TIPOLOGIA_CONSULENZA(8,"La tipologia di consulenza deve essere specificata, valoti validi (SCRITTA,PHONE)"),
   FASCIA_ORARIA(9," La fascia oraria deve essere espessa in formato (FASCIA1,FASCIA2,FASCIA3)"),
-	//Telemedicare
-  CODICE_ALLARME(10,"Il codice allarme deve essere inserito e non maggiore di XX caratteri") ,
-  PROGRESSIVO_ALLARME(11,"Il progressivo allarme deve essere inserito e non maggiore di XX caratteri") ;
+  //Telemedicare
+  PROGRESSIVO_ALLARME(10,"Il progressivo allarme deve essere inserito e non maggiore di 50 caratteri") ;
 //@formatter:on
 
 	private int numVal;
+
 	private String errorDescription;
 
 	ErrorCode(int numVal, String errorDescription) {

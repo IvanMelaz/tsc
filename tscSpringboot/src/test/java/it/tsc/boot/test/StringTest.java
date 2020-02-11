@@ -20,7 +20,6 @@ public class StringTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		String fieldName = "1,2,3,";
 		if (fieldName.trim().endsWith(",")) {
 			fieldName = fieldName.substring(0, fieldName.length() - 1);
