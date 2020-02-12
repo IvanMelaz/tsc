@@ -15,12 +15,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
-import javax.jws.WebService;
 import javax.xml.soap.SOAPException;
 
-@WebService(serviceName = "TelemedicareService", portName = "TelemedicarePort",
-		targetNamespace = "http://it.tsc.webservice/",
-		endpointInterface = "it.tsc.webservice.TeleMedicareEndpoint")
 public class TeleMedicareEndPointImpl extends BaseWebService implements TeleMedicareEndpoint {
 	private static Logger logger = LoggerFactory
 			.getLogger(TeleMedicareEndPointImpl.class);
@@ -57,7 +53,7 @@ public class TeleMedicareEndPointImpl extends BaseWebService implements TeleMedi
 			/**
 			 * Call to DaoService
 			 */
-			logger.debug("codiceAllarme: {} progressivoAllarme: {}", codiceAllarme, progressivoAllarme);
+			logger.debug("allarmeTelemedicare codiceAllarme: {} progressivoAllarme: {}", codiceAllarme, progressivoAllarme);
 			telemedicareService.saveAllarm(allarmiTelemedicare);
 			result = new WsResult(Esito.OK, "", 0,
 					allarmiTelemedicare.getId_allarme());
@@ -80,7 +76,7 @@ public class TeleMedicareEndPointImpl extends BaseWebService implements TeleMedi
 			/**
 			 * Call to DaoService
 			 */
-			logger.debug("codiceAllarme: {} progressivoAllarme: {}", codiceAllarme, progressivoAllarme);
+			logger.debug("eliminaAllarmeTelemedicare progressivoAllarme: {}", progressivoAllarme);
 			telemedicareService.dropAllarm(progressivoAllarme);
 			result = new WsResult(Esito.OK, "", 0,
 					progressivoAllarme);

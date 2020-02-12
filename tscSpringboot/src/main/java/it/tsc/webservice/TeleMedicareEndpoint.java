@@ -9,7 +9,9 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.soap.SOAPException;
 
-@WebService(targetNamespace = "http://it.tsc.webservice/", name = "TeleMedicare")
+@WebService(serviceName = "TelemedicareService", portName = "TelemedicarePort",
+		targetNamespace = "http://it.tsc.webservice/",
+		endpointInterface = "it.tsc.webservice.TeleMedicareEndpoint")
 @SOAPBinding(style = SOAPBinding.Style.RPC, use = SOAPBinding.Use.LITERAL)
 public interface TeleMedicareEndpoint {
 	@WebMethod(action = "urn:allarmeTelemedicare")
@@ -18,6 +20,7 @@ public interface TeleMedicareEndpoint {
 					mode = WebParam.Mode.IN) String progressivoAllarme)
 			throws SOAPException, ServiceException;
 
+	@WebMethod(action = "urn:eliminaAllarmeTelemedicare")
 	WsResult eliminaAllarmeTelemedicare(
 			@WebParam(name = "progressivoAllarme",
 					mode = WebParam.Mode.IN) String progressivoAllarme)
