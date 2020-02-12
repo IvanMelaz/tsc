@@ -31,7 +31,7 @@ import java.util.Properties;
 @EnableJpaRepositories(basePackages = "it.tsc.smartwatch.domain")
 @EnableTransactionManagement
 @Profile("production")
-public class ProductionConfig {
+public class ProductionConfig extends BaseConfig{
 
 	@Autowired
 	private Environment env;
@@ -44,11 +44,6 @@ public class ProductionConfig {
 	private String password;
 	@Value("${mysql.spring.datasource.driver-class-name}")
 	private String driverClass;
-
-	@Value("${endpoint.url}")
-	public String endPointUrl;
-	@Value("${removeallarm.endpoint.url}")
-	public String removeEndPointUrl;
 
 	@Bean
 	public DataSource dataSource() {

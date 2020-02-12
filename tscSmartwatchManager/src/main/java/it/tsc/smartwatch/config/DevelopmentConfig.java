@@ -26,12 +26,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableJpaRepositories(basePackages = "it.tsc.smartwatch.domain")
 @EnableTransactionManagement
-public class DevelopmentConfig {
-
-	@Value("${endpoint.url}")
-	public String endPointUrl;
-	@Value("${removeallarm.endpoint.url}")
-	public String removeEndPointUrl;
+public class DevelopmentConfig extends BaseConfig {
 
 	@Bean
 	@Profile("development")
