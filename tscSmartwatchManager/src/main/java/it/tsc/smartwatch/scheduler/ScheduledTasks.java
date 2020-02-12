@@ -1,6 +1,3 @@
-/**
- *
- */
 package it.tsc.smartwatch.scheduler;
 
 import java.text.SimpleDateFormat;
@@ -8,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import it.tsc.smartwatch.utils.UrlConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +13,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import it.tsc.smartwatch.config.UrlConfig;
 import it.tsc.smartwatch.domain.CodaEve;
 import it.tsc.smartwatch.domain.repository.CodaEveDao;
 import it.tsc.smartwatch.utils.JsonUtil;
@@ -43,33 +38,31 @@ public class ScheduledTasks {
 
 	@Scheduled(fixedDelayString = "${fixed.rate}")
 	public void startScheduler() {
-		log.info("The time is now {} config: {}", dateFormat.format(new Date()),
+		log.info("The time is:{} config:{}", dateFormat.format(new Date()),
 				urlConfig.getUrlPath());
 		try {
 			if (urlConfig.readJsonFromUrl().isPresent()) {
 				String data = urlConfig.readJsonFromUrl().get();
-				log.info("read data: {} idAllarme: {}", data);
-				Gson gson = new GsonBuilder().setDateFormat("mm DD, yyyy")
-						.excludeFieldsWithoutExposeAnnotation().create();
+				log.info("read data:{}", data);
 				List<CodaEve> codaEves = JsonUtil.getGsonConverter()
 						.fromJson(data, new TypeToken<List<CodaEve>>() {
 						}.getType());
 				for (CodaEve codaEve : codaEves) {
-					String telefono = codaEve.getTelefono();
-					log.info("insert telefono: {}", telefono);
-					if (!StringUtils.isEmpty(telefono)) {
+					String phone = codaEve.getTelefono();
+					log.info("insert phone: {}", phone);
+					if (!StringUtils.isEmpty(phone)) {
 						UUID uuid = UUID.randomUUID();
-						codaEveDao.insertAllarmiInCodaEve_Brondi(telefono,
+						codaEveDao.insertAllarmiInCodaEve_Brondi(phone,
 								uuid.toString(), "SMARTWATCH");
 						urlConfig.removeAllarm(codaEve.getId_allarme().trim());
 					}
 
 				}
 			} else {
-				log.info("time {} data not present: {}");
+				log.info("data not present: {}",urlConfig.readJsonFromUrl());
 			}
 		} catch (Exception e) {
-			log.error("Exception: {}", e);
+			log.error("Exception: {}", e.getMessage());
 		}
 	}
 }

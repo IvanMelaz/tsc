@@ -26,7 +26,7 @@ import it.tsc.smartwatch.domain.repository.CodaEveDao;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class, DevelopmentConfig.class})
-@ActiveProfiles(value = "production")
+@ActiveProfiles(value = "development")
 public class ApplicationTest {
 	private static final Logger log = LoggerFactory
 			.getLogger(ApplicationTest.class);

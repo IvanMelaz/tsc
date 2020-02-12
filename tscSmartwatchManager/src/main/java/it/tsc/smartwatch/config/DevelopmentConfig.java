@@ -5,6 +5,8 @@ package it.tsc.smartwatch.config;
 
 import javax.sql.DataSource;
 
+import it.tsc.smartwatch.utils.UrlConfig;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -26,6 +28,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class DevelopmentConfig {
 
+	@Value("${endpoint.url}")
+	public String endPointUrl;
+	@Value("${removeallarm.endpoint.url}")
+	public String removeEndPointUrl;
+
 	@Bean
 	@Profile("development")
 	public DataSource dataSource() {
@@ -40,5 +47,10 @@ public class DevelopmentConfig {
 				initSchema);
 		DatabasePopulatorUtils.execute(databasePopulator, dataSource);
 		return dataSource;
+	}
+
+	@Bean
+	public UrlConfig urlConfig() {
+		return new UrlConfig(endPointUrl, removeEndPointUrl);
 	}
 }
