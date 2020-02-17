@@ -42,7 +42,7 @@ public class TelemedicareDaoImpl extends BaseDao implements TelemedicareDao {
 		}
 		catch (Exception e) {
 			tx.rollback();
-			logger.error("saveAllarm: {}", e);
+			logger.error("saveAllarm: {}", e.getMessage());
 		}
 	}
 
