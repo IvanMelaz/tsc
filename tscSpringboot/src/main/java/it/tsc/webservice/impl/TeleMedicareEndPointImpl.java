@@ -21,8 +21,6 @@ public class TeleMedicareEndPointImpl extends BaseWebService implements TeleMedi
 	private static Logger logger = LoggerFactory
 			.getLogger(TeleMedicareEndPointImpl.class);
 
-	private static int MAX_CODICE_LENGHT = 10;
-
 	private static int MAX_PROGRESSIVO_LENGHT = 50;
 
 	private static String codiceAllarme = "TMC0000";
