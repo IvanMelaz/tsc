@@ -59,10 +59,19 @@ public class TelemedicareDaoImpl extends BaseDao implements TelemedicareDao {
 
 	@Override
 	public void dropAllarm(String progressivoAllarme) {
-		EntityManager entityManager = getEntityManager();
-		Query query = entityManager
-				.createNamedQuery(AllarmiTelemedicare.DROP_ALLARM_TMC);
-		query.setParameter("progressivoAllarme", progressivoAllarme);
-		query.executeUpdate();
+		EntityTransaction tx = getEntityManager().getTransaction();
+		try {
+			tx.begin();
+			EntityManager entityManager = getEntityManager();
+			Query query = entityManager
+					.createNamedQuery(AllarmiTelemedicare.DROP_ALLARM_TMC);
+			query.setParameter("progressivoAllarme", progressivoAllarme);
+			query.executeUpdate();
+			tx.commit();
+		}
+		catch (Exception e) {
+			tx.rollback();
+			logger.error("dropAllarm: {}", e.getMessage());
+		}
 	}
 }

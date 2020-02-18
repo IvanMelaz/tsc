@@ -24,6 +24,6 @@ public class TelemedicareServiceImpl implements TelemedicareService {
 
 	@Override
 	public void dropAllarm(String progressivoAllarme) {
-
+		telemedicareDao.dropAllarm(progressivoAllarme);
 	}
 }
