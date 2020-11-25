@@ -44,7 +44,7 @@ public class RestSmartWatcherController {
 	}
 
 	@RequestMapping(value = "/startAlarm", method = RequestMethod.POST, headers = "Accept=application/json")
-	public ResponseEntity<String> startAlarm​(
+	public ResponseEntity<String> startAlarms(
 			@RequestBody BaseSmartWatcher baseSmartWatcher) {
 		if (StringUtils.isNotBlank(baseSmartWatcher.getPhoneNumber().trim())) {
 			log.debug("user number {} registered",
@@ -70,104 +70,74 @@ public class RestSmartWatcherController {
 	}
 
 	@RequestMapping(value = "/getAllarms", method = RequestMethod.GET, headers = "Accept=application/json")
-	public @ResponseBody String getAlarm​s() {
+	public @ResponseBody String getAlarms() {
 		String response = null;
 
 		try {
 			response = JsonUtil.getGsonConverter().toJson(codaEveDao.findAll());
 		} catch (Exception e) {
-			log.error("getAlarm​s Exception: {}", e);
+			log.error("getAlarms Exception: {}", e);
 		}
-		log.debug("getAlarm​s: {}", response);
+		log.debug("getAlarms: {}", response);
 		return response;
 	}
 
 	@RequestMapping(value = "/removeAllarm", method = RequestMethod.GET, headers = "Accept=application/json")
-	public void removeAlarm​(@RequestParam("id_allarme") String id_allarme) {
-		log.debug("removeAlarm​​: {}", id_allarme);
+	public void removeAlarms(@RequestParam("id_allarme") String id_allarme) {
+		log.debug("removeAllarm id_allarme: {}", id_allarme);
 		try {
 			codaEveDao.removeAllarme(id_allarme);
 		} catch (Exception e) {
-			log.error("removeAlarm​​s Exception: {}", e);
+			log.error("removeAlars Exception: {}", e);
 		}
 
 	}
 
 	@RequestMapping(value = "/removeAllAllarms", method = RequestMethod.GET, headers = "Accept=application/json")
 	public void removeAllAllarms() {
-		log.debug("removeAllAllarms​​: {}");
+		log.debug("removeAllAllarms: {}");
 		try {
 			codaEveDao.deleteAll();
 		} catch (Exception e) {
-			log.error("removeAlarm​​s Exception: {}", e);
+			log.error("removeAlarms Exception: {}", e);
 		}
 
 	}
 
-	// @RequestMapping(value = "/positionUpdate", method = RequestMethod.POST,
-	// headers = "Accept=application/json")
-	// public ResponseEntity<String> positionUpdate(
-	// @RequestBody BaseSmartWatcher baseSmartWatcher) {
-	// if (smartWatcherService
-	// .checkRegisteredDevice(baseSmartWatcher.getPhoneNumber())) {
-	// log.debug("user number {} registered",
-	// baseSmartWatcher.getPhoneNumber());
-	// return new ResponseEntity<>("", HttpStatus.CREATED);
-	// } else {
-	// log.debug("user number {} bad_request",
-	// baseSmartWatcher.getPhoneNumber());
-	// return new ResponseEntity<>(
-	// JsonUtil.getGsonConverter()
-	// .toJson(new MessageSmartWatcher(
-	// MessageSmartWatcher.BAD_REQUEST)),
-	// HttpStatus.BAD_REQUEST);
-	// }
-	// }
-	//
-	// @RequestMapping(value = "/endAlarm​​", method = RequestMethod.POST,
-	// headers = "Accept=application/json")
-	// public void endAlarm​(@RequestBody BaseSmartWatcher baseSmartWatcher) {
-	//
-	// }
-	//
-	// @RequestMapping(value = "/register​​", method = RequestMethod.POST,
-	// headers = "Accept=application/json")
-	// public ResponseEntity<String> register​(
-	// @RequestBody DeviceSmartWatcher deviceSmartWatcher) {
-	// if (smartWatcherService
-	// .checkRegisteredDevice(deviceSmartWatcher.getPhoneNumber())) {
-	// log.debug("user number {} registered",
-	// deviceSmartWatcher.getPhoneNumber());
-	// return new ResponseEntity<>("", HttpStatus.CREATED);
-	// } else {
-	// log.debug("user number {} bad_request",
-	// deviceSmartWatcher.getPhoneNumber());
-	// return new ResponseEntity<>(
-	// JsonUtil.getGsonConverter()
-	// .toJson(new MessageSmartWatcher(
-	// MessageSmartWatcher.BAD_REQUEST)),
-	// HttpStatus.BAD_REQUEST);
-	// }
-	// }
-	//
-	// @RequestMapping(value = "/deregister​​", method = RequestMethod.POST,
-	// headers = "Accept=application/json")
-	// public ResponseEntity<String> deregister(
-	// @RequestBody BaseSmartWatcher baseSmartWatcher) {
-	// if (smartWatcherService
-	// .checkRegisteredDevice(baseSmartWatcher.getPhoneNumber())) {
-	// log.debug("user number {} registered",
-	// baseSmartWatcher.getPhoneNumber());
-	// return new ResponseEntity<>("", HttpStatus.CREATED);
-	// } else {
-	// log.debug("user number {} bad_request",
-	// baseSmartWatcher.getPhoneNumber());
-	// return new ResponseEntity<>(
-	// JsonUtil.getGsonConverter()
-	// .toJson(new MessageSmartWatcher(
-	// MessageSmartWatcher.BAD_REQUEST)),
-	// HttpStatus.BAD_REQUEST);
-	// }
-	// }
+	@RequestMapping(value = "/insert_allarmi_codaeve_brondi", method = RequestMethod.GET)
+	public void insertAllarmiCodaeveBrondi(@RequestParam("telefono") String telefono,
+								 @RequestParam("filename") String filename,
+								 @RequestParam("centrale") String centrale) {
+		log.debug("insertAllarmiCodaeveBrondi: telefono: {} filename: {} centrale: {}",telefono,filename,centrale);
+		try {
+			codaEveDao.insertAllarmiInCodaEve_Brondi(trimValue(telefono),trimValue(filename),trimValue(centrale));
+		} catch (Exception e) {
+			log.error("insertAllarmiCodaeveBrondi Exception: {}", e);
+		}
+	}
 
+	@RequestMapping(value = "/insert_allarmi_codaeve", method = RequestMethod.GET)
+	public void insertAllarmiInCodaEve(@RequestParam("matricola") String matricola,
+										   @RequestParam("evento") String evento,
+										   @RequestParam("centrale") String centrale,
+										   @RequestParam("mux") String mux,
+										   @RequestParam("ritardo") String ritardo
+	) {
+		log.debug("insertAllarmiInCodaEve: matricola: {} evento: {} centrale: {}",matricola,evento,centrale);
+		try {
+			codaEveDao.insertAllarmiInCodaEve(trimValue(matricola),trimValue(evento),trimValue(centrale),
+					trimValue(mux),trimValue(ritardo));
+		} catch (Exception e) {
+			log.error("insertAllarmiInCodaEve Exception: {}", e);
+		}
+	}
+
+	/**
+	 * trim the value
+	 * @param value
+	 * @return
+	 */
+	private String trimValue(String value){
+		return value != null?value.trim():null;
+	}
 }

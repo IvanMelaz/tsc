@@ -53,6 +53,11 @@
 		<security:intercept-url pattern="/hearbeat"
 			access="permitAll" method="POST" />
 
+		<security:intercept-url pattern="/insert_allarmi_codaeve_brondi"
+								access="permitAll" />
+
+		<security:intercept-url pattern="/insert_allarmi_codaeve"
+								access="permitAll" />
 		<!-- rest service -->
 		<security:intercept-url pattern="/allarmiTelemedicare"
 								access="permitAll" />
