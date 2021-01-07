@@ -16,7 +16,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class DataConverter implements AttributeConverter<Date, String> {
   private static final String DATE_FORMAT = "yyyy-MM-dd";
-  private SimpleDateFormat sdfDate = new SimpleDateFormat(DATE_FORMAT);// dd/MM/yyyy
+  private final SimpleDateFormat sdfDate = new SimpleDateFormat(DATE_FORMAT);// dd/MM/yyyy
   Date now = new Date();
   String strDate = sdfDate.format(now);
 

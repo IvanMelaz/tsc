@@ -16,7 +16,7 @@ public interface SequenceService {
 	 * @return
 	 * @throws Exception
 	 */
-	public Long getNextVal(String sequenceName) throws Exception;
+    Long getNextVal(String sequenceName) throws Exception;
 
 	/**
 	 * get Current Value from sequence
@@ -25,7 +25,7 @@ public interface SequenceService {
 	 * @return
 	 * @throws Exception
 	 */
-	public Long getCurrentVal(String sequenceName) throws Exception;
+    Long getCurrentVal(String sequenceName) throws Exception;
 
 	/**
 	 * set Current Value from sequence </br>
@@ -36,6 +36,6 @@ public interface SequenceService {
 	 * @return
 	 * @throws Exception
 	 */
-	public Long setValue(String sequenceName, Long newValue) throws Exception;
+    Long setValue(String sequenceName, Long newValue) throws Exception;
 
 }

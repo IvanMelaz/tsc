@@ -8,5 +8,5 @@ package it.tsc.domain.types;
  *
  */
 public enum FasciaOraria {
-	FASCIA1, FASCIA2, FASCIA3;
+	FASCIA1, FASCIA2, FASCIA3
 }

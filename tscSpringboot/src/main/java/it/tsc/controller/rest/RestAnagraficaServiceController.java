@@ -27,7 +27,7 @@ import it.tsc.util.JsonUtil;
  */
 @RestController
 public class RestAnagraficaServiceController extends RestBaseController {
-	private static Logger logger = LoggerFactory
+	private static final Logger logger = LoggerFactory
 			.getLogger(RestAnagraficaServiceController.class);
 
 	@Autowired

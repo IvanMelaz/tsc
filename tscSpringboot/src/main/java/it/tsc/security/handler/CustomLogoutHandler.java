@@ -20,7 +20,7 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
  */
 
 public class CustomLogoutHandler implements LogoutSuccessHandler {
-  private static Logger logger = LoggerFactory.getLogger(CustomLogoutHandler.class);
+  private static final Logger logger = LoggerFactory.getLogger(CustomLogoutHandler.class);
 
   @Override
   public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response,

@@ -14,31 +14,30 @@ import it.tsc.domain.Allarmi;
 public interface AllarmDao extends CrudRepository<Allarmi, String> {
 	/**
 	 * Inserisce allarme
-	 *
-	 * @param data_arrivo
+	 * @param ab_codi
+	 * @param matricola
+	 * @param mux
 	 * @param evento
-	 * @param id_allarme
-	 * @param user
+	 * @param centrale
 	 */
 	@Procedure("sp_i_GeneraAllarme")
-	public void insertAllarme(@Param("ab_codi") String ab_codi,
-			@Param("p_matricola") String matricola, @Param("p_mux") String mux,
-			@Param("p_evento") String evento,
-			@Param("p_centrale") String centrale);
+	void insertAllarme(@Param("ab_codi") String ab_codi,
+					   @Param("p_matricola") String matricola, @Param("p_mux") String mux,
+					   @Param("p_evento") String evento,
+					   @Param("p_centrale") String centrale);
 
 	/**
 	 * Inserisce allarme per telefono (BRONDI)
-	 *
-	 * @param data_arrivo
+	 * @param ab_codi
 	 * @param evento
 	 * @param id_allarme
 	 * @param user
 	 */
 	@Procedure("sp_i_GeneraAllarme")
-	public void insertAllarme(@Param("ab_codi") String ab_codi,
-			@Param("p_evento") String evento,
-			@Param("id_allarme") String id_allarme,
-			@Param("p_user") String user);
+	void insertAllarme(@Param("ab_codi") String ab_codi,
+					   @Param("p_evento") String evento,
+					   @Param("id_allarme") String id_allarme,
+					   @Param("p_user") String user);
 
 	/**
 	 * rimuove allarme
@@ -46,7 +45,7 @@ public interface AllarmDao extends CrudRepository<Allarmi, String> {
 	 * @param id_allarme
 	 */
 	@Query("delete Allarmi a where a.id_allarme=:id_allarme ")
-	public void removeAllarme(@Param("id_allarme") String id_allarme);
+	void removeAllarme(@Param("id_allarme") String id_allarme);
 
 	/**
 	 * update Allarme
@@ -55,8 +54,8 @@ public interface AllarmDao extends CrudRepository<Allarmi, String> {
 	 * @param user
 	 */
 	@Query("update Allarmi a set a.user =:user where a.id_allarme=:id_allarme")
-	public void updateAllarme(@Param("id_allarme") String id_allarme,
-			@Param("user") String user);
+	void updateAllarme(@Param("id_allarme") String id_allarme,
+					   @Param("user") String user);
 
 	/**
 	 * get allarms in json format
@@ -64,5 +63,5 @@ public interface AllarmDao extends CrudRepository<Allarmi, String> {
 	 * @return
 	 */
 	@Query("select a from Allarmi a")
-	public List<Allarmi> jsonGetAllarms();
+	List<Allarmi> jsonGetAllarms();
 }

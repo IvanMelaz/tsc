@@ -16,10 +16,10 @@ import it.tsc.domain.Anagrafica;
 public interface AnagraficaDao extends CrudRepository<Anagrafica, String> {
 
 	@Procedure("sp_v_Anagrafica")
-	public Anagrafica getAnagrafica(@Param("p_ab_codi") String ab_codi);
+    Anagrafica getAnagrafica(@Param("p_ab_codi") String ab_codi);
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Anagrafica save(Anagrafica anagrafica);
+    Anagrafica save(Anagrafica anagrafica);
 
 }

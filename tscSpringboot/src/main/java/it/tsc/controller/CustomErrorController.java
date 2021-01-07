@@ -26,7 +26,7 @@ public class CustomErrorController implements ErrorController {
 
 	private static final String PATH = "/error";
 
-	private boolean debug = true;
+	private final boolean debug = true;
 
 	@Autowired
 	private ErrorAttributes errorAttributes;

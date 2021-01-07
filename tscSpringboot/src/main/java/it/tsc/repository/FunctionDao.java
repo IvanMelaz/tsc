@@ -16,6 +16,6 @@ public interface FunctionDao {
 	 *
 	 * @return
 	 */
-	public String getNextIdAllarme(String centrale) throws SQLException;
+    String getNextIdAllarme(String centrale) throws SQLException;
 
 }

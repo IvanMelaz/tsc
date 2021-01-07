@@ -27,7 +27,7 @@ import java.util.List;
  */
 @Repository("groupDao")
 public class GroupDaoImpl extends BaseDao implements GroupDao {
-  private static Logger logger = LoggerFactory.getLogger(GroupDaoImpl.class);
+  private static final Logger logger = LoggerFactory.getLogger(GroupDaoImpl.class);
   @Autowired
   private SequenceService sequenceService;
   @Autowired

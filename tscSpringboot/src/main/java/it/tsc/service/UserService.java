@@ -23,7 +23,7 @@ public interface UserService {
 	 * @param username
 	 * @return
 	 */
-	public PortalUser getPortalUser(String username);
+    PortalUser getPortalUser(String username);
 
 	/**
 	 * get User Entity Object
@@ -31,7 +31,7 @@ public interface UserService {
 	 * @param username
 	 * @return
 	 */
-	public List<User> getUser(String username);
+    List<User> getUser(String username);
 
 	/**
 	 * get User object (renew pwd service)
@@ -40,7 +40,7 @@ public interface UserService {
 	 * @param email
 	 * @return
 	 */
-	public PortalUser getUser(String username, String email);
+    PortalUser getUser(String username, String email);
 
 	/**
 	 * get User in JSON format
@@ -48,21 +48,21 @@ public interface UserService {
 	 * @param username
 	 * @return
 	 */
-	public String jsonGetUser(String username);
+    String jsonGetUser(String username);
 
 	/**
 	 * get All Users
 	 *
 	 * @return (Only for admin role is permitted)
 	 */
-	public List<PortalUser> getAllUsers();
+    List<PortalUser> getAllUsers();
 
 	/**
 	 * get All Users in JSON format
 	 *
 	 * @return (Only for admin role is permitted)
 	 */
-	public String jsonGetAllUsers();
+    String jsonGetAllUsers();
 
 	/**
 	 * Return Roles for user
@@ -70,7 +70,7 @@ public interface UserService {
 	 * @param username
 	 * @return
 	 */
-	public List<GrantedAuthority> getUserRoles(String username);
+    List<GrantedAuthority> getUserRoles(String username);
 
 	/**
 	 * Determines if User have Admin role
@@ -78,7 +78,7 @@ public interface UserService {
 	 * @param role
 	 * @return
 	 */
-	public boolean isAdmin(Role role);
+    boolean isAdmin(Role role);
 
 	/**
 	 * Determines if User have Admin role
@@ -86,7 +86,7 @@ public interface UserService {
 	 * @param user
 	 * @return
 	 */
-	public boolean isAdmin(PortalUser user);
+    boolean isAdmin(PortalUser user);
 
 	/**
 	 * Determines if User have Super Admin role
@@ -94,7 +94,7 @@ public interface UserService {
 	 * @param user
 	 * @return
 	 */
-	public boolean isSuperAdmin(PortalUser user);
+    boolean isSuperAdmin(PortalUser user);
 
 	/**
 	 * Add user
@@ -107,8 +107,8 @@ public interface UserService {
 	 * @param mfaEnabled
 	 * @return
 	 */
-	public boolean addUser(String username, String password, String email,
-			Role role, boolean mfaEnabled);
+    boolean addUser(String username, String password, String email,
+                    Role role, boolean mfaEnabled);
 
 	/**
 	 * Remove user
@@ -117,7 +117,7 @@ public interface UserService {
 	 * @param role
 	 * @return
 	 */
-	public boolean removeUser(String username, Role role);
+    boolean removeUser(String username, Role role);
 
 	/**
 	 * update user
@@ -129,8 +129,8 @@ public interface UserService {
 	 * @param role
 	 * @param mfaEnabled
 	 */
-	public void updateUser(String username, String password, String email,
-			Role role, boolean mfaEnabled);
+    void updateUser(String username, String password, String email,
+                    Role role, boolean mfaEnabled);
 
 	/**
 	 * insert MFA key updating user
@@ -139,7 +139,7 @@ public interface UserService {
 	 * @param keyId
 	 * @param base32Secret
 	 */
-	public void updateMfaUserKey(String username, String keyId,
-			String base32Secret);
+    void updateMfaUserKey(String username, String keyId,
+                          String base32Secret);
 
 }

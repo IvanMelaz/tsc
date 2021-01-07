@@ -42,8 +42,8 @@ public class MockMvcTest {
 			.getLogger(MockMvcTest.class);
 
 	private MockMvc mockMvc;
-	private BaseSmartWatcher baseSmartWatcher = new BaseSmartWatcher();
-	private DeviceSmartWatcher deviceSmartWatcher = new DeviceSmartWatcher();
+	private final BaseSmartWatcher baseSmartWatcher = new BaseSmartWatcher();
+	private final DeviceSmartWatcher deviceSmartWatcher = new DeviceSmartWatcher();
 
 	@InjectMocks
 	private RestSmartWatcherController restSmartWatcherController;

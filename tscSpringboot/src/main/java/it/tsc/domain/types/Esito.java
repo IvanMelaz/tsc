@@ -8,5 +8,5 @@ package it.tsc.domain.types;
  *
  */
 public enum Esito {
-  OK, KO;
+  OK, KO
 }

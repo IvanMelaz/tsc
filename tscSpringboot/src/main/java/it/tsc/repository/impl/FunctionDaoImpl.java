@@ -21,7 +21,7 @@ import it.tsc.repository.FunctionDao;
  */
 @Repository("functionDao")
 public class FunctionDaoImpl extends BaseDao implements FunctionDao {
-  private static Logger logger = LoggerFactory.getLogger(FunctionDaoImpl.class);
+  private static final Logger logger = LoggerFactory.getLogger(FunctionDaoImpl.class);
 
   /**
    *

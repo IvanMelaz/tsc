@@ -20,7 +20,7 @@ import it.tsc.repository.SequenceDao;
  */
 @Repository("sequenceDao")
 public class SequenceDaoImpl extends BaseDao implements SequenceDao {
-  private static Logger logger = LoggerFactory.getLogger(SequenceDaoImpl.class);
+  private static final Logger logger = LoggerFactory.getLogger(SequenceDaoImpl.class);
 
   /**
    *

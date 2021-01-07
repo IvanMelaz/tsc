@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
   @SuppressWarnings("unlikely-arg-type")
   public boolean isAdmin(ApplicationUser requester) {
     return requester.getAuthorities() != null
-        && requester.getAuthorities().contains(Role.ROLE_ADMIN) ? true : false;
+            && requester.getAuthorities().contains(Role.ROLE_ADMIN);
   }
 
   /*

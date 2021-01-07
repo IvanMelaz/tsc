@@ -20,7 +20,7 @@ import it.tsc.service.EuropeAssistanceService;
 
 @RestController
 public class RestEuropeAssistanceAllarmServiceController {
-  private static Logger logger =
+  private static final Logger logger =
       LoggerFactory.getLogger(RestEuropeAssistanceAllarmServiceController.class);
 
   @Autowired

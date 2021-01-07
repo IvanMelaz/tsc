@@ -18,12 +18,12 @@ import org.springframework.context.ApplicationContext;
 import javax.xml.soap.SOAPException;
 
 public class TeleMedicareEndPointImpl extends BaseWebService implements TeleMedicareEndpoint {
-	private static Logger logger = LoggerFactory
+	private static final Logger logger = LoggerFactory
 			.getLogger(TeleMedicareEndPointImpl.class);
 
-	private static int MAX_PROGRESSIVO_LENGHT = 50;
+	private static final int MAX_PROGRESSIVO_LENGHT = 50;
 
-	private static String codiceAllarme = "TMC0000";
+	private static final String codiceAllarme = "TMC0000";
 
 	@Autowired
 	private TelemedicareService telemedicareService;
@@ -43,7 +43,7 @@ public class TeleMedicareEndPointImpl extends BaseWebService implements TeleMedi
 		try {
 			AllarmiTelemedicare allarmiTelemedicare = new AllarmiTelemedicare();
 
-			if (StringUtils.isEmpty(progressivoAllarme.toString().trim()) || progressivoAllarme.trim().length() > MAX_PROGRESSIVO_LENGHT) {
+			if (StringUtils.isEmpty(progressivoAllarme.trim()) || progressivoAllarme.trim().length() > MAX_PROGRESSIVO_LENGHT) {
 				return populateErrorResult(ErrorCode.PROGRESSIVO_ALLARME);
 			}
 			allarmiTelemedicare.setAb_codi(codiceAllarme);
@@ -68,7 +68,7 @@ public class TeleMedicareEndPointImpl extends BaseWebService implements TeleMedi
 		WsResult result = null;
 
 		try {
-			if (StringUtils.isEmpty(progressivoAllarme.toString().trim()) || progressivoAllarme.trim().length() > MAX_PROGRESSIVO_LENGHT) {
+			if (StringUtils.isEmpty(progressivoAllarme.trim()) || progressivoAllarme.trim().length() > MAX_PROGRESSIVO_LENGHT) {
 				return populateErrorResult(ErrorCode.PROGRESSIVO_ALLARME);
 			}
 			/**

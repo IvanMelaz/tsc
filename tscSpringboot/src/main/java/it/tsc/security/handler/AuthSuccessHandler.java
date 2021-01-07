@@ -25,7 +25,7 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 public class AuthSuccessHandler
 		extends
 			SavedRequestAwareAuthenticationSuccessHandler {
-	private static Logger logger = LoggerFactory
+	private static final Logger logger = LoggerFactory
 			.getLogger(AuthSuccessHandler.class);
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 

@@ -14,13 +14,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
-@EnableAutoConfiguration
 @ComponentScan(basePackages = {"it.tsc.controller", "it.tsc.config",
 		"it.tsc.service", "it.tsc.repository", "it.tsc.component",
 		"it.tsc.domain"})
 @ImportResource("classpath:spring-security.xml")
 public class Application extends SpringBootServletInitializer {
-	private static Logger logger = LoggerFactory.getLogger(Application.class);
+	private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
 	@Override
 	protected SpringApplicationBuilder configure(

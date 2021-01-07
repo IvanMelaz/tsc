@@ -18,7 +18,7 @@ public class ApplicationUser extends User {
   @Expose
   private String email;
   @Expose
-  private String username;
+  private final String username;
 
   /**
    * User Bean

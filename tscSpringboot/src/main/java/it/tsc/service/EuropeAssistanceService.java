@@ -15,13 +15,13 @@ public interface EuropeAssistanceService {
 	 *
 	 * @param allarmiEuropeAssistance
 	 */
-	public void saveAllarm(AllarmiEuropeAssistance allarmiEuropeAssistance);
+    void saveAllarm(AllarmiEuropeAssistance allarmiEuropeAssistance);
 
 	/**
 	 * retrieve List (size == 20) od persisted Allarms
 	 *
 	 * @return
 	 */
-	public String listJsonAllarmiOpen();
+    String listJsonAllarmiOpen();
 
 }

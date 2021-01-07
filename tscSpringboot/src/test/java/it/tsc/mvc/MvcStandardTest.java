@@ -31,7 +31,7 @@ import it.tsc.util.JsonUtil;
 @SpringBootTest
 @ActiveProfiles("test")
 public class MvcStandardTest {
-	private static Logger logger = LoggerFactory
+	private static final Logger logger = LoggerFactory
 			.getLogger(MvcStandardTest.class);
 	@Autowired
 	protected WebApplicationContext webApplicationContext;

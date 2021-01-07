@@ -22,7 +22,7 @@ public interface UserDao {
 	 * @param username
 	 * @return
 	 */
-	public String jsonGetUser(String username);
+    String jsonGetUser(String username);
 
 	/**
 	 * get User Object
@@ -30,7 +30,7 @@ public interface UserDao {
 	 * @param username
 	 * @return
 	 */
-	public PortalUser getPortalUser(String username);
+    PortalUser getPortalUser(String username);
 
 	/**
 	 * get User Entity Object
@@ -38,7 +38,7 @@ public interface UserDao {
 	 * @param username
 	 * @return
 	 */
-	public List<User> getUser(String username);
+    List<User> getUser(String username);
 
 	/**
 	 * get User Object(for pwd recovery)
@@ -47,21 +47,21 @@ public interface UserDao {
 	 * @param email
 	 * @return
 	 */
-	public PortalUser getUser(String username, String email);
+    PortalUser getUser(String username, String email);
 
 	/**
 	 * get All Users in JSON format
 	 *
 	 * @return (Only for admin role is permitted)
 	 */
-	public String jsonGetAllUsers();
+    String jsonGetAllUsers();
 
 	/**
 	 * get All Users
 	 *
 	 * @return (Only for admin role is permitted)
 	 */
-	public List<PortalUser> getAllUsers();
+    List<PortalUser> getAllUsers();
 
 	/**
 	 * Return Roles for user
@@ -69,7 +69,7 @@ public interface UserDao {
 	 * @param username
 	 * @return
 	 */
-	public List<GrantedAuthority> getUserRoles(String username);
+    List<GrantedAuthority> getUserRoles(String username);
 
 	/**
 	 * Determines if User have Admin role
@@ -77,7 +77,7 @@ public interface UserDao {
 	 * @param role
 	 * @return
 	 */
-	public boolean isAdmin(Role role);
+    boolean isAdmin(Role role);
 
 	/**
 	 * Add user
@@ -90,8 +90,8 @@ public interface UserDao {
 	 * @param mfaEnabled
 	 * @return
 	 */
-	public boolean addUser(String username, String password, String email,
-			Role role, boolean mfaEnabled);
+    boolean addUser(String username, String password, String email,
+                    Role role, boolean mfaEnabled);
 
 	/**
 	 * Remove user
@@ -100,7 +100,7 @@ public interface UserDao {
 	 *            (Only admin role is permitted)
 	 * @return
 	 */
-	public boolean removeUser(String username, Role role);
+    boolean removeUser(String username, Role role);
 
 	/**
 	 * update user
@@ -111,8 +111,8 @@ public interface UserDao {
 	 * @param email
 	 * @param role
 	 */
-	public void updateUser(String username, String password, String email,
-			Role role, boolean mfaEnabled);
+    void updateUser(String username, String password, String email,
+                    Role role, boolean mfaEnabled);
 
 	/**
 	 * insert MFA key updating user
@@ -121,6 +121,6 @@ public interface UserDao {
 	 * @param keyId
 	 * @param base32Secret
 	 */
-	public void updateMfaUserKey(String username, String keyId,
-			String base32Secret, String role);
+    void updateMfaUserKey(String username, String keyId,
+                          String base32Secret, String role);
 }

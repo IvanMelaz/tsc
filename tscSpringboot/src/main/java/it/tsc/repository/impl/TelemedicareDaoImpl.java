@@ -22,7 +22,7 @@ public class TelemedicareDaoImpl extends BaseDao implements TelemedicareDao {
 
 	private static final int RESULT_LIMIT = 20;
 
-	private static Logger logger = LoggerFactory
+	private static final Logger logger = LoggerFactory
 			.getLogger(EuropeAssistanceDaoImpl.class);
 
 	@Autowired

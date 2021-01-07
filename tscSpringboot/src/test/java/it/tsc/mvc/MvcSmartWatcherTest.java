@@ -32,7 +32,7 @@ import it.tsc.util.JsonUtil;
  */
 @Configuration
 public class MvcSmartWatcherTest extends MvcStandardTest {
-	private static Logger logger = LoggerFactory
+	private static final Logger logger = LoggerFactory
 			.getLogger(MvcSmartWatcherTest.class);
 	
 	private final String USER_AGENT = "Mozilla/5.0";

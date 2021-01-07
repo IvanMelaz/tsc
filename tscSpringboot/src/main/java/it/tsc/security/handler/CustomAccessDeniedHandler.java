@@ -19,7 +19,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
  *
  */
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
-  private static Logger logger = LoggerFactory.getLogger(CustomAccessDeniedHandler.class);
+  private static final Logger logger = LoggerFactory.getLogger(CustomAccessDeniedHandler.class);
   private String errorPage;
 
   public CustomAccessDeniedHandler() {}

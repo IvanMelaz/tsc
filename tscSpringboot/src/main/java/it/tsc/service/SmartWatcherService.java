@@ -13,27 +13,27 @@ public interface SmartWatcherService {
 	 *
 	 * @param phoneNumber
 	 */
-	public boolean checkRegisteredDevice(String phoneNumber);
+    boolean checkRegisteredDevice(String phoneNumber);
 	/**
 	 * register SmartWatcher Device
 	 *
 	 * @param phoneNumber
 	 * @return
 	 */
-	public boolean registerDevice(String phoneNumber);
+    boolean registerDevice(String phoneNumber);
 	/**
 	 * unregister SmartWatcher Device
 	 *
 	 * @param phoneNumber
 	 * @return
 	 */
-	public boolean unregisterDevice(String phoneNumber);
+    boolean unregisterDevice(String phoneNumber);
 	/**
 	 * register allarm in SmartWatcher System
 	 *
 	 * @param phoneNumber
 	 * @return
 	 */
-	public boolean registerAllarm(String phoneNumber);
+    boolean registerAllarm(String phoneNumber);
 
 }

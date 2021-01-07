@@ -12,7 +12,7 @@ public class MessageSmartWatcher {
 	public static String UNAUTHORIZED_ACCESS = "Invalid authentication token";
 	public static String ALLARM_ALREADY_ACTIVE = "Alarm already active";
 	public static String BAD_INPUT_PARAMETER = "Phone number is invalid";
-	private String message;
+	private final String message;
 	/**
 	 *
 	 */

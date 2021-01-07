@@ -15,7 +15,7 @@ import it.tsc.service.SmartWatcherService;
  */
 @Service("smartWatcherService")
 public class SmartWatcherServiceImpl implements SmartWatcherService {
-	private static String REGISTERED_NUMBER = "+41770123456";
+	private static final String REGISTERED_NUMBER = "+41770123456";
 	private static final Logger log = LoggerFactory
 			.getLogger(SmartWatcherServiceImpl.class);
 
@@ -34,11 +34,7 @@ public class SmartWatcherServiceImpl implements SmartWatcherService {
 	 */
 	@Override
 	public boolean checkRegisteredDevice(String phoneNumber) {
-		if (phoneNumber.equals(REGISTERED_NUMBER)) {
-			return true;
-		} else {
-			return false;
-		}
+        return phoneNumber.equals(REGISTERED_NUMBER);
 	}
 
 	/*
@@ -48,11 +44,7 @@ public class SmartWatcherServiceImpl implements SmartWatcherService {
 	 */
 	@Override
 	public boolean registerDevice(String phoneNumber) {
-		if (phoneNumber.equals(REGISTERED_NUMBER)) {
-			return true;
-		} else {
-			return false;
-		}
+        return phoneNumber.equals(REGISTERED_NUMBER);
 	}
 
 	/*
@@ -63,21 +55,13 @@ public class SmartWatcherServiceImpl implements SmartWatcherService {
 	 */
 	@Override
 	public boolean unregisterDevice(String phoneNumber) {
-		if (phoneNumber.equals(REGISTERED_NUMBER)) {
-			return true;
-		} else {
-			return false;
-		}
+        return phoneNumber.equals(REGISTERED_NUMBER);
 	}
 
 	@Override
 	public boolean registerAllarm(String phoneNumber) {
 		log.debug("registerAllarm for: {}", phoneNumber);
-		if (phoneNumber.equals(REGISTERED_NUMBER)) {
-			return true;
-		} else {
-			return false;
-		}
+        return phoneNumber.equals(REGISTERED_NUMBER);
 	}
 
 }

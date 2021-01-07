@@ -22,9 +22,9 @@ public enum ErrorCode {
   PROGRESSIVO_ALLARME(10,"Il progressivo allarme deve essere inserito e non maggiore di 50 caratteri") ;
 //@formatter:on
 
-	private int numVal;
+	private final int numVal;
 
-	private String errorDescription;
+	private final String errorDescription;
 
 	ErrorCode(int numVal, String errorDescription) {
 		this.numVal = numVal;

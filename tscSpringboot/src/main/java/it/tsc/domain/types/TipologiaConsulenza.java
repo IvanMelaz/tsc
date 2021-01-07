@@ -10,7 +10,7 @@ package it.tsc.domain.types;
 public enum TipologiaConsulenza {
   SCRITTA(0), PHONE(1);
 
-  private int numVal;
+  private final int numVal;
 
   TipologiaConsulenza(int numVal) {
     this.numVal = numVal;

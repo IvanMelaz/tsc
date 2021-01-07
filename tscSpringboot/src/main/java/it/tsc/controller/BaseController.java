@@ -26,11 +26,11 @@ import it.tsc.domain.Role;
  */
 @Controller
 public class BaseController {
-	private static Logger logger = LoggerFactory
+	private static final Logger logger = LoggerFactory
 			.getLogger(BaseController.class);
 	@Autowired
 	private MessageSource messageSource;
-	private Locale defaultLocale = new Locale("it", "IT");
+	private final Locale defaultLocale = new Locale("it", "IT");
 
 	protected String ACTION_ADMIN = "admin";
 	protected String ACTION_USER = "user";
@@ -101,12 +101,8 @@ public class BaseController {
 		} else {
 			if (request.getSession()
 					.getAttribute("isMfaAuthenticated") instanceof String) {
-				if (((String) request.getSession()
-						.getAttribute("isMfaAuthenticated")).equals("true")) {
-					return true;
-				} else {
-					return false;
-				}
+				return request.getSession()
+						.getAttribute("isMfaAuthenticated").equals("true");
 			} else {
 				return false;
 			}

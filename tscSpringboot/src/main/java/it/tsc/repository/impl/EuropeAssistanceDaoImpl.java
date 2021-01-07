@@ -26,7 +26,7 @@ import java.util.List;
 public class EuropeAssistanceDaoImpl extends BaseDao
 		implements
 			EuropeAssistanceDao {
-	private static Logger logger = LoggerFactory
+	private static final Logger logger = LoggerFactory
 			.getLogger(EuropeAssistanceDaoImpl.class);
 	private static final String CENTRALE_EA = "MILANO";
 	private static final int RESULT_LIMIT = 20;

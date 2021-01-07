@@ -17,21 +17,21 @@ public interface GroupService {
 	 *
 	 * @return
 	 */
-	public List<Group> getAllGroups();
+    List<Group> getAllGroups();
 
 	/**
 	 * add Group
 	 *
 	 * @param groupname
 	 */
-	public void addGroup(String groupname);
+    void addGroup(String groupname);
 
 	/**
 	 * remove Group
 	 *
 	 * @param groupname
 	 */
-	public void removeGroup(String groupname);
+    void removeGroup(String groupname);
 
 	/**
 	 * find group by name
@@ -39,7 +39,7 @@ public interface GroupService {
 	 * @param groupname
 	 * @return
 	 */
-	public Group findByName(String groupname);
+    Group findByName(String groupname);
 
 	/**
 	 * add PortalUser to Group
@@ -47,7 +47,7 @@ public interface GroupService {
 	 * @param username
 	 * @param groupname
 	 */
-	public void addUserToGroup(String username, String groupname);
+    void addUserToGroup(String username, String groupname);
 
 	/**
 	 * remove PortalUser from Group
@@ -55,5 +55,5 @@ public interface GroupService {
 	 * @param username
 	 * @param groupname
 	 */
-	public void removeUserFromGroup(String username, String groupname);
+    void removeUserFromGroup(String username, String groupname);
 }

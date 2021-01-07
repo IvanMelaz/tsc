@@ -10,7 +10,7 @@ package it.tsc.domain.types;
 public enum SpecializzazioneMedico {
 	CARDIOLOGO(1);
 
-	private int numVal;
+	private final int numVal;
 
 	SpecializzazioneMedico(int numVal) {
 		this.numVal = numVal;

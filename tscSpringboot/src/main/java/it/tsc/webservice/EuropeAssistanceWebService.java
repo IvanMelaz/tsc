@@ -43,12 +43,12 @@ import it.tsc.webservice.domain.WsResult;
 @SOAPBinding(style = Style.RPC, use = Use.LITERAL)
 @SuppressWarnings("unused")
 public class EuropeAssistanceWebService extends BaseWebService {
-	private static Logger logger = LoggerFactory
+	private static final Logger logger = LoggerFactory
 			.getLogger(EuropeAssistanceWebService.class);
-	private static String DATE_FORMAT = "yyyy-MM-ddThh:mm:ss";
-	private static String EU001 = "EU001";
+	private static final String DATE_FORMAT = "yyyy-MM-ddThh:mm:ss";
+	private static final String EU001 = "EU001";
 	private EuropeAssistanceService europeAssistanceService;
-	private ApplicationContext context = new AnnotationConfigApplicationContext(
+	private final ApplicationContext context = new AnnotationConfigApplicationContext(
 			ServiceConfig.class);
 
 	@Resource

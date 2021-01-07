@@ -10,8 +10,6 @@ public class BaseWebService {
 
 	/**
 	 * populate output result with error
-	 *
-	 * @param esito
 	 * @param errorCode
 	 * @return
 	 */

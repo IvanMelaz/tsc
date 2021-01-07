@@ -28,7 +28,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
   @Autowired
   private BCryptPasswordEncoder bcryptEncoder;
   @Autowired
-  private UserService userService;
+  private final UserService userService;
 
   /**
    * 
@@ -47,7 +47,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
   public Authentication authenticate(Authentication authentication) throws AuthenticationException {
     Collection<GrantedAuthority> grantedAuths = null;
     String password = authentication.getCredentials().toString().trim();
-    String username = authentication.getName().toString().trim();
+    String username = authentication.getName().trim();
     Authentication auth = null;
 
     // 2. Check the passwords match (should use a hashed password here).

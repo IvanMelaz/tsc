@@ -35,7 +35,7 @@ import it.tsc.util.UserTransform;
  */
 @Repository("userDao")
 public class UserDaoImpl extends BaseDao implements UserDao {
-  private static Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
+  private static final Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
   @Autowired
   private BCryptPasswordEncoder bcryptEncoder;
 
@@ -228,7 +228,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
       Query query = entityManager.createNamedQuery(User.DELETE_BY_USERNAME_ROLE);
       query.setParameter("username", username);
       query.setParameter("role", role.name());
-      result = query.executeUpdate() != 0 ? true : false;
+      result = query.executeUpdate() != 0;
       tx.commit();
     } catch (Exception e) {
       tx.rollback();

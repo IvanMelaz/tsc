@@ -37,10 +37,8 @@ public class ValidationResponse {
 
   /**
    * create result message list
-   * 
+   * @param errors
    * @param <T>
-   * 
-   * @param bindingResult
    */
   public <T> void setBindingResult(Set<ConstraintViolation<T>> errors) {
     result = new ArrayList<ErrorMessage>();

@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class EuropeAssistanceController extends BaseController {
-  private static Logger logger = LoggerFactory.getLogger(EuropeAssistanceController.class);
+  private static final Logger logger = LoggerFactory.getLogger(EuropeAssistanceController.class);
 
   @RequestMapping(value = { "/europeAssistance" }, method = RequestMethod.GET)
   public ModelAndView welcomePage() {

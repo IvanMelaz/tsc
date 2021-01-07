@@ -37,7 +37,7 @@ import it.tsc.service.UserService;
 
 @RestController
 public class RestUserServiceController extends RestBaseController {
-  private static Logger logger = LoggerFactory.getLogger(RestUserServiceController.class);
+  private static final Logger logger = LoggerFactory.getLogger(RestUserServiceController.class);
 
   @Autowired
   private UserService userService;
@@ -219,7 +219,7 @@ public class RestUserServiceController extends RestBaseController {
       if (user == null) {
         logger.error("error requesting jsonAskNewPassword user: {} username: {} emai: {}", user,
             portalUser.getUsername(), portalUser.getEmail());
-      } ;
+      }
     }
     return res;
   }

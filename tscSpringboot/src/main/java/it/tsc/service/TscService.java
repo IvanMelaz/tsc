@@ -16,6 +16,6 @@ public interface TscService {
    * @param allarm
    * @return
    */
-  public String getAnagrafica(Allarmi allarm);
+  String getAnagrafica(Allarmi allarm);
 
 }

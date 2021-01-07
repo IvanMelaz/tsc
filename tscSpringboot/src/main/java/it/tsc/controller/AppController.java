@@ -26,7 +26,7 @@ import it.tsc.domain.Role;
 @Controller
 @RequestMapping("/")
 public class AppController extends ServiceController {
-  private static Logger logger = LoggerFactory.getLogger(AppController.class);
+  private static final Logger logger = LoggerFactory.getLogger(AppController.class);
 
   /**
    * home access page
@@ -175,8 +175,6 @@ public class AppController extends ServiceController {
 
   /**
    * redirect to working page
-   *
-   * @param userAttrs
    * @param request
    * @param model
    */
@@ -247,11 +245,11 @@ public class AppController extends ServiceController {
 
   /**
    * get return view with MFA Check
-   *
    * @param model
    * @param viewName
    * @param request
-   * @param base32Secret
+   * @param user
+   * @return
    */
   private ModelAndView getReturnView(ModelAndView model, String viewName,
       HttpServletRequest request, Principal user) {

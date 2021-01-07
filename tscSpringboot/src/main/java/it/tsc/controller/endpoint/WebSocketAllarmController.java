@@ -37,9 +37,9 @@ import it.tsc.service.CodaEveService;
 @ServerEndpoint(value = "/user/allarmEndpoint/{userid}", configurator = SpringConfigurator.class)
 @Service
 public class WebSocketAllarmController {
-	private static Logger logger = LoggerFactory
+	private static final Logger logger = LoggerFactory
 			.getLogger(WebSocketAllarmController.class);
-	private static Set<Session> clients = Collections
+	private static final Set<Session> clients = Collections
 			.synchronizedSet(new HashSet<Session>());
 	private EndpointConfig endpointConfig;
 	@Autowired
@@ -97,9 +97,7 @@ public class WebSocketAllarmController {
 		for (Session s : clients) {
 			if (s.getId().equals(session.getId())) {
 				clients.remove(session);
-				if (this.endpointConfig.getUserProperties() != null
-						&& this.endpointConfig.getUserProperties()
-								.containsKey(session.getId())) {
+				if (this.endpointConfig.getUserProperties() != null) {
 					this.endpointConfig.getUserProperties()
 							.remove(session.getId());
 				}
@@ -145,9 +143,7 @@ public class WebSocketAllarmController {
 		synchronized (clients) {
 			for (Session s : clients) {
 				if (s.getId().equals(session.getId())) {
-					if (this.endpointConfig.getUserProperties() != null
-							&& this.endpointConfig.getUserProperties()
-									.containsKey(session.getId())) {
+					if (this.endpointConfig.getUserProperties() != null) {
 						this.endpointConfig.getUserProperties()
 								.remove(session.getId());
 					}

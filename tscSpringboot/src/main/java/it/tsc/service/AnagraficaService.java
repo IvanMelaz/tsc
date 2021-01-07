@@ -15,13 +15,13 @@ public interface AnagraficaService {
 	 * @param ab_codi
 	 * @return
 	 */
-	public Anagrafica getAnagrafica(String ab_codi);
+    Anagrafica getAnagrafica(String ab_codi);
 
 	/**
 	 * insert Record in Anagrafica
 	 *
 	 * @param anagrafica
 	 */
-	public Anagrafica insertAnagrafica(Anagrafica anagrafica);
+    Anagrafica insertAnagrafica(Anagrafica anagrafica);
 
 }

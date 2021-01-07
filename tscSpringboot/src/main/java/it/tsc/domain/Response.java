@@ -13,8 +13,7 @@ public enum Response {
 
   /**
    * return String Value for role
-   * 
-   * @param role
+   * @param response
    * @return
    */
   public String value(Response response) {

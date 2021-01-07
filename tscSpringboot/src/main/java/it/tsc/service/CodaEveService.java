@@ -14,14 +14,14 @@ public interface CodaEveService {
 	 * @param user
 	 * @return
 	 */
-	public String jsonQueueGetAllarms(String user);
+    String jsonQueueGetAllarms(String user);
 
 	/**
 	 * remove allarme from CODA_EVE
 	 *
 	 * @param id_allarme
 	 */
-	public void removeAllarme(String id_allarme);
+    void removeAllarme(String id_allarme);
 
 	/**
 	 * update allarme from CODA_EVE
@@ -29,7 +29,7 @@ public interface CodaEveService {
 	 * @param id_allarme
 	 * @param user
 	 */
-	public void updateAllarme(String id_allarme, String user);
+    void updateAllarme(String id_allarme, String user);
 
 	/**
 	 * insert Allarm in CodaEve
@@ -40,7 +40,7 @@ public interface CodaEveService {
 	 * @param mux
 	 * @param ritardo
 	 */
-	public void insertAllarmiInCodaEve(String matricola, String evento,
-			String centrale, String mux, String ritardo);
+    void insertAllarmiInCodaEve(String matricola, String evento,
+                                String centrale, String mux, String ritardo);
 
 }

@@ -14,16 +14,15 @@ import org.springframework.transaction.annotation.Transactional;
 public interface AllarmService {
 	/**
 	 * Inserisce allarme
-	 *
-	 * @param matricola
+	 * @param ab_codi
 	 * @param data_arrivo
 	 * @param evento
 	 * @param id_allarme
 	 * @param user
 	 */
 	@Transactional
-	public void insertAllarme(String ab_codi, Instant data_arrivo,
-			String evento, String id_allarme, String user);
+	void insertAllarme(String ab_codi, Instant data_arrivo,
+					   String evento, String id_allarme, String user);
 
 	/**
 	 * Inserisce allarme per telefono (BRONDI)
@@ -35,8 +34,8 @@ public interface AllarmService {
 	 * @param user
 	 */
 	@Transactional
-	public void insertAllarmeTel(String tel, String ab_codi, Date data_arrivo,
-			String evento, String id_allarme, String user);
+	void insertAllarmeTel(String tel, String ab_codi, Date data_arrivo,
+						  String evento, String id_allarme, String user);
 
 	/**
 	 * rimuove allarme
@@ -44,7 +43,7 @@ public interface AllarmService {
 	 * @param id_allarme
 	 */
 	@Transactional
-	public void removeAllarme(String id_allarme);
+	void removeAllarme(String id_allarme);
 
 	/**
 	 * update Allarme
@@ -53,6 +52,6 @@ public interface AllarmService {
 	 * @param user
 	 */
 	@Transactional
-	public void updateAllarme(String id_allarme, String user);
+	void updateAllarme(String id_allarme, String user);
 
 }

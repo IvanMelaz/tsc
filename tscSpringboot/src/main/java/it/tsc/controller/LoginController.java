@@ -17,7 +17,7 @@ import it.tsc.domain.PortalUser;
 
 @Controller
 public class LoginController extends ServiceController {
-	private static Logger logger = LoggerFactory
+	private static final Logger logger = LoggerFactory
 			.getLogger(LoginController.class);
 
 	@RequestMapping(value = {"/", "/welcome**"}, method = RequestMethod.GET)

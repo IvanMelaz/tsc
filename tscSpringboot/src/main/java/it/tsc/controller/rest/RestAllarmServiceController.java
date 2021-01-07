@@ -26,7 +26,7 @@ import it.tsc.service.CodaEveService;
 
 @RestController
 public class RestAllarmServiceController {
-  private static Logger logger = LoggerFactory.getLogger(RestAllarmServiceController.class);
+  private static final Logger logger = LoggerFactory.getLogger(RestAllarmServiceController.class);
 
   @Autowired
   private CodaEveService codaEveService;
