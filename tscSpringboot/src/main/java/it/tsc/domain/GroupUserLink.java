@@ -3,11 +3,11 @@
  */
 package it.tsc.domain;
 
+import it.tsc.domain.key.UserGroupKey;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
-import it.tsc.domain.key.UserGroupKey;
 
 /**
  * @author "astraservice"

@@ -3,14 +3,14 @@
  */
 package it.tsc.repository.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-
+import it.tsc.domain.PortalUser;
+import it.tsc.domain.Role;
+import it.tsc.domain.User;
+import it.tsc.domain.key.UserKey;
+import it.tsc.repository.BaseDao;
+import it.tsc.repository.UserDao;
+import it.tsc.util.JsonUtil;
+import it.tsc.util.UserTransform;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,14 +20,12 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
-import it.tsc.domain.PortalUser;
-import it.tsc.domain.Role;
-import it.tsc.domain.User;
-import it.tsc.domain.key.UserKey;
-import it.tsc.repository.BaseDao;
-import it.tsc.repository.UserDao;
-import it.tsc.util.JsonUtil;
-import it.tsc.util.UserTransform;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author astraservice

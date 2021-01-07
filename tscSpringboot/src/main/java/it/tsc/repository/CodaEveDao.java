@@ -3,13 +3,12 @@
  */
 package it.tsc.repository;
 
-import java.util.List;
-
+import it.tsc.domain.CodaEve;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import it.tsc.domain.CodaEve;
+import java.util.List;
 
 /**
  * @author "astraservice"

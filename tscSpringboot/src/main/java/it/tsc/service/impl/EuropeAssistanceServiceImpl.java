@@ -3,12 +3,11 @@
  */
 package it.tsc.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import it.tsc.domain.AllarmiEuropeAssistance;
 import it.tsc.repository.EuropeAssistanceDao;
 import it.tsc.service.EuropeAssistanceService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @author "astraservice"

@@ -1,10 +1,8 @@
 package it.tsc.controller;
 
-import java.security.GeneralSecurityException;
-import java.security.Principal;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.j256.twofactorauth.TimeBasedOneTimePasswordUtil;
+import it.tsc.domain.PortalUser;
+import it.tsc.domain.Role;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -18,10 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.j256.twofactorauth.TimeBasedOneTimePasswordUtil;
-
-import it.tsc.domain.PortalUser;
-import it.tsc.domain.Role;
+import javax.servlet.http.HttpServletRequest;
+import java.security.GeneralSecurityException;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/")

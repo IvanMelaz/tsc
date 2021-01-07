@@ -1,14 +1,13 @@
 package it.tsc.repository;
 
-import java.util.List;
-
+import it.tsc.domain.Allarmi;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import it.tsc.domain.Allarmi;
+import java.util.List;
 
 @Repository("allarmDao")
 public interface AllarmDao extends CrudRepository<Allarmi, String> {

@@ -3,8 +3,9 @@
  */
 package it.tsc.component;
 
-import java.util.Collection;
-
+import it.tsc.domain.ApplicationUser;
+import it.tsc.domain.PortalUser;
+import it.tsc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -15,9 +16,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import it.tsc.domain.ApplicationUser;
-import it.tsc.domain.PortalUser;
-import it.tsc.service.UserService;
+import java.util.Collection;
 
 /**
  * @author astraservice

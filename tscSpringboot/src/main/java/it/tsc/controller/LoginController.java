@@ -1,10 +1,6 @@
 package it.tsc.controller;
 
-import java.security.Principal;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
+import it.tsc.domain.PortalUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -13,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import it.tsc.domain.PortalUser;
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
+import java.util.Map;
 
 @Controller
 public class LoginController extends ServiceController {

@@ -1,5 +1,7 @@
 package it.tsc.mvc;
 
+import it.tsc.domain.BaseSmartWatcher;
+import it.tsc.util.JsonUtil;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -19,9 +21,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
-import it.tsc.domain.BaseSmartWatcher;
-import it.tsc.util.JsonUtil;
 
 /**
  * @author astraservice

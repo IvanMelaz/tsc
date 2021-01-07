@@ -3,12 +3,11 @@
  */
 package it.tsc.domain.converter;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.AttributeConverter;
-
-import org.apache.commons.lang3.StringUtils;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author "astraservice"

@@ -3,10 +3,10 @@
  */
 package it.tsc.service;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import java.time.Instant;
 import java.util.Date;
-
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author astraservice Manage Allarmi in TSC

@@ -3,13 +3,12 @@
  */
 package it.tsc.domain;
 
+import com.google.gson.annotations.Expose;
+
+import javax.validation.ConstraintViolation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-import javax.validation.ConstraintViolation;
-
-import com.google.gson.annotations.Expose;
 
 /**
  * @author astraservice

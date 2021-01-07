@@ -3,24 +3,6 @@
  */
 package it.tsc.controller.rest;
 
-import java.security.Principal;
-import java.util.Set;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Valid;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import it.tsc.domain.PortalUser;
 import it.tsc.domain.PortalUser.PortalUserInsert;
 import it.tsc.domain.PortalUser.PortalUserRemove;
@@ -29,6 +11,18 @@ import it.tsc.domain.Response;
 import it.tsc.domain.Role;
 import it.tsc.domain.ValidationResponse;
 import it.tsc.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Valid;
+import java.security.Principal;
+import java.util.Set;
 
 /**
  * @author astraservice

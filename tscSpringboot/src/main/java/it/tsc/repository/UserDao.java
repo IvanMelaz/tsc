@@ -3,13 +3,12 @@
  */
 package it.tsc.repository;
 
-import java.util.List;
-
-import org.springframework.security.core.GrantedAuthority;
-
 import it.tsc.domain.PortalUser;
 import it.tsc.domain.Role;
 import it.tsc.domain.User;
+import org.springframework.security.core.GrantedAuthority;
+
+import java.util.List;
 
 /**
  * @author astraservice

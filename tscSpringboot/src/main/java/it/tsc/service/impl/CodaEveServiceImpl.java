@@ -3,12 +3,11 @@
  */
 package it.tsc.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import it.tsc.repository.CodaEveDao;
 import it.tsc.service.CodaEveService;
 import it.tsc.util.JsonUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @author "astraservice"

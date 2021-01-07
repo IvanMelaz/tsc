@@ -3,12 +3,10 @@ package it.tsc.mvc;
  *
  */
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
+import it.tsc.domain.BaseSmartWatcher;
+import it.tsc.domain.DeviceSmartWatcher;
+import it.tsc.domain.PositionSmartWatcher;
+import it.tsc.util.JsonUtil;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -21,10 +19,11 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import it.tsc.domain.BaseSmartWatcher;
-import it.tsc.domain.DeviceSmartWatcher;
-import it.tsc.domain.PositionSmartWatcher;
-import it.tsc.util.JsonUtil;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * @author "astraservice"

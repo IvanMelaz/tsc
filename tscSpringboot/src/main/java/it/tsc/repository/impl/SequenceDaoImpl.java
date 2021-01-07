@@ -3,15 +3,14 @@
  */
 package it.tsc.repository.impl;
 
-import java.sql.CallableStatement;
-import java.sql.Types;
-
+import it.tsc.repository.BaseDao;
+import it.tsc.repository.SequenceDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import it.tsc.repository.BaseDao;
-import it.tsc.repository.SequenceDao;
+import java.sql.CallableStatement;
+import java.sql.Types;
 
 
 /**

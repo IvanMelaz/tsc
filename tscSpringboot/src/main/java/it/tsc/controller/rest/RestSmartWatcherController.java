@@ -3,25 +3,19 @@
  */
 package it.tsc.controller.rest;
 
-import java.util.UUID;
-
+import it.tsc.domain.BaseSmartWatcher;
+import it.tsc.domain.MessageSmartWatcher;
+import it.tsc.repository.CodaEveDao;
+import it.tsc.util.JsonUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import it.tsc.domain.BaseSmartWatcher;
-import it.tsc.domain.MessageSmartWatcher;
-import it.tsc.repository.CodaEveDao;
-import it.tsc.util.JsonUtil;
+import java.util.UUID;
 
 /**
  * @author "astraservice"
@@ -76,7 +70,7 @@ public class RestSmartWatcherController {
 		try {
 			response = JsonUtil.getGsonConverter().toJson(codaEveDao.findAll());
 		} catch (Exception e) {
-			log.error("getAlarms Exception: {}", e);
+			log.error("getAlarms Exception: {}", e.getMessage());
 		}
 		log.debug("getAlarms: {}", response);
 		return response;
@@ -88,18 +82,18 @@ public class RestSmartWatcherController {
 		try {
 			codaEveDao.removeAllarme(id_allarme);
 		} catch (Exception e) {
-			log.error("removeAlars Exception: {}", e);
+			log.error("removeAllarm Exception: {}", e.getMessage());
 		}
 
 	}
 
 	@RequestMapping(value = "/removeAllAllarms", method = RequestMethod.GET, headers = "Accept=application/json")
 	public void removeAllAllarms() {
-		log.debug("removeAllAllarms: {}");
+		log.debug("removeAllAllarms:");
 		try {
 			codaEveDao.deleteAll();
 		} catch (Exception e) {
-			log.error("removeAlarms Exception: {}", e);
+			log.error("removeAlarms Exception: {}", e.getMessage());
 		}
 
 	}
@@ -112,7 +106,7 @@ public class RestSmartWatcherController {
 		try {
 			codaEveDao.insertAllarmiInCodaEve_Brondi(trimValue(telefono),trimValue(filename),trimValue(centrale));
 		} catch (Exception e) {
-			log.error("insertAllarmiCodaeveBrondi Exception: {}", e);
+			log.error("insertAllarmiCodaeveBrondi Exception: {}", e.getMessage());
 		}
 	}
 
@@ -128,7 +122,7 @@ public class RestSmartWatcherController {
 			codaEveDao.insertAllarmiInCodaEve(trimValue(matricola),trimValue(evento),trimValue(centrale),
 					trimValue(mux),trimValue(ritardo));
 		} catch (Exception e) {
-			log.error("insertAllarmiInCodaEve Exception: {}", e);
+			log.error("insertAllarmiInCodaEve Exception: {}", e.getMessage());
 		}
 	}
 

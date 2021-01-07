@@ -1,8 +1,8 @@
 package it.tsc.repository;
 
-import java.util.List;
-
 import it.tsc.domain.Group;
+
+import java.util.List;
 
 public interface GroupDao {
 	/**

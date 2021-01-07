@@ -3,16 +3,10 @@ package it.tsc.domain;
  *
  */
 
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import com.google.gson.annotations.Expose;
+
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @author astraservice POJO class for allarm

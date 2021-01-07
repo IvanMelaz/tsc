@@ -3,12 +3,12 @@
  */
 package it.tsc.util;
 
+import it.tsc.domain.PortalUser;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
-
-import it.tsc.domain.PortalUser;
 
 /**
  * @author astraservice

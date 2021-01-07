@@ -3,9 +3,11 @@
  */
 package it.tsc.mvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import it.tsc.controller.rest.RestSmartWatcherController;
+import it.tsc.domain.BaseSmartWatcher;
+import it.tsc.domain.DeviceSmartWatcher;
+import it.tsc.repository.CodaEveDao;
+import it.tsc.util.JsonUtil;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -24,11 +26,8 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import it.tsc.controller.rest.RestSmartWatcherController;
-import it.tsc.domain.BaseSmartWatcher;
-import it.tsc.domain.DeviceSmartWatcher;
-import it.tsc.repository.CodaEveDao;
-import it.tsc.util.JsonUtil;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * @author "astraservice"

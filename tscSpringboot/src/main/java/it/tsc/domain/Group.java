@@ -3,15 +3,9 @@
  */
 package it.tsc.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
 import com.google.gson.annotations.Expose;
+
+import javax.persistence.*;
 
 /**
  * @author astraservice

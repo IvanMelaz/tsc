@@ -3,7 +3,18 @@
  */
 package it.tsc.webservice;
 
-import java.util.Date;
+import it.tsc.config.ServiceConfig;
+import it.tsc.domain.AllarmiEuropeAssistance;
+import it.tsc.domain.types.*;
+import it.tsc.service.EuropeAssistanceService;
+import it.tsc.webservice.domain.WsResult;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.hibernate.service.spi.ServiceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.annotation.Resource;
 import javax.jws.WebMethod;
@@ -15,25 +26,7 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
 import javax.xml.soap.SOAPException;
 import javax.xml.ws.WebServiceContext;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-import org.hibernate.service.spi.ServiceException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import it.tsc.config.ServiceConfig;
-import it.tsc.domain.AllarmiEuropeAssistance;
-import it.tsc.domain.types.ErrorCode;
-import it.tsc.domain.types.Esito;
-import it.tsc.domain.types.FasciaOraria;
-import it.tsc.domain.types.SpecializzazioneMedico;
-import it.tsc.domain.types.TipologiaConsulenza;
-import it.tsc.domain.types.TipologiaServizio;
-import it.tsc.service.EuropeAssistanceService;
-import it.tsc.webservice.domain.WsResult;
+import java.util.Date;
 
 /**
  * @author astraservice

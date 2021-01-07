@@ -3,9 +3,8 @@
  */
 package it.tsc.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 
 /**
  * @author astraservice

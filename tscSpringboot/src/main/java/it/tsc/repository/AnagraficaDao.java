@@ -3,11 +3,10 @@
  */
 package it.tsc.repository;
 
+import it.tsc.domain.Anagrafica;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-
-import it.tsc.domain.Anagrafica;
 
 /**
  * @author "astraservice"

@@ -3,12 +3,11 @@
  */
 package it.tsc.domain.key;
 
-import java.io.Serializable;
+import com.google.gson.annotations.Expose;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-
-import com.google.gson.annotations.Expose;
+import java.io.Serializable;
 
 /**
  * @author "astraservice"

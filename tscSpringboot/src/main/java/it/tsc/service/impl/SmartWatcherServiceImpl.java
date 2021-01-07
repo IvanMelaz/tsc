@@ -3,11 +3,10 @@
  */
 package it.tsc.service.impl;
 
+import it.tsc.service.SmartWatcherService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
-import it.tsc.service.SmartWatcherService;
 
 /**
  * @author "astraservice"

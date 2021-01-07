@@ -3,18 +3,17 @@
  */
 package it.tsc.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.stereotype.Service;
-
 import it.tsc.domain.ApplicationUser;
 import it.tsc.domain.PortalUser;
 import it.tsc.domain.Role;
 import it.tsc.domain.User;
 import it.tsc.repository.UserDao;
 import it.tsc.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author astraservice

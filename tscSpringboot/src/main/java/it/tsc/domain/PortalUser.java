@@ -3,18 +3,16 @@
  */
 package it.tsc.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.gson.annotations.Expose;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Column;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.groups.Default;
-
-import org.springframework.security.core.GrantedAuthority;
-
-import com.google.gson.annotations.Expose;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author astraservice POJO TSC User

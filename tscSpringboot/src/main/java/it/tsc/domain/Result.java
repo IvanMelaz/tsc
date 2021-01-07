@@ -3,9 +3,9 @@
  */
 package it.tsc.domain;
 
-import java.util.List;
-
 import com.google.gson.annotations.Expose;
+
+import java.util.List;
 
 /**
  * @author astraservice

@@ -3,10 +3,9 @@
  */
 package it.tsc.controller;
 
+import it.tsc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
-import it.tsc.service.UserService;
 
 /**
  * @author "astraservice" Controller that contains service

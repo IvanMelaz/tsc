@@ -3,12 +3,11 @@
  */
 package it.tsc.domain;
 
-import java.util.Collection;
-
+import com.google.gson.annotations.Expose;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-import com.google.gson.annotations.Expose;
+import java.util.Collection;
 
 /**
  * @author astraservice Used for login in spring MVC seurity

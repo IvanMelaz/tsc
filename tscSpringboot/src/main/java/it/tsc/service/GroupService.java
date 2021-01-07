@@ -3,9 +3,9 @@
  */
 package it.tsc.service;
 
-import java.util.List;
-
 import it.tsc.domain.Group;
+
+import java.util.List;
 
 /**
  * @author astraservice
