@@ -1,5 +1,5 @@
 /**
- *
+ * RestSmartWatcherController
  */
 package it.tsc.controller.rest;
 
@@ -117,7 +117,7 @@ public class RestSmartWatcherController {
 										   @RequestParam("mux") String mux,
 										   @RequestParam("ritardo") String ritardo
 	) {
-		log.debug("insertAllarmiInCodaEve: matricola: {} evento: {} centrale: {}",matricola,evento,centrale);
+		log.debug("insertAllarmiInCodaEve: matricola: {} evento: {} centrale: {} mux: {} ritardo: {}",matricola,evento,centrale,mux,ritardo);
 		try {
 			codaEveDao.insertAllarmiInCodaEve(trimValue(matricola),trimValue(evento),trimValue(centrale),
 					trimValue(mux),trimValue(ritardo));
@@ -128,8 +128,8 @@ public class RestSmartWatcherController {
 
 	/**
 	 * trim the value
-	 * @param value
-	 * @return
+	 * @param value value to trim()
+	 * @return String trimmed
 	 */
 	private String trimValue(String value){
 		return value != null?value.trim():null;

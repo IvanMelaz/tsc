@@ -10,6 +10,7 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
+          <factory-entry name="entityManagerFactory" />
           <factory-entry name="mysql_pu" value="15f73c0a-55ff-4535-875c-ef6bf5575176" />
         </datasource-mapping>
         <naming-strategy-map />
