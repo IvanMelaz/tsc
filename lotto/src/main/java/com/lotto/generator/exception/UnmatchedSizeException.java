@@ -5,7 +5,7 @@ public class UnmatchedSizeException extends IllegalArgumentException {
     int numberSize;
 
     public UnmatchedSizeException(String message, int coverSize, int numberSize) {
-        super(String.format("%s coverSize: %d coverSize: %d", message, coverSize, numberSize));
+        super(String.format("%s numbers: %d coverSize: %d", message, coverSize, numberSize));
         this.coverSize = coverSize;
         this.numberSize = numberSize;
     }

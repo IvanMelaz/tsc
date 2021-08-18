@@ -15,7 +15,7 @@ public class Numbers {
     private String numbers;
 
     public List<String> getNumbers() {
-        List<String> ints = Arrays.stream(numbers.split("-")).collect(Collectors.toList());
+        List<String> ints = Arrays.stream(numbers.split("\\s+")).collect(Collectors.toList());
         return ints.stream().sorted().collect(Collectors.toList());
     }
 

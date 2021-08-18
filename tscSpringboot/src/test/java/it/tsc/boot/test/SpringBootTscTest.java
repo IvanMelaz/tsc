@@ -6,6 +6,7 @@ package it.tsc.boot.test;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import it.tsc.domain.User;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,7 +33,7 @@ import static org.junit.Assert.assertNotNull;
 @ImportResource(value = "classpath*:test-configuration.xml")
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DbUnitTestExecutionListener.class })
-@DatabaseSetup("classpath:data/data.xml")
+//@DatabaseSetup("classpath:data/data.xml")
 public class SpringBootTscTest {
 
 	@PersistenceContext
@@ -43,15 +44,6 @@ public class SpringBootTscTest {
 	 */
 	public SpringBootTscTest() {
 
-	}
-
-	@Test
-	public void userTest() {
-		TypedQuery<User> findQuery = em
-				.createNamedQuery(User.SELECT_BY_USERNAME, User.class);
-		findQuery.setParameter("username", "testUser");
-		List<User> allUsers = findQuery.getResultList();
-		assertNotNull(em);
 	}
 
 	@Test

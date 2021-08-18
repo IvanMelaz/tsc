@@ -11,7 +11,7 @@ import javax.persistence.*;
 /**
  * @author astraservice tb_users
  */
-@Entity
+/*@Entity
 @Table(name = "tsc_user")
 @NamedQueries(value = {
 		@NamedQuery(name = User.SELECT_ALL_USERS, query = "SELECT u FROM User u"),
@@ -20,7 +20,7 @@ import javax.persistence.*;
 		@NamedQuery(name = User.SELECT_BY_USERNAME_EMAIL, query = "SELECT u FROM User u WHERE TRIM(u.key.username) = TRIM(:username) AND TRIM(u.email)=TRIM(:email)"),
 		@NamedQuery(name = User.UPDATE_BY_USERNAME_ROLE, query = "UPDATE User u SET u.keyId=:keyId,u.base32Secret=:base32Secret WHERE u.key.username = :username AND u.key.role=:role"),
 		@NamedQuery(name = User.UPDATE_USER, query = "UPDATE User u SET u.password=:password,u.email=:email,u.mfaEnabled=:mfaEnabled WHERE u.key.username = :username AND u.key.role = :role"),
-		@NamedQuery(name = User.DELETE_BY_USERNAME_ROLE, query = "DELETE User u WHERE u.key.username = :username AND u.key.role=:role")})
+		@NamedQuery(name = User.DELETE_BY_USERNAME_ROLE, query = "DELETE User u WHERE u.key.username = :username AND u.key.role=:role")})*/
 public class User extends BaseDomain {
 	/**
 	 *

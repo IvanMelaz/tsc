@@ -9,6 +9,7 @@
         <spring.boot.version>2.1.6.RELEASE</spring.boot.version>
         <gson.version>2.8.0</gson.version>
         <tiles.version>3.0.7</tiles.version>
+		<cxf.version>3.3.4</cxf.version>
     </properties>
 
 	<parent>
@@ -87,7 +88,13 @@
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-spring-boot-starter-jaxws</artifactId>
-			<version>3.3.4</version>
+			<version>${cxf.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-ws-security</artifactId>
+			<version>${cxf.version}</version>
 		</dependency>
 
 		<!-- Gson JSON Mapper -->

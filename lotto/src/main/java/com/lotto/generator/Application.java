@@ -26,9 +26,8 @@ import com.lotto.generator.properties.AppProperties;
 @SpringBootApplication
 @EnableConfigurationProperties(AppProperties.class)
 public class Application {
-	@Autowired
+
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
-	private static ApplicationContext context;
 
 	/**
 	 * 

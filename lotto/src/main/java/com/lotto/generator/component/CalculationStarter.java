@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.lotto.generator.exception.DuplicateNumberException;
+import com.lotto.generator.exception.NumberTooBigException;
 import com.lotto.generator.exception.UnmatchedSizeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,12 +37,17 @@ public class CalculationStarter {
 
 	public void startCalculation() throws IOException {
 		if (resourceManager.numbers().size() != resourceManager.loadCovering().size()) {
-			throw  new UnmatchedSizeException("different size from numbers - coverage",resourceManager.numbers().size(),resourceManager.loadCovering().size());
+			throw  new UnmatchedSizeException("different size from numbers:coverage",resourceManager.numbers().size(),resourceManager.loadCovering().size());
 		}
 
 		if (!areAllUnique(resourceManager.numbers())) {
 			throw  new DuplicateNumberException("Duplicate item Exception",
 					Integer.parseInt(findDuplicateBySetAdd(resourceManager.numbers()).stream().findFirst().orElse("")));
+		}
+
+		if (resourceManager.numbers().stream().filter(v -> Integer.valueOf(v) > 90).collect(Collectors.toList()).size()> 0) {
+			String value = resourceManager.numbers().stream().filter(v -> Integer.valueOf(v) > 90).collect(Collectors.toList()).get(0);
+			throw new NumberTooBigException("Numbers cannot be over 90 value:",Integer.valueOf(value));
 		}
 
 		List<String> numbers = resourceManager.numbers();

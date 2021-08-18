@@ -59,7 +59,7 @@
 		<security:intercept-url pattern="/allarmiTelemedicare"
 								access="permitAll" />
 
-		<!-- web services -->
+		<!-- web services Telemedicare -->
 		<security:intercept-url pattern="/Telemedicare**"
 								access="permitAll" />
 		<security:intercept-url pattern="/services/Telemedicare**"
@@ -68,6 +68,14 @@
 				pattern="/Service/services/Telemedicare**" access="permitAll" />
 		<security:intercept-url pattern="/jaxWs/Service/**"
 								access="permitAll" />
+
+		<!-- web services Zulumedical -->
+		<security:intercept-url pattern="/Zulumedical**"
+								access="permitAll" />
+		<security:intercept-url pattern="/services/Zulumedical**"
+								access="permitAll" />
+		<security:intercept-url
+				pattern="/Service/services/Zulumedical**" access="permitAll" />
 
 		<!-- profiled access , SECURED -->
 		<security:intercept-url pattern="/addMfaSecurityCode"
