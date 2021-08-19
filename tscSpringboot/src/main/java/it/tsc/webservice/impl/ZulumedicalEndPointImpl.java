@@ -42,7 +42,7 @@ public class ZulumedicalEndPointImpl extends BaseWebService implements Zulumedic
                 throw new SOAPException("Invalid username or password");
             }
             logger.info("succesfully call insert phone: {}",phone);
-            codaEveService.insertAllarmiInCodaEve_Brondi(phone,null,centrale);
+            codaEveService.insertAllarmiInCodaEve_Brondi(phone,"",centrale);
         } catch (Exception e) {
             logger.error("Zulumedical WebService: Exception: {}", e);
             throw new SOAPException(e);
