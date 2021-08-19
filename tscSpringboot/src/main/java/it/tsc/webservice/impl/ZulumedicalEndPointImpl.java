@@ -36,7 +36,7 @@ public class ZulumedicalEndPointImpl extends BaseWebService implements Zulumedic
     @Override
     public WsResult allarmeZulumedical(String userName, String password, String progressivoAllarme) throws SOAPException, ServiceException {
         WsResult result = null;
-        logger.info("calling access userName: {} password: {}",userName,password);
+        logger.info("calling access {}",phone);
         try {
             if (!userName.equalsIgnoreCase(user) || !password.equalsIgnoreCase(pwd)) {
                 throw new SOAPException("Invalid username or password");
