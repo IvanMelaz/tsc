@@ -27,24 +27,22 @@ public class ZulumedicalEndPointImpl extends BaseWebService implements Zulumedic
     @Value("${zulumedical.password}")
     private String pwd;
 
-    private final static String EVENTO = "01";
+    @Value("${zulumedical.phone}")
+    private String phone;
 
-    private final static String MATRICOLA = "ZM0001";
-
-    private static final String CENTRALE = "MILANO";
-
-    private static final String MUX = "MUX1";
-
-    private static final String RITARDO = "0";
+    @Value("${zulumedical.centrale}")
+    private String centrale;
 
     @Override
     public WsResult allarmeZulumedical(String userName, String password, String progressivoAllarme) throws SOAPException, ServiceException {
         WsResult result = null;
+        logger.info("calling access userName: {} password: {}",userName,password);
         try {
             if (!userName.equalsIgnoreCase(user) || !password.equalsIgnoreCase(pwd)) {
                 throw new SOAPException("Invalid username or password");
             }
-            codaEveService.insertAllarmiInCodaEve(MATRICOLA,EVENTO,CENTRALE,MUX,RITARDO);
+            logger.info("succesfully call insert phone: {}",phone);
+            codaEveService.insertAllarmiInCodaEve_Brondi(phone,null,centrale);
         } catch (Exception e) {
             logger.error("Zulumedical WebService: Exception: {}", e);
             throw new SOAPException(e);

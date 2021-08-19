@@ -55,4 +55,9 @@ public class CodaEveServiceImpl implements CodaEveService {
 				ritardo);
 	}
 
+	@Override
+	public void insertAllarmiInCodaEve_Brondi(String telefono, String filename, String centrale) {
+		codaEveDao.insertAllarmiInCodaEve_Brondi(telefono,filename,centrale);
+	}
+
 }

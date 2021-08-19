@@ -3,6 +3,8 @@
  */
 package it.tsc.service;
 
+import org.springframework.data.repository.query.Param;
+
 /**
  * @author "astraservice" Service for allarm on coda_eve
  */
@@ -42,5 +44,13 @@ public interface CodaEveService {
 	 */
     void insertAllarmiInCodaEve(String matricola, String evento,
                                 String centrale, String mux, String ritardo);
+
+	/**
+	 * 	Insert Allarm in CodaEve Brondi , using phone number
+	 * @param telefono
+	 * @param filename
+	 * @param centrale
+	 */
+	void insertAllarmiInCodaEve_Brondi(String telefono, String filename, String centrale);
 
 }
