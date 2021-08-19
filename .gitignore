@@ -1,2 +1,4 @@
 .settings
 .idea
+/tscSpringboot/target/classes
+/tscSpringboot/target/test-classes
