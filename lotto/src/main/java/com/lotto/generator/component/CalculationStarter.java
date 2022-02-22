@@ -47,7 +47,7 @@ public class CalculationStarter {
 
 		if (resourceManager.numbers().stream().filter(v -> Integer.valueOf(v) > 90).collect(Collectors.toList()).size()> 0) {
 			String value = resourceManager.numbers().stream().filter(v -> Integer.valueOf(v) > 90).collect(Collectors.toList()).get(0);
-			throw new NumberTooBigException("Numbers cannot be over 90 value:",Integer.valueOf(value));
+			throw new NumberTooBigException("Numbers cannot be greater than 90 value:",Integer.valueOf(value));
 		}
 
 		List<String> numbers = resourceManager.numbers();
