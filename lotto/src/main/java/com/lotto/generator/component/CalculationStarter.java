@@ -36,8 +36,8 @@ public class CalculationStarter {
 	}
 
 	public void startCalculation() throws IOException {
-		if (resourceManager.numbers().size() != resourceManager.loadCovering().size()) {
-			throw  new UnmatchedSizeException("different size from numbers:coverage",resourceManager.numbers().size(),resourceManager.loadCovering().size());
+		if (resourceManager.numbers().size() != resourceManager.getCoverageMaxItem(resourceManager.loadCovering())) {
+			throw  new UnmatchedSizeException("different size from numbers:coverage max number",resourceManager.numbers().size(),resourceManager.loadCovering().size());
 		}
 
 		if (!areAllUnique(resourceManager.numbers())) {
@@ -53,8 +53,8 @@ public class CalculationStarter {
 		List<String> numbers = resourceManager.numbers();
 		for (List<String> items : resourceManager.loadCovering()) {
 			StringBuilder result = new StringBuilder();
-			for (String index : items) {
-				result.append(sortAscending(numbers).collect(Collectors.toList()).get(Integer.parseInt(index) - 1)).append(SEPARATOR);
+			for (String lineResult : items) {
+				result.append(resourceManager.replaceCoverageItemsWithNumbers(lineResult, sortAscending(numbers).collect(Collectors.toList()),SEPARATOR));
 			}
 			log.info(result.toString());
 		}
