@@ -58,6 +58,10 @@ public class CalculationStarter {
 			}
 			log.info(result.toString());
 		}
+		log.info("#### elenco numeri ####");
+		StringBuilder lineResult = new StringBuilder();
+		sortAscending(numbers).forEach(item -> {lineResult.append(item).append(SEPARATOR);});
+		log.info(lineResult.toString());
 	}
 
 	public <T> boolean areAllUnique(List<T> list){
@@ -74,8 +78,7 @@ public class CalculationStarter {
 	}
 
 	public Stream<String> sortAscending(List<String>list) {
-		Comparator comparator;
-		comparator = new Comparator<String>() {
+		Comparator comparator = new Comparator<String>() {
 			@Override
 			public int compare(String o1, String o2) {
 				return Integer.valueOf(o1).compareTo(Integer.valueOf( o2));
