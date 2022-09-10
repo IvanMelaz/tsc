@@ -37,7 +37,7 @@ public class CalculationStarter {
 
 	public void startCalculation() throws IOException {
 		if (resourceManager.numbers().size() != resourceManager.getCoverageMaxItem(resourceManager.loadCovering())) {
-			throw  new UnmatchedSizeException("different size from numbers:coverage max number",resourceManager.numbers().size(),resourceManager.loadCovering().size());
+			throw  new UnmatchedSizeException("different size from numbers:coverage max number",resourceManager.numbers().size(),resourceManager.getCoverageMaxItem(resourceManager.loadCovering()));
 		}
 
 		if (!areAllUnique(resourceManager.numbers())) {
