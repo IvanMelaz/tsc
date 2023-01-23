@@ -4,13 +4,11 @@
 package it.tsc.boot.test;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
-import com.github.springtestdbunit.annotation.DatabaseSetup;
-import it.tsc.domain.User;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -18,10 +16,6 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import java.util.List;
-
-import static org.junit.Assert.assertNotNull;
 
 /**
  * @author "astraservice"
@@ -29,6 +23,7 @@ import static org.junit.Assert.assertNotNull;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@DirtiesContext
 @TestPropertySource(locations = "/application.test.properties")
 @ImportResource(value = "classpath*:test-configuration.xml")
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,

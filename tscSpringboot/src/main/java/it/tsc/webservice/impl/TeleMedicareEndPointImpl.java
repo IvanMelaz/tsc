@@ -51,13 +51,13 @@ public class TeleMedicareEndPointImpl extends BaseWebService implements TeleMedi
 			/**
 			 * Call to DaoService
 			 */
-			logger.debug("allarmeTelemedicare codiceAllarme: {} progressivoAllarme: {}", codiceAllarme, progressivoAllarme);
+			logger.info("allarmeTelemedicare codiceAllarme: {} progressivoAllarme: {}", codiceAllarme, progressivoAllarme);
 			telemedicareService.saveAllarm(allarmiTelemedicare);
 			result = new WsResult(Esito.OK, "", 0,
 					allarmiTelemedicare.getId_allarme());
 		}
 		catch (Exception e) {
-			logger.error("TelemedicareWebService: Exception: {}", e);
+			logger.error("TelemedicareWebService: Exception: {}", e.getMessage());
 			throw new SOAPException(e);
 		}
 		return result;
@@ -80,7 +80,7 @@ public class TeleMedicareEndPointImpl extends BaseWebService implements TeleMedi
 					progressivoAllarme);
 		}
 		catch (Exception e) {
-			logger.error("TelemedicareWebService: Exception: {}", e);
+			logger.error("TelemedicareWebService: Exception: {}", e.getMessage());
 			throw new SOAPException(e);
 		}
 		return result;

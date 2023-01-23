@@ -51,17 +51,18 @@ public class EuropeAssistanceDaoImpl extends BaseDao
 	public void saveAllarm(AllarmiEuropeAssistance allarmiEuropeAssistance) {
 		EntityTransaction tx = getEntityManager().getTransaction();
 		try {
+			logger.info("Calling saveAllarm allarmiEuropeAssistance: {}",allarmiEuropeAssistance);
 			tx.begin();
 			String id_allarme = functionDao.getNextIdAllarme(CENTRALE_EA);
 			allarmiEuropeAssistance.setId_allarme(id_allarme);
 			saveAndFlush(allarmiEuropeAssistance);
-			logger.debug("saveAllarm: {}",
+			logger.info("saveAllarm: {}",
 					allarmiEuropeAssistance.getId_allarme());
 			tx.commit();
 		}
 		catch (Exception e) {
+			logger.error("saveAllarm: {}", e.getMessage());
 			tx.rollback();
-			logger.error("saveAllarm: {}", e);
 		}
 	}
 

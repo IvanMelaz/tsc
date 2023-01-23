@@ -32,7 +32,7 @@ public class CustomErrorController implements ErrorController {
 
 	@RequestMapping(value = PATH)
 	ErrorJson error(HttpServletRequest request, WebRequest webRequest,
-			HttpServletResponse response) {
+					HttpServletResponse response) {
 		// Appropriate HTTP response code (e.g. 404 or 500) is automatically set
 		// by Spring.
 		// Here we just define response body.
@@ -47,7 +47,7 @@ public class CustomErrorController implements ErrorController {
 
 	@SuppressWarnings("unused")
 	private Map<String, Object> getErrorAttributes(HttpServletRequest request,
-			WebRequest webRequest, boolean includeStackTrace) {
+												   WebRequest webRequest, boolean includeStackTrace) {
 		RequestAttributes requestAttributes = new ServletRequestAttributes(
 				request);
 		return errorAttributes.getErrorAttributes(webRequest,

@@ -6,7 +6,8 @@ package it.tsc.domain;
 import com.google.gson.annotations.Expose;
 import it.tsc.domain.key.UserKey;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 
 /**
  * @author astraservice tb_users

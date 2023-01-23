@@ -11,6 +11,7 @@ import it.tsc.domain.types.TipologiaServizio;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * @author astraservice POJO class for allarm
@@ -277,5 +278,44 @@ public class AllarmiEuropeAssistance extends BaseDomain {
 
 	public void setDataArrivo(Date dataArrivo) {
 		this.dataArrivo = dataArrivo;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof AllarmiEuropeAssistance)) return false;
+		AllarmiEuropeAssistance that = (AllarmiEuropeAssistance) o;
+		return isTest() == that.isTest() && getId_allarme().equals(that.getId_allarme()) && getAb_codi().equals(that.getAb_codi()) && getDataRichiesta().equals(that.getDataRichiesta()) && getDataArrivo().equals(that.getDataArrivo()) && getNomeCliente().equals(that.getNomeCliente()) && getCognomeCliente().equals(that.getCognomeCliente()) && getNumeroTelefono1().equals(that.getNumeroTelefono1()) && getNumeroTelefono2().equals(that.getNumeroTelefono2()) && getEmail().equals(that.getEmail()) && getIndirizzo().equals(that.getIndirizzo()) && getNumeroOrdine().equals(that.getNumeroOrdine()) && getNumeroDossier().equals(that.getNumeroDossier()) && getCodiceBP().equals(that.getCodiceBP()) && getTipologiaServizio() == that.getTipologiaServizio() && getTipologiaConsulenza() == that.getTipologiaConsulenza() && getSpecializzazioneMedico() == that.getSpecializzazioneMedico() && getQuesitoMedico().equals(that.getQuesitoMedico()) && getFasciaOraria() == that.getFasciaOraria() && getLinkMyClinic().equals(that.getLinkMyClinic());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getId_allarme(), getAb_codi(), getDataRichiesta(), getDataArrivo(), getNomeCliente(), getCognomeCliente(), getNumeroTelefono1(), getNumeroTelefono2(), getEmail(), getIndirizzo(), getNumeroOrdine(), getNumeroDossier(), getCodiceBP(), getTipologiaServizio(), getTipologiaConsulenza(), getSpecializzazioneMedico(), getQuesitoMedico(), getFasciaOraria(), getLinkMyClinic(), isTest());
+	}
+
+	@Override
+	public String toString() {
+		return "AllarmiEuropeAssistance{" +
+				"id_allarme='" + id_allarme + '\'' +
+				", ab_codi='" + ab_codi + '\'' +
+				", dataRichiesta=" + dataRichiesta +
+				", dataArrivo=" + dataArrivo +
+				", nomeCliente='" + nomeCliente + '\'' +
+				", cognomeCliente='" + cognomeCliente + '\'' +
+				", numeroTelefono1='" + numeroTelefono1 + '\'' +
+				", numeroTelefono2='" + numeroTelefono2 + '\'' +
+				", email='" + email + '\'' +
+				", indirizzo='" + indirizzo + '\'' +
+				", numeroOrdine='" + numeroOrdine + '\'' +
+				", numeroDossier='" + numeroDossier + '\'' +
+				", codiceBP='" + codiceBP + '\'' +
+				", tipologiaServizio=" + tipologiaServizio +
+				", tipologiaConsulenza=" + tipologiaConsulenza +
+				", specializzazioneMedico=" + specializzazioneMedico +
+				", quesitoMedico='" + quesitoMedico + '\'' +
+				", fasciaOraria=" + fasciaOraria +
+				", linkMyClinic='" + linkMyClinic + '\'' +
+				", test=" + test +
+				'}';
 	}
 }

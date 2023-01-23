@@ -16,31 +16,32 @@ import java.sql.Types;
 
 /**
  * @author "astraservice"
- *
  */
 @Repository("functionDao")
 public class FunctionDaoImpl extends BaseDao implements FunctionDao {
-  private static final Logger logger = LoggerFactory.getLogger(FunctionDaoImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(FunctionDaoImpl.class);
 
-  /**
-   *
-   */
-  public FunctionDaoImpl() {
+    /**
+     *
+     */
+    public FunctionDaoImpl() {
 
-  }
-
-  @Override
-  public String getNextIdAllarme(String centrale) throws SQLException {
-    CallableStatement function = getConnection().prepareCall("{? = call fn_RetIDCode(?)}");
-    function.registerOutParameter(1, Types.VARCHAR);
-    function.setString(2, centrale);
-    try {
-      function.execute();
-      return function.getString(1);
-    } catch (Exception e) {
-      logger.error("getNextIdAllarme: {}", e);
-      return null;
     }
-  }
+
+    @Override
+    public String getNextIdAllarme(String centrale) throws SQLException {
+        logger.info("Calling getNextIdAllarme centrale: {} ", centrale);
+
+        try (CallableStatement function = getConnection().prepareCall("{? = call fn_RetIDCode(?)}")) {
+            function.registerOutParameter(1, Types.VARCHAR);
+            function.setString(2, centrale);
+            function.execute();
+            logger.info("getNextIdAllarme return value: {}", function.getString(1));
+            return function.getString(1);
+        } catch (Exception e) {
+            logger.error("getNextIdAllarme: {}", e.getMessage());
+            return null;
+        }
+    }
 
 }

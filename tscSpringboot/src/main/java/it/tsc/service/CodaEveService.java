@@ -3,8 +3,6 @@
  */
 package it.tsc.service;
 
-import org.springframework.data.repository.query.Param;
-
 /**
  * @author "astraservice" Service for allarm on coda_eve
  */
