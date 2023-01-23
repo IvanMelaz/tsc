@@ -3,3 +3,5 @@
 /src/
 /logFile.log
 /.idea/sonarlint/
+/.idea/
+/tscSpringboot.iml
