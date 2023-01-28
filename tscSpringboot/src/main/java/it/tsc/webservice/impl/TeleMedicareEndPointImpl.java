@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import javax.xml.soap.SOAPException;
+import java.util.Calendar;
 
 public class TeleMedicareEndPointImpl extends BaseWebService implements TeleMedicareEndpoint {
 	private static final Logger logger = LoggerFactory
@@ -48,10 +49,11 @@ public class TeleMedicareEndPointImpl extends BaseWebService implements TeleMedi
 			}
 			allarmiTelemedicare.setAb_codi(codiceAllarme);
 			allarmiTelemedicare.setProgressivoAllarme(progressivoAllarme);
+			allarmiTelemedicare.setDataArrivo(Calendar.getInstance().getTime());
 			/**
 			 * Call to DaoService
 			 */
-			logger.info("allarmeTelemedicare codiceAllarme: {} progressivoAllarme: {}", codiceAllarme, progressivoAllarme);
+			logger.info("allarmeTelemedicare codiceAllarme: {} progressivoAllarme: {} allarmiTelemedicare: ", codiceAllarme, progressivoAllarme,allarmiTelemedicare);
 			telemedicareService.saveAllarm(allarmiTelemedicare);
 			result = new WsResult(Esito.OK, "", 0,
 					allarmiTelemedicare.getId_allarme());

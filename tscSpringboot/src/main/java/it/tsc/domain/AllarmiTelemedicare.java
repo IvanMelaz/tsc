@@ -7,6 +7,7 @@ import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * @author astraservice POJO class for allarm
@@ -74,5 +75,28 @@ public class AllarmiTelemedicare extends BaseDomain {
 
 	public void setProgressivoAllarme(String progressivoAllarme) {
 		this.progressivoAllarme = progressivoAllarme;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof AllarmiTelemedicare)) return false;
+		AllarmiTelemedicare that = (AllarmiTelemedicare) o;
+		return getId_allarme().equals(that.getId_allarme()) && getAb_codi().equals(that.getAb_codi()) && getDataArrivo().equals(that.getDataArrivo()) && getProgressivoAllarme().equals(that.getProgressivoAllarme());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getId_allarme(), getAb_codi(), getDataArrivo(), getProgressivoAllarme());
+	}
+
+	@Override
+	public String toString() {
+		return "AllarmiTelemedicare{" +
+				"id_allarme='" + id_allarme + '\'' +
+				", ab_codi='" + ab_codi + '\'' +
+				", dataArrivo=" + dataArrivo +
+				", progressivoAllarme='" + progressivoAllarme + '\'' +
+				'}';
 	}
 }
