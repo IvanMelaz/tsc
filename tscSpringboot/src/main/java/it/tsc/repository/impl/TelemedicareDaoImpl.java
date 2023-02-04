@@ -16,6 +16,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.sql.Connection;
 import java.util.List;
 
 @Repository("telemedicareDao")
@@ -45,7 +46,7 @@ public class TelemedicareDaoImpl extends BaseDao implements TelemedicareDao {
 	public void saveAllarm(AllarmiTelemedicare allarmiTelemedicare) {
 		EntityTransaction tx = getEntityManager().getTransaction();
 		logger.info("Begin transaction tx: {}",tx);
-		try {
+		try (Connection connection = getConnection()){
 			tx.begin();
 /*			String id_allarme = functionDao.getNextIdAllarme(CENTRALE_EA);
 			allarmiTelemedicare.setId_allarme(id_allarme);
@@ -57,7 +58,9 @@ public class TelemedicareDaoImpl extends BaseDao implements TelemedicareDao {
 			tx.commit();
 		}
 		catch (Exception e) {
-			tx.rollback();
+			if (tx != null) {
+				tx.rollback();
+			}
 			logger.error("saveAllarm: {}", e.getMessage());
 		}
 	}
@@ -77,7 +80,7 @@ public class TelemedicareDaoImpl extends BaseDao implements TelemedicareDao {
 	public void dropAllarm(String progressivoAllarme) {
 		EntityTransaction tx = getEntityManager().getTransaction();
 		logger.info("Begin transaction tx: {}",tx);
-		try {
+		try (Connection connection = getConnection()){
 			tx.begin();
 			EntityManager entityManager = getEntityManager();
 			Query query = entityManager
@@ -88,7 +91,9 @@ public class TelemedicareDaoImpl extends BaseDao implements TelemedicareDao {
 			tx.commit();
 		}
 		catch (Exception e) {
-			tx.rollback();
+			if (tx != null) {
+				tx.rollback();
+			}
 			logger.error("dropAllarm: {}", e.getMessage());
 		}
 	}

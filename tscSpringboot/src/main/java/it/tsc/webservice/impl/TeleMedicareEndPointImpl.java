@@ -77,7 +77,7 @@ public class TeleMedicareEndPointImpl extends BaseWebService implements TeleMedi
 			 * Call to DaoService
 			 */
 			logger.debug("eliminaAllarmeTelemedicare progressivoAllarme: {}", progressivoAllarme);
-			telemedicareService.dropAllarm(progressivoAllarme);
+/*			telemedicareService.dropAllarm(progressivoAllarme);*/
 			result = new WsResult(Esito.OK, "", 0,
 					progressivoAllarme);
 		}

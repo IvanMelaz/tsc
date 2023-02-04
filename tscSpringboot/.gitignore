@@ -1,7 +1,7 @@
 /target/
 /.springBeans
 /src/
-/logFile.log
+/logFile*.log
 /.idea/sonarlint/
 /.idea/
 /tscSpringboot.iml
