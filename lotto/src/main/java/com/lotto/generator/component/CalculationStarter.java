@@ -36,6 +36,7 @@ public class CalculationStarter {
 	}
 
 	public void startCalculation() throws IOException {
+		//Check coverage size and number
 		if (resourceManager.numbers().size() != resourceManager.getCoverageMaxItem(resourceManager.loadCovering())) {
 			throw  new UnmatchedSizeException("different size from numbers:coverage max number",resourceManager.numbers().size(),resourceManager.getCoverageMaxItem(resourceManager.loadCovering()));
 		}
@@ -45,7 +46,7 @@ public class CalculationStarter {
 					Integer.parseInt(findDuplicateBySetAdd(resourceManager.numbers()).stream().findFirst().orElse("")));
 		}
 
-		if (resourceManager.numbers().stream().filter(v -> Integer.valueOf(v) > 90).collect(Collectors.toList()).size()> 0) {
+		if (!resourceManager.numbers().stream().filter(v -> Integer.valueOf(v) > 90).collect(Collectors.toList()).isEmpty()) {
 			String value = resourceManager.numbers().stream().filter(v -> Integer.valueOf(v) > 90).collect(Collectors.toList()).get(0);
 			throw new NumberTooBigException("Numbers cannot be greater than 90 value:",Integer.valueOf(value));
 		}
@@ -62,6 +63,7 @@ public class CalculationStarter {
 		StringBuilder lineResult = new StringBuilder();
 		sortAscending(numbers).forEach(item -> {lineResult.append(item).append(SEPARATOR);});
 		log.info(lineResult.toString());
+		log.info(String.format("#### totale schedine: %s ####",numbers.size()));
 	}
 
 	public <T> boolean areAllUnique(List<T> list){

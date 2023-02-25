@@ -44,10 +44,8 @@ public class TelemedicareDaoImpl extends BaseDao implements TelemedicareDao {
 
 	@Override
 	public void saveAllarm(AllarmiTelemedicare allarmiTelemedicare) {
-		EntityTransaction tx = getEntityManager().getTransaction();
-		logger.info("Begin transaction tx: {}",tx);
+		logger.info("saveAllarm: {}",allarmiTelemedicare);
 		try (Connection connection = getConnection()){
-			tx.begin();
 /*			String id_allarme = functionDao.getNextIdAllarme(CENTRALE_EA);
 			allarmiTelemedicare.setId_allarme(id_allarme);
 			logger.info("saveAndFlush allarmiTelemedicare: {}",allarmiTelemedicare);
@@ -55,12 +53,8 @@ public class TelemedicareDaoImpl extends BaseDao implements TelemedicareDao {
 			logger.debug("saveAllarm: {}",
 					allarmiTelemedicare.getId_allarme());*/
 			codaEveService.insertAllarmiInCodaEve_Brondi(phone,"",centrale);
-			tx.commit();
 		}
 		catch (Exception e) {
-			if (tx != null) {
-				tx.rollback();
-			}
 			logger.error("saveAllarm: {}", e.getMessage());
 		}
 	}
