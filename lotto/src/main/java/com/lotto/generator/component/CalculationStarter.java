@@ -5,6 +5,8 @@ package com.lotto.generator.component;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -63,7 +65,9 @@ public class CalculationStarter {
 		StringBuilder lineResult = new StringBuilder();
 		sortAscending(numbers).forEach(item -> {lineResult.append(item).append(SEPARATOR);});
 		log.info(lineResult.toString());
-		log.info(String.format("#### totale schedine: %s ####",numbers.size()));
+		log.info(String.format("#### totale schedine: %s ####",resourceManager.loadCovering().size()));
+		log.info(String.format("#### costo schedine: %s€ ####",resourceManager.applyCost(getNumbers(resourceManager.loadCovering()),resourceManager.loadCovering().size())));
+		log.info(String.format("#### ruota: %s ####",resourceManager.ruota));
 	}
 
 	public <T> boolean areAllUnique(List<T> list){
@@ -89,4 +93,14 @@ public class CalculationStarter {
 		return list.stream().sorted(comparator::compare);
 	}
 
+	private int getNumbers(List<List<String>> covering) {
+		String line = String.valueOf(covering.stream().findFirst());
+		LinkedList<String> numbers = new LinkedList<String>();
+		Pattern p = Pattern.compile("\\d+");
+		Matcher m = p.matcher(line);
+		while (m.find()) {
+			numbers.add(m.group());
+		}
+		return numbers.size();
+	}
 }

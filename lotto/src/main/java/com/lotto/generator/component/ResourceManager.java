@@ -10,6 +10,8 @@ import java.io.InputStreamReader;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -32,14 +34,19 @@ public class ResourceManager {
     @Value("${app.path}")
     private String path;
 
+    @Value("${app.routes}")
+    private String routes;
+
+    @Value("${app.ruota}")
+    public String ruota;
+
     @Autowired
     private static ApplicationContext context;
 
     /**
      *
      */
-    public ResourceManager() {
-
+    public ResourceManager() throws JsonProcessingException {
 
     }
 
@@ -96,6 +103,13 @@ public class ResourceManager {
         List<String> itms = Arrays.stream(item.split("\\s")).filter(s-> !s.trim().equals("")).collect(Collectors.toList());
         itms.forEach(r -> {numberItems.add(Integer.valueOf(r));});
         return numberItems;
+    }
+
+    public String applyCost(int size , int coveringSize) throws JsonProcessingException {
+        ObjectMapper om = new ObjectMapper();
+        Root root = om.readValue(routes, Root.class);
+        Optional<Route> optionalRoute =  root.routes.stream().filter(r -> r.numbers.equals(String.valueOf(size))).findFirst();
+        return String.valueOf(Integer.valueOf(optionalRoute.get().cost) * coveringSize);
     }
 
 }
